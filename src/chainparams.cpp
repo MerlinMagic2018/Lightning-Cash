@@ -105,14 +105,14 @@ public:
 
         // LightningCash: Hive: Deployment
         consensus.vDeployments[Consensus::DEPLOYMENT_HIVE].bit = 7;
-        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE].nStartTime = 1550149134 + 259200; // active after 3 days
-        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE].nTimeout = 1550149134 + 259200 + 31536000; // 1 year later
+        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE].nStartTime = Consensus::BIP9Deployment::ALWAYS_ACTIVE; // active from the start
+        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
 
         // LightningCash fields
         consensus.powForkTime = 1550149134;                 // Time of PoW hash method change
         consensus.lastScryptBlock = 0;                // Height of last scrypt block
-        consensus.powLimitSHA = uint256S("00000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");   // Initial hash target at fork ( for scrypt hasing !!! )
-        consensus.slowStartBlocks = 2000;                   // Scale post-fork block reward up over this many blocks
+        consensus.powLimitSHA = uint256S("00000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");   // Initial hash target at fork ( for scrypt hashing !!! )
+        consensus.slowStartBlocks = 125;                   // Scale post-fork block reward up over this many blocks
 //        consensus.premineAmount =  550000;                   // Premine amount (1% of max supply)
 //        std::vector<unsigned char> vch = ParseHex("76a9142d291462543ef00046cd195904b8f7442bde02b388ac");
 //        consensus.premineOutputScript = CScript(vch.begin(), vch.end());	// Output script for premine block (CLagBwF71hqPEKasbmugxBqmyWGFf6ZjMc)
@@ -124,10 +124,10 @@ public:
         consensus.beeCreationAddress = "CReateLitecoinCashWorkerBeeXYs19YQ";        // Unspendable address for bee creation
         consensus.hiveCommunityAddress = "CeckYLfkWnViDxKE1R5vLZaarygLrNgUwa";      // Community fund address
         consensus.communityContribFactor = 10;              // Optionally, donate bct_value/maxCommunityContribFactor to community fund
-        consensus.beeGestationBlocks = 48*24;               // The number of blocks for a new bee to mature   romoved here and under 48* for a test...
+        consensus.beeGestationBlocks = 48*24;               // The number of blocks for a new bee to mature
         consensus.beeLifespanBlocks = 48*24*14;             // The number of blocks a bee lives for after maturation
         consensus.powLimitHive = uint256S("7ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");  // Highest (easiest) bee hash target
-        consensus.minHiveCheckBlock = 2000;              // Don't bother checking below this height for Hive blocks (not used for consensus/validation checks, just efficiency when looking for potential BCTs)
+        consensus.minHiveCheckBlock = 1;              // Don't bother checking below this height for Hive blocks (not used for consensus/validation checks, just efficiency when looking for potential BCTs)
         consensus.hiveTargetAdjustAggression = 30;          // Snap speed for bee hash target adjustment EMA
         consensus.hiveBlockSpacingTarget = 2;               // Target Hive block frequency (1 out of this many blocks should be Hivemined)
         consensus.hiveNonceMarker = 192;                    // Nonce marker for hivemined blocks
@@ -204,7 +204,7 @@ public:
         consensus.BIP34Hash = uint256S("000000042bcd56d6ea0509230b76fe850f0a40a9110f7dba979fd5d707e47c8a"); // Block hash at block 146
         consensus.BIP65Height = 14600000;
         consensus.BIP66Height = 14600000;
-        consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        consensus.powLimit = uint256S("00000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 3840; //
         consensus.nPowTargetSpacing = 60;
         consensus.fPowAllowMinDifficultyBlocks = false;
@@ -227,14 +227,14 @@ public:
 
         // LightningCash: Hive: Deployment
         consensus.vDeployments[Consensus::DEPLOYMENT_HIVE].bit = 7;
-        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE].nStartTime = 1550149134 + 259200; // active after 3 days
-        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE].nTimeout = 1550149134 + 259200 + 31536000; // 1 year later
+        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE].nStartTime = Consensus::BIP9Deployment::ALWAYS_ACTIVE; // active from the start
+        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
 
         // LightningCash fields
         consensus.powForkTime = 1550149134;                 // Time of PoW hash method change (block 100)
         consensus.lastScryptBlock = 0;                    // Height of last scrypt block
-        consensus.powLimitSHA = uint256S("00000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");   // Initial hash target at fork
-        consensus.slowStartBlocks = 2000;                     // Scale post-fork block reward up over this many blocks
+        consensus.powLimitSHA = uint256S("00000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");   // Initial hash target at fork
+        consensus.slowStartBlocks = 125;                     // Scale post-fork block reward up over this many blocks
  //       consensus.premineAmount = 2100000;                   // Premine amount (less than 1% of issued currency at fork time)
  //       std::vector<unsigned char> vch = ParseHex("76a91424af51d38b740a6dc2868dfd70fc16d76901e1e088ac"); // havent changed it yet but whatever...
  //       consensus.premineOutputScript = CScript(vch.begin(), vch.end());	// Output script for premine block (tAGaQ7rk3NE7etu3bU6yAJF3KSKeDhTHry)
@@ -244,12 +244,12 @@ public:
         consensus.minBeeCost = 10000;                       // Minimum cost of a bee, used when no more block rewards
         consensus.beeCostFactor = 2500;                     // Bee cost is block_reward/beeCostFactor
         consensus.beeCreationAddress = "tEstNetCreateLCCWorkerBeeXXXYq6T3r";        // Unspendable address for bee creation
-        consensus.hiveCommunityAddress = "tCY5JWV4LYe64ivrAE2rD6P3bYxYtcoTsz";      // Community fund address
+        consensus.hiveCommunityAddress = "t9ctP2rDfvnqUr9kmo2nb1LEDpu1Lc5sQn";      // Community fund address
         consensus.communityContribFactor = 10;              // Optionally, donate bct_value/maxCommunityContribFactor to community fund
-        consensus.beeGestationBlocks = 48*24;               // The number of blocks for a new bee to mature
-        consensus.beeLifespanBlocks = 48*24*14;             // The number of blocks a bee lives for after maturation
-        consensus.powLimitHive = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");  // Highest (easiest) bee hash target
-        consensus.minHiveCheckBlock = 2000;                  // Don't bother checking below this height for Hive blocks (not used for consensus/validation checks, just efficiency when looking for potential BCTs)
+        consensus.beeGestationBlocks = 24;               // The number of blocks for a new bee to mature 24 times faster for testnet
+        consensus.beeLifespanBlocks = 24*14;             // The number of blocks a bee lives for after maturation 24 times faster for testnet
+        consensus.powLimitHive = uint256S("7ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");  // Highest (easiest) bee hash target
+        consensus.minHiveCheckBlock = 1;                  // Don't bother checking below this height for Hive blocks (not used for consensus/validation checks, just efficiency when looking for potential BCTs)
         consensus.hiveTargetAdjustAggression = 30;          // Snap speed for bee hash target adjustment EMA
         consensus.hiveBlockSpacingTarget = 2;               // Target Hive block frequency (1 out of this many blocks should be Hivemined)
         consensus.hiveNonceMarker = 192;                    // Nonce marker for hivemined blocks
@@ -339,7 +339,7 @@ public:
         // LightningCash fields
         consensus.powForkTime = 1550149134;                 // Time of PoW hash method change (block 100)
         consensus.lastScryptBlock = 0;                    // Height of last scrypt block
-        consensus.powLimitSHA = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");   // Initial hash target at fork
+        consensus.powLimitSHA = uint256S("000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");   // Initial hash target at fork
         consensus.slowStartBlocks = 2000;                     // Scale post-fork block reward up over this many blocks
  //       consensus.premineAmount = 2100000;                   // Premine amount (less than 1% of issued currency at fork time)
  //       std::vector<unsigned char> vch = ParseHex("76a91424af51d38b740a6dc2868dfd70fc16d76901e1e088ac");
@@ -357,7 +357,7 @@ public:
         pchMessageStart[1] = 0xbe;
         pchMessageStart[2] = 0xb4;
         pchMessageStart[3] = 0xd9;
-        nDefaultPort = 69444;
+        nDefaultPort = 59444;
         nPruneAfterHeight = 1000;
 
         genesis = CreateGenesisBlock(1550149134, 2, 0x207fffff, 1, 50 * COIN * COIN_SCALE);
