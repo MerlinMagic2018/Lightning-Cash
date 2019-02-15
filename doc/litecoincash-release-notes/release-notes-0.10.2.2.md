@@ -53,7 +53,7 @@ Protocol:
 - Scrypt Proof-of-Work instead of sha256d, however block hashes are sha256d for performance reasons.
 - LightningCash TCP port 9333 (instead of 62458)
 - RPC TCP port 62457 (instead of 8332)
-- Testnet TCP port 19333 (instead of 62456)
+- Testnet TCP port 19333 (instead of 59111)
 - Testnet RPC TCP port 62455 (instead of 18332)
 - 84 million coin limit  (instead of 21 million)
 - Magic 0xfbc0b6db       (instead of 0xf9beb4d9)

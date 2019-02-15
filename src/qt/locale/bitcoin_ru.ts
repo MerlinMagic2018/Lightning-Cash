@@ -43,11 +43,11 @@
     </message>
     <message>
         <source>Choose the address to send coins to</source>
-        <translation>Выберите адрес для отправки LCC-монет</translation>
+        <translation>Выберите адрес для отправки LTNC-монет</translation>
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
-        <translation>Выберите адрес для получения LCC-монет</translation>
+        <translation>Выберите адрес для получения LTNC-монет</translation>
     </message>
     <message>
         <source>C&amp;hoose</source>
@@ -63,7 +63,7 @@
     </message>
     <message>
         <source>These are your LightningCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Это ваши адреса LightningCash для отправки платежей. Всегда проверяйте сумму и адрес получателя перед отправкой LCC-монет.</translation>
+        <translation>Это ваши адреса LightningCash для отправки платежей. Всегда проверяйте сумму и адрес получателя перед отправкой LTNC-монет.</translation>
     </message>
     <message>
         <source>These are your LightningCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
@@ -173,7 +173,7 @@
     </message>
     <message>
         <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR LIGHTNINGCASH&lt;/b&gt;!</source>
-        <translation>Предупреждение: если вы зашифруете кошелёк и потеряете пароль, вы &lt;b&gt;ПОТЕРЯЕТЕ ВСЕ ВАШИ LCC-МОНЕТЫ&lt;/b&gt;!</translation>
+        <translation>Предупреждение: если вы зашифруете кошелёк и потеряете пароль, вы &lt;b&gt;ПОТЕРЯЕТЕ ВСЕ ВАШИ LTNC-МОНЕТЫ&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -185,7 +185,7 @@
     </message>
     <message>
         <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your lightningcash from being stolen by malware infecting your computer.</source>
-        <translation>Сейчас %1 закроется для завершения процесса шифрования. Помните, что шифрование вашего бумажника не может полностью защитить ваши LCC-монеты от кражи с помощью инфицирования вашего компьютера вредоносным ПО.</translation>
+        <translation>Сейчас %1 закроется для завершения процесса шифрования. Помните, что шифрование вашего бумажника не может полностью защитить ваши LTNC-монеты от кражи с помощью инфицирования вашего компьютера вредоносным ПО.</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
@@ -919,7 +919,7 @@
     </message>
     <message>
         <source>Attempting to spend lightningcash that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation>Попытка потратить LCC-монеты из ещё неотображённых транзакций будет отвергнута сетью.</translation>
+        <translation>Попытка потратить LTNC-монеты из ещё неотображённых транзакций будет отвергнута сетью.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -2345,7 +2345,7 @@
     </message>
     <message>
         <source>The fee will be deducted from the amount being sent. The recipient will receive less lightningcash than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation>С отправляемой суммы будет удержана комиссия. Получателю придёт меньше LCC-монет, чем вы вводите в поле количества для отправки. Если выбрано несколько получателей, комиссия распределится поровну.</translation>
+        <translation>С отправляемой суммы будет удержана комиссия. Получателю придёт меньше LTNC-монет, чем вы вводите в поле количества для отправки. Если выбрано несколько получателей, комиссия распределится поровну.</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
@@ -2418,7 +2418,7 @@
     </message>
     <message>
         <source>You can sign messages/agreements with your addresses to prove you can receive lightningcash sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation>Вы можете подписывать сообщения/соглашения своими адресами, чтобы доказать свою возможность получать LCC-монеты на них. Будьте осторожны, не подписывайте что-то неопределённое или случайное, так как злоумышленники с помощью фишинговых атак могут обманным путём заставить вас подписать нежелательные сообщения. Подписывайте только те сообщения, с которыми вы до мелочей согласны.</translation>
+        <translation>Вы можете подписывать сообщения/соглашения своими адресами, чтобы доказать свою возможность получать LTNC-монеты на них. Будьте осторожны, не подписывайте что-то неопределённое или случайное, так как злоумышленники с помощью фишинговых атак могут обманным путём заставить вас подписать нежелательные сообщения. Подписывайте только те сообщения, с которыми вы до мелочей согласны.</translation>
     </message>
     <message>
         <source>The LightningCash address to sign the message with</source>

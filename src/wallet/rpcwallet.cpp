@@ -593,7 +593,7 @@ UniValue createbees(const JSONRPCRequest& request)
             "\nArguments:\n"
             "1. bee_count              (numeric, required) The number of bees to create.\n"
             "2. community_contrib      (boolean, optional, default=true) If true, a small percentage of bee creation cost will be paid to a community fund.\n"
-            "3. \"honey_address\"        (string, optional) The LCC address to receive rewards for blocks mined by bee(s) created in this transaction.\n"
+            "3. \"honey_address\"        (string, optional) The LTNC address to receive rewards for blocks mined by bee(s) created in this transaction.\n"
             "\nResult:\n"
             "\"txid\"                    (string) The transaction id.\n"
             "\nExamples:\n"
