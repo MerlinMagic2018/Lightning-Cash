@@ -50,7 +50,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "February 14 2019";
+    const char* pszTimestamp = "February 19 2019";
     const CScript genesisOutputScript = CScript() << ParseHex("04079a46bd5319f9838dabadece831534e27a2f5328a287312dbdf1c6be9019b0e5521b1f790a1e3d127de568b799a30b23031ed7c5881d71a83fada6ec1076a73") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -109,7 +109,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_HIVE].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
 
         // LightningCash fields
-        consensus.powForkTime = 1550149134;                 // Time of PoW hash method change
+        consensus.powForkTime = 1550567951;                 // Time of PoW hash method change
         consensus.lastScryptBlock = 0;                // Height of last scrypt block
         consensus.powLimitSHA = uint256S("00000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");   // Initial hash target at fork ( for scrypt hashing !!! )
         consensus.slowStartBlocks = 125;                   // Scale post-fork block reward up over this many blocks
@@ -136,7 +136,7 @@ public:
         consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");  // LightningCash new blockchain
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0xd949b47c4e17c731f70d91ab127c31f508b43e7a0d87d01192536ecf2d8974af"); // LightningCash: Genesis block
+        consensus.defaultAssumeValid = uint256S("0xd41ec26bf67b3bf8136bdcfa45c97f8ba8233feda7c2c18f76cc529eb30971bf"); // LightningCash: Genesis block
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -150,10 +150,10 @@ public:
         nDefaultPort = 9111;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1550149134, 1610731882, 0x1e0ffff0, 1, 50 * COIN * COIN_SCALE);
+        genesis = CreateGenesisBlock(1550567951, 2147575038, 0x1e0ffff0, 1, 50 * COIN * COIN_SCALE);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0xd949b47c4e17c731f70d91ab127c31f508b43e7a0d87d01192536ecf2d8974af"));
-        assert(genesis.hashMerkleRoot == uint256S("0x28ce055eab35b9bc48aa0b7d3c2be4bdc911dc646dda709021682a8e88b29e75"));
+        assert(consensus.hashGenesisBlock == uint256S("0xd41ec26bf67b3bf8136bdcfa45c97f8ba8233feda7c2c18f76cc529eb30971bf"));
+        assert(genesis.hashMerkleRoot == uint256S("0x315c3e37ec5e584739397f68c119c377089bb19a94b89c416644eeee2bbbff32"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         //vSeeds.emplace_back("seeds.litecoinca.sh");
@@ -177,13 +177,13 @@ public:
 
         checkpointData = {
             {
-                {  0, uint256S("0xd949b47c4e17c731f70d91ab127c31f508b43e7a0d87d01192536ecf2d8974af")},
+                {  0, uint256S("0xd41ec26bf67b3bf8136bdcfa45c97f8ba8233feda7c2c18f76cc529eb30971bf")},
             }
         };
 
         chainTxData = ChainTxData{
             // Data at genesis block.
-            1550149134, // * UNIX timestamp of last known number of transactions
+            1550567951, // * UNIX timestamp of last known number of transactions
             0,   // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
             0.0        // * estimated number of transactions per second after that timestamp
@@ -231,7 +231,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_HIVE].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
 
         // LightningCash fields
-        consensus.powForkTime = 1550149134;                 // Time of PoW hash method change (block 100)
+        consensus.powForkTime = 1550567951;                 // Time of PoW hash method change (block 100)
         consensus.lastScryptBlock = 0;                    // Height of last scrypt block
         consensus.powLimitSHA = uint256S("00000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");   // Initial hash target at fork
         consensus.slowStartBlocks = 125;                     // Scale post-fork block reward up over this many blocks
@@ -258,7 +258,7 @@ public:
         consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");  // LightningCash
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0xd949b47c4e17c731f70d91ab127c31f508b43e7a0d87d01192536ecf2d8974af"); // LightningCash: 0
+        consensus.defaultAssumeValid = uint256S("0xd41ec26bf67b3bf8136bdcfa45c97f8ba8233feda7c2c18f76cc529eb30971bf"); // LightningCash: 0
 
         pchMessageStart[0] = 0xb8;
         pchMessageStart[1] = 0xf7;
@@ -267,10 +267,10 @@ public:
         nDefaultPort = 59111;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1550149134, 1610731882, 0x1e0ffff0, 1, 50 * COIN * COIN_SCALE);
+        genesis = CreateGenesisBlock(1550567951, 2147575038, 0x1e0ffff0, 1, 50 * COIN * COIN_SCALE);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0xd949b47c4e17c731f70d91ab127c31f508b43e7a0d87d01192536ecf2d8974af"));
-        assert(genesis.hashMerkleRoot == uint256S("0x28ce055eab35b9bc48aa0b7d3c2be4bdc911dc646dda709021682a8e88b29e75"));
+        assert(consensus.hashGenesisBlock == uint256S("0xd41ec26bf67b3bf8136bdcfa45c97f8ba8233feda7c2c18f76cc529eb30971bf"));
+        assert(genesis.hashMerkleRoot == uint256S("0x315c3e37ec5e584739397f68c119c377089bb19a94b89c416644eeee2bbbff32"));
 
         vFixedSeeds.clear();
         //vSeeds.emplace_back("testseeds.litecoinca.sh");
@@ -294,12 +294,12 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                {0, uint256S("0xd949b47c4e17c731f70d91ab127c31f508b43e7a0d87d01192536ecf2d8974af")},
+                {0, uint256S("0xd41ec26bf67b3bf8136bdcfa45c97f8ba8233feda7c2c18f76cc529eb30971bf")},
             }
         };
 
         chainTxData = ChainTxData{
-            1550149134,
+            1550567951,
             0,
             0.0
         };
@@ -337,7 +337,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
 
         // LightningCash fields
-        consensus.powForkTime = 1550149134;                 // Time of PoW hash method change (block 100)
+        consensus.powForkTime = 1550567951;                 // Time of PoW hash method change (block 100)
         consensus.lastScryptBlock = 0;                    // Height of last scrypt block
         consensus.powLimitSHA = uint256S("000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");   // Initial hash target at fork
         consensus.slowStartBlocks = 2000;                     // Scale post-fork block reward up over this many blocks
@@ -360,10 +360,10 @@ public:
         nDefaultPort = 59444;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1550149134, 2, 0x207fffff, 1, 50 * COIN * COIN_SCALE);
+        genesis = CreateGenesisBlock(1550567951, 0, 0x207fffff, 1, 50 * COIN * COIN_SCALE);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x0456083527c41c24bfeba020d5ebe361fb563eceeb42db3710055bf25c472797"));
-        assert(genesis.hashMerkleRoot == uint256S("0x28ce055eab35b9bc48aa0b7d3c2be4bdc911dc646dda709021682a8e88b29e75"));
+        assert(consensus.hashGenesisBlock == uint256S("0x5e3160b12966eabf838324c7b950760d3bb99749807e7955ca7a63b174ef6d14"));
+        assert(genesis.hashMerkleRoot == uint256S("0x315c3e37ec5e584739397f68c119c377089bb19a94b89c416644eeee2bbbff32"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
@@ -374,7 +374,7 @@ public:
 
         checkpointData = {
             {
-                {0, uint256S("0456083527c41c24bfeba020d5ebe361fb563eceeb42db3710055bf25c472797")}
+                {0, uint256S("5e3160b12966eabf838324c7b950760d3bb99749807e7955ca7a63b174ef6d14")}
             }
         };
 

@@ -1158,9 +1158,9 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     // Subsidy is cut in half every 210,000 blocks which will occur approximately every 4 years.
     nSubsidy >>= halvings;
 
-    // LightningCash: Slow-start the first n blocks after the 4 premine blocks to prevent early miners having an unfair advantage
+    // LightningCash: Slow-start the first n blocks  blocks to prevent early miners having an unfair advantage
     int64_t blocksSinceFork = nHeight - consensusParams.lastScryptBlock;
-    if (blocksSinceFork > 4 && blocksSinceFork < consensusParams.slowStartBlocks) {
+    if (blocksSinceFork > 0 && blocksSinceFork < consensusParams.slowStartBlocks) {
         CAmount incrementPerBlock = nSubsidy / consensusParams.slowStartBlocks;
         nSubsidy = blocksSinceFork * incrementPerBlock;
     }
@@ -2003,8 +2003,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
                                block.vtx[0]->GetValueOut(), blockReward),
                                REJECT_INVALID, "bad-cb-amount");
 
-  /*  // LitecoinCash: Ensure that lastScryptBlock+1 coinbase TX pays to the premine address... 
-Lightningcash : different premine
+    // LitecoinCash: Ensure that lastScryptBlock+1 coinbase TX pays to the premine address
     if (pindex->nHeight == chainparams.GetConsensus().lastScryptBlock+1) {
         if (block.vtx[0]->vout[0].scriptPubKey.size() == 1) {
             LogPrintf("ConnectBlock(): allowing mine\n");
@@ -2015,7 +2014,7 @@ Lightningcash : different premine
                     HexStr(chainparams.GetConsensus().premineOutputScript)),
                 REJECT_INVALID, "bad-pm-script");
         }
-    }*/
+    }
 
     if (!control.Wait())
         return state.DoS(100, error("%s: CheckQueue failed", __func__), REJECT_INVALID, "block-validation-failed");
