@@ -18,7 +18,7 @@
 #include <QMessageBox>
 #include <QPushButton>
 
-extern bool fWalletUnlockHiveMiningOnly;   // LightningCash: Hive: Encrypted wallet support
+extern bool fWalletUnlockHiveMiningOnly;   // LightningCash Gold: Hive: Encrypted wallet support
 
 AskPassphraseDialog::AskPassphraseDialog(Mode _mode, QWidget *parent) :
     QDialog(parent),
@@ -42,7 +42,7 @@ AskPassphraseDialog::AskPassphraseDialog(Mode _mode, QWidget *parent) :
     ui->passEdit2->installEventFilter(this);
     ui->passEdit3->installEventFilter(this);
 
-	// LightningCash: Hive: Support unlocking for hive only
+	// LightningCash Gold: Hive: Support unlocking for hive only
 	ui->hiveOnlyLabel->hide();
 	fHiveOnly = fWalletUnlockHiveMiningOnly;
 
@@ -54,7 +54,7 @@ AskPassphraseDialog::AskPassphraseDialog(Mode _mode, QWidget *parent) :
             ui->passEdit1->hide();
             setWindowTitle(tr("Encrypt wallet"));
             break;
-        case UnlockHiveMining: // LightningCash: Hive: Support locked wallets
+        case UnlockHiveMining: // LightningCash Gold: Hive: Support locked wallets
             ui->hiveOnlyLabel->show();
 			fHiveOnly = true;
             // fallthru
@@ -135,7 +135,7 @@ void AskPassphraseDialog::accept()
                                          "<qt>" +
                                          tr("%1 will close now to finish the encryption process. "
                                          "Remember that encrypting your wallet cannot fully protect "
-                                         "your lightningcash from being stolen by malware infecting your computer.").arg(tr(PACKAGE_NAME)) +
+                                         "your lightningcash-gold from being stolen by malware infecting your computer.").arg(tr(PACKAGE_NAME)) +
                                          "<br><br><b>" +
                                          tr("IMPORTANT: Any previous backups you have made of your wallet file "
                                          "should be replaced with the newly generated, encrypted wallet file. "
@@ -162,7 +162,7 @@ void AskPassphraseDialog::accept()
             QDialog::reject(); // Cancelled
         }
         } break;
-    case UnlockHiveMining:  // LightningCash: Hive: Support locked wallets
+    case UnlockHiveMining:  // LightningCash Gold: Hive: Support locked wallets
     case Unlock:
         if(!model->setWalletLocked(false, oldpass))
         {
@@ -171,7 +171,7 @@ void AskPassphraseDialog::accept()
         }
         else
         {
-            fWalletUnlockHiveMiningOnly = fHiveOnly;   // LightningCash: Hive: Support locked wallets
+            fWalletUnlockHiveMiningOnly = fHiveOnly;   // LightningCash Gold: Hive: Support locked wallets
             QDialog::accept(); // Success
         }
         break;
@@ -219,7 +219,7 @@ void AskPassphraseDialog::textChanged()
     case Encrypt: // New passphrase x2
         acceptable = !ui->passEdit2->text().isEmpty() && !ui->passEdit3->text().isEmpty();
         break;
-    case UnlockHiveMining:  // LightningCash: Hive: Support locked wallets
+    case UnlockHiveMining:  // LightningCash Gold: Hive: Support locked wallets
     case Unlock: // Old passphrase x1
     case Decrypt:
         acceptable = !ui->passEdit1->text().isEmpty();

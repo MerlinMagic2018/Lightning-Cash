@@ -14,8 +14,8 @@
 #include <qt/transactionfilterproxy.h>
 #include <qt/transactiontablemodel.h>
 #include <qt/walletmodel.h>
-#include <qt/hivetablemodel.h>  // LightningCash: Hive
-#include <qt/hivedialog.h>      // LightningCash: Hive: For formatLargeNoLocale()
+#include <qt/hivetablemodel.h>  // LightningCash Gold: Hive
+#include <qt/hivedialog.h>      // LightningCash Gold: Hive: For formatLargeNoLocale()
 
 #include <QAbstractItemDelegate>
 #include <QPainter>
@@ -144,7 +144,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     connect(ui->labelWalletStatus, SIGNAL(clicked()), this, SLOT(handleOutOfSyncWarningClicks()));
     connect(ui->labelTransactionsStatus, SIGNAL(clicked()), this, SLOT(handleOutOfSyncWarningClicks()));
 
-    // LightningCash: Hive
+    // LightningCash Gold: Hive
     cost = rewardsPaid = profit = 0;
 }
 
@@ -245,7 +245,7 @@ void OverviewPage::setWalletModel(WalletModel *model)
         updateWatchOnlyLabels(model->haveWatchOnly());
         connect(model, SIGNAL(notifyWatchonlyChanged(bool)), this, SLOT(updateWatchOnlyLabels(bool)));
 
-        // LightningCash: Hive: Connect summary updater
+        // LightningCash Gold: Hive: Connect summary updater
         connect(model, SIGNAL(newHiveSummaryAvailable()), this, SLOT(updateHiveSummary()));
     }
 
@@ -253,7 +253,7 @@ void OverviewPage::setWalletModel(WalletModel *model)
     updateDisplayUnit();
 }
 
-// LightningCash: Hive: Update the hive summary
+// LightningCash Gold: Hive: Update the hive summary
 void OverviewPage::updateHiveSummary() {
     if (walletModel && walletModel->getHiveTableModel()) {
         int immature, mature, dead, blocksFound;
@@ -304,7 +304,7 @@ void OverviewPage::updateDisplayUnit()
 
         ui->listTransactions->update();
 
-        // LightningCash: Hive: Update CAmounts in hive summary
+        // LightningCash Gold: Hive: Update CAmounts in hive summary
         ui->rewardsPaidLabel->setText(
             BitcoinUnits::format(walletModel->getOptionsModel()->getDisplayUnit(), rewardsPaid)
             + " "
@@ -335,7 +335,7 @@ void OverviewPage::showOutOfSyncWarning(bool fShow)
     ui->labelTransactionsStatus->setVisible(fShow);
 }
 
-// LightningCash: Hive: Handle bee button click
+// LightningCash Gold: Hive: Handle bee button click
 void OverviewPage::on_beeButton_clicked() {
     Q_EMIT beeButtonClicked();
 }

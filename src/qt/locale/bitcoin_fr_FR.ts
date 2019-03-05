@@ -43,11 +43,11 @@
     </message>
     <message>
         <source>Choose the address to send coins to</source>
-        <translation>Choisissez une adresse où envoyer les lightningcash</translation>
+        <translation>Choisissez une adresse où envoyer les lightningcash-gold</translation>
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
-        <translation>Choisissez une adresse où recevoir les lightningcash</translation>
+        <translation>Choisissez une adresse où recevoir les lightningcash-gold</translation>
     </message>
     <message>
         <source>C&amp;hoose</source>
@@ -62,12 +62,12 @@
         <translation>Adresses de réception</translation>
     </message>
     <message>
-        <source>These are your LightningCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Ceci sont vos addresses LightningCash pour envoyer vos paiements. Il faut toujours verifier les montants et l'addresse de reception avant de valider la transaction.</translation>
+        <source>These are your LightningCash Gold addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Ceci sont vos addresses LightningCash Gold pour envoyer vos paiements. Il faut toujours verifier les montants et l'addresse de reception avant de valider la transaction.</translation>
     </message>
     <message>
-        <source>These are your LightningCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Ceci sont vos addresses LightningCash pour recevoir vos paiements. Il est recommandé d'utiliser une nouvelle adresse de recepetion pour chaque transaction</translation>
+        <source>These are your LightningCash Gold addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Ceci sont vos addresses LightningCash Gold pour recevoir vos paiements. Il est recommandé d'utiliser une nouvelle adresse de recepetion pour chaque transaction</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -184,7 +184,7 @@
         <translation>Portefeuille chiffré</translation>
     </message>
     <message>
-        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your lightningcash from being stolen by malware infecting your computer.</source>
+        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your lightningcash-gold from being stolen by malware infecting your computer.</source>
         <translation>%1 va à présent se fermer pour terminer la procédure de cryptage. N'oubliez pas que le chiffrement de votre porte-monnaie ne peut pas fournir une protection totale contre le vol par des logiciels malveillants qui infecteraient votre ordinateur.</translation>
     </message>
     <message>
@@ -342,8 +342,8 @@
         <translation>Réindexer les blocs sur le disque...</translation>
     </message>
     <message>
-        <source>Send coins to a LightningCash address</source>
-        <translation>Envoyer des pièces à une adresse LightningCash</translation>
+        <source>Send coins to a LightningCash Gold address</source>
+        <translation>Envoyer des pièces à une adresse LightningCash Gold</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -366,7 +366,7 @@
         <translation>&amp;Vérification du message</translation>
     </message>
     <message>
-        <source>LightningCash</source>
+        <source>LightningCash Gold</source>
         <translation>Lightning Cash</translation>
     </message>
     <message>
@@ -394,12 +394,12 @@
         <translation>Crypter les clé privées qui appartiennent votre portefeuille</translation>
     </message>
     <message>
-        <source>Sign messages with your LightningCash addresses to prove you own them</source>
-        <translation>Signer vos messages avec vos adresses LightningCash pour prouver que vous les détenez</translation>
+        <source>Sign messages with your LightningCash Gold addresses to prove you own them</source>
+        <translation>Signer vos messages avec vos adresses LightningCash Gold pour prouver que vous les détenez</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified LightningCash addresses</source>
-        <translation>Vérifier les messages pour s'assurer qu'ils soient signés avec les adresses LightningCash spécifiées</translation>
+        <source>Verify messages to ensure they were signed with specified LightningCash Gold addresses</source>
+        <translation>Vérifier les messages pour s'assurer qu'ils soient signés avec les adresses LightningCash Gold spécifiées</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -418,8 +418,8 @@
         <translation>Barre d'outils des onglets</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and lightningcash: URIs)</source>
-        <translation>Demander des paiements (générer QR codes et lightningcash: URIs)</translation>
+        <source>Request payments (generates QR codes and lightningcash-gold: URIs)</source>
+        <translation>Demander des paiements (générer QR codes et lightningcash-gold: URIs)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -430,16 +430,16 @@
         <translation>Afficher la liste des labels et adresses de réception utilisées</translation>
     </message>
     <message>
-        <source>Open a lightningcash: URI or payment request</source>
-        <translation>Ouvrir un lightningcash: URI ou demande de paiement</translation>
+        <source>Open a lightningcash-gold: URI or payment request</source>
+        <translation>Ouvrir un lightningcash-gold: URI ou demande de paiement</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
         <translation>&amp;Options de ligne de commande</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to LightningCash network</source>
-        <translation><numerusform>%n connexion active avec le réseau LightningCash</numerusform><numerusform>%n connexions actives avec le réseau LightningCash</numerusform></translation>
+        <source>%n active connection(s) to LightningCash Gold network</source>
+        <translation><numerusform>%n connexion active avec le réseau LightningCash Gold</numerusform><numerusform>%n connexions actives avec le réseau LightningCash Gold</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -478,8 +478,8 @@
         <translation>À jour</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible LightningCash command-line options</source>
-        <translation>Afficher le %1 message d'aide pour récupérer une liste des options de ligne de commande LightningCash</translation>
+        <source>Show the %1 help message to get a list with possible LightningCash Gold command-line options</source>
+        <translation>Afficher le %1 message d'aide pour récupérer une liste des options de ligne de commande LightningCash Gold</translation>
     </message>
     <message>
         <source>%1 client</source>
@@ -548,8 +548,8 @@
         <translation>Le porte-monnaie est &lt;b&gt;chiffré&lt;/b&gt; et est actuellement &lt;b&gt;verrouillé&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. LightningCash can no longer continue safely and will quit.</source>
-        <translation>Une erreur fatale a eu lieu. LightningCash ne peut plus continuer en toute sécurité et va s'éteindre</translation>
+        <source>A fatal error occurred. LightningCash Gold can no longer continue safely and will quit.</source>
+        <translation>Une erreur fatale a eu lieu. LightningCash Gold ne peut plus continuer en toute sécurité et va s'éteindre</translation>
     </message>
 </context>
 <context>
@@ -742,8 +742,8 @@
         <translation>Éditer l'adresse d'envoi</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid LightningCash address.</source>
-        <translation>L'adresse entrée "%1" n'est pas une adresse LightningCash valide.</translation>
+        <source>The entered address "%1" is not a valid LightningCash Gold address.</source>
+        <translation>L'adresse entrée "%1" n'est pas une adresse LightningCash Gold valide.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -843,7 +843,7 @@
         <translation>Utiliser votre propre répertoire</translation>
     </message>
     <message>
-        <source>LightningCash</source>
+        <source>LightningCash Gold</source>
         <translation>Lightning Cash</translation>
     </message>
     <message>
@@ -928,8 +928,8 @@
         <translation>Expert</translation>
     </message>
     <message>
-        <source>Automatically open the LightningCash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Ouvrir le port du client LightningCash automatiquement sur le routeur. Cela ne fonctionne que si votre routeur supporte l'UPnP et si la fonctionnalité est activée.</translation>
+        <source>Automatically open the LightningCash Gold client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Ouvrir le port du client LightningCash Gold automatiquement sur le routeur. Cela ne fonctionne que si votre routeur supporte l'UPnP et si la fonctionnalité est activée.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -1128,8 +1128,8 @@
         <translation>Montant</translation>
     </message>
     <message>
-        <source>Enter a LightningCash address (e.g. %1)</source>
-        <translation>Entrer une adresse LightningCash (e.g. %1)</translation>
+        <source>Enter a LightningCash Gold address (e.g. %1)</source>
+        <translation>Entrer une adresse LightningCash Gold (e.g. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1693,8 +1693,8 @@
         <translation>Payer seulement les frais obligatoire de %1</translation>
     </message>
     <message>
-        <source>Warning: Invalid LightningCash address</source>
-        <translation>Attention: Adresse LightningCash Invalide</translation>
+        <source>Warning: Invalid LightningCash Gold address</source>
+        <translation>Attention: Adresse LightningCash Gold Invalide</translation>
     </message>
     <message>
         <source>(no label)</source>

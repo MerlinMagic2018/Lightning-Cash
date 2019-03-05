@@ -80,9 +80,9 @@ public:
         RecvWithAddress,
         RecvFromOther,
         SendToSelf,
-        HiveBeeCreation,    // LightningCash: Hive
-        HiveCommunityFund,  // LightningCash: Hive
-        HiveHoney           // LightningCash: Hive
+        HiveBeeCreation,    // LightningCash Gold: Hive
+        HiveCommunityFund,  // LightningCash Gold: Hive
+        HiveHoney           // LightningCash Gold: Hive
     };
 
     /** Number of confirmation recommended for accepting a transaction */

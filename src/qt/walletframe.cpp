@@ -125,7 +125,7 @@ void WalletFrame::gotoHivePage()
         i.value()->gotoHivePage();
 }
 
-// LightningCash: Key import helper
+// LightningCash Gold: Key import helper
 void WalletFrame::importPrivateKey()
 {
     WalletView *walletView = currentWalletView();

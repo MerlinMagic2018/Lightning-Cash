@@ -18,7 +18,7 @@
 #include <wallet/crypter.h>
 #include <wallet/walletdb.h>
 #include <wallet/rpcwallet.h>
-#include <consensus/params.h>   // LightningCash: Hive
+#include <consensus/params.h>   // LightningCash Gold: Hive
 
 #include <algorithm>
 #include <atomic>
@@ -40,19 +40,19 @@ extern CFeeRate payTxFee;
 extern unsigned int nTxConfirmTarget;
 extern bool bSpendZeroConfChange;
 extern bool fWalletRbf;
-extern bool fWalletUnlockHiveMiningOnly;  // LightningCash: Hive: Unlock for hive mining purposes only.
+extern bool fWalletUnlockHiveMiningOnly;  // LightningCash Gold: Hive: Unlock for hive mining purposes only.
 
 static const unsigned int DEFAULT_KEYPOOL_SIZE = 1000;
 //! -paytxfee default
 static const CAmount DEFAULT_TRANSACTION_FEE = 0;
 //! -fallbackfee default
-static const CAmount DEFAULT_FALLBACK_FEE = 2000000 / COIN_SCALE / 10;          // LightningCash: 10X cheaper fees. Note these constants must also account for the 10X coinscale.
+static const CAmount DEFAULT_FALLBACK_FEE = 2000000 / COIN_SCALE / 10;          // LightningCash Gold: 10X cheaper fees. Note these constants must also account for the 10X coinscale.
 //! -m_discard_rate default
-static const CAmount DEFAULT_DISCARD_FEE = 10000 / COIN_SCALE / 10;             // LightningCash: 10X cheaper fees. Note these constants must also account for the 10X coinscale.
+static const CAmount DEFAULT_DISCARD_FEE = 10000 / COIN_SCALE / 10;             // LightningCash Gold: 10X cheaper fees. Note these constants must also account for the 10X coinscale.
 //! -mintxfee default
-static const CAmount DEFAULT_TRANSACTION_MINFEE = 100000 / COIN_SCALE / 10;     // LightningCash: 10X cheaper fees. Note these constants must also account for the 10X coinscale.
+static const CAmount DEFAULT_TRANSACTION_MINFEE = 100000 / COIN_SCALE / 10;     // LightningCash Gold: 10X cheaper fees. Note these constants must also account for the 10X coinscale.
 //! minimum recommended increment for BIP 125 replacement txs
-static const CAmount WALLET_INCREMENTAL_RELAY_FEE = 5000 / COIN_SCALE / 10;     // LightningCash: 10X cheaper fees. Note these constants must also account for the 10X coinscale.
+static const CAmount WALLET_INCREMENTAL_RELAY_FEE = 5000 / COIN_SCALE / 10;     // LightningCash Gold: 10X cheaper fees. Note these constants must also account for the 10X coinscale.
 //! target minimum change amount
 static const CAmount MIN_CHANGE = CENT;
 //! final minimum change amount after paying for fees
@@ -269,9 +269,9 @@ public:
 
     const uint256& GetHash() const { return tx->GetHash(); }
     bool IsCoinBase() const { return tx->IsCoinBase(); }
-    bool IsHiveCoinBase() const { return tx->IsHiveCoinBase(); }    // LightningCash: Hive
+    bool IsHiveCoinBase() const { return tx->IsHiveCoinBase(); }    // LightningCash Gold: Hive
 
-    // LightningCash: Hive: Check if this transaction is a Bee Creation Transaction
+    // LightningCash Gold: Hive: Check if this transaction is a Bee Creation Transaction
     bool IsBCT(const Consensus::Params& consensusParams, CScript scriptPubKeyBCF, CAmount* beeFeePaid = nullptr, CScript* scriptPubKeyHoney = nullptr) const {
         return tx->IsBCT(consensusParams, scriptPubKeyBCF, beeFeePaid, scriptPubKeyHoney);
     }
@@ -666,7 +666,7 @@ private:
     std::vector<char> _ssExtra;
 };
 
-// LightningCash: Hive: BCT results struct
+// LightningCash Gold: Hive: BCT results struct
 struct CBeeCreationTransactionInfo
 {
     std::string txid;
@@ -990,10 +990,10 @@ public:
 
     OutputType TransactionChangeType(OutputType change_type, const std::vector<CRecipient>& vecSend);
 
-    // LightningCash: Hive: Create a BCT to gestate given number of bees
+    // LightningCash Gold: Hive: Create a BCT to gestate given number of bees
     bool CreateBeeTransaction(int beeCount, CWalletTx& wtxNew, CReserveKey& reservekeyChange, CReserveKey& reservekeyHoney, std::string honeyAddress, bool communityContrib, std::string& strFailReason, const Consensus::Params& consensusParams);
 
-    // LightningCash: Hive: Return all BCTs known by this wallet, optionally including dead bees and optionally scanning for blocks minted by bees from each BCT
+    // LightningCash Gold: Hive: Return all BCTs known by this wallet, optionally including dead bees and optionally scanning for blocks minted by bees from each BCT
     std::vector<CBeeCreationTransactionInfo> GetBCTs(bool includeDead, bool scanRewards, const Consensus::Params& consensusParams, int minHoneyConfirmations = 1);
 
     /**

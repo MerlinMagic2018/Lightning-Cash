@@ -62,12 +62,12 @@
         <translation>Alınan Adresler</translation>
     </message>
     <message>
-        <source>These are your LightningCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Bunlar ödeme göndermek için gereken LightningCash adreslerinizdir. Para göndermeden önce her zaman miktarı ve alıcı adresi kontrol edin.</translation>
+        <source>These are your LightningCash Gold addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Bunlar ödeme göndermek için gereken LightningCash Gold adreslerinizdir. Para göndermeden önce her zaman miktarı ve alıcı adresi kontrol edin.</translation>
     </message>
     <message>
-        <source>These are your LightningCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Bunlar ödeme almak için kullanılacak LightningCash adreslerinizdir. Her işlem için yeni bir ödeme alma adresi kullanılması tavsiye edilir.</translation>
+        <source>These are your LightningCash Gold addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Bunlar ödeme almak için kullanılacak LightningCash Gold adreslerinizdir. Her işlem için yeni bir ödeme alma adresi kullanılması tavsiye edilir.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -180,8 +180,8 @@
         <translation>Cüzdan Şifrelendi</translation>
     </message>
     <message>
-        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your lightningcash from being stolen by malware infecting your computer.</source>
-        <translation>%1 Şifreleme işlemini bitirmek için kapatılacak. Şunu unutmayın ki şampiyon galatasaray ve şifrelemek, lightningcashlerinizin bilgisayarınıza bulaşan malware yazılımları tarafından çalınmasını tamamen engelleyemez.</translation>
+        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your lightningcash-gold from being stolen by malware infecting your computer.</source>
+        <translation>%1 Şifreleme işlemini bitirmek için kapatılacak. Şunu unutmayın ki şampiyon galatasaray ve şifrelemek, lightningcash-goldlerinizin bilgisayarınıza bulaşan malware yazılımları tarafından çalınmasını tamamen engelleyemez.</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
@@ -286,7 +286,7 @@
         <translation>Bloklar disk üzerinde yeniden indeksleniyor...</translation>
     </message>
     <message>
-        <source>Send coins to a LightningCash address</source>
+        <source>Send coins to a LightningCash Gold address</source>
         <translation>Lightning Cash adresine madeni para gönderin</translation>
     </message>
     <message>
@@ -302,7 +302,7 @@
         <translation>Onay mesajı...</translation>
     </message>
     <message>
-        <source>LightningCash</source>
+        <source>LightningCash Gold</source>
         <translation>Lightning Cash</translation>
     </message>
     <message>
@@ -457,8 +457,8 @@
         <translation>Gönderim adresini düzenleyin</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid LightningCash address.</source>
-        <translation>Girilen adres "%1" LightningCash adresiyle eşleşmiyor.</translation>
+        <source>The entered address "%1" is not a valid LightningCash Gold address.</source>
+        <translation>Girilen adres "%1" LightningCash Gold adresiyle eşleşmiyor.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -514,7 +514,7 @@
         <translation>Hoş geldiniz</translation>
     </message>
     <message>
-        <source>LightningCash</source>
+        <source>LightningCash Gold</source>
         <translation>Lightning Cash
 </translation>
     </message>
@@ -660,7 +660,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <source>Enter a LightningCash address (e.g. %1)</source>
+        <source>Enter a LightningCash Gold address (e.g. %1)</source>
         <translation>Lightning Cash adresinizi girin (örneğin %1)</translation>
     </message>
     <message>
@@ -1041,8 +1041,8 @@
         <translation>Coin gönderimini onaylayın</translation>
     </message>
     <message>
-        <source>Warning: Invalid LightningCash address</source>
-        <translation>Uyarı: Hatalı LightningCash adresi</translation>
+        <source>Warning: Invalid LightningCash Gold address</source>
+        <translation>Uyarı: Hatalı LightningCash Gold adresi</translation>
     </message>
     <message>
         <source>(no label)</source>

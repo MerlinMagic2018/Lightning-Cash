@@ -118,15 +118,15 @@
         <translation>Recibiendo direcciones</translation>
     </message>
     <message>
-        <source>Send coins to a LightningCash address</source>
-        <translation>Enviar monedas a una dirección LightningCash</translation>
+        <source>Send coins to a LightningCash Gold address</source>
+        <translation>Enviar monedas a una dirección LightningCash Gold</translation>
     </message>
     <message>
         <source>Change the passphrase used for wallet encryption</source>
         <translation>Cambie la clave utilizada para el cifrado del monedero</translation>
     </message>
     <message>
-        <source>LightningCash</source>
+        <source>LightningCash Gold</source>
         <translation>Lightning Cash</translation>
     </message>
     <message>
@@ -252,7 +252,7 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>LightningCash</source>
+        <source>LightningCash Gold</source>
         <translation>Lightning Cash</translation>
     </message>
     <message>

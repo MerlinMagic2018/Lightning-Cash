@@ -130,7 +130,7 @@ private:
 
     // Configuration parameters for the block size
     bool fIncludeWitness;
-    bool fIncludeBCTs;              // LightningCash: Hive: Allow BCTs in block?
+    bool fIncludeBCTs;              // LightningCash Gold: Hive: Allow BCTs in block?
     unsigned int nBlockMaxWeight;
     CFeeRate blockMinFeeRate;
     
@@ -157,7 +157,7 @@ public:
     BlockAssembler(const CChainParams& params, const Options& options);
 
     /** Construct a new block template with coinbase to scriptPubKeyIn */
-    // LightningCash: Hive: If hiveProofScript is passed, create a Hive block instead of a PoW block
+    // LightningCash Gold: Hive: If hiveProofScript is passed, create a Hive block instead of a PoW block
     std::unique_ptr<CBlockTemplate> CreateNewBlock(const CScript& scriptPubKeyIn, bool fMineWitnessTx=true, const CScript* hiveProofScript=nullptr);
 
 private:
@@ -198,10 +198,10 @@ private:
 void IncrementExtraNonce(CBlock* pblock, const CBlockIndex* pindexPrev, unsigned int& nExtraNonce);
 int64_t UpdateTime(CBlockHeader* pblock, const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev);
 
-// LightningCash: Hive: Bee management thread
+// LightningCash Gold: Hive: Bee management thread
 void BeeKeeper(const CChainParams& chainparams);
 
-// LightningCash: Hive: Attempt to mint the next block
+// LightningCash Gold: Hive: Attempt to mint the next block
 bool BusyBees(const Consensus::Params& consensusParams);
 
 #endif // BITCOIN_MINER_H

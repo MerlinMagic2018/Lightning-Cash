@@ -11,7 +11,7 @@
 #include <qt/guiutil.h>
 #include <qt/optionsmodel.h>
 #include <qt/overviewpage.h>
-#include <qt/hivedialog.h>      // LightningCash: Hive page
+#include <qt/hivedialog.h>      // LightningCash Gold: Hive page
 #include <qt/platformstyle.h>
 #include <qt/receivecoinsdialog.h>
 #include <qt/sendcoinsdialog.h>
@@ -19,10 +19,10 @@
 #include <qt/transactiontablemodel.h>
 #include <qt/transactionview.h>
 #include <qt/walletmodel.h>
-#include <boost/thread.hpp>     // LightningCash: Key import helper
-#include <wallet/rpcwallet.h>   // LightningCash: Key import helper
-#include <wallet/wallet.h>      // LightningCash: Key import helper
-#include <validation.h>         // LightningCash: Key import helper
+#include <boost/thread.hpp>     // LightningCash Gold: Key import helper
+#include <wallet/rpcwallet.h>   // LightningCash Gold: Key import helper
+#include <wallet/wallet.h>      // LightningCash Gold: Key import helper
+#include <validation.h>         // LightningCash Gold: Key import helper
 
 #include <ui_interface.h>
 
@@ -33,7 +33,7 @@
 #include <QProgressDialog>
 #include <QPushButton>
 #include <QVBoxLayout>
-#include <QInputDialog>         // LightningCash: Key import helper
+#include <QInputDialog>         // LightningCash Gold: Key import helper
 
 WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     QStackedWidget(parent),
@@ -43,7 +43,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
 {
     // Create tabs
     overviewPage = new OverviewPage(platformStyle);
-    hivePage = new HiveDialog(platformStyle); // LightningCash: Hive page
+    hivePage = new HiveDialog(platformStyle); // LightningCash Gold: Hive page
 
     transactionsPage = new QWidget(this);
     QVBoxLayout *vbox = new QVBoxLayout();
@@ -70,7 +70,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(transactionsPage);
     addWidget(receiveCoinsPage);
     addWidget(sendCoinsPage);
-    addWidget(hivePage);   // LightningCash: Hive page
+    addWidget(hivePage);   // LightningCash Gold: Hive page
 
     // Clicking on a transaction on the overview pre-selects the transaction on the transaction history page
     connect(overviewPage, SIGNAL(transactionClicked(QModelIndex)), transactionView, SLOT(focusTransaction(QModelIndex)));
@@ -99,7 +99,7 @@ void WalletView::setBitcoinGUI(BitcoinGUI *gui)
         // Clicking on a transaction on the overview page simply sends you to transaction history page
         connect(overviewPage, SIGNAL(transactionClicked(QModelIndex)), gui, SLOT(gotoHistoryPage()));
 
-        // LightningCash: Go to hive page if bee button on overview clicked
+        // LightningCash Gold: Go to hive page if bee button on overview clicked
         connect(overviewPage, SIGNAL(beeButtonClicked()), gui, SLOT(gotoHivePage()));
 
         // Receive and report messages
@@ -114,7 +114,7 @@ void WalletView::setBitcoinGUI(BitcoinGUI *gui)
         // Connect HD enabled state signal 
         connect(this, SIGNAL(hdEnabledStatusChanged(int)), gui, SLOT(setHDStatus(int)));
 
-        // LightningCash: Hive: Connect hive status update signal
+        // LightningCash Gold: Hive: Connect hive status update signal
         connect(hivePage, SIGNAL(hiveStatusIconChanged(QString, QString)), gui, SLOT(updateHiveStatusIcon(QString, QString)));
     }
 }
@@ -125,7 +125,7 @@ void WalletView::setClientModel(ClientModel *_clientModel)
 
     overviewPage->setClientModel(_clientModel);
     sendCoinsPage->setClientModel(_clientModel);
-    hivePage->setClientModel(_clientModel); // LightningCash: Hive page
+    hivePage->setClientModel(_clientModel); // LightningCash Gold: Hive page
 }
 
 void WalletView::setWalletModel(WalletModel *_walletModel)
@@ -135,7 +135,7 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
     // Put transaction list in tabs
     transactionView->setModel(_walletModel);
     overviewPage->setWalletModel(_walletModel);
-    hivePage->setModel(_walletModel);         // LightningCash: Hive page
+    hivePage->setModel(_walletModel);         // LightningCash Gold: Hive page
     receiveCoinsPage->setModel(_walletModel);
     sendCoinsPage->setModel(_walletModel);
     usedReceivingAddressesPage->setModel(_walletModel ? _walletModel->getAddressTableModel() : nullptr);
@@ -160,7 +160,7 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
         // Ask for passphrase if needed
         connect(_walletModel, SIGNAL(requireUnlock()), this, SLOT(unlockWallet()));
 		
-		// LightningCash: Hive: Ask for passphrase if needed hive only
+		// LightningCash Gold: Hive: Ask for passphrase if needed hive only
         connect(_walletModel, SIGNAL(requireUnlockHive()), this, SLOT(unlockWalletHive()));
 
         // Show progress dialog
@@ -193,7 +193,7 @@ void WalletView::gotoOverviewPage()
     setCurrentWidget(overviewPage);
 }
 
-// LightningCash: Hive page
+// LightningCash Gold: Hive page
 void WalletView::gotoHivePage()
 {
     hivePage->updateData();
@@ -307,7 +307,7 @@ void WalletView::unlockWallet()
     }
 }
 
-// LightningCash: Hive: Unlock wallet just for hive
+// LightningCash Gold: Hive: Unlock wallet just for hive
 void WalletView::unlockWalletHive()
 {
     if(!walletModel)
@@ -369,7 +369,7 @@ void WalletView::requestedSyncWarningInfo()
     Q_EMIT outOfSyncWarningClicked();
 }
 
-// LightningCash: Key import helper
+// LightningCash Gold: Key import helper
 void WalletView::doRescan(CWallet* pwallet, int64_t startTime)
 {
     WalletRescanReserver reserver(pwallet);
@@ -381,7 +381,7 @@ void WalletView::doRescan(CWallet* pwallet, int64_t startTime)
 	QMessageBox::information(0, tr(PACKAGE_NAME), tr("Rescan complete."));
 }
 
-// LightningCash: Key import helper
+// LightningCash Gold: Key import helper
 void WalletView::importPrivateKey()
 {
     bool ok;
@@ -407,7 +407,7 @@ void WalletView::importPrivateKey()
 
         CBitcoinSecret vchSecret;
         if (!vchSecret.SetString(privKey.toStdString())) {
-            QMessageBox::critical(0, tr(PACKAGE_NAME), tr("This doesn't appear to be a Lightning/LightningCash private key."));
+            QMessageBox::critical(0, tr(PACKAGE_NAME), tr("This doesn't appear to be a Lightning/LightningCash Gold private key."));
             return;
         }
 

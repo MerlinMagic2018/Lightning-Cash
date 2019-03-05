@@ -17,13 +17,13 @@ BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
             VALUE "CompanyName",        "Lightning Cash"
-            VALUE "FileDescription",    "lightningcash-cli (JSON-RPC client for " PACKAGE_NAME ")"
+            VALUE "FileDescription",    "lightningcash-gold-cli (JSON-RPC client for " PACKAGE_NAME ")"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "lightningcash-cli"
+            VALUE "InternalName",       "lightningcash-gold-cli"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "lightningcash-cli.exe"
-            VALUE "ProductName",        "lightningcash-cli"
+            VALUE "OriginalFilename",   "lightningcash-gold-cli.exe"
+            VALUE "ProductName",        "lightningcash-gold-cli"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

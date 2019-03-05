@@ -166,7 +166,7 @@
         <translation>Změnit heslo k šifrování peněženky</translation>
     </message>
     <message>
-        <source>LightningCash</source>
+        <source>LightningCash Gold</source>
         <translation>Lightning Cash</translation>
     </message>
     <message>
@@ -297,7 +297,7 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>LightningCash</source>
+        <source>LightningCash Gold</source>
         <translation>Lightning Cash</translation>
     </message>
     </context>

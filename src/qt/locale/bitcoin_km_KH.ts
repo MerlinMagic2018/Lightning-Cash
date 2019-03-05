@@ -90,8 +90,8 @@
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <source>Send coins to a LightningCash address</source>
-        <translation>ផ្ញើកាក់ទៅកាន់ អាសយដ្ឋាន LightningCash មួយ</translation>
+        <source>Send coins to a LightningCash Gold address</source>
+        <translation>ផ្ញើកាក់ទៅកាន់ អាសយដ្ឋាន LightningCash Gold មួយ</translation>
     </message>
     <message>
         <source>Wallet</source>

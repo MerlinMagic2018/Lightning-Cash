@@ -17,13 +17,13 @@ BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
             VALUE "CompanyName",        "Lightning Cash"
-            VALUE "FileDescription",    "lightningcashd (Lightning Cash node with a JSON-RPC server)"
+            VALUE "FileDescription",    "lightningcash-goldd (Lightning Cash node with a JSON-RPC server)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "lightningcashd"
+            VALUE "InternalName",       "lightningcash-goldd"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "lightningcashd.exe"
-            VALUE "ProductName",        "lightningcashd"
+            VALUE "OriginalFilename",   "lightningcash-goldd.exe"
+            VALUE "ProductName",        "lightningcash-goldd"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

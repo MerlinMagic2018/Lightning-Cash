@@ -29,7 +29,7 @@ uint256 CBlockHeader::GetPoWHash() const // Removed the " if fork then pow is sh
 std::string CBlock::ToString() const
 {
     std::stringstream s;
-    // LightningCash: Hive: Include type
+    // LightningCash Gold: Hive: Include type
     s << strprintf("CBlock(type=%s, hash=%s, powHash=%s, ver=0x%08x, hashPrevBlock=%s, hashMerkleRoot=%s, nTime=%u, nBits=%08x, nNonce=%u, vtx=%u)\n",
         IsHiveMined(Params().GetConsensus()) ? "hive" : "pow",
         GetHash().ToString(),

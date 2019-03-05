@@ -5,42 +5,42 @@ and tests weren't explicitly disabled.
 
 After configuring, they can be run with `make check`.
 
-To run the lightningcashd tests manually, launch `src/test/test_lightningcash`. To recompile
+To run the lightningcash-goldd tests manually, launch `src/test/test_lightningcash-gold`. To recompile
 after a test file was modified, run `make` and then run the test again. If you
 modify a non-test file, use `make -C src/test` to recompile only what's needed
-to run the lightningcashd tests.
+to run the lightningcash-goldd tests.
 
-To add more lightningcashd tests, add `BOOST_AUTO_TEST_CASE` functions to the existing
+To add more lightningcash-goldd tests, add `BOOST_AUTO_TEST_CASE` functions to the existing
 .cpp files in the `test/` directory or add new .cpp files that
 implement new BOOST_AUTO_TEST_SUITE sections.
 
-To run the lightningcash-qt tests manually, launch `src/qt/test/test_lightningcash-qt`
+To run the lightningcash-gold-qt tests manually, launch `src/qt/test/test_lightningcash-gold-qt`
 
-To add more lightningcash-qt tests, add them to the `src/qt/test/` directory and
+To add more lightningcash-gold-qt tests, add them to the `src/qt/test/` directory and
 the `src/qt/test/test_main.cpp` file.
 
 ### Running individual tests
 
-test_lightningcash has some built-in command-line arguments; for
+test_lightningcash-gold has some built-in command-line arguments; for
 example, to run just the getarg_tests verbosely:
 
-    test_lightningcash --log_level=all --run_test=getarg_tests
+    test_lightningcash-gold --log_level=all --run_test=getarg_tests
 
 ... or to run just the doubledash test:
 
-    test_lightningcash --run_test=getarg_tests/doubledash
+    test_lightningcash-gold --run_test=getarg_tests/doubledash
 
-Run `test_lightningcash --help` for the full list.
+Run `test_lightningcash-gold --help` for the full list.
 
 ### Note on adding test cases
 
 The sources in this directory are unit test cases.  Boost includes a
-unit testing framework, and since lightningcash already uses boost, it makes
+unit testing framework, and since lightningcash-gold already uses boost, it makes
 sense to simply use this framework rather than require developers to
 configure some other framework (we want as few impediments to creating
 unit tests as possible).
 
-The build system is setup to compile an executable called "test_lightningcash"
+The build system is setup to compile an executable called "test_lightningcash-gold"
 that runs all of the unit tests.  The main source file is called
 test_bitcoin.cpp, which simply includes other files that contain the
 actual unit tests (outside of a couple required preprocessor

@@ -40,7 +40,7 @@ QString BitcoinUnits::longName(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("LTNC");                // LightningCash: Updated names
+    case BTC: return QString("LTNC");                // LightningCash Gold: Updated names
     case mBTC: return QString("mLTNC");
     case uBTC: return QString::fromUtf8("μLTNC");
     default: return QString("???");
@@ -60,7 +60,7 @@ QString BitcoinUnits::description(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("LTNC");                // LightningCash: Updated descriptions
+    case BTC: return QString("LTNC");                // LightningCash Gold: Updated descriptions
     case mBTC: return QString("Milli-LTNC (1 / 1" THIN_SP_UTF8 "000)");
     case uBTC: return QString("Micro-LTNC (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     default: return QString("???");
@@ -71,7 +71,7 @@ qint64 BitcoinUnits::factor(int unit)
 {
     switch(unit)
     {
-    case BTC:  return 100000000 / COIN_SCALE;       // LightningCash: Updated factors
+    case BTC:  return 100000000 / COIN_SCALE;       // LightningCash Gold: Updated factors
     case mBTC: return 100000 / COIN_SCALE;
     case uBTC: return 100 / COIN_SCALE;
     default:   return 100000000 / COIN_SCALE;
@@ -82,7 +82,7 @@ int BitcoinUnits::decimals(int unit)
 {
     switch(unit)
     {
-    case BTC: return 7;                             // LightningCash: Updated decimals
+    case BTC: return 7;                             // LightningCash Gold: Updated decimals
     case mBTC: return 4;
     case uBTC: return 1;
     default: return 0;

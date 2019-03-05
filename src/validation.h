@@ -50,11 +50,11 @@ static const bool DEFAULT_WHITELISTRELAY = true;
 /** Default for -whitelistforcerelay. */
 static const bool DEFAULT_WHITELISTFORCERELAY = true;
 /** Default for -minrelaytxfee, minimum relay fee for transactions */
-static const unsigned int DEFAULT_MIN_RELAY_TX_FEE = 100000 / COIN_SCALE / 10; 	    // LightningCash: Lowered fees
+static const unsigned int DEFAULT_MIN_RELAY_TX_FEE = 100000 / COIN_SCALE / 10; 	    // LightningCash Gold: Lowered fees
 //! -maxtxfee default
-static const CAmount DEFAULT_TRANSACTION_MAXFEE = 0.1 * COIN * COIN_SCALE;       	// LightningCash: Account for coin scale
+static const CAmount DEFAULT_TRANSACTION_MAXFEE = 0.1 * COIN * COIN_SCALE;       	// LightningCash Gold: Account for coin scale
 //! Discourage users to set fees higher than this amount (in satoshis) per kB
-static const CAmount HIGH_TX_FEE_PER_KB = 0.01 * COIN * COIN_SCALE;              	// LightningCash: Account for coin scale
+static const CAmount HIGH_TX_FEE_PER_KB = 0.01 * COIN * COIN_SCALE;              	// LightningCash Gold: Account for coin scale
 //! -maxtxfee will warn if called with a higher fee than this amount (in satoshis)
 static const CAmount HIGH_MAX_TX_FEE = 100 * HIGH_TX_FEE_PER_KB;
 /** Default for -limitancestorcount, max number of in-mempool ancestors */
@@ -279,7 +279,7 @@ bool GetTransaction(const uint256& hash, CTransactionRef& tx, const Consensus::P
 /** Find the best known block, and make it the tip of the block chain */
 bool ActivateBestChain(CValidationState& state, const CChainParams& chainparams, std::shared_ptr<const CBlock> pblock = std::shared_ptr<const CBlock>());
 CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams);
-CAmount GetBeeCost(int nHeight, const Consensus::Params& consensusParams);  // LightningCash: Hive: Get the cost of a bee at given height
+CAmount GetBeeCost(int nHeight, const Consensus::Params& consensusParams);  // LightningCash Gold: Hive: Get the cost of a bee at given height
 /** Guess verification progress (as a fraction between 0.0=genesis and 1.0=current tip). */
 double GuessVerificationProgress(const ChainTxData& data, const CBlockIndex* pindex);
 
@@ -408,13 +408,13 @@ bool TestBlockValidity(CValidationState& state, const CChainParams& chainparams,
 /** Check whether witness commitments are required for block. */
 bool IsWitnessEnabled(const CBlockIndex* pindexPrev, const Consensus::Params& params);
 
-// LightningCash: Hive: Check if Hive is activated at given point
+// LightningCash Gold: Hive: Check if Hive is activated at given point
 bool IsHiveEnabled(const CBlockIndex* pindexPrev, const Consensus::Params& params);
 
-// LightningCash: Hive: Get the well-rooted deterministic random string (see whitepaper section 4.1)
+// LightningCash Gold: Hive: Get the well-rooted deterministic random string (see whitepaper section 4.1)
 std::string GetDeterministicRandString(const CBlockIndex* pindexPrev);
 
-// LightningCash: Hive: Get tx by given hash, from a block at given chain height
+// LightningCash Gold: Hive: Get tx by given hash, from a block at given chain height
 bool GetTxByHashAndHeight(const uint256 txHash, const int nHeight, CTransactionRef& txNew, CBlockIndex& foundAtOut, CBlockIndex* pindex, const Consensus::Params& consensusParams);
 
 /** When there are blocks in the active chain with missing data, rewind the chainstate and remove them from the block index */

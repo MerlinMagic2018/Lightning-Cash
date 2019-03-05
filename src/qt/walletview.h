@@ -6,14 +6,14 @@
 #define BITCOIN_QT_WALLETVIEW_H
 
 #include <amount.h>
-#include <wallet/wallet.h>  // LightningCash: Key import helper
+#include <wallet/wallet.h>  // LightningCash Gold: Key import helper
 
 #include <QStackedWidget>
 
 class BitcoinGUI;
 class ClientModel;
 class OverviewPage;
-class HiveDialog;     // LightningCash: Hive page
+class HiveDialog;     // LightningCash Gold: Hive page
 class PlatformStyle;
 class ReceiveCoinsDialog;
 class SendCoinsDialog;
@@ -56,14 +56,14 @@ public:
 
     void showOutOfSyncWarning(bool fShow);
     
-    static void doRescan(CWallet* pwallet, int64_t startTime);  // LightningCash: Key import helper
+    static void doRescan(CWallet* pwallet, int64_t startTime);  // LightningCash Gold: Key import helper
 
 private:
     ClientModel *clientModel;
     WalletModel *walletModel;
 
     OverviewPage *overviewPage;
-    HiveDialog *hivePage;     // LightningCash: Hive page
+    HiveDialog *hivePage;     // LightningCash Gold: Hive page
     QWidget *transactionsPage;
     ReceiveCoinsDialog *receiveCoinsPage;
     SendCoinsDialog *sendCoinsPage;
@@ -85,7 +85,7 @@ public Q_SLOTS:
     /** Switch to send coins page */
     void gotoSendCoinsPage(QString addr = "");
 
-    // LightningCash: Switch to hive page
+    // LightningCash Gold: Switch to hive page
     void gotoHivePage();
 
     /** Show Sign/Verify Message dialog and switch to sign message tab */
@@ -107,10 +107,10 @@ public Q_SLOTS:
     /** Ask for passphrase to unlock wallet temporarily */
     void unlockWallet();
 	
-	// LightningCash: Unlock wallet just for hive
+	// LightningCash Gold: Unlock wallet just for hive
 	void unlockWalletHive();
 
-    // LightningCash: Key import helper
+    // LightningCash Gold: Key import helper
     void importPrivateKey();
 
     /** Show used sending addresses */

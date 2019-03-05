@@ -73,7 +73,7 @@ const QStringList historyFilter = QStringList()
     << "walletpassphrase"
     << "walletpassphrasechange"
     << "encryptwallet"
-	<< "walletpassphrasehiveonly";	// LightningCash: Hive: Locked wallet hive unlock
+	<< "walletpassphrasehiveonly";	// LightningCash Gold: Hive: Locked wallet hive unlock
 
 }
 

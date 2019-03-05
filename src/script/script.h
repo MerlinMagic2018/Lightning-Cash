@@ -181,7 +181,7 @@ enum opcodetype
     OP_NOP9 = 0xb8,
     OP_NOP10 = 0xb9,
 
-    // LightningCash: Hive
+    // LightningCash Gold: Hive
     OP_BEE = 0xbe,
 
     // template matching params
@@ -670,7 +670,7 @@ public:
         shrink_to_fit();
     }
 
-    // LightningCash: Hive: Check if script is a Bee Creation script and optionally get the honey scriptPubKey in scriptPubKeyHoney
+    // LightningCash Gold: Hive: Check if script is a Bee Creation script and optionally get the honey scriptPubKey in scriptPubKeyHoney
     static bool IsBCTScript(CScript scriptPubKey, CScript scriptPubKeyBCF, CScript* scriptPubKeyHoney = nullptr) {
         // Check it's big enough
         if (scriptPubKey.size() < 52)

@@ -62,12 +62,12 @@
         <translation>Indirizzi riceventi</translation>
     </message>
     <message>
-        <source>These are your LightningCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Questi sono i suoi indirizzi LightningCash per ricevere i pagamenti. Controlla sempre l'importo e gli indirizzi prima di inviare i coins.</translation>
+        <source>These are your LightningCash Gold addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Questi sono i suoi indirizzi LightningCash Gold per ricevere i pagamenti. Controlla sempre l'importo e gli indirizzi prima di inviare i coins.</translation>
     </message>
     <message>
-        <source>These are your LightningCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Questi sono i tuoi indirizzi LightningCash per ricevere i pagamenti. Si raccomanda di usare un nuovo indirizzo per ogni transazione.</translation>
+        <source>These are your LightningCash Gold addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Questi sono i tuoi indirizzi LightningCash Gold per ricevere i pagamenti. Si raccomanda di usare un nuovo indirizzo per ogni transazione.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -180,8 +180,8 @@
         <translation>Portafoglio criptato</translation>
     </message>
     <message>
-        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your lightningcash from being stolen by malware infecting your computer.</source>
-        <translation>%1 ora si chiuderà per concludere il processo di criptaggio. Ricorda che criptare il tuo portafoglio non può definitivamente proteggere i tuoi lightningcash da furti tramite malware che infetta il tuo computer.</translation>
+        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your lightningcash-gold from being stolen by malware infecting your computer.</source>
+        <translation>%1 ora si chiuderà per concludere il processo di criptaggio. Ricorda che criptare il tuo portafoglio non può definitivamente proteggere i tuoi lightningcash-gold da furti tramite malware che infetta il tuo computer.</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
@@ -338,8 +338,8 @@
         <translation>Reindicizzazione dei blocchi sul disco...</translation>
     </message>
     <message>
-        <source>Send coins to a LightningCash address</source>
-        <translation>Invia monete ad un indirizzo LightningCash...</translation>
+        <source>Send coins to a LightningCash Gold address</source>
+        <translation>Invia monete ad un indirizzo LightningCash Gold...</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -362,7 +362,7 @@
         <translation>Verifica messaggio...</translation>
     </message>
     <message>
-        <source>LightningCash</source>
+        <source>LightningCash Gold</source>
         <translation>Lightning Cash</translation>
     </message>
     <message>
@@ -390,12 +390,12 @@
         <translation>Cripta le chiavi private che appartengono al tuo portafoglio</translation>
     </message>
     <message>
-        <source>Sign messages with your LightningCash addresses to prove you own them</source>
-        <translation>Firma messaggi con i tuoi indirizzi LightningCash per provare che li possiedi</translation>
+        <source>Sign messages with your LightningCash Gold addresses to prove you own them</source>
+        <translation>Firma messaggi con i tuoi indirizzi LightningCash Gold per provare che li possiedi</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified LightningCash addresses</source>
-        <translation>Verifica messaggi per accertarti che siano firmati dagli indirizzi LightningCash specificati</translation>
+        <source>Verify messages to ensure they were signed with specified LightningCash Gold addresses</source>
+        <translation>Verifica messaggi per accertarti che siano firmati dagli indirizzi LightningCash Gold specificati</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -414,8 +414,8 @@
         <translation>Barra degli strumenti</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and lightningcash: URIs)</source>
-        <translation>Richiedi pagamenti (genera codici QR e lightningcash: URI)</translation>
+        <source>Request payments (generates QR codes and lightningcash-gold: URIs)</source>
+        <translation>Richiedi pagamenti (genera codici QR e lightningcash-gold: URI)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -426,8 +426,8 @@
         <translation>Mostra la lista degli indirizzi di ricezione usati e le relative etichette</translation>
     </message>
     <message>
-        <source>Open a lightningcash: URI or payment request</source>
-        <translation>Apri un lightningcash: URI o una richiesta di pagamento</translation>
+        <source>Open a lightningcash-gold: URI or payment request</source>
+        <translation>Apri un lightningcash-gold: URI o una richiesta di pagamento</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -470,8 +470,8 @@
         <translation>Aggiornato</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible LightningCash command-line options</source>
-        <translation>Mostra il %1 messaggio d'aiuto per ottenere una lista con le possibili opzioni per la riga di comando di LightningCash</translation>
+        <source>Show the %1 help message to get a list with possible LightningCash Gold command-line options</source>
+        <translation>Mostra il %1 messaggio d'aiuto per ottenere una lista con le possibili opzioni per la riga di comando di LightningCash Gold</translation>
     </message>
     <message>
         <source>Date: %1
@@ -512,8 +512,8 @@
         <translation>Transazione in arrivo</translation>
     </message>
     <message>
-        <source>A fatal error occurred. LightningCash can no longer continue safely and will quit.</source>
-        <translation>Si è verificato un errore fatale. LightningCash non può continuare in maniera sicura e sarà chiuso.</translation>
+        <source>A fatal error occurred. LightningCash Gold can no longer continue safely and will quit.</source>
+        <translation>Si è verificato un errore fatale. LightningCash Gold non può continuare in maniera sicura e sarà chiuso.</translation>
     </message>
 </context>
 <context>
@@ -690,8 +690,8 @@
         <translation>Modifica l'indirizzo di invio</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid LightningCash address.</source>
-        <translation>L'indirizzo inserito "%1" non è un indirizzo LightningCash valido.</translation>
+        <source>The entered address "%1" is not a valid LightningCash Gold address.</source>
+        <translation>L'indirizzo inserito "%1" non è un indirizzo LightningCash Gold valido.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -763,7 +763,7 @@
         <translation>Benvenuto</translation>
     </message>
     <message>
-        <source>LightningCash</source>
+        <source>LightningCash Gold</source>
         <translation>Lightning Cash</translation>
     </message>
     <message>

@@ -14,7 +14,7 @@
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <source>LightningCash</source>
+        <source>LightningCash Gold</source>
         <translation>Lightning Cash</translation>
     </message>
     </context>
@@ -33,7 +33,7 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>LightningCash</source>
+        <source>LightningCash Gold</source>
         <translation>Lightning Cash</translation>
     </message>
     </context>

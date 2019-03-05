@@ -4,8 +4,8 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <chain.h>
-#include <chainparams.h>    // LightningCash: Hive
-#include <util.h>    // LightningCash: Hive
+#include <chainparams.h>    // LightningCash Gold: Hive
+#include <util.h>    // LightningCash Gold: Hive
 
 /**
  * CChain implementation
@@ -120,7 +120,7 @@ void CBlockIndex::BuildSkip()
         pskip = pprev->GetAncestor(GetSkipHeight(nHeight));
 }
 
-// LightningCash: Hive: Grant hive-mined blocks bonus work value - they get the work value of
+// LightningCash Gold: Hive: Grant hive-mined blocks bonus work value - they get the work value of
 // their own block plus that of the PoW block behind them
 arith_uint256 GetBlockProof(const CBlockIndex& block)
 {

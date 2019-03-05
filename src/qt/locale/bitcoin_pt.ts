@@ -42,12 +42,12 @@
         <translation>Recebendo informações</translation>
     </message>
     <message>
-        <source>These are your LightningCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Estas são suas informações para o envio de pagamentos por LightningCash. Sempre cheque a quantia enviada e as informações do destinatário, antes de enviar os LightningCash.</translation>
+        <source>These are your LightningCash Gold addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Estas são suas informações para o envio de pagamentos por LightningCash Gold. Sempre cheque a quantia enviada e as informações do destinatário, antes de enviar os LightningCash Gold.</translation>
     </message>
     <message>
-        <source>These are your LightningCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Estas são suas informações para o recebimento de pagamentos por LightningCash. É recomendado que seja feito o uso de um novo conjunto de informações para cada transação.</translation>
+        <source>These are your LightningCash Gold addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Estas são suas informações para o recebimento de pagamentos por LightningCash Gold. É recomendado que seja feito o uso de um novo conjunto de informações para cada transação.</translation>
     </message>
     <message>
         <source>Export Address List</source>

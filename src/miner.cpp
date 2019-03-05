@@ -31,10 +31,10 @@
 #include <queue>
 #include <utility>
 
-#include <wallet/wallet.h>  // LightningCash: Hive
-#include <rpc/server.h>     // LightningCash: Hive
-#include <base58.h>         // LightningCash: Hive
-#include <sync.h>           // LightningCash: Hive
+#include <wallet/wallet.h>  // LightningCash Gold: Hive
+#include <rpc/server.h>     // LightningCash Gold: Hive
+#include <base58.h>         // LightningCash Gold: Hive
+#include <sync.h>           // LightningCash Gold: Hive
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -59,7 +59,7 @@ int64_t UpdateTime(CBlockHeader* pblock, const Consensus::Params& consensusParam
         pblock->nTime = nNewTime;
 
     // Updating time can change work required on testnet:
-    // LightningCash: Hive: Don't do this
+    // LightningCash Gold: Hive: Don't do this
     /*
     if (consensusParams.fPowAllowMinDifficultyBlocks)
         pblock->nBits = GetNextWorkRequired(pindexPrev, pblock, consensusParams);
@@ -108,14 +108,14 @@ void BlockAssembler::resetBlock()
     nBlockWeight = 4000;
     nBlockSigOpsCost = 400;
     fIncludeWitness = false;
-    fIncludeBCTs = true;    // LightningCash: Hive
+    fIncludeBCTs = true;    // LightningCash Gold: Hive
 
     // These counters do not include coinbase tx
     nBlockTx = 0;
     nFees = 0;
 }
 
-// LightningCash: Hive: If hiveProofScript is passed, create a Hive block instead of a PoW block
+// LightningCash Gold: Hive: If hiveProofScript is passed, create a Hive block instead of a PoW block
 std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bool fMineWitnessTx, const CScript* hiveProofScript)
 {
     int64_t nTimeStart = GetTimeMicros();
@@ -137,7 +137,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     CBlockIndex* pindexPrev = chainActive.Tip();
     assert(pindexPrev != nullptr);
 
-    // LightningCash: Hive: Make sure Hive is enabled if a Hive block is requested
+    // LightningCash Gold: Hive: Make sure Hive is enabled if a Hive block is requested
     if (hiveProofScript && !IsHiveEnabled(pindexPrev, chainparams.GetConsensus()))
         throw std::runtime_error(
             "Error: The Hive is not yet enabled on the network"
@@ -168,7 +168,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
 
     int nPackagesSelected = 0;
     int nDescendantsUpdated = 0;
-    // LightningCash: Don't include BCTs in hivemined blocks
+    // LightningCash Gold: Don't include BCTs in hivemined blocks
     if (hiveProofScript)
         fIncludeBCTs = false;
 
@@ -179,7 +179,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     nLastBlockTx = nBlockTx;
     nLastBlockWeight = nBlockWeight;
 
-    // LightningCash: Hive: Create appropriate coinbase tx for pow or Hive block
+    // LightningCash Gold: Hive: Create appropriate coinbase tx for pow or Hive block
     if (hiveProofScript) {
         CMutableTransaction coinbaseTx;
 
@@ -220,13 +220,13 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     pblock->hashPrevBlock  = pindexPrev->GetBlockHash();
     UpdateTime(pblock, chainparams.GetConsensus(), pindexPrev);
 
-    // LightningCash: Hive: Choose correct nBits depending on whether a Hive block is requested
+    // LightningCash Gold: Hive: Choose correct nBits depending on whether a Hive block is requested
     if (hiveProofScript)
         pblock->nBits = GetNextHiveWorkRequired(pindexPrev, chainparams.GetConsensus());
     else
         pblock->nBits = GetNextWorkRequired(pindexPrev, pblock, chainparams.GetConsensus());
 
-    // LightningCash: Hive: Set nonce marker for hivemined blocks
+    // LightningCash Gold: Hive: Set nonce marker for hivemined blocks
     pblock->nNonce = hiveProofScript ? chainparams.GetConsensus().hiveNonceMarker : 0;
     pblocktemplate->vTxSigOpsCost[0] = WITNESS_SCALE_FACTOR * GetLegacySigOpCount(*pblock->vtx[0]);
 
@@ -271,14 +271,14 @@ bool BlockAssembler::TestPackage(uint64_t packageSize, int64_t packageSigOpsCost
 //   segwit activation)
 bool BlockAssembler::TestPackageTransactions(const CTxMemPool::setEntries& package)
 {
-    const Consensus::Params& consensusParams = Params().GetConsensus(); // LightningCash: Hive
+    const Consensus::Params& consensusParams = Params().GetConsensus(); // LightningCash Gold: Hive
 
     for (const CTxMemPool::txiter it : package) {
         if (!IsFinalTx(it->GetTx(), nHeight, nLockTimeCutoff))
             return false;
         if (!fIncludeWitness && it->GetTx().HasWitness())
             return false;
-        // LightningCash: Inhibit BCTs if required
+        // LightningCash Gold: Inhibit BCTs if required
         if (!fIncludeBCTs && it->GetTx().IsBCT(consensusParams, GetScriptForDestination(DecodeDestination(consensusParams.beeCreationAddress))))
             return false;
     }
@@ -516,7 +516,7 @@ void IncrementExtraNonce(CBlock* pblock, const CBlockIndex* pindexPrev, unsigned
     pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
 }
 
-// LightningCash: Hive: Bee management thread
+// LightningCash Gold: Hive: Bee management thread
 void BeeKeeper(const CChainParams& chainparams) {
     const Consensus::Params& consensusParams = chainparams.GetConsensus();
 
@@ -553,7 +553,7 @@ void BeeKeeper(const CChainParams& chainparams) {
     }
 }
 
-// LightningCash: Hive: Attempt to mint the next block
+// LightningCash Gold: Hive: Attempt to mint the next block
 bool BusyBees(const Consensus::Params& consensusParams) {
     bool verbose = LogAcceptCategory(BCLog::HIVE);
 

@@ -83,15 +83,15 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     labelWalletEncryptionIcon(0),
     labelWalletHDStatusIcon(0),
     connectionsControl(0),
-    hiveStatusIcon(0),          // LightningCash: Hive status icon
+    hiveStatusIcon(0),          // LightningCash Gold: Hive status icon
     labelBlocksIcon(0),
     progressBarLabel(0),
     progressBar(0),
     progressDialog(0),
     appMenuBar(0),
     overviewAction(0),
-    hiveAction(0),              // LightningCash: Hive page
-    importPrivateKeyAction(0),  // LightningCash: Key import helper
+    hiveAction(0),              // LightningCash Gold: Hive page
+    importPrivateKeyAction(0),  // LightningCash Gold: Key import helper
     historyAction(0),
     quitAction(0),
     sendCoinsAction(0),
@@ -128,7 +128,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
         move(QApplication::desktop()->availableGeometry().center() - frameGeometry().center());
     }
 
-    QString windowTitle = tr("Lightning Cash - "); // LightningCash: Don't use package name here; we want coin name with a space in window titles.
+    QString windowTitle = tr("Lightning Cash - "); // LightningCash Gold: Don't use package name here; we want coin name with a space in window titles.
 #ifdef ENABLE_WALLET
     enableWallet = WalletModel::isWalletEnabled();
 #endif // ENABLE_WALLET
@@ -203,7 +203,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     labelWalletEncryptionIcon = new QLabel();
     labelWalletHDStatusIcon = new QLabel();
     connectionsControl = new GUIUtil::ClickableLabel();
-    hiveStatusIcon = new GUIUtil::ClickableLabel();                         // LightningCash: Hive status icon
+    hiveStatusIcon = new GUIUtil::ClickableLabel();                         // LightningCash Gold: Hive status icon
     labelBlocksIcon = new GUIUtil::ClickableLabel();
     if(enableWallet)
     {
@@ -216,8 +216,8 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     frameBlocksLayout->addStretch();
     frameBlocksLayout->addWidget(connectionsControl);
     frameBlocksLayout->addStretch();
-    frameBlocksLayout->addWidget(hiveStatusIcon);        // LightningCash: Hive status icon
-    frameBlocksLayout->addStretch();                     // LightningCash: Hive status icon
+    frameBlocksLayout->addWidget(hiveStatusIcon);        // LightningCash Gold: Hive status icon
+    frameBlocksLayout->addStretch();                     // LightningCash Gold: Hive status icon
     frameBlocksLayout->addWidget(labelBlocksIcon);
     frameBlocksLayout->addStretch();
 
@@ -252,7 +252,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
 
     connect(connectionsControl, SIGNAL(clicked(QPoint)), this, SLOT(toggleNetworkActive()));
 
-    // LightningCash: Hive: Clicking on hive status icon takes user to Hive tab
+    // LightningCash Gold: Hive: Clicking on hive status icon takes user to Hive tab
     connect(hiveStatusIcon, SIGNAL(clicked(QPoint)), this, SLOT(gotoHivePage()));
 
     modalOverlay = new ModalOverlay(this->centralWidget());
@@ -296,7 +296,7 @@ void BitcoinGUI::createActions()
     tabGroup->addAction(overviewAction);
 
     sendCoinsAction = new QAction(platformStyle->SingleColorIcon(":/icons/send"), tr("&Send"), this);
-    sendCoinsAction->setStatusTip(tr("Send coins to a LightningCash address"));
+    sendCoinsAction->setStatusTip(tr("Send coins to a LightningCash Gold address"));
     sendCoinsAction->setToolTip(sendCoinsAction->statusTip());
     sendCoinsAction->setCheckable(true);
     sendCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_2));
@@ -307,7 +307,7 @@ void BitcoinGUI::createActions()
     sendCoinsMenuAction->setToolTip(sendCoinsMenuAction->statusTip());
 
     receiveCoinsAction = new QAction(platformStyle->SingleColorIcon(":/icons/receiving_addresses"), tr("&Receive"), this);
-    receiveCoinsAction->setStatusTip(tr("Request payments (generates QR codes and lightningcash: URIs)"));
+    receiveCoinsAction->setStatusTip(tr("Request payments (generates QR codes and lightningcash-gold: URIs)"));
     receiveCoinsAction->setToolTip(receiveCoinsAction->statusTip());
     receiveCoinsAction->setCheckable(true);
     receiveCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_3));
@@ -324,7 +324,7 @@ void BitcoinGUI::createActions()
     historyAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_4));
     tabGroup->addAction(historyAction);
 
-    // LightningCash: Hive page
+    // LightningCash Gold: Hive page
     hiveAction = new QAction(platformStyle->SingleColorIcon(":/icons/bee"), tr("The &Hive"), this);
     hiveAction->setStatusTip(tr("Hive Mining center"));
     hiveAction->setToolTip(hiveAction->statusTip());
@@ -337,8 +337,8 @@ void BitcoinGUI::createActions()
     // can be triggered from the tray menu, and need to show the GUI to be useful.
     connect(overviewAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(overviewAction, SIGNAL(triggered()), this, SLOT(gotoOverviewPage()));
-    connect(hiveAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));  // LightningCash: Hive page
-    connect(hiveAction, SIGNAL(triggered()), this, SLOT(gotoHivePage()));           // LightningCash: Hive page
+    connect(hiveAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));  // LightningCash Gold: Hive page
+    connect(hiveAction, SIGNAL(triggered()), this, SLOT(gotoHivePage()));           // LightningCash Gold: Hive page
     connect(sendCoinsAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(sendCoinsAction, SIGNAL(triggered()), this, SLOT(gotoSendCoinsPage()));
     connect(sendCoinsMenuAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
@@ -355,7 +355,7 @@ void BitcoinGUI::createActions()
     quitAction->setStatusTip(tr("Quit application"));
     quitAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));
     quitAction->setMenuRole(QAction::QuitRole);
-    aboutAction = new QAction(platformStyle->TextColorIcon(":/icons/about"), tr("&About Lightning Cash"), this); // LightningCash: Don't use package name here; we want coin name with a space in window titles.
+    aboutAction = new QAction(platformStyle->TextColorIcon(":/icons/about"), tr("&About Lightning Cash"), this); // LightningCash Gold: Don't use package name here; we want coin name with a space in window titles.
     aboutAction->setStatusTip(tr("Show information about %1").arg(tr(PACKAGE_NAME)));
     aboutAction->setMenuRole(QAction::AboutRole);
     aboutAction->setEnabled(false);
@@ -377,9 +377,9 @@ void BitcoinGUI::createActions()
     changePassphraseAction = new QAction(platformStyle->TextColorIcon(":/icons/key"), tr("&Change Passphrase..."), this);
     changePassphraseAction->setStatusTip(tr("Change the passphrase used for wallet encryption"));
     signMessageAction = new QAction(platformStyle->TextColorIcon(":/icons/edit"), tr("Sign &message..."), this);
-    signMessageAction->setStatusTip(tr("Sign messages with your LightningCash addresses to prove you own them"));
+    signMessageAction->setStatusTip(tr("Sign messages with your LightningCash Gold addresses to prove you own them"));
     verifyMessageAction = new QAction(platformStyle->TextColorIcon(":/icons/verify"), tr("&Verify message..."), this);
-    verifyMessageAction->setStatusTip(tr("Verify messages to ensure they were signed with specified LightningCash addresses"));
+    verifyMessageAction->setStatusTip(tr("Verify messages to ensure they were signed with specified LightningCash Gold addresses"));
 
     openRPCConsoleAction = new QAction(platformStyle->TextColorIcon(":/icons/debugwindow"), tr("&Debug window"), this);
     openRPCConsoleAction->setStatusTip(tr("Open debugging and diagnostic console"));
@@ -392,15 +392,15 @@ void BitcoinGUI::createActions()
     usedReceivingAddressesAction->setStatusTip(tr("Show the list of used receiving addresses and labels"));
 
     openAction = new QAction(platformStyle->TextColorIcon(":/icons/open"), tr("Open &URI..."), this);
-    openAction->setStatusTip(tr("Open a lightningcash: URI or payment request"));
+    openAction->setStatusTip(tr("Open a lightningcash-gold: URI or payment request"));
 
     showHelpMessageAction = new QAction(platformStyle->TextColorIcon(":/icons/info"), tr("&Command-line options"), this);
     showHelpMessageAction->setMenuRole(QAction::NoRole);
-    showHelpMessageAction->setStatusTip(tr("Show the %1 help message to get a list with possible LightningCash command-line options").arg(tr(PACKAGE_NAME)));
+    showHelpMessageAction->setStatusTip(tr("Show the %1 help message to get a list with possible LightningCash Gold command-line options").arg(tr(PACKAGE_NAME)));
 
-    // LightningCash: Key import helper
+    // LightningCash Gold: Key import helper
     importPrivateKeyAction = new QAction(platformStyle->TextColorIcon(":/icons/key"), tr("&Import private key..."), this);
-    importPrivateKeyAction->setToolTip(tr("Import a Lightning or LightningCash private key"));
+    importPrivateKeyAction->setToolTip(tr("Import a Lightning or LightningCash Gold private key"));
 
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
@@ -423,7 +423,7 @@ void BitcoinGUI::createActions()
         connect(usedSendingAddressesAction, SIGNAL(triggered()), walletFrame, SLOT(usedSendingAddresses()));
         connect(usedReceivingAddressesAction, SIGNAL(triggered()), walletFrame, SLOT(usedReceivingAddresses()));
         connect(openAction, SIGNAL(triggered()), this, SLOT(openClicked()));
-        connect(importPrivateKeyAction, SIGNAL(triggered()), walletFrame, SLOT(importPrivateKey()));    // LightningCash: Key import helper
+        connect(importPrivateKeyAction, SIGNAL(triggered()), walletFrame, SLOT(importPrivateKey()));    // LightningCash Gold: Key import helper
     }
 #endif // ENABLE_WALLET
 
@@ -453,8 +453,8 @@ void BitcoinGUI::createMenuBar()
         file->addAction(usedSendingAddressesAction);
         file->addAction(usedReceivingAddressesAction);
         file->addSeparator();
-        file->addAction(importPrivateKeyAction);    // LightningCash: Key import helper
-        file->addSeparator();                       // LightningCash: Key import helper
+        file->addAction(importPrivateKeyAction);    // LightningCash Gold: Key import helper
+        file->addSeparator();                       // LightningCash Gold: Key import helper
     }
     file->addAction(quitAction);
 
@@ -490,7 +490,7 @@ void BitcoinGUI::createToolBars()
         toolbar->addAction(sendCoinsAction);
         toolbar->addAction(receiveCoinsAction);
         toolbar->addAction(historyAction);
-        toolbar->addAction(hiveAction);     // LightningCash: Hive page
+        toolbar->addAction(hiveAction);     // LightningCash Gold: Hive page
         overviewAction->setChecked(true);
     }
 }
@@ -598,8 +598,8 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     usedSendingAddressesAction->setEnabled(enabled);
     usedReceivingAddressesAction->setEnabled(enabled);
     openAction->setEnabled(enabled);
-    hiveAction->setEnabled(enabled);                // LightningCash: Hive page
-    importPrivateKeyAction->setEnabled(enabled);    // LightningCash: Key import helper
+    hiveAction->setEnabled(enabled);                // LightningCash Gold: Hive page
+    importPrivateKeyAction->setEnabled(enabled);    // LightningCash Gold: Key import helper
 }
 
 void BitcoinGUI::createTrayIcon(const NetworkStyle *networkStyle)
@@ -716,7 +716,7 @@ void BitcoinGUI::gotoOverviewPage()
     if (walletFrame) walletFrame->gotoOverviewPage();
 }
 
-// LightningCash: Switch to hive page
+// LightningCash Gold: Switch to hive page
 void BitcoinGUI::gotoHivePage()
 {
     hiveAction->setChecked(true);
@@ -768,7 +768,7 @@ void BitcoinGUI::updateNetworkState()
     QString tooltip;
 
     if (clientModel->getNetworkActive()) {
-        tooltip = tr("%n active connection(s) to LightningCash network", "", count) + QString(".<br>") + tr("Click to disable network activity.");
+        tooltip = tr("%n active connection(s) to LightningCash Gold network", "", count) + QString(".<br>") + tr("Click to disable network activity.");
     } else {
         tooltip = tr("Network activity disabled.") + QString("<br>") + tr("Click to enable network activity again.");
         icon = ":/icons/network_disabled";
@@ -781,7 +781,7 @@ void BitcoinGUI::updateNetworkState()
     connectionsControl->setPixmap(platformStyle->SingleColorIcon(icon).pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
 }
 
-// LightningCash: Hive: Update the hive status icon
+// LightningCash Gold: Hive: Update the hive status icon
 void BitcoinGUI::updateHiveStatusIcon(QString icon, QString tooltip) {
     QPixmap pixmap;
     pixmap.load(icon);

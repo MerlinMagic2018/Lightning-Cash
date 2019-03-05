@@ -98,7 +98,7 @@
         <translation>Vhura &amp;URI</translation>
     </message>
     <message>
-        <source>LightningCash</source>
+        <source>LightningCash Gold</source>
         <translation>Lightning Cash</translation>
     </message>
     <message>
@@ -165,7 +165,7 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>LightningCash</source>
+        <source>LightningCash Gold</source>
         <translation>Lightning Cash</translation>
     </message>
     </context>
@@ -194,8 +194,8 @@
         <translation>Marii </translation>
     </message>
     <message>
-        <source>Enter a LightningCash address (e.g. %1)</source>
-        <translation>Nyora kero ye LightningCash (sekuti %1)</translation>
+        <source>Enter a LightningCash Gold address (e.g. %1)</source>
+        <translation>Nyora kero ye LightningCash Gold (sekuti %1)</translation>
     </message>
     <message>
         <source>%1 d</source>

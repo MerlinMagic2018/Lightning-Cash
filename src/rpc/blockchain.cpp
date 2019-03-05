@@ -51,7 +51,7 @@ extern void TxToJSON(const CTransaction& tx, const uint256 hashBlock, UniValue& 
 /* Calculate the difficulty for a given block index,
  * or the block index of the given chain.
  */
-// LightningCash: Hive: Optional getHiveDifficulty param
+// LightningCash Gold: Hive: Optional getHiveDifficulty param
 double GetDifficulty(const CChain& chain, const CBlockIndex* blockindex, bool getHiveDifficulty = false)
 {
     if (blockindex == nullptr)
@@ -62,14 +62,14 @@ double GetDifficulty(const CChain& chain, const CBlockIndex* blockindex, bool ge
             blockindex = chain.Tip();
     }
 
-    // LightningCash: Hive: If tip is hivemined and we want PoW, step back one (Hive blocks always follow a PoW block)
+    // LightningCash Gold: Hive: If tip is hivemined and we want PoW, step back one (Hive blocks always follow a PoW block)
     const Consensus::Params& consensusParams = Params().GetConsensus();
     if (!getHiveDifficulty && blockindex->GetBlockHeader().IsHiveMined(consensusParams)) {
         assert (blockindex->pprev);
         blockindex = blockindex->pprev;
     }
 
-    // LightningCash: Hive: If tip is PoW and we want hivemined, step back until we find a Hive block
+    // LightningCash Gold: Hive: If tip is PoW and we want hivemined, step back until we find a Hive block
     if (getHiveDifficulty) {
         while (!blockindex->GetBlockHeader().IsHiveMined(consensusParams)) {
             if (!blockindex->pprev || blockindex->nHeight < consensusParams.minHiveCheckBlock) {   // Ran out of blocks without finding a Hive block? Return min target
@@ -99,7 +99,7 @@ double GetDifficulty(const CChain& chain, const CBlockIndex* blockindex, bool ge
     return dDiff;
 }
 
-// LightningCash: Hive: Pass through optional getHiveDifficulty param
+// LightningCash Gold: Hive: Pass through optional getHiveDifficulty param
 double GetDifficulty(const CBlockIndex* blockindex, bool getHiveDifficulty)
 {
     return GetDifficulty(chainActive, blockindex, getHiveDifficulty);
@@ -377,7 +377,7 @@ UniValue getdifficulty(const JSONRPCRequest& request)
     return GetDifficulty();
 }
 
-// LightningCash: Hive: Get hive difficulty
+// LightningCash Gold: Hive: Get hive difficulty
 UniValue gethivedifficulty(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 0)
@@ -1034,8 +1034,8 @@ UniValue gettxout(const JSONRPCRequest& request)
             "     \"hex\" : \"hex\",        (string) \n"
             "     \"reqSigs\" : n,          (numeric) Number of required signatures\n"
             "     \"type\" : \"pubkeyhash\", (string) The type, eg pubkeyhash\n"
-            "     \"addresses\" : [          (array of string) array of lightningcash addresses\n"
-            "        \"address\"     (string) lightningcash address\n"
+            "     \"addresses\" : [          (array of string) array of lightningcash-gold addresses\n"
+            "        \"address\"     (string) lightningcash-gold address\n"
             "        ,...\n"
             "     ]\n"
             "  },\n"
@@ -1672,7 +1672,7 @@ static const CRPCCommand commands[] =
     { "blockchain",         "getblockheader",         &getblockheader,         {"blockhash","verbose"} },
     { "blockchain",         "getchaintips",           &getchaintips,           {} },
     { "blockchain",         "getdifficulty",          &getdifficulty,          {} },
-    { "blockchain",         "gethivedifficulty",      &gethivedifficulty,      {} },        // LightningCash: Get Hive difficulty
+    { "blockchain",         "gethivedifficulty",      &gethivedifficulty,      {} },        // LightningCash Gold: Get Hive difficulty
     { "blockchain",         "getmempoolancestors",    &getmempoolancestors,    {"txid","verbose"} },
     { "blockchain",         "getmempooldescendants",  &getmempooldescendants,  {"txid","verbose"} },
     { "blockchain",         "getmempoolentry",        &getmempoolentry,        {"txid"} },

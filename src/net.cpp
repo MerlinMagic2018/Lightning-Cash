@@ -1507,7 +1507,7 @@ void ThreadMapPort()
             }
         }
 
-        std::string strDesc = "LightningCash " + FormatFullVersion();
+        std::string strDesc = "LightningCash Gold " + FormatFullVersion();
 
         try {
             while (true) {

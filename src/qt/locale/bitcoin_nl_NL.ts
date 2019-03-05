@@ -62,12 +62,12 @@
         <translation>Ontvangstadres</translation>
     </message>
     <message>
-        <source>These are your LightningCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Dit zijn uw LightningCash adressen voor het versturen van betalingen. Controleer altijd het bedrag en het ontvangstadres voordat u munten verstuurd.</translation>
+        <source>These are your LightningCash Gold addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Dit zijn uw LightningCash Gold adressen voor het versturen van betalingen. Controleer altijd het bedrag en het ontvangstadres voordat u munten verstuurd.</translation>
     </message>
     <message>
-        <source>These are your LightningCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Dit zijn uw LightningCash adressen voor het ontvangen van betalingen. Het wordt aanbevolen om voor elke transactie een nieuw ontvangstadres te gebruiken.</translation>
+        <source>These are your LightningCash Gold addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Dit zijn uw LightningCash Gold adressen voor het ontvangen van betalingen. Het wordt aanbevolen om voor elke transactie een nieuw ontvangstadres te gebruiken.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -180,8 +180,8 @@
         <translation>Portemonnee versleuteld</translation>
     </message>
     <message>
-        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your lightningcash from being stolen by malware infecting your computer.</source>
-        <translation>%1 zal nu sluiten om het versleutel proces te voltooien. Onthoudt dat het versleutelen van je portemonnee jouw lightningcash niet volledig van diefstal via malware kan beschermen.</translation>
+        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your lightningcash-gold from being stolen by malware infecting your computer.</source>
+        <translation>%1 zal nu sluiten om het versleutel proces te voltooien. Onthoudt dat het versleutelen van je portemonnee jouw lightningcash-gold niet volledig van diefstal via malware kan beschermen.</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
@@ -338,8 +338,8 @@
         <translation>Blokken op schijf herindexeren...</translation>
     </message>
     <message>
-        <source>Send coins to a LightningCash address</source>
-        <translation>Verstuur coins naar een LightningCash adres</translation>
+        <source>Send coins to a LightningCash Gold address</source>
+        <translation>Verstuur coins naar een LightningCash Gold adres</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -362,7 +362,7 @@
         <translation>&amp;Bericht verifiëren</translation>
     </message>
     <message>
-        <source>LightningCash</source>
+        <source>LightningCash Gold</source>
         <translation>Lightning Cash</translation>
     </message>
     <message>
@@ -390,12 +390,12 @@
         <translation>Versleutel de privé sleutels die bij je portemonnee horen</translation>
     </message>
     <message>
-        <source>Sign messages with your LightningCash addresses to prove you own them</source>
-        <translation>Signeer berichten met je LightningCash adres om te bewijzen dat ze van jou zijn</translation>
+        <source>Sign messages with your LightningCash Gold addresses to prove you own them</source>
+        <translation>Signeer berichten met je LightningCash Gold adres om te bewijzen dat ze van jou zijn</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified LightningCash addresses</source>
-        <translation>Verifieer berichten om er zeker van te zijn dat ze met specifieke LightningCash adressen ondertekent zijn</translation>
+        <source>Verify messages to ensure they were signed with specified LightningCash Gold addresses</source>
+        <translation>Verifieer berichten om er zeker van te zijn dat ze met specifieke LightningCash Gold adressen ondertekent zijn</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -414,8 +414,8 @@
         <translation>Tabs taakbalk</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and lightningcash: URIs)</source>
-        <translation>Betalingen aanvragen (genereert QR codes en lightningcash: URI's)</translation>
+        <source>Request payments (generates QR codes and lightningcash-gold: URIs)</source>
+        <translation>Betalingen aanvragen (genereert QR codes en lightningcash-gold: URI's)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -426,8 +426,8 @@
         <translation>Toon de lijst van gebruikte ontvangst adressen en labels</translation>
     </message>
     <message>
-        <source>Open a lightningcash: URI or payment request</source>
-        <translation>Open een lightningcash: URI of betaalverzoek</translation>
+        <source>Open a lightningcash-gold: URI or payment request</source>
+        <translation>Open een lightningcash-gold: URI of betaalverzoek</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -470,8 +470,8 @@
         <translation>Up to date</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible LightningCash command-line options</source>
-        <translation>Open het %1 help bericht om een lijst met LightningCash commando-regel opties te krijgen</translation>
+        <source>Show the %1 help message to get a list with possible LightningCash Gold command-line options</source>
+        <translation>Open het %1 help bericht om een lijst met LightningCash Gold commando-regel opties te krijgen</translation>
     </message>
     <message>
         <source>%1 client</source>
@@ -540,8 +540,8 @@
         <translation>Portemonnee is &lt;b&gt;versleuteld&lt;/b&gt; op dit moment &lt;b&gt;vergrendeld&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. LightningCash can no longer continue safely and will quit.</source>
-        <translation>Een fatale error is voorgekomen. LightningCash kan niet langer veilig verder gaan en sluit daardoor af.</translation>
+        <source>A fatal error occurred. LightningCash Gold can no longer continue safely and will quit.</source>
+        <translation>Een fatale error is voorgekomen. LightningCash Gold kan niet langer veilig verder gaan en sluit daardoor af.</translation>
     </message>
 </context>
 <context>
@@ -691,7 +691,7 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>LightningCash</source>
+        <source>LightningCash Gold</source>
         <translation>Lightning Cash</translation>
     </message>
     <message>

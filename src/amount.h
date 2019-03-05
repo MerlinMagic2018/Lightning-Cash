@@ -13,8 +13,8 @@ typedef int64_t CAmount;
 
 static const CAmount COIN_SCALE = 10;                   // 10 times as fast as bitcoin and 10 times more coins so 2100000000 coins 
 
-static const CAmount COIN = 100000000 / COIN_SCALE;     // LightningCash: Account for coinscale
-static const CAmount CENT = 1000000 / COIN_SCALE;       // LightningCash: Account for coinscale
+static const CAmount COIN = 100000000 / COIN_SCALE;     // LightningCash Gold: Account for coinscale
+static const CAmount CENT = 1000000 / COIN_SCALE;       // LightningCash Gold: Account for coinscale
 
 /** No amount larger than this (in satoshi) is valid.
  *
@@ -25,7 +25,7 @@ static const CAmount CENT = 1000000 / COIN_SCALE;       // LightningCash: Accoun
  * critical; in unusual circumstances like a(nother) overflow bug that allowed
  * for the creation of coins out of thin air modification could lead to a fork.
  * */
-static const CAmount MAX_MONEY = 210000000 * COIN * COIN_SCALE; // LightningCash: Account for coinscale
+static const CAmount MAX_MONEY = 210000000 * COIN * COIN_SCALE; // LightningCash Gold: Account for coinscale
 inline bool MoneyRange(const CAmount& nValue) { return (nValue >= 0 && nValue <= MAX_MONEY); }
 
 #endif //  BITCOIN_AMOUNT_H

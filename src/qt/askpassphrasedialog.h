@@ -22,7 +22,7 @@ class AskPassphraseDialog : public QDialog
 public:
     enum Mode {
         Encrypt,            /**< Ask passphrase twice and encrypt */
-        UnlockHiveMining,   /** <Ask passphrase and unlock */     // LightningCash: Hive: Support locked wallets
+        UnlockHiveMining,   /** <Ask passphrase and unlock */     // LightningCash Gold: Hive: Support locked wallets
         Unlock,             /**< Ask passphrase and unlock */
         ChangePass,         /**< Ask old passphrase + new passphrase twice */
         Decrypt             /**< Ask passphrase and decrypt wallet */

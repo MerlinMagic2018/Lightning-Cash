@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE(block_subsidy_test)
     TestBlockSubsidyHalvings(1000); // Just another interval
 }
 
-BOOST_AUTO_TEST_CASE(block_subsidy_money_limit)	// LightningCash: Change money limit test
+BOOST_AUTO_TEST_CASE(block_subsidy_money_limit)	// LightningCash Gold: Change money limit test
 {
     const auto chainParams = CreateChainParams(CBaseChainParams::MAIN);
     const Consensus::Params consensusParams = chainParams->GetConsensus();

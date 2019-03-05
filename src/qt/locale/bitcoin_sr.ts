@@ -138,8 +138,8 @@
         <translation>Промени &amp;лозинку...</translation>
     </message>
     <message>
-        <source>Send coins to a LightningCash address</source>
-        <translation>Пошаљите новац на lightningcash адресу</translation>
+        <source>Send coins to a LightningCash Gold address</source>
+        <translation>Пошаљите новац на lightningcash-gold адресу</translation>
     </message>
     <message>
         <source>Change the passphrase used for wallet encryption</source>

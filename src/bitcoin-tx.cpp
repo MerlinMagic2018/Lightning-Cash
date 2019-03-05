@@ -54,10 +54,10 @@ static int AppInitRawTx(int argc, char* argv[])
     if (argc<2 || gArgs.IsArgSet("-?") || gArgs.IsArgSet("-h") || gArgs.IsArgSet("-help"))
     {
         // First part of help message is specific to this utility
-        std::string strUsage = strprintf(_("%s lightningcash-tx utility version"), _(PACKAGE_NAME)) + " " + FormatFullVersion() + "\n\n" +
+        std::string strUsage = strprintf(_("%s lightningcash-gold-tx utility version"), _(PACKAGE_NAME)) + " " + FormatFullVersion() + "\n\n" +
             _("Usage:") + "\n" +
-              "  lightningcash-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded lightningcash transaction") + "\n" +
-              "  lightningcash-tx [options] -create [commands]   " + _("Create hex-encoded lightningcash transaction") + "\n" +
+              "  lightningcash-gold-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded lightningcash-gold transaction") + "\n" +
+              "  lightningcash-gold-tx [options] -create [commands]   " + _("Create hex-encoded lightningcash-gold transaction") + "\n" +
               "\n";
 
         fprintf(stdout, "%s", strUsage.c_str());

@@ -30,7 +30,7 @@ SplashScreen::SplashScreen(Qt::WindowFlags f, const NetworkStyle *networkStyle) 
     QWidget(0, f), curAlignment(0)
 {
     // set reference point, paddings
-    int paddingRight            = 10;   // LightningCash: Fix ugly spacing on splash screen
+    int paddingRight            = 10;   // LightningCash Gold: Fix ugly spacing on splash screen
     int paddingTop              = 50;
     int titleVersionVSpace      = 17;
     int titleCopyrightVSpace    = 40;
@@ -42,7 +42,7 @@ SplashScreen::SplashScreen(Qt::WindowFlags f, const NetworkStyle *networkStyle) 
 #endif
 
     // define text to place
-    QString titleText       = tr("Lightning Cash");  // LightningCash: Show the pretty name, not package name
+    QString titleText       = tr("Lightning Cash");  // LightningCash Gold: Show the pretty name, not package name
     QString versionText     = QString("Version %1").arg(QString::fromStdString(FormatFullVersion()));
     QString copyrightText   = QString::fromUtf8(CopyrightHolders(strprintf("\xc2\xA9 %u-%u ", 2011, COPYRIGHT_YEAR)).c_str());
     QString titleAddText    = networkStyle->getTitleAddText();
@@ -69,7 +69,7 @@ SplashScreen::SplashScreen(Qt::WindowFlags f, const NetworkStyle *networkStyle) 
     pixPaint.fillRect(rGradient, gradient);
 
     // draw the bitcoin icon, expected size of PNG: 1024x1024
-    // LightningCash: Adjusted to show whole logo
+    // LightningCash Gold: Adjusted to show whole logo
     QRect rectIcon(QPoint(20,20), QSize(256,256));
     const QSize requiredSize(256,256);
 
@@ -120,7 +120,7 @@ SplashScreen::SplashScreen(Qt::WindowFlags f, const NetworkStyle *networkStyle) 
         pixPaint.drawText(pixmap.width()/devicePixelRatio-titleAddTextWidth-10,15,titleAddText);
     }
 
-    // LightningCash: Hive: May the hive bee with you
+    // LightningCash Gold: Hive: May the hive bee with you
     pixPaint.setFont(QFont(font, 15*fontFactor));
     pixPaint.drawText(302, 150, "May the Hive bee with you");
     

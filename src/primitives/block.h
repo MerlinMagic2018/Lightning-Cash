@@ -69,7 +69,7 @@ public:
         return (int64_t)nTime;
     }
 
-    // LightningCash: Hive: Check if this block is hivemined
+    // LightningCash Gold: Hive: Check if this block is hivemined
     bool IsHiveMined(const Consensus::Params& consensusParams) const {
         return (nNonce == consensusParams.hiveNonceMarker);
     }

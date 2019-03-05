@@ -91,12 +91,12 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "createrawtransaction", 1, "outputs" },
     { "createrawtransaction", 2, "locktime" },
     { "createrawtransaction", 3, "replaceable" },
-    { "createbees", 0, "beecount" },                // LightningCash: Hive: Create a BCT
-    { "createbees", 1, "community_contrib" },       // LightningCash: Hive: Create a BCT
-    { "getbeecost", 0, "height" },                  // LightningCash: Hive: Get cost of a single bee
-    { "gethiveinfo", 0, "include_dead" },           // LightningCash: Hive: Get hive info
-    { "getnetworkhiveinfo", 0, "include_graph" },   // LightningCash: Hive: Get network hive info
-    { "gethiveinfo", 1, "min_honey_confirms" },     // LightningCash: Hive: Get hive info
+    { "createbees", 0, "beecount" },                // LightningCash Gold: Hive: Create a BCT
+    { "createbees", 1, "community_contrib" },       // LightningCash Gold: Hive: Create a BCT
+    { "getbeecost", 0, "height" },                  // LightningCash Gold: Hive: Get cost of a single bee
+    { "gethiveinfo", 0, "include_dead" },           // LightningCash Gold: Hive: Get hive info
+    { "getnetworkhiveinfo", 0, "include_graph" },   // LightningCash Gold: Hive: Get network hive info
+    { "gethiveinfo", 1, "min_honey_confirms" },     // LightningCash Gold: Hive: Get hive info
     { "decoderawtransaction", 1, "iswitness" },
     { "signrawtransaction", 1, "prevtxs" },
     { "signrawtransaction", 2, "privkeys" },

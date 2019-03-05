@@ -62,12 +62,12 @@
         <translation>Prijímajúce adresy</translation>
     </message>
     <message>
-        <source>These are your LightningCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Toto sú Vaše LightningCash adresy pre posielanie platieb. Vždy skontrolujte sumu a prijímaciu adresu pred poslaním mincí.</translation>
+        <source>These are your LightningCash Gold addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Toto sú Vaše LightningCash Gold adresy pre posielanie platieb. Vždy skontrolujte sumu a prijímaciu adresu pred poslaním mincí.</translation>
     </message>
     <message>
-        <source>These are your LightningCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Toto sú vaše LightningCash adresy pre prijímanie platieb. Odporúča sa použiť vždy novú prijímaciu adresu pre každú transakciu.</translation>
+        <source>These are your LightningCash Gold addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Toto sú vaše LightningCash Gold adresy pre prijímanie platieb. Odporúča sa použiť vždy novú prijímaciu adresu pre každú transakciu.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -184,8 +184,8 @@
         <translation>Peňaženka zašifrovaná</translation>
     </message>
     <message>
-        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your lightningcash from being stolen by malware infecting your computer.</source>
-        <translation>%1 sa teraz zavrie, aby sa ukončil proces šifrovania. Zašifrovanie peňaženky neochráni úplne pred krádežou lightningcashov škodlivými programami, ktoré prenikli do vášho počítača.</translation>
+        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your lightningcash-gold from being stolen by malware infecting your computer.</source>
+        <translation>%1 sa teraz zavrie, aby sa ukončil proces šifrovania. Zašifrovanie peňaženky neochráni úplne pred krádežou lightningcash-goldov škodlivými programami, ktoré prenikli do vášho počítača.</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
@@ -342,8 +342,8 @@
         <translation>Preindexúvam bloky na disku...</translation>
     </message>
     <message>
-        <source>Send coins to a LightningCash address</source>
-        <translation>Poslať lightningcash na adresu</translation>
+        <source>Send coins to a LightningCash Gold address</source>
+        <translation>Poslať lightningcash-gold na adresu</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -366,7 +366,7 @@
         <translation>O&amp;veriť správu...</translation>
     </message>
     <message>
-        <source>LightningCash</source>
+        <source>LightningCash Gold</source>
         <translation>Lightning Cash</translation>
     </message>
     <message>
@@ -394,12 +394,12 @@
         <translation>Zašifruj súkromné kľúče ktoré patria do vašej peňaženky</translation>
     </message>
     <message>
-        <source>Sign messages with your LightningCash addresses to prove you own them</source>
-        <translation>Podpísať správu s vašou adresou LightningCash aby ste preukázali že ju vlastníte</translation>
+        <source>Sign messages with your LightningCash Gold addresses to prove you own them</source>
+        <translation>Podpísať správu s vašou adresou LightningCash Gold aby ste preukázali že ju vlastníte</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified LightningCash addresses</source>
-        <translation>Overiť či správa bola podpísaná uvedenou LightningCash adresou</translation>
+        <source>Verify messages to ensure they were signed with specified LightningCash Gold addresses</source>
+        <translation>Overiť či správa bola podpísaná uvedenou LightningCash Gold adresou</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -418,8 +418,8 @@
         <translation>Lišta záložiek</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and lightningcash: URIs)</source>
-        <translation>Vyžiadať platby (vygeneruje QR kódy a lightningcash: URI)</translation>
+        <source>Request payments (generates QR codes and lightningcash-gold: URIs)</source>
+        <translation>Vyžiadať platby (vygeneruje QR kódy a lightningcash-gold: URI)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -430,16 +430,16 @@
         <translation>Zobraziť zoznam použitých prijímacích adries a ich popisov</translation>
     </message>
     <message>
-        <source>Open a lightningcash: URI or payment request</source>
-        <translation>Otvoriť lightningcash URI alebo výzvu k platbe</translation>
+        <source>Open a lightningcash-gold: URI or payment request</source>
+        <translation>Otvoriť lightningcash-gold URI alebo výzvu k platbe</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
         <translation>&amp;Možnosti príkazového riadku</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to LightningCash network</source>
-        <translation><numerusform>%n aktívne pripojenie do siete LightningCash</numerusform><numerusform>%n aktívne pripojenia do siete LightningCash</numerusform><numerusform>%n aktívnych pripojení do siete LightningCash</numerusform></translation>
+        <source>%n active connection(s) to LightningCash Gold network</source>
+        <translation><numerusform>%n aktívne pripojenie do siete LightningCash Gold</numerusform><numerusform>%n aktívne pripojenia do siete LightningCash Gold</numerusform><numerusform>%n aktívnych pripojení do siete LightningCash Gold</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -482,8 +482,8 @@
         <translation>Aktualizovaný</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible LightningCash command-line options</source>
-        <translation>Ukáž %1 zoznam možných nastavení LightningCashu pomocou príkazového riadku</translation>
+        <source>Show the %1 help message to get a list with possible LightningCash Gold command-line options</source>
+        <translation>Ukáž %1 zoznam možných nastavení LightningCash Goldu pomocou príkazového riadku</translation>
     </message>
     <message>
         <source>%1 client</source>
@@ -552,8 +552,8 @@
         <translation>Peňaženka je &lt;b&gt;zašifrovaná&lt;/b&gt; a momentálne &lt;b&gt;zamknutá&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. LightningCash can no longer continue safely and will quit.</source>
-        <translation>Vyskytla sa kritická chyba. LightningCash nemôže ďalej bezpečne pokračovať a ukončí sa.</translation>
+        <source>A fatal error occurred. LightningCash Gold can no longer continue safely and will quit.</source>
+        <translation>Vyskytla sa kritická chyba. LightningCash Gold nemôže ďalej bezpečne pokračovať a ukončí sa.</translation>
     </message>
 </context>
 <context>
@@ -746,8 +746,8 @@
         <translation>Upraviť odosielaciu adresu</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid LightningCash address.</source>
-        <translation>Vložená adresa "%1" nieje platnou adresou LightningCash.</translation>
+        <source>The entered address "%1" is not a valid LightningCash Gold address.</source>
+        <translation>Vložená adresa "%1" nieje platnou adresou LightningCash Gold.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -875,7 +875,7 @@
         <translation>Použiť vlastný dátový adresár:</translation>
     </message>
     <message>
-        <source>LightningCash</source>
+        <source>LightningCash Gold</source>
         <translation>Lightning Cash</translation>
     </message>
     <message>
@@ -887,7 +887,7 @@
         <translation>Približne %1 GB dát bude uložených v tejto zložke.</translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the LightningCash block chain.</source>
+        <source>%1 will download and store a copy of the LightningCash Gold block chain.</source>
         <translation>%1 bude sťahovať kopiu reťazca blokov.</translation>
     </message>
     <message>
@@ -918,12 +918,12 @@
         <translation>Forma</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the lightningcash network, as detailed below.</source>
-        <translation>Nedávne transakcie nemusia byť ešte viditeľné preto môže byť zostatok vo vašej peňaženke nesprávny. Táto informácia bude správna keď sa dokončí synchronizovanie peňaženky so sieťou lightningcash, ako je rozpísané nižšie.</translation>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the lightningcash-gold network, as detailed below.</source>
+        <translation>Nedávne transakcie nemusia byť ešte viditeľné preto môže byť zostatok vo vašej peňaženke nesprávny. Táto informácia bude správna keď sa dokončí synchronizovanie peňaženky so sieťou lightningcash-gold, ako je rozpísané nižšie.</translation>
     </message>
     <message>
-        <source>Attempting to spend lightningcash that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation>Pokus o minutie lightningcashov, ktoré sú ovplyvnené ešte nezobrazenými transakciami, nebude sieťou akceptovaný.</translation>
+        <source>Attempting to spend lightningcash-gold that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <translation>Pokus o minutie lightningcash-goldov, ktoré sú ovplyvnené ešte nezobrazenými transakciami, nebude sieťou akceptovaný.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -1092,8 +1092,8 @@
         <translation>&amp;Minúť nepotvrdený výdavok</translation>
     </message>
     <message>
-        <source>Automatically open the LightningCash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Automaticky otvorit port pre LightningCash na routeri. Toto funguje len ak router podporuje UPnP a je táto podpora aktivovaná.</translation>
+        <source>Automatically open the LightningCash Gold client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automaticky otvorit port pre LightningCash Gold na routeri. Toto funguje len ak router podporuje UPnP a je táto podpora aktivovaná.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -1108,8 +1108,8 @@
         <translation>Povoliť prichá&amp;dzajúce spojenia</translation>
     </message>
     <message>
-        <source>Connect to the LightningCash network through a SOCKS5 proxy.</source>
-        <translation>Pripojiť do siete LightningCash cez proxy server SOCKS5.</translation>
+        <source>Connect to the LightningCash Gold network through a SOCKS5 proxy.</source>
+        <translation>Pripojiť do siete LightningCash Gold cez proxy server SOCKS5.</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1144,8 +1144,8 @@
         <translation>Tor</translation>
     </message>
     <message>
-        <source>Connect to the LightningCash network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Pripojiť k LightningCashovej sieti cez separované SOCKS5 proxy pre skrytú službu Tor.</translation>
+        <source>Connect to the LightningCash Gold network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <translation>Pripojiť k LightningCash Goldovej sieti cez separované SOCKS5 proxy pre skrytú službu Tor.</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -1181,7 +1181,7 @@
     </message>
     <message>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
-        <translation>Zvoľte ako deliť lightningcash pri zobrazovaní pri platbách a užívateľskom rozhraní.</translation>
+        <translation>Zvoľte ako deliť lightningcash-gold pri zobrazovaní pri platbách a užívateľskom rozhraní.</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1251,8 +1251,8 @@
         <translation>Forma</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the LightningCash network after a connection is established, but this process has not completed yet.</source>
-        <translation>Zobrazené informácie môžu byť neaktuálne. Vaša peňaženka sa automaticky synchronizuje so sieťou LightningCash po nadviazaní spojenia, ale tento proces ešte nie je ukončený.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the LightningCash Gold network after a connection is established, but this process has not completed yet.</source>
+        <translation>Zobrazené informácie môžu byť neaktuálne. Vaša peňaženka sa automaticky synchronizuje so sieťou LightningCash Gold po nadviazaní spojenia, ale tento proces ešte nie je ukončený.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -1326,8 +1326,8 @@
         <translation>Chyba pri vyžiadaní platby</translation>
     </message>
     <message>
-        <source>Cannot start lightningcash: click-to-pay handler</source>
-        <translation>Nemôžeme spustiť LightningCash: obsluha click-to-pay</translation>
+        <source>Cannot start lightningcash-gold: click-to-pay handler</source>
+        <translation>Nemôžeme spustiť LightningCash Gold: obsluha click-to-pay</translation>
     </message>
     <message>
         <source>URI handling</source>
@@ -1342,8 +1342,8 @@
         <translation>Neplatná adresa platby %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid LightningCash address or malformed URI parameters.</source>
-        <translation>URI sa nedá analyzovať! To môže byť spôsobené neplatnou LightningCash adresou alebo zle nastavenými vlastnosťami URI.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid LightningCash Gold address or malformed URI parameters.</source>
+        <translation>URI sa nedá analyzovať! To môže byť spôsobené neplatnou LightningCash Gold adresou alebo zle nastavenými vlastnosťami URI.</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
@@ -1444,8 +1444,8 @@
         <translation>Suma</translation>
     </message>
     <message>
-        <source>Enter a LightningCash address (e.g. %1)</source>
-        <translation>Zadajte lightningcash adresu (napr. %1)</translation>
+        <source>Enter a LightningCash Gold address (e.g. %1)</source>
+        <translation>Zadajte lightningcash-gold adresu (napr. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1869,8 +1869,8 @@
         <translation>&amp;Správa:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the LightningCash network.</source>
-        <translation>Pridať voliteľnú správu k výzve na zaplatenie, ktorá sa zobrazí keď bude výzva otvorená. Poznámka: Správa nebude poslaná s platbou cez sieť LightningCash.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the LightningCash Gold network.</source>
+        <translation>Pridať voliteľnú správu k výzve na zaplatenie, ktorá sa zobrazí keď bude výzva otvorená. Poznámka: Správa nebude poslaná s platbou cez sieť LightningCash Gold.</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
@@ -2031,7 +2031,7 @@
     <name>SendCoinsDialog</name>
     <message>
         <source>Send Coins</source>
-        <translation>Poslať LightningCash</translation>
+        <translation>Poslať LightningCash Gold</translation>
     </message>
     <message>
         <source>Coin Control Features</source>
@@ -2114,7 +2114,7 @@
         <translation>Skryť</translation>
     </message>
     <message>
-        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for lightningcash transactions than the network can process.</source>
+        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for lightningcash-gold transactions than the network can process.</source>
         <translation>Zaplatenie len minimálneho poplatku je v poriadku, pokiaľ existuje menej transakcií ako miesta v blokoch. Uvedomte si však, že ak bude vyšší dopyt po transakciách ako dokáže sieť spracovať, môže byť vaša transakcia odsúvaná a nepotvrdená donekonečna.</translation>
     </message>
     <message>
@@ -2286,8 +2286,8 @@
         <translation><numerusform>Odhadovaný začiatok potvrdzovania po %n bloku.</numerusform><numerusform>Odhadovaný začiatok potvrdzovania po %n blokoch.</numerusform><numerusform>Odhadovaný začiatok potvrdzovania po %n blokoch.</numerusform></translation>
     </message>
     <message>
-        <source>Warning: Invalid LightningCash address</source>
-        <translation>Varovanie: Neplatná LightningCash adresa</translation>
+        <source>Warning: Invalid LightningCash Gold address</source>
+        <translation>Varovanie: Neplatná LightningCash Gold adresa</translation>
     </message>
     <message>
         <source>Warning: Unknown change address</source>
@@ -2329,7 +2329,7 @@
         <translation>Toto je normálna platba.</translation>
     </message>
     <message>
-        <source>The LightningCash address to send the payment to</source>
+        <source>The LightningCash Gold address to send the payment to</source>
         <translation>Zvoľte adresu kam poslať platbu</translation>
     </message>
     <message>
@@ -2349,8 +2349,8 @@
         <translation>Odstrániť túto položku</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less lightningcash than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation>Poplatok sa odpočíta od čiastky, ktorú odosielate. Príjemca dostane menej lightningcashov ako zadáte. Ak je vybraných viacero príjemcov, poplatok je rozdelený rovným dielom.</translation>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive less lightningcash-gold than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <translation>Poplatok sa odpočíta od čiastky, ktorú odosielate. Príjemca dostane menej lightningcash-goldov ako zadáte. Ak je vybraných viacero príjemcov, poplatok je rozdelený rovným dielom.</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
@@ -2377,8 +2377,8 @@
         <translation>Vložte popis pre túto adresu aby sa uložila do zoznamu použitých adries</translation>
     </message>
     <message>
-        <source>A message that was attached to the lightningcash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the LightningCash network.</source>
-        <translation>Správa ktorá bola pripojená k lightningcash: URI a ktorá bude uložená s transakcou pre Vaše potreby. Poznámka: Táto správa nebude poslaná cez sieť LightningCash.</translation>
+        <source>A message that was attached to the lightningcash-gold: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the LightningCash Gold network.</source>
+        <translation>Správa ktorá bola pripojená k lightningcash-gold: URI a ktorá bude uložená s transakcou pre Vaše potreby. Poznámka: Táto správa nebude poslaná cez sieť LightningCash Gold.</translation>
     </message>
     <message>
         <source>Pay To:</source>
@@ -2422,11 +2422,11 @@
         <translation>&amp;Podpísať Správu</translation>
     </message>
     <message>
-        <source>You can sign messages/agreements with your addresses to prove you can receive lightningcash sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <source>You can sign messages/agreements with your addresses to prove you can receive lightningcash-gold sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
         <translation>Môžete podpísať správy svojou adresou a dokázať, že viete prijímať mince zaslané na túto adresu. Buďte však opatrní a podpíšte len podrobné prehlásenia, s ktorými plne súhlasíte, nakoľko útoky typu "phishing" Vás môžu lákať k podpísaniu nejasných alebo príliš všeobecných tvrdení čím prevezmú vašu identitu.</translation>
     </message>
     <message>
-        <source>The LightningCash address to sign the message with</source>
+        <source>The LightningCash Gold address to sign the message with</source>
         <translation>Lightning Cash adresa pre podpísanie správy s</translation>
     </message>
     <message>
@@ -2458,7 +2458,7 @@
         <translation>Kopírovať tento podpis do systémovej schránky</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this LightningCash address</source>
+        <source>Sign the message to prove you own this LightningCash Gold address</source>
         <translation>Podpíšte správu aby ste dokázali že vlastníte túto adresu</translation>
     </message>
     <message>
@@ -2482,12 +2482,12 @@
         <translation>Vložte adresu príjemcu, správu (uistite sa, že presne kopírujete ukončenia riadkov, medzery, odrážky, atď.) a podpis pre potvrdenie správy. Buďte opatrní a nedomýšľajte si viac než je uvedené v samotnej podpísanej správe a môžete sa tak vyhnúť podvodu MITM útokom. Toto len potvrdzuje, že podpisujúca strana môže prijímať na tejto adrese, nepotvrdzuje to vlastníctvo žiadnej transakcie!</translation>
     </message>
     <message>
-        <source>The LightningCash address the message was signed with</source>
-        <translation>Adresa LightningCash, ktorou bola podpísaná správa</translation>
+        <source>The LightningCash Gold address the message was signed with</source>
+        <translation>Adresa LightningCash Gold, ktorou bola podpísaná správa</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified LightningCash address</source>
-        <translation>Overím správy sa uistiť že bola podpísaná označenou LightningCash adresou</translation>
+        <source>Verify the message to ensure it was signed with the specified LightningCash Gold address</source>
+        <translation>Overím správy sa uistiť že bola podpísaná označenou LightningCash Gold adresou</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>

@@ -146,8 +146,8 @@
         <translation>Дискдаги блоклар қайта индексланмоқда...</translation>
     </message>
     <message>
-        <source>Send coins to a LightningCash address</source>
-        <translation>Тангаларни LightningCash манзилига жўнатиш</translation>
+        <source>Send coins to a LightningCash Gold address</source>
+        <translation>Тангаларни LightningCash Gold манзилига жўнатиш</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -170,7 +170,7 @@
         <translation>Хабарни &amp;тасдиқлаш...</translation>
     </message>
     <message>
-        <source>LightningCash</source>
+        <source>LightningCash Gold</source>
         <translation>Lightning Cash</translation>
     </message>
     <message>
@@ -198,12 +198,12 @@
         <translation>Ҳамёнингизга тегишли махфий калитларни кодлаш</translation>
     </message>
     <message>
-        <source>Sign messages with your LightningCash addresses to prove you own them</source>
+        <source>Sign messages with your LightningCash Gold addresses to prove you own them</source>
         <translation>Lightning Cash манзилидан унинг эгаси эканлигингизни исботлаш учун хабарлар ёзинг</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified LightningCash addresses</source>
-        <translation>Хабарларни махсус LightningCash манзилларингиз билан ёзилганлигига ишонч ҳосил қилиш учун уларни тасдиқланг</translation>
+        <source>Verify messages to ensure they were signed with specified LightningCash Gold addresses</source>
+        <translation>Хабарларни махсус LightningCash Gold манзилларингиз билан ёзилганлигига ишонч ҳосил қилиш учун уларни тасдиқланг</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -222,8 +222,8 @@
         <translation>Ички ойналар асбоблар панели</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and lightningcash: URIs)</source>
-        <translation>Тўловлар (QR кодлари ва lightningcash ёрдамида яратишлар: URI’лар) сўраш</translation>
+        <source>Request payments (generates QR codes and lightningcash-gold: URIs)</source>
+        <translation>Тўловлар (QR кодлари ва lightningcash-gold ёрдамида яратишлар: URI’лар) сўраш</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -234,7 +234,7 @@
         <translation>Фойдаланилган қабул қилинган манзиллар ва ёрлиқлар рўйхатини кўрсатиш</translation>
     </message>
     <message>
-        <source>Open a lightningcash: URI or payment request</source>
+        <source>Open a lightningcash-gold: URI or payment request</source>
         <translation>Lightning Cash’ни очиш: URI ёки тўлов сўрови</translation>
     </message>
     <message>
@@ -242,8 +242,8 @@
         <translation>&amp;Буйруқлар сатри мосламалари</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to LightningCash network</source>
-        <translation><numerusform>%n та LightningCash тармоғига фаол уланиш мавжуд</numerusform></translation>
+        <source>%n active connection(s) to LightningCash Gold network</source>
+        <translation><numerusform>%n та LightningCash Gold тармоғига фаол уланиш мавжуд</numerusform></translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -437,7 +437,7 @@
         <translation>Бошқа маълумотлар директориясида фойдаланинг:</translation>
     </message>
     <message>
-        <source>LightningCash</source>
+        <source>LightningCash Gold</source>
         <translation>Lightning Cash</translation>
     </message>
     <message>
@@ -597,8 +597,8 @@
         <translation>Шакл</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the LightningCash network after a connection is established, but this process has not completed yet.</source>
-        <translation>Кўрсатилган маълумот эскирган бўлиши мумкин. Ҳамёнингиз алоқа ўрнатилгандан сўнг LightningCash тармоқ билан автоматик тарзда синхронланади, аммо жараён ҳалигача тугалланмади.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the LightningCash Gold network after a connection is established, but this process has not completed yet.</source>
+        <translation>Кўрсатилган маълумот эскирган бўлиши мумкин. Ҳамёнингиз алоқа ўрнатилгандан сўнг LightningCash Gold тармоқ билан автоматик тарзда синхронланади, аммо жараён ҳалигача тугалланмади.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -678,7 +678,7 @@
         <translation>Миқдори</translation>
     </message>
     <message>
-        <source>Enter a LightningCash address (e.g. %1)</source>
+        <source>Enter a LightningCash Gold address (e.g. %1)</source>
         <translation>Lightning Cash манзилини киритинг (масалан.  %1)</translation>
     </message>
     <message>

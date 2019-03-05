@@ -62,12 +62,12 @@
         <translation>Mottagaradresser</translation>
     </message>
     <message>
-        <source>These are your LightningCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Detta är dina LightningCash adresser för att skicka betalningar. Kolla alltid summan och den mottagande adressen innan du skickar LightningCash.</translation>
+        <source>These are your LightningCash Gold addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Detta är dina LightningCash Gold adresser för att skicka betalningar. Kolla alltid summan och den mottagande adressen innan du skickar LightningCash Gold.</translation>
     </message>
     <message>
-        <source>These are your LightningCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Detta är dina LightningCash adresser för att ta emot betalningar. Det rekommenderas att använda en ny mottagningsadress för varje transaktion.</translation>
+        <source>These are your LightningCash Gold addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Detta är dina LightningCash Gold adresser för att ta emot betalningar. Det rekommenderas att använda en ny mottagningsadress för varje transaktion.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -185,7 +185,7 @@ Var vänlig och försök igen.</translation>
         <translation>Plånbok krypterad</translation>
     </message>
     <message>
-        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your lightningcash from being stolen by malware infecting your computer.</source>
+        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your lightningcash-gold from being stolen by malware infecting your computer.</source>
         <translation>%1 kommer nu att stänga ner för att färdigställa krypteringen. Tänk på att en krypterad plånbok inte skyddar mot stöld om din dator är infekterad med en keylogger.</translation>
     </message>
     <message>
@@ -343,8 +343,8 @@ Var vänlig och försök igen.</translation>
         <translation>Återindexerar block på disken...</translation>
     </message>
     <message>
-        <source>Send coins to a LightningCash address</source>
-        <translation>Skicka lightningcash till en LightningCash-adress</translation>
+        <source>Send coins to a LightningCash Gold address</source>
+        <translation>Skicka lightningcash-gold till en LightningCash Gold-adress</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -367,7 +367,7 @@ Var vänlig och försök igen.</translation>
         <translation>&amp;Verifiera meddelande...</translation>
     </message>
     <message>
-        <source>LightningCash</source>
+        <source>LightningCash Gold</source>
         <translation>Lightning Cash</translation>
     </message>
     <message>
@@ -395,12 +395,12 @@ Var vänlig och försök igen.</translation>
         <translation>Kryptera de privata nycklar som tillhör din plånbok</translation>
     </message>
     <message>
-        <source>Sign messages with your LightningCash addresses to prove you own them</source>
-        <translation>Signera meddelanden med din LightningCash-adress för att bevisa att du äger dem</translation>
+        <source>Sign messages with your LightningCash Gold addresses to prove you own them</source>
+        <translation>Signera meddelanden med din LightningCash Gold-adress för att bevisa att du äger dem</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified LightningCash addresses</source>
-        <translation>Verifiera meddelanden för att vara säker på att de var signerade med specificerade LightningCash-adresser</translation>
+        <source>Verify messages to ensure they were signed with specified LightningCash Gold addresses</source>
+        <translation>Verifiera meddelanden för att vara säker på att de var signerade med specificerade LightningCash Gold-adresser</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -419,8 +419,8 @@ Var vänlig och försök igen.</translation>
         <translation>Verktygsfält för tabbar</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and lightningcash: URIs)</source>
-        <translation>Begär betalning (genererar QR-koder och lightningcash-URI)</translation>
+        <source>Request payments (generates QR codes and lightningcash-gold: URIs)</source>
+        <translation>Begär betalning (genererar QR-koder och lightningcash-gold-URI)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -431,16 +431,16 @@ Var vänlig och försök igen.</translation>
         <translation>Visa listan av använda mottagningsadresser och etiketter</translation>
     </message>
     <message>
-        <source>Open a lightningcash: URI or payment request</source>
-        <translation>Öppna en lightningcash: URI eller betalningsbegäran</translation>
+        <source>Open a lightningcash-gold: URI or payment request</source>
+        <translation>Öppna en lightningcash-gold: URI eller betalningsbegäran</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
         <translation>&amp;Kommandoradsalternativ</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to LightningCash network</source>
-        <translation><numerusform>%n aktiva anslutningar till LightningCash-nätverket.</numerusform><numerusform>%n aktiva anslutningar till LightningCash-nätverket.</numerusform></translation>
+        <source>%n active connection(s) to LightningCash Gold network</source>
+        <translation><numerusform>%n aktiva anslutningar till LightningCash Gold-nätverket.</numerusform><numerusform>%n aktiva anslutningar till LightningCash Gold-nätverket.</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -483,8 +483,8 @@ Var vänlig och försök igen.</translation>
         <translation>Uppdaterad</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible LightningCash command-line options</source>
-        <translation>Visa %1 hjälpmeddelande för att få en lista med möjliga LightningCash kommandoradsalternativ.</translation>
+        <source>Show the %1 help message to get a list with possible LightningCash Gold command-line options</source>
+        <translation>Visa %1 hjälpmeddelande för att få en lista med möjliga LightningCash Gold kommandoradsalternativ.</translation>
     </message>
     <message>
         <source>%1 client</source>
@@ -553,8 +553,8 @@ Var vänlig och försök igen.</translation>
         <translation>Denna plånbok är &lt;b&gt;krypterad&lt;/b&gt; och för närvarande &lt;b&gt;låst&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. LightningCash can no longer continue safely and will quit.</source>
-        <translation>Ett kritiskt fel uppstod. LightningCash kan inte fortsätta att köra säkert och kommer att avslutas.</translation>
+        <source>A fatal error occurred. LightningCash Gold can no longer continue safely and will quit.</source>
+        <translation>Ett kritiskt fel uppstod. LightningCash Gold kan inte fortsätta att köra säkert och kommer att avslutas.</translation>
     </message>
 </context>
 <context>
@@ -747,8 +747,8 @@ Var vänlig och försök igen.</translation>
         <translation>Redigera avsändaradress</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid LightningCash address.</source>
-        <translation>Den angivna adressen "%1" är inte en giltig LightningCash-adress.</translation>
+        <source>The entered address "%1" is not a valid LightningCash Gold address.</source>
+        <translation>Den angivna adressen "%1" är inte en giltig LightningCash Gold-adress.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -868,7 +868,7 @@ Var vänlig och försök igen.</translation>
         <translation>Använd en anpassad datakatalog:</translation>
     </message>
     <message>
-        <source>LightningCash</source>
+        <source>LightningCash Gold</source>
         <translation>Lightning Cash</translation>
     </message>
     <message>
@@ -880,8 +880,8 @@ Var vänlig och försök igen.</translation>
         <translation>Ungefär %1 GB data kommer att lagras i den här katalogen.</translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the LightningCash block chain.</source>
-        <translation>%1 kommer att hämta och lagra en kopia av LightningCash-blockkedjan.</translation>
+        <source>%1 will download and store a copy of the LightningCash Gold block chain.</source>
+        <translation>%1 kommer att hämta och lagra en kopia av LightningCash Gold-blockkedjan.</translation>
     </message>
     <message>
         <source>The wallet will also be stored in this directory.</source>
@@ -911,12 +911,12 @@ Var vänlig och försök igen.</translation>
         <translation>Formulär</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the lightningcash network, as detailed below.</source>
-        <translation>Nyligen gjorda transaktioner visas inte korrekt och därför kan din plånboks saldo visas felaktigt. Denna information kommer att visas korrekt så snart din plånbok har synkroniserat klart med lightningcash nätverket enligt detaljer nedan.</translation>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the lightningcash-gold network, as detailed below.</source>
+        <translation>Nyligen gjorda transaktioner visas inte korrekt och därför kan din plånboks saldo visas felaktigt. Denna information kommer att visas korrekt så snart din plånbok har synkroniserat klart med lightningcash-gold nätverket enligt detaljer nedan.</translation>
     </message>
     <message>
-        <source>Attempting to spend lightningcash that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation>Försöka sig på att spendera lightningcash som påverkas av transaktioner som ännu inte visas kommer inte bli accepterade av nätverket. </translation>
+        <source>Attempting to spend lightningcash-gold that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <translation>Försöka sig på att spendera lightningcash-gold som påverkas av transaktioner som ännu inte visas kommer inte bli accepterade av nätverket. </translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -1073,16 +1073,16 @@ Var vänlig och försök igen.</translation>
         <translation>&amp;Spendera obekräftad växel</translation>
     </message>
     <message>
-        <source>Automatically open the LightningCash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Öppna automatiskt LightningCash-klientens port på routern. Detta fungerar endast om din router har UPnP aktiverat.</translation>
+        <source>Automatically open the LightningCash Gold client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Öppna automatiskt LightningCash Gold-klientens port på routern. Detta fungerar endast om din router har UPnP aktiverat.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>Tilldela port med hjälp av &amp;UPnP</translation>
     </message>
     <message>
-        <source>Connect to the LightningCash network through a SOCKS5 proxy.</source>
-        <translation>Anslut till LightningCash-nätverket genom en SOCKS5-proxy.</translation>
+        <source>Connect to the LightningCash Gold network through a SOCKS5 proxy.</source>
+        <translation>Anslut till LightningCash Gold-nätverket genom en SOCKS5-proxy.</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1117,8 +1117,8 @@ Var vänlig och försök igen.</translation>
         <translation>Tor</translation>
     </message>
     <message>
-        <source>Connect to the LightningCash network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Anslut till LightningCash-nätverket genom en separat SOCKS5-proxy för dolda tjänster i Tor.</translation>
+        <source>Connect to the LightningCash Gold network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <translation>Anslut till LightningCash Gold-nätverket genom en separat SOCKS5-proxy för dolda tjänster i Tor.</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -1220,8 +1220,8 @@ Var vänlig och försök igen.</translation>
         <translation>Formulär</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the LightningCash network after a connection is established, but this process has not completed yet.</source>
-        <translation>Den visade informationen kan vara inaktuell. Plånboken synkroniseras automatiskt med LightningCash-nätverket efter att anslutningen är upprättad, men denna process har inte slutförts ännu.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the LightningCash Gold network after a connection is established, but this process has not completed yet.</source>
+        <translation>Den visade informationen kan vara inaktuell. Plånboken synkroniseras automatiskt med LightningCash Gold-nätverket efter att anslutningen är upprättad, men denna process har inte slutförts ännu.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -1295,8 +1295,8 @@ Var vänlig och försök igen.</translation>
         <translation>Fel vid betalningsbegäran</translation>
     </message>
     <message>
-        <source>Cannot start lightningcash: click-to-pay handler</source>
-        <translation>Kan inte starta lightningcash: klicka-och-betala handhavare</translation>
+        <source>Cannot start lightningcash-gold: click-to-pay handler</source>
+        <translation>Kan inte starta lightningcash-gold: klicka-och-betala handhavare</translation>
     </message>
     <message>
         <source>URI handling</source>
@@ -1311,8 +1311,8 @@ Var vänlig och försök igen.</translation>
         <translation>Ogiltig betalningsadress %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid LightningCash address or malformed URI parameters.</source>
-        <translation>URI kan inte tolkas! Detta kan orsakas av en ogiltig LightningCash-adress eller felaktiga URI parametrar.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid LightningCash Gold address or malformed URI parameters.</source>
+        <translation>URI kan inte tolkas! Detta kan orsakas av en ogiltig LightningCash Gold-adress eller felaktiga URI parametrar.</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
@@ -1413,8 +1413,8 @@ Var vänlig och försök igen.</translation>
         <translation>Mängd</translation>
     </message>
     <message>
-        <source>Enter a LightningCash address (e.g. %1)</source>
-        <translation>Ange en LightningCash-adress (t.ex. %1)</translation>
+        <source>Enter a LightningCash Gold address (e.g. %1)</source>
+        <translation>Ange en LightningCash Gold-adress (t.ex. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1825,8 +1825,8 @@ Var vänlig och försök igen.</translation>
         <translation>&amp;Meddelande:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the LightningCash network.</source>
-        <translation>Ett frivilligt meddelande att bifoga betalningsbegäran, vilket visas när begäran öppnas. NB: Meddelandet kommer inte att sändas med betalningen över LightningCashnätverket.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the LightningCash Gold network.</source>
+        <translation>Ett frivilligt meddelande att bifoga betalningsbegäran, vilket visas när begäran öppnas. NB: Meddelandet kommer inte att sändas med betalningen över LightningCash Goldnätverket.</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
@@ -2058,8 +2058,8 @@ Var vänlig och försök igen.</translation>
         <translation>Göm</translation>
     </message>
     <message>
-        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for lightningcash transactions than the network can process.</source>
-        <translation>Att betala endast den minsta avgiften är bara bra så länge det är mindre transaktionsvolym än utrymme i blocken. Men tänk på att det kan hamna i en aldrig bekräftar transaktion när det finns mer efterfrågan på lightningcash transaktioner än nätverket kan bearbeta.</translation>
+        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for lightningcash-gold transactions than the network can process.</source>
+        <translation>Att betala endast den minsta avgiften är bara bra så länge det är mindre transaktionsvolym än utrymme i blocken. Men tänk på att det kan hamna i en aldrig bekräftar transaktion när det finns mer efterfrågan på lightningcash-gold transaktioner än nätverket kan bearbeta.</translation>
     </message>
     <message>
         <source>(read the tooltip)</source>
@@ -2214,8 +2214,8 @@ Var vänlig och försök igen.</translation>
         <translation><numerusform>Uppskattas till att påbörja bekräftelse inom %n block.</numerusform><numerusform>Uppskattas till att påbörja bekräftelse inom %n block.</numerusform></translation>
     </message>
     <message>
-        <source>Warning: Invalid LightningCash address</source>
-        <translation>Varning: Felaktig LightningCashadress</translation>
+        <source>Warning: Invalid LightningCash Gold address</source>
+        <translation>Varning: Felaktig LightningCash Goldadress</translation>
     </message>
     <message>
         <source>Warning: Unknown change address</source>
@@ -2257,7 +2257,7 @@ Var vänlig och försök igen.</translation>
         <translation>Detta är en normal betalning.</translation>
     </message>
     <message>
-        <source>The LightningCash address to send the payment to</source>
+        <source>The LightningCash Gold address to send the payment to</source>
         <translation>Lightning Cashadress att sända betalning till</translation>
     </message>
     <message>
@@ -2277,8 +2277,8 @@ Var vänlig och försök igen.</translation>
         <translation>Radera denna post</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less lightningcash than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation>Avgiften dras från beloppet som skickas. Mottagaren kommer att få mindre lightningcash än du angivit i belopp-fältet. Om flera mottagare valts kommer avgiften delas jämt.</translation>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive less lightningcash-gold than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <translation>Avgiften dras från beloppet som skickas. Mottagaren kommer att få mindre lightningcash-gold än du angivit i belopp-fältet. Om flera mottagare valts kommer avgiften delas jämt.</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
@@ -2301,8 +2301,8 @@ Var vänlig och försök igen.</translation>
         <translation>Ange en etikett för denna adress att adderas till listan över använda adresser</translation>
     </message>
     <message>
-        <source>A message that was attached to the lightningcash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the LightningCash network.</source>
-        <translation>Ett meddelande som bifogades lightningcash-URI, vilket lagras med transaktionen som referens. NB: Meddelandet kommer inte att sändas över LightningCashnätverket.</translation>
+        <source>A message that was attached to the lightningcash-gold: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the LightningCash Gold network.</source>
+        <translation>Ett meddelande som bifogades lightningcash-gold-URI, vilket lagras med transaktionen som referens. NB: Meddelandet kommer inte att sändas över LightningCash Goldnätverket.</translation>
     </message>
     <message>
         <source>Pay To:</source>
@@ -2346,11 +2346,11 @@ Var vänlig och försök igen.</translation>
         <translation>&amp;Signera Meddelande</translation>
     </message>
     <message>
-        <source>You can sign messages/agreements with your addresses to prove you can receive lightningcash sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation>Du kan underteckna meddelanden/avtal med dina adresser för att bevisa att du kan ta emot lightningcash som skickats till dem. Var försiktig så du inte undertecknar något oklart eller konstigt, eftersom phishing-angrepp kan försöka få dig att underteckna din identitet till dem. Underteckna endast väldetaljerade meddelanden som du godkänner.</translation>
+        <source>You can sign messages/agreements with your addresses to prove you can receive lightningcash-gold sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <translation>Du kan underteckna meddelanden/avtal med dina adresser för att bevisa att du kan ta emot lightningcash-gold som skickats till dem. Var försiktig så du inte undertecknar något oklart eller konstigt, eftersom phishing-angrepp kan försöka få dig att underteckna din identitet till dem. Underteckna endast väldetaljerade meddelanden som du godkänner.</translation>
     </message>
     <message>
-        <source>The LightningCash address to sign the message with</source>
+        <source>The LightningCash Gold address to sign the message with</source>
         <translation>Lightning Cashadress att signera meddelandet med</translation>
     </message>
     <message>
@@ -2382,7 +2382,7 @@ Var vänlig och försök igen.</translation>
         <translation>Kopiera signaturen till systemets Urklipp</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this LightningCash address</source>
+        <source>Sign the message to prove you own this LightningCash Gold address</source>
         <translation>Signera meddelandet för att bevisa att du äger denna adress</translation>
     </message>
     <message>
@@ -2406,12 +2406,12 @@ Var vänlig och försök igen.</translation>
         <translation>Ange mottagarens adress, meddelande (kopiera radbrytningar, mellanrum, flikar, etc. exakt) och signatur nedan för att verifiera meddelandet. Undvik att läsa in mera information i signaturen än vad som stod i själva undertecknade meddelandet, för att undvika ett man-in-the-middle-angrepp. Notera att detta endast bevisar att undertecknad tar emot med adressen, det bevisar inte vem som skickat transaktionen!</translation>
     </message>
     <message>
-        <source>The LightningCash address the message was signed with</source>
+        <source>The LightningCash Gold address the message was signed with</source>
         <translation>Lightning Cashadressen som meddelandet signerades med</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified LightningCash address</source>
-        <translation>Verifiera meddelandet för att vara säker på att den var signerad med den angivna LightningCash-adressen</translation>
+        <source>Verify the message to ensure it was signed with the specified LightningCash Gold address</source>
+        <translation>Verifiera meddelandet för att vara säker på att den var signerad med den angivna LightningCash Gold-adressen</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
@@ -2958,7 +2958,7 @@ Var vänlig och försök igen.</translation>
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
-        <translation>Skicka LightningCash</translation>
+        <translation>Skicka LightningCash Gold</translation>
     </message>
     <message>
         <source>Increasing transaction fee failed</source>
@@ -3884,7 +3884,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
-        <translation>Otillräckligt med lightningcash</translation>
+        <translation>Otillräckligt med lightningcash-gold</translation>
     </message>
     <message>
         <source>Loading block index...</source>

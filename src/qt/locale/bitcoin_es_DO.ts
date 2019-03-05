@@ -142,8 +142,8 @@
         <translation>Reindexando bloques en disco...</translation>
     </message>
     <message>
-        <source>Send coins to a LightningCash address</source>
-        <translation>Enviar monedas a una dirección LightningCash</translation>
+        <source>Send coins to a LightningCash Gold address</source>
+        <translation>Enviar monedas a una dirección LightningCash Gold</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -166,7 +166,7 @@
         <translation>&amp;Verificar mensaje...</translation>
     </message>
     <message>
-        <source>LightningCash</source>
+        <source>LightningCash Gold</source>
         <translation>Lightning Cash</translation>
     </message>
     <message>
@@ -194,12 +194,12 @@
         <translation>Cifrar las claves privadas de su monedero</translation>
     </message>
     <message>
-        <source>Sign messages with your LightningCash addresses to prove you own them</source>
-        <translation>Firmar mensajes con sus direcciones LightningCash para demostrar la propiedad</translation>
+        <source>Sign messages with your LightningCash Gold addresses to prove you own them</source>
+        <translation>Firmar mensajes con sus direcciones LightningCash Gold para demostrar la propiedad</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified LightningCash addresses</source>
-        <translation>Verificar mensajes comprobando que están firmados con direcciones LightningCash concretas</translation>
+        <source>Verify messages to ensure they were signed with specified LightningCash Gold addresses</source>
+        <translation>Verificar mensajes comprobando que están firmados con direcciones LightningCash Gold concretas</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -218,8 +218,8 @@
         <translation>Barra de pestañas</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and lightningcash: URIs)</source>
-        <translation>Solicitar pagos (genera codigo QR y URL's de LightningCash)</translation>
+        <source>Request payments (generates QR codes and lightningcash-gold: URIs)</source>
+        <translation>Solicitar pagos (genera codigo QR y URL's de LightningCash Gold)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -230,8 +230,8 @@
         <translation>Muestra la lista de direcciones de recepción y etiquetas</translation>
     </message>
     <message>
-        <source>Open a lightningcash: URI or payment request</source>
-        <translation>Abrir un lightningcash: URI o petición de pago</translation>
+        <source>Open a lightningcash-gold: URI or payment request</source>
+        <translation>Abrir un lightningcash-gold: URI o petición de pago</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -421,7 +421,7 @@
         <translation>Utilice un directorio de datos personalizado:</translation>
     </message>
     <message>
-        <source>LightningCash</source>
+        <source>LightningCash Gold</source>
         <translation>Lightning Cash</translation>
     </message>
     <message>
@@ -498,8 +498,8 @@
         <translation>Experto</translation>
     </message>
     <message>
-        <source>Automatically open the LightningCash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Abrir automáticamente el puerto del cliente LightningCash en el router. Esta opción solo funciona si el router admite UPnP y está activado.</translation>
+        <source>Automatically open the LightningCash Gold client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Abrir automáticamente el puerto del cliente LightningCash Gold en el router. Esta opción solo funciona si el router admite UPnP y está activado.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -597,8 +597,8 @@
         <translation>Desde</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the LightningCash network after a connection is established, but this process has not completed yet.</source>
-        <translation>La información mostrada puede estar desactualizada. Su monedero se sincroniza automáticamente con la red LightningCash después de que se haya establecido una conexión, pero este proceso aún no se ha completado.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the LightningCash Gold network after a connection is established, but this process has not completed yet.</source>
+        <translation>La información mostrada puede estar desactualizada. Su monedero se sincroniza automáticamente con la red LightningCash Gold después de que se haya establecido una conexión, pero este proceso aún no se ha completado.</translation>
     </message>
     <message>
         <source>Your current spendable balance</source>
@@ -1011,8 +1011,8 @@
         <translation>Copiar la firma actual al portapapeles del sistema</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this LightningCash address</source>
-        <translation>Firmar el mensaje para demostrar que se posee esta dirección LightningCash</translation>
+        <source>Sign the message to prove you own this LightningCash Gold address</source>
+        <translation>Firmar el mensaje para demostrar que se posee esta dirección LightningCash Gold</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -1031,8 +1031,8 @@
         <translation>&amp;Verificar mensaje</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified LightningCash address</source>
-        <translation>Verificar el mensaje para comprobar que fue firmado con la dirección LightningCash indicada</translation>
+        <source>Verify the message to ensure it was signed with the specified LightningCash Gold address</source>
+        <translation>Verificar el mensaje para comprobar que fue firmado con la dirección LightningCash Gold indicada</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
@@ -1116,7 +1116,7 @@
     </message>
     <message>
         <source>Lightning Cash Core</source>
-        <translation>Núcleo de LightningCash</translation>
+        <translation>Núcleo de LightningCash Gold</translation>
     </message>
     <message>
         <source>Bind to given address and always listen on it. Use [host]:port notation for IPv6</source>

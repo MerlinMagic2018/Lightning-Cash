@@ -2697,9 +2697,9 @@ OutputType CWallet::TransactionChangeType(OutputType change_type, const std::vec
     return g_address_type;
 }
 
-bool fWalletUnlockHiveMiningOnly = false;  // LightningCash: Hive: Unlock for hive mining purposes only.
+bool fWalletUnlockHiveMiningOnly = false;  // LightningCash Gold: Hive: Unlock for hive mining purposes only.
 
-// LightningCash: Hive: Return all BCTs known by this wallet, optionally including dead bees and optionally scanning for blocks minted by bees from each BCT
+// LightningCash Gold: Hive: Return all BCTs known by this wallet, optionally including dead bees and optionally scanning for blocks minted by bees from each BCT
 std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool scanRewards, const Consensus::Params& consensusParams, int minHoneyConfirmations) {
     std::vector<CBeeCreationTransactionInfo> bcts;
 
@@ -2821,7 +2821,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
     return bcts;
 }
 
-// LightningCash: Hive: Create a BCT to gestate given number of bees
+// LightningCash Gold: Hive: Create a BCT to gestate given number of bees
 bool CWallet::CreateBeeTransaction(int beeCount, CWalletTx& wtxNew, CReserveKey& reservekeyChange, CReserveKey& reservekeyHoney, std::string honeyAddress, bool communityContrib, std::string& strFailReason, const Consensus::Params& consensusParams) {
     CBlockIndex* pindexPrev = chainActive.Tip();
     assert(pindexPrev != nullptr);

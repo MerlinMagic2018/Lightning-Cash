@@ -84,7 +84,7 @@ private:
     QLabel *labelWalletEncryptionIcon;
     QLabel *labelWalletHDStatusIcon;
     QLabel *connectionsControl;
-    QLabel *hiveStatusIcon;             // LightningCash: Hive status icon
+    QLabel *hiveStatusIcon;             // LightningCash Gold: Hive status icon
     QLabel *labelBlocksIcon;
     QLabel *progressBarLabel;
     QProgressBar *progressBar;
@@ -92,8 +92,8 @@ private:
 
     QMenuBar *appMenuBar;
     QAction *overviewAction;
-    QAction *hiveAction;                // LightningCash: Hive page
-    QAction *importPrivateKeyAction;    // LightningCash: Key import helper
+    QAction *hiveAction;                // LightningCash Gold: Hive page
+    QAction *importPrivateKeyAction;    // LightningCash Gold: Key import helper
     QAction *historyAction;
     QAction *quitAction;
     QAction *sendCoinsAction;
@@ -173,7 +173,7 @@ public Q_SLOTS:
     */
     void message(const QString &title, const QString &message, unsigned int style, bool *ret = nullptr);
 
-    // LightningCash: Hive: Update hive status icon
+    // LightningCash Gold: Hive: Update hive status icon
     void updateHiveStatusIcon(QString icon, QString tooltip);
     
 #ifdef ENABLE_WALLET
@@ -206,7 +206,7 @@ private Q_SLOTS:
     /** Switch to send coins page */
     void gotoSendCoinsPage(QString addr = "");
 
-    // LightningCash: Switch to hive page
+    // LightningCash Gold: Switch to hive page
     void gotoHivePage();
 
     /** Show Sign/Verify Message dialog and switch to sign message tab */

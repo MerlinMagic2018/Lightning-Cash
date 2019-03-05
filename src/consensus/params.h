@@ -11,8 +11,8 @@
 #include <map>
 #include <string>
 
-#include <script/script.h>  // LightningCash: Needed for CScript
-#include <amount.h>         // LightningCash: Needed for CAmount
+#include <script/script.h>  // LightningCash Gold: Needed for CScript
+#include <amount.h>         // LightningCash Gold: Needed for CAmount
 
 namespace Consensus {
 
@@ -21,7 +21,7 @@ enum DeploymentPos
     DEPLOYMENT_TESTDUMMY,
     DEPLOYMENT_CSV, // Deployment of BIP68, BIP112, and BIP113.
     DEPLOYMENT_SEGWIT, // Deployment of BIP141, BIP143, and BIP147.
-    DEPLOYMENT_HIVE,    // LightningCash: Hive: Deployment
+    DEPLOYMENT_HIVE,    // LightningCash Gold: Hive: Deployment
     // NOTE: Also add new deployments to VersionBitsDeploymentInfo in versionbits.cpp
     MAX_VERSION_BITS_DEPLOYMENTS
 };
@@ -80,7 +80,7 @@ struct Params {
     uint256 nMinimumChainWork;
     uint256 defaultAssumeValid;
 
-    // LightningCash: General consensus params
+    // LightningCash Gold: General consensus params
     uint32_t powForkTime;               // Time of PoW hash method change
     int lastScryptBlock;                // Height of last scrypt block
     int slowStartBlocks;                // Scale post-fork block reward over this many blocks
@@ -90,7 +90,7 @@ struct Params {
 //    CScript premineOutputScript;        // Premine output script
 
 
-    // LightningCash: Hive-related consensus params
+    // LightningCash Gold: Hive-related consensus params
     CAmount minBeeCost;                 // Minimum cost of a bee, used when no more block rewards
     int beeCostFactor;                  // Bee cost is block_reward/beeCostFactor
     std::string beeCreationAddress;     // Unspendable address for bee creation

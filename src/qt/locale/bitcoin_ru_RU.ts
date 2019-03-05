@@ -62,12 +62,12 @@
         <translation>Адреса получения</translation>
     </message>
     <message>
-        <source>These are your LightningCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Это ваши LightningCash адреса для отправки платежа. Всегда проверяйте сумму и адрес получателя перед отправкой платежа.</translation>
+        <source>These are your LightningCash Gold addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Это ваши LightningCash Gold адреса для отправки платежа. Всегда проверяйте сумму и адрес получателя перед отправкой платежа.</translation>
     </message>
     <message>
-        <source>These are your LightningCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Это ваши LightningCash адреса для получения платежей. Настоятельно рекомендуем использовать новые адреса для получения каждой транзакции.</translation>
+        <source>These are your LightningCash Gold addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Это ваши LightningCash Gold адреса для получения платежей. Настоятельно рекомендуем использовать новые адреса для получения каждой транзакции.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -176,8 +176,8 @@
         <translation>Бумажник зашифрован</translation>
     </message>
     <message>
-        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your lightningcash from being stolen by malware infecting your computer.</source>
-        <translation>%1 закроется сейчас для завершения процесса шифрования. Запомните что шифрование вашего кошелька не сможет полностью защитить ваши LightningCashы от кражи при помощи вредоносного ПО, заразившего ваш компьютер.</translation>
+        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your lightningcash-gold from being stolen by malware infecting your computer.</source>
+        <translation>%1 закроется сейчас для завершения процесса шифрования. Запомните что шифрование вашего кошелька не сможет полностью защитить ваши LightningCash Goldы от кражи при помощи вредоносного ПО, заразившего ваш компьютер.</translation>
     </message>
     <message>
         <source>Wallet encryption failed</source>
@@ -306,8 +306,8 @@
         <translation>Реиндексация блоков на диске...</translation>
     </message>
     <message>
-        <source>Send coins to a LightningCash address</source>
-        <translation>Послать средства на LightningCash адрес</translation>
+        <source>Send coins to a LightningCash Gold address</source>
+        <translation>Послать средства на LightningCash Gold адрес</translation>
     </message>
     <message>
         <source>Change the passphrase used for wallet encryption</source>
@@ -322,7 +322,7 @@
         <translation>&amp;Проверить сообщение...</translation>
     </message>
     <message>
-        <source>LightningCash</source>
+        <source>LightningCash Gold</source>
         <translation>Lightning Cash Core</translation>
     </message>
     <message>
@@ -481,7 +481,7 @@
         <translation>Добро пожаловать в %1.</translation>
     </message>
     <message>
-        <source>LightningCash</source>
+        <source>LightningCash Gold</source>
         <translation>Lightning Cash Core</translation>
     </message>
     <message>
@@ -542,8 +542,8 @@
         <translation>Пробросить порт через &amp;UPnP</translation>
     </message>
     <message>
-        <source>Connect to the LightningCash network through a SOCKS5 proxy.</source>
-        <translation>Подключится к сети LightningCash через SOCKS5 прокси.</translation>
+        <source>Connect to the LightningCash Gold network through a SOCKS5 proxy.</source>
+        <translation>Подключится к сети LightningCash Gold через SOCKS5 прокси.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -630,7 +630,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <source>Enter a LightningCash address (e.g. %1)</source>
+        <source>Enter a LightningCash Gold address (e.g. %1)</source>
         <translation>Введите биткоин-адрес (напр. %1)</translation>
     </message>
     <message>
