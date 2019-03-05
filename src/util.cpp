@@ -82,8 +82,8 @@
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
 
-const char * const BITCOIN_CONF_FILENAME = "lightningcash-gold.conf";
-const char * const BITCOIN_PID_FILENAME = "lightningcash-goldd.pid";
+const char * const BITCOIN_CONF_FILENAME = "lightningcash_gold.conf";
+const char * const BITCOIN_PID_FILENAME = "lightningcash_goldd.pid";
 const char * const DEFAULT_DEBUGLOGFILE = "debug.log";
 
 ArgsManager gArgs;
@@ -558,7 +558,7 @@ static std::string FormatException(const std::exception* pex, const char* pszThr
     char pszModule[MAX_PATH] = "";
     GetModuleFileNameA(nullptr, pszModule, sizeof(pszModule));
 #else
-    const char* pszModule = "lightningcash-gold";
+    const char* pszModule = "lightningcash_gold";
 #endif
     if (pex)
         return strprintf(
@@ -596,7 +596,7 @@ fs::path GetDefaultDataDir()
     return pathRet / "Library/Application Support/LightningCash Gold";
 #else
     // Unix
-    return pathRet / ".lightningcash-gold";
+    return pathRet / ".lightningcash_gold";
 #endif
 #endif
 }

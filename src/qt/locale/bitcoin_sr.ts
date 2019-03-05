@@ -139,7 +139,7 @@
     </message>
     <message>
         <source>Send coins to a LightningCash Gold address</source>
-        <translation>Пошаљите новац на lightningcash-gold адресу</translation>
+        <translation>Пошаљите новац на lightningcash_gold адресу</translation>
     </message>
     <message>
         <source>Change the passphrase used for wallet encryption</source>

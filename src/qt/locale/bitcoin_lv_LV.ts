@@ -39,11 +39,11 @@
     </message>
     <message>
         <source>Choose the address to send coins to</source>
-        <translation>Izvēlies adresi uz kuru sūtīt lightningcash-gold</translation>
+        <translation>Izvēlies adresi uz kuru sūtīt lightningcash_gold</translation>
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
-        <translation>Izvēlies adresi ar kuru saņemt lightningcash-gold</translation>
+        <translation>Izvēlies adresi ar kuru saņemt lightningcash_gold</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -278,12 +278,12 @@
         <translation>Ciļņu rīkjosla</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and lightningcash-gold: URIs)</source>
-        <translation>Pieprasīt maksājumus (izveido QR kodu un lightningcash-gold: URIs)</translation>
+        <source>Request payments (generates QR codes and lightningcash_gold: URIs)</source>
+        <translation>Pieprasīt maksājumus (izveido QR kodu un lightningcash_gold: URIs)</translation>
     </message>
     <message>
-        <source>Open a lightningcash-gold: URI or payment request</source>
-        <translation>Atvērt lightningcash-gold URI vai maksājuma pieprasījumu</translation>
+        <source>Open a lightningcash_gold: URI or payment request</source>
+        <translation>Atvērt lightningcash_gold URI vai maksājuma pieprasījumu</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -559,7 +559,7 @@
     </message>
     <message>
         <source>Enable coin &amp;control features</source>
-        <translation>Ieslēgt lightningcash-gold &amp;kontroles funkcijas</translation>
+        <translation>Ieslēgt lightningcash_gold &amp;kontroles funkcijas</translation>
     </message>
     <message>
         <source>&amp;Spend unconfirmed change</source>

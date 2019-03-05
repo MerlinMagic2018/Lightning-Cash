@@ -222,8 +222,8 @@
         <translation>Ички ойналар асбоблар панели</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and lightningcash-gold: URIs)</source>
-        <translation>Тўловлар (QR кодлари ва lightningcash-gold ёрдамида яратишлар: URI’лар) сўраш</translation>
+        <source>Request payments (generates QR codes and lightningcash_gold: URIs)</source>
+        <translation>Тўловлар (QR кодлари ва lightningcash_gold ёрдамида яратишлар: URI’лар) сўраш</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -234,7 +234,7 @@
         <translation>Фойдаланилган қабул қилинган манзиллар ва ёрлиқлар рўйхатини кўрсатиш</translation>
     </message>
     <message>
-        <source>Open a lightningcash-gold: URI or payment request</source>
+        <source>Open a lightningcash_gold: URI or payment request</source>
         <translation>Lightning Cash’ни очиш: URI ёки тўлов сўрови</translation>
     </message>
     <message>

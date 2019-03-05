@@ -17,13 +17,13 @@ BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
             VALUE "CompanyName",        "Lightning Cash"
-            VALUE "FileDescription",    "lightningcash-gold-tx (CLI Lightning Cash transaction editor utility)"
+            VALUE "FileDescription",    "lightningcash_gold-tx (CLI Lightning Cash transaction editor utility)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "lightningcash-gold-tx"
+            VALUE "InternalName",       "lightningcash_gold-tx"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "lightningcash-gold-tx.exe"
-            VALUE "ProductName",        "lightningcash-gold-tx"
+            VALUE "OriginalFilename",   "lightningcash_gold-tx.exe"
+            VALUE "ProductName",        "lightningcash_gold-tx"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

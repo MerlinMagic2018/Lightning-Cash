@@ -143,7 +143,7 @@
     </message>
     <message>
         <source>Send coins to a LightningCash Gold address</source>
-        <translation>Enviar monedas a una dirección lightningcash-gold</translation>
+        <translation>Enviar monedas a una dirección lightningcash_gold</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -206,8 +206,8 @@
         <translation>Barra de pestañas</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and lightningcash-gold: URIs)</source>
-        <translation>Pide pagos (genera codigos QR and lightningcash-gold: URls)</translation>
+        <source>Request payments (generates QR codes and lightningcash_gold: URIs)</source>
+        <translation>Pide pagos (genera codigos QR and lightningcash_gold: URls)</translation>
     </message>
     <message>
         <source>Error</source>

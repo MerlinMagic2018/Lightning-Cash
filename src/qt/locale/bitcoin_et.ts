@@ -366,12 +366,12 @@
         <translation>Vahelehe tööriistariba</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and lightningcash-gold: URIs)</source>
-        <translation>Loo maksepäring (genereerib QR koodid ja lightningcash-goldi: URId)</translation>
+        <source>Request payments (generates QR codes and lightningcash_gold: URIs)</source>
+        <translation>Loo maksepäring (genereerib QR koodid ja lightningcash_goldi: URId)</translation>
     </message>
     <message>
-        <source>Open a lightningcash-gold: URI or payment request</source>
-        <translation>Ava lightningcash-goldi: URI või maksepäring</translation>
+        <source>Open a lightningcash_gold: URI or payment request</source>
+        <translation>Ava lightningcash_goldi: URI või maksepäring</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>

@@ -1707,7 +1707,7 @@ static bool WriteTxIndexDataForBlock(const CBlock& block, CValidationState& stat
 static CCheckQueue<CScriptCheck> scriptcheckqueue(128);
 
 void ThreadScriptCheck() {
-    RenameThread("lightningcash-gold-scriptch");
+    RenameThread("lightningcash_gold-scriptch");
     scriptcheckqueue.Thread();
 }
 

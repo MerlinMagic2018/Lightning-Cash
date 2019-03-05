@@ -67,7 +67,7 @@
     </message>
     <message>
         <source>These are your LightningCash Gold addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>این ها آدرس های lightningcash-gold شما برای دریافت پرداخت ها می باشد. توصیه میشود برای هر تراکنش از یک آدرس دریافت جدید استفاده کنید.</translation>
+        <translation>این ها آدرس های lightningcash_gold شما برای دریافت پرداخت ها می باشد. توصیه میشود برای هر تراکنش از یک آدرس دریافت جدید استفاده کنید.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -382,8 +382,8 @@
         <translation>نوارابزار برگه‌ها</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and lightningcash-gold: URIs)</source>
-        <translation>درخواست پرداخت ( تولید کد کیوار و ادرس lightningcash-gold)</translation>
+        <source>Request payments (generates QR codes and lightningcash_gold: URIs)</source>
+        <translation>درخواست پرداخت ( تولید کد کیوار و ادرس lightningcash_gold)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -394,8 +394,8 @@
         <translation>نمایش لیست آدرس های دریافت و لیبل ها</translation>
     </message>
     <message>
-        <source>Open a lightningcash-gold: URI or payment request</source>
-        <translation>بازکردن یک lightningcash-gold: آدرس یا درخواست پرداخت</translation>
+        <source>Open a lightningcash_gold: URI or payment request</source>
+        <translation>بازکردن یک lightningcash_gold: آدرس یا درخواست پرداخت</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>

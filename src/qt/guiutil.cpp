@@ -146,7 +146,7 @@ void setupAmountWidget(QLineEdit *widget, QWidget *parent)
 bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
 {
     // return if URI is not valid or is no bitcoin: URI
-    if(!uri.isValid() || uri.scheme() != QString("lightningcash-gold"))
+    if(!uri.isValid() || uri.scheme() != QString("lightningcash_gold"))
         return false;
 
     SendCoinsRecipient rv;
@@ -210,9 +210,9 @@ bool parseBitcoinURI(QString uri, SendCoinsRecipient *out)
     //
     //    Cannot handle this later, because bitcoin:// will cause Qt to see the part after // as host,
     //    which will lower-case it (and thus invalidate the address).
-    if(uri.startsWith("lightningcash-gold://", Qt::CaseInsensitive))
+    if(uri.startsWith("lightningcash_gold://", Qt::CaseInsensitive))
     {
-        uri.replace(0, 15, "lightningcash-gold:");    // LightningCash Gold: Strip the right amount of characters for our URI
+        uri.replace(0, 15, "lightningcash_gold:");    // LightningCash Gold: Strip the right amount of characters for our URI
     }
     QUrl uriInstance(uri);
     return parseBitcoinURI(uriInstance, out);
@@ -220,7 +220,7 @@ bool parseBitcoinURI(QString uri, SendCoinsRecipient *out)
 
 QString formatBitcoinURI(const SendCoinsRecipient &info)
 {
-    QString ret = QString("lightningcash-gold:%1").arg(info.address);
+    QString ret = QString("lightningcash_gold:%1").arg(info.address);
     int paramCount = 0;
 
     if (info.amount)
@@ -713,8 +713,8 @@ fs::path static GetAutostartFilePath()
 {
     std::string chain = ChainNameFromCommandLine();
     if (chain == CBaseChainParams::MAIN)
-        return GetAutostartDir() / "lightningcash-gold.desktop";
-    return GetAutostartDir() / strprintf("lightningcash-gold-%s.lnk", chain);
+        return GetAutostartDir() / "lightningcash_gold.desktop";
+    return GetAutostartDir() / strprintf("lightningcash_gold-%s.lnk", chain);
 }
 
 bool GetStartOnSystemStartup()

@@ -410,8 +410,8 @@
         <translation>Orebalk</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and lightningcash-gold: URIs)</source>
-        <translation>Versoek betalings (genereer QR-kodes en lightningcash-gold: URI's)</translation>
+        <source>Request payments (generates QR codes and lightningcash_gold: URIs)</source>
+        <translation>Versoek betalings (genereer QR-kodes en lightningcash_gold: URI's)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -422,8 +422,8 @@
         <translation>Vertoon die lys van gebruikte ontvangers-adresse en etikette</translation>
     </message>
     <message>
-        <source>Open a lightningcash-gold: URI or payment request</source>
-        <translation>Skep 'n lightningcash-gold: URI of betalingsversoek</translation>
+        <source>Open a lightningcash_gold: URI or payment request</source>
+        <translation>Skep 'n lightningcash_gold: URI of betalingsversoek</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>

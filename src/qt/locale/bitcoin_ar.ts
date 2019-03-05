@@ -410,7 +410,7 @@
         <translation>شريط أدوات علامات التبويب</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and lightningcash-gold: URIs)</source>
+        <source>Request payments (generates QR codes and lightningcash_gold: URIs)</source>
         <translation>أطلب دفعات (يولد كودات الرمز المربع وبيت كوين: العناوين المعطاة)</translation>
     </message>
     <message>
@@ -422,7 +422,7 @@
         <translation>عرض قائمة عناوين الإستقبال المستخدمة والملصقات</translation>
     </message>
     <message>
-        <source>Open a lightningcash-gold: URI or payment request</source>
+        <source>Open a lightningcash_gold: URI or payment request</source>
         <translation>فتح URI : LightningCash Gold أو طلب دفع</translation>
     </message>
     <message>

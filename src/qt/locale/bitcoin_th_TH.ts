@@ -163,11 +163,11 @@
     </message>
     <message>
         <source>&amp;Sending addresses...</source>
-        <translation>&amp;ที่เก็บเงิน ที่จะส่ง lightningcash-gold</translation>
+        <translation>&amp;ที่เก็บเงิน ที่จะส่ง lightningcash_gold</translation>
     </message>
     <message>
         <source>&amp;Receiving addresses...</source>
-        <translation>&amp;ที่เก็บเงิน ที่จะรับ lightningcash-gold</translation>
+        <translation>&amp;ที่เก็บเงิน ที่จะรับ lightningcash_gold</translation>
     </message>
     <message>
         <source>Open &amp;URI...</source>
@@ -231,7 +231,7 @@
     </message>
     <message>
         <source>Sign messages with your LightningCash Gold addresses to prove you own them</source>
-        <translation>เซ็นชื่อด้วยข้อความ ที่เก็บ LightningCash Gold เพื่อแสดงว่าท่านเป็นเจ้าของ lightningcash-gold นี้จริง</translation>
+        <translation>เซ็นชื่อด้วยข้อความ ที่เก็บ LightningCash Gold เพื่อแสดงว่าท่านเป็นเจ้าของ lightningcash_gold นี้จริง</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified LightningCash Gold addresses</source>
@@ -254,20 +254,20 @@
         <translation>แถบเครื่องมือ</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and lightningcash-gold: URIs)</source>
-        <translation>เรียกเก็บ การชำระเงิน (สร้าง QR codes และ lightningcash-gold: URIs)</translation>
+        <source>Request payments (generates QR codes and lightningcash_gold: URIs)</source>
+        <translation>เรียกเก็บ การชำระเงิน (สร้าง QR codes และ lightningcash_gold: URIs)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
-        <translation>แสดงรายการ ที่เก็บเงินที่จะส่ง lightningcash-gold ออก และป้ายชื่อ ที่ใช้ไปแล้ว</translation>
+        <translation>แสดงรายการ ที่เก็บเงินที่จะส่ง lightningcash_gold ออก และป้ายชื่อ ที่ใช้ไปแล้ว</translation>
     </message>
     <message>
         <source>Show the list of used receiving addresses and labels</source>
-        <translation>แสดงรายการ ที่เก็บเงินที่จะรับ lightningcash-gold เข้า และป้ายชื่อ ที่ใช้ไปแล้ว</translation>
+        <translation>แสดงรายการ ที่เก็บเงินที่จะรับ lightningcash_gold เข้า และป้ายชื่อ ที่ใช้ไปแล้ว</translation>
     </message>
     <message>
-        <source>Open a lightningcash-gold: URI or payment request</source>
-        <translation>เปิด lightningcash-gold: URI หรือ การเรียกเก็บเงิน (การเรียกให้ชำระเงิน)</translation>
+        <source>Open a lightningcash_gold: URI or payment request</source>
+        <translation>เปิด lightningcash_gold: URI หรือ การเรียกเก็บเงิน (การเรียกให้ชำระเงิน)</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
