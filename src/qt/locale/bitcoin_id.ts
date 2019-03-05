@@ -315,7 +315,7 @@
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -390,7 +390,7 @@
     <name>Intro</name>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     </context>
 <context>

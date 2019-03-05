@@ -227,7 +227,7 @@
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -466,7 +466,7 @@
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>Error</source>
@@ -920,7 +920,7 @@
     </message>
     <message>
         <source>Coin Control Features</source>
-        <translation>Lightning Cash Kontroles Funkcijas</translation>
+        <translation>Lightning Cash Gold Kontroles Funkcijas</translation>
     </message>
     <message>
         <source>Inputs...</source>
@@ -1216,8 +1216,8 @@
         <translation>Darbināt fonā kā servisu un pieņemt komandas</translation>
     </message>
     <message>
-        <source>Lightning Cash Core</source>
-        <translation>Lightning Cash Core</translation>
+        <source>Lightning Cash Gold Core</source>
+        <translation>Lightning Cash Gold Core</translation>
     </message>
     <message>
         <source>&lt;category&gt; can be:</source>

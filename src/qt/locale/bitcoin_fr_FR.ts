@@ -367,7 +367,7 @@
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -844,7 +844,7 @@
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -2282,8 +2282,8 @@
         <translation>Impossible de démarrer le serveur HTTP. Voir le journal de débogage pour plus de détails.</translation>
     </message>
     <message>
-        <source>Lightning Cash Core</source>
-        <translation>Lightning Cash Core</translation>
+        <source>Lightning Cash Gold Core</source>
+        <translation>Lightning Cash Gold Core</translation>
     </message>
     <message>
         <source>&lt;category&gt; can be:</source>

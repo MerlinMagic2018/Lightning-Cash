@@ -287,7 +287,7 @@
     </message>
     <message>
         <source>Send coins to a LightningCash Gold address</source>
-        <translation>Lightning Cash adresine madeni para gönderin</translation>
+        <translation>Lightning Cash Gold adresine madeni para gönderin</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -303,7 +303,7 @@
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -515,7 +515,7 @@
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash
+        <translation>Lightning Cash Gold
 </translation>
     </message>
     <message>
@@ -661,7 +661,7 @@
     <name>QObject</name>
     <message>
         <source>Enter a LightningCash Gold address (e.g. %1)</source>
-        <translation>Lightning Cash adresinizi girin (örneğin %1)</translation>
+        <translation>Lightning Cash Gold adresinizi girin (örneğin %1)</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -1342,8 +1342,8 @@
         <translation>JSON-RPC komutları ile komut satırını onaylayın</translation>
     </message>
     <message>
-        <source>Lightning Cash Core</source>
-        <translation>Lightning Cash Çekirdeği</translation>
+        <source>Lightning Cash Gold Core</source>
+        <translation>Lightning Cash Gold Çekirdeği</translation>
     </message>
     <message>
         <source>&lt;category&gt; can be:</source>

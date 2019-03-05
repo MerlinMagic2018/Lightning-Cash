@@ -363,7 +363,7 @@
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -764,7 +764,7 @@
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>The wallet will also be stored in this directory.</source>

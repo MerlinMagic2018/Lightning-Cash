@@ -16,8 +16,8 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Lightning Cash"
-            VALUE "FileDescription",    "lightningcash_gold-tx (CLI Lightning Cash transaction editor utility)"
+            VALUE "CompanyName",        "Lightning Cash Gold"
+            VALUE "FileDescription",    "lightningcash_gold-tx (CLI Lightning Cash Gold transaction editor utility)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "lightningcash_gold-tx"
             VALUE "LegalCopyright",     COPYRIGHT_STR

@@ -351,7 +351,7 @@
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -596,7 +596,7 @@
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>Error</source>
@@ -649,7 +649,7 @@
     </message>
     <message>
         <source>Enter a LightningCash Gold address (e.g. %1)</source>
-        <translation>Lightning Cash Adresse eingeben (z.B. %1)</translation>
+        <translation>Lightning Cash Gold Adresse eingeben (z.B. %1)</translation>
     </message>
     <message>
         <source>N/A</source>

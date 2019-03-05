@@ -364,7 +364,7 @@ Alihkan fail data ke dalam tab semasa</translation>
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -439,7 +439,7 @@ Alihkan fail data ke dalam tab semasa</translation>
     <name>Intro</name>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     </context>
 <context>

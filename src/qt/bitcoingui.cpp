@@ -128,7 +128,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
         move(QApplication::desktop()->availableGeometry().center() - frameGeometry().center());
     }
 
-    QString windowTitle = tr("Lightning Cash - "); // LightningCash Gold: Don't use package name here; we want coin name with a space in window titles.
+    QString windowTitle = tr("Lightning Cash Gold - "); // LightningCash Gold: Don't use package name here; we want coin name with a space in window titles.
 #ifdef ENABLE_WALLET
     enableWallet = WalletModel::isWalletEnabled();
 #endif // ENABLE_WALLET
@@ -355,7 +355,7 @@ void BitcoinGUI::createActions()
     quitAction->setStatusTip(tr("Quit application"));
     quitAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));
     quitAction->setMenuRole(QAction::QuitRole);
-    aboutAction = new QAction(platformStyle->TextColorIcon(":/icons/about"), tr("&About Lightning Cash"), this); // LightningCash Gold: Don't use package name here; we want coin name with a space in window titles.
+    aboutAction = new QAction(platformStyle->TextColorIcon(":/icons/about"), tr("&About Lightning Cash Gold"), this); // LightningCash Gold: Don't use package name here; we want coin name with a space in window titles.
     aboutAction->setStatusTip(tr("Show information about %1").arg(tr(PACKAGE_NAME)));
     aboutAction->setMenuRole(QAction::AboutRole);
     aboutAction->setEnabled(false);
@@ -920,7 +920,7 @@ void BitcoinGUI::setNumBlocks(int count, const QDateTime& blockDate, double nVer
 
 void BitcoinGUI::message(const QString &title, const QString &message, unsigned int style, bool *ret)
 {
-    QString strTitle = tr("Lightning Cash"); // default title
+    QString strTitle = tr("Lightning Cash Gold"); // default title
     // Default to information icon
     int nMBoxIcon = QMessageBox::Information;
     int nNotifyIcon = Notificator::Information;

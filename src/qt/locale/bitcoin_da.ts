@@ -367,7 +367,7 @@
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -876,7 +876,7 @@
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>At least %1 GB of data will be stored in this directory, and it will grow over time.</source>
@@ -2329,7 +2329,7 @@
     </message>
     <message>
         <source>The LightningCash Gold address to send the payment to</source>
-        <translation>Lightning Cash-adresse, som betalingen skal sendes til</translation>
+        <translation>Lightning Cash Gold-adresse, som betalingen skal sendes til</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -2426,7 +2426,7 @@
     </message>
     <message>
         <source>The LightningCash Gold address to sign the message with</source>
-        <translation>Lightning Cash-adresse, som beskeden skal signeres med</translation>
+        <translation>Lightning Cash Gold-adresse, som beskeden skal signeres med</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2482,7 +2482,7 @@
     </message>
     <message>
         <source>The LightningCash Gold address the message was signed with</source>
-        <translation>Lightning Cash-adressen, som beskeden blev signeret med</translation>
+        <translation>Lightning Cash Gold-adressen, som beskeden blev signeret med</translation>
     </message>
     <message>
         <source>Verify the message to ensure it was signed with the specified LightningCash Gold address</source>
@@ -3178,8 +3178,8 @@
         <translation>Kunne ikke starte HTTP-server. Se fejlretningslog for detaljer.</translation>
     </message>
     <message>
-        <source>Lightning Cash Core</source>
-        <translation>Lightning Cash Core</translation>
+        <source>Lightning Cash Gold Core</source>
+        <translation>Lightning Cash Gold Core</translation>
     </message>
     <message>
         <source>The %s developers</source>

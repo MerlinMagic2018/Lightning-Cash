@@ -343,7 +343,7 @@
     </message>
     <message>
         <source>Send coins to a LightningCash Gold address</source>
-        <translation>Lightning Cash アドレスにコインを送る</translation>
+        <translation>Lightning Cash Gold アドレスにコインを送る</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -367,7 +367,7 @@
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -431,7 +431,7 @@
     </message>
     <message>
         <source>Open a lightningcash_gold: URI or payment request</source>
-        <translation>Lightning Cash: URIまたは支払いリクエストを開く</translation>
+        <translation>Lightning Cash Gold: URIまたは支払いリクエストを開く</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -876,7 +876,7 @@
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>At least %1 GB of data will be stored in this directory, and it will grow over time.</source>
@@ -1327,7 +1327,7 @@
     </message>
     <message>
         <source>Cannot start lightningcash_gold: click-to-pay handler</source>
-        <translation>Lightning Cash を起動できません: click-to-pay handler</translation>
+        <translation>Lightning Cash Gold を起動できません: click-to-pay handler</translation>
     </message>
     <message>
         <source>URI handling</source>
@@ -1445,7 +1445,7 @@
     </message>
     <message>
         <source>Enter a LightningCash Gold address (e.g. %1)</source>
-        <translation>Lightning Cashアドレスを入力してください (例 %1)</translation>
+        <translation>Lightning Cash Goldアドレスを入力してください (例 %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2377,7 +2377,7 @@
     </message>
     <message>
         <source>A message that was attached to the lightningcash_gold: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the LightningCash Gold network.</source>
-        <translation>Lightning Cash: URIに添付されていたメッセージです。これは参照用としてトランザクションとともに保存されます。注意：このメッセージはLightningCash Goldネットワークを通して送信されるわけではありません。</translation>
+        <translation>Lightning Cash Gold: URIに添付されていたメッセージです。これは参照用としてトランザクションとともに保存されます。注意：このメッセージはLightningCash Goldネットワークを通して送信されるわけではありません。</translation>
     </message>
     <message>
         <source>Pay To:</source>
@@ -3178,8 +3178,8 @@
         <translation>HTTPサーバを開始できませんでした。詳細はデバッグログをご確認ください。</translation>
     </message>
     <message>
-        <source>Lightning Cash Core</source>
-        <translation>Lightning Cash のコア</translation>
+        <source>Lightning Cash Gold Core</source>
+        <translation>Lightning Cash Gold のコア</translation>
     </message>
     <message>
         <source>The %s developers</source>

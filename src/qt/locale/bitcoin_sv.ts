@@ -368,7 +368,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -869,7 +869,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>At least %1 GB of data will be stored in this directory, and it will grow over time.</source>
@@ -2258,7 +2258,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>The LightningCash Gold address to send the payment to</source>
-        <translation>Lightning Cashadress att sända betalning till</translation>
+        <translation>Lightning Cash Goldadress att sända betalning till</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -2351,7 +2351,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>The LightningCash Gold address to sign the message with</source>
-        <translation>Lightning Cashadress att signera meddelandet med</translation>
+        <translation>Lightning Cash Goldadress att signera meddelandet med</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2407,7 +2407,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>The LightningCash Gold address the message was signed with</source>
-        <translation>Lightning Cashadressen som meddelandet signerades med</translation>
+        <translation>Lightning Cash Goldadressen som meddelandet signerades med</translation>
     </message>
     <message>
         <source>Verify the message to ensure it was signed with the specified LightningCash Gold address</source>
@@ -3087,8 +3087,8 @@ Var vänlig och försök igen.</translation>
         <translation>Kunde inte starta HTTP-server. Se avlusningsloggen för detaljer.</translation>
     </message>
     <message>
-        <source>Lightning Cash Core</source>
-        <translation>Lightning Cash Core</translation>
+        <source>Lightning Cash Gold Core</source>
+        <translation>Lightning Cash Gold Core</translation>
     </message>
     <message>
         <source>The %s developers</source>

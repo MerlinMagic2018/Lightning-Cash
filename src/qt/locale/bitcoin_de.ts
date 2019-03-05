@@ -343,7 +343,7 @@
     </message>
     <message>
         <source>Send coins to a LightningCash Gold address</source>
-        <translation>Lightning Cash an eine LightningCash Gold-Adresse überweisen</translation>
+        <translation>Lightning Cash Gold an eine LightningCash Gold-Adresse überweisen</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -367,7 +367,7 @@
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -876,7 +876,7 @@
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>At least %1 GB of data will be stored in this directory, and it will grow over time.</source>
@@ -1441,7 +1441,7 @@
     </message>
     <message>
         <source>Enter a LightningCash Gold address (e.g. %1)</source>
-        <translation>Lightning Cash-Adresse eingeben (z.B. %1)</translation>
+        <translation>Lightning Cash Gold-Adresse eingeben (z.B. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2026,7 +2026,7 @@
     <name>SendCoinsDialog</name>
     <message>
         <source>Send Coins</source>
-        <translation>Lightning Cash überweisen</translation>
+        <translation>Lightning Cash Gold überweisen</translation>
     </message>
     <message>
         <source>Coin Control Features</source>
@@ -3037,7 +3037,7 @@
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
-        <translation>Lightning Cash überweisen</translation>
+        <translation>Lightning Cash Gold überweisen</translation>
     </message>
     <message>
         <source>Fee bump error</source>

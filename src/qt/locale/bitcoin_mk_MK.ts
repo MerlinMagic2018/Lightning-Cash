@@ -590,7 +590,7 @@
         <translation>Опции:</translation>
     </message>
     <message>
-        <source>Lightning Cash Core</source>
+        <source>Lightning Cash Gold Core</source>
         <translation>Биткоин Core</translation>
     </message>
     <message>

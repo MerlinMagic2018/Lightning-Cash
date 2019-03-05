@@ -167,7 +167,7 @@
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -422,7 +422,7 @@
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1115,7 +1115,7 @@
 </translation>
     </message>
     <message>
-        <source>Lightning Cash Core</source>
+        <source>Lightning Cash Gold Core</source>
         <translation>Núcleo de LightningCash Gold</translation>
     </message>
     <message>

@@ -2040,7 +2040,7 @@
         <translation>حدد مجلد المعلومات</translation>
     </message>
     <message>
-        <source>Lightning Cash Core</source>
+        <source>Lightning Cash Gold Core</source>
         <translation>جوهر LightningCash Gold</translation>
     </message>
     <message>

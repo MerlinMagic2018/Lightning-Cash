@@ -431,7 +431,7 @@
     </message>
     <message>
         <source>Open a lightningcash_gold: URI or payment request</source>
-        <translation>Lightning Cash: URI 또는 지불요청 열기</translation>
+        <translation>Lightning Cash Gold: URI 또는 지불요청 열기</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -3179,7 +3179,7 @@
         <translation>HTTP 서버를 시작할 수 없습니다. 자세한 사항은 디버그 로그를 확인 하세요.</translation>
     </message>
     <message>
-        <source>Lightning Cash Core</source>
+        <source>Lightning Cash Gold Core</source>
         <translation>라이트코인을 코어</translation>
     </message>
     <message>

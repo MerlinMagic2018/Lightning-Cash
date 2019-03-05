@@ -388,7 +388,7 @@
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Lightning Cash Core</source>
+        <source>Lightning Cash Gold Core</source>
         <translation>బిట్కోయిన్ కోర్</translation>
     </message>
     <message>

@@ -466,7 +466,7 @@
     <message>
         <location line="+517"/>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <location line="-743"/>
@@ -4101,8 +4101,8 @@
     </message>
     <message>
         <location line="-397"/>
-        <source>Lightning Cash Core</source>
-        <translation type="unfinished">Lightning Cash Core</translation>
+        <source>Lightning Cash Gold Core</source>
+        <translation type="unfinished">Lightning Cash Gold Core</translation>
     </message>
     <message>
         <location line="+1"/>

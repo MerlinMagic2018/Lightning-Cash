@@ -315,7 +315,7 @@
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -684,7 +684,7 @@
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>Error</source>
@@ -761,7 +761,7 @@
     </message>
     <message>
         <source>Automatically open the LightningCash Gold client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Lightning Cashi kliendi pordi automaatne avamine ruuteris. Toimib, kui sinu ruuter aktsepteerib UPnP ühendust.</translation>
+        <translation>Lightning Cash Goldi kliendi pordi automaatne avamine ruuteris. Toimib, kui sinu ruuter aktsepteerib UPnP ühendust.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -1446,7 +1446,7 @@
     </message>
     <message>
         <source>The LightningCash Gold address to sign the message with</source>
-        <translation>Lightning Cash aadress millega sõnum allkirjastada</translation>
+        <translation>Lightning Cash Gold aadress millega sõnum allkirjastada</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -1498,7 +1498,7 @@
     </message>
     <message>
         <source>The LightningCash Gold address the message was signed with</source>
-        <translation>Lightning Cash aadress millega sõnum on allkirjastatud</translation>
+        <translation>Lightning Cash Gold aadress millega sõnum on allkirjastatud</translation>
     </message>
     <message>
         <source>Verify the message to ensure it was signed with the specified LightningCash Gold address</source>
@@ -1970,8 +1970,8 @@
         <translation>Tööta taustal ning aktsepteeri käsklusi</translation>
     </message>
     <message>
-        <source>Lightning Cash Core</source>
-        <translation>Lightning Cashi tuumik</translation>
+        <source>Lightning Cash Gold Core</source>
+        <translation>Lightning Cash Goldi tuumik</translation>
     </message>
     <message>
         <source>Bind to given address and always listen on it. Use [host]:port notation for IPv6</source>

@@ -171,7 +171,7 @@
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -199,7 +199,7 @@
     </message>
     <message>
         <source>Sign messages with your LightningCash Gold addresses to prove you own them</source>
-        <translation>Lightning Cash манзилидан унинг эгаси эканлигингизни исботлаш учун хабарлар ёзинг</translation>
+        <translation>Lightning Cash Gold манзилидан унинг эгаси эканлигингизни исботлаш учун хабарлар ёзинг</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified LightningCash Gold addresses</source>
@@ -235,7 +235,7 @@
     </message>
     <message>
         <source>Open a lightningcash_gold: URI or payment request</source>
-        <translation>Lightning Cash’ни очиш: URI ёки тўлов сўрови</translation>
+        <translation>Lightning Cash Gold’ни очиш: URI ёки тўлов сўрови</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -438,7 +438,7 @@
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -679,7 +679,7 @@
     </message>
     <message>
         <source>Enter a LightningCash Gold address (e.g. %1)</source>
-        <translation>Lightning Cash манзилини киритинг (масалан.  %1)</translation>
+        <translation>Lightning Cash Gold манзилини киритинг (масалан.  %1)</translation>
     </message>
     <message>
         <source>%1 m</source>
@@ -1184,8 +1184,8 @@
         <translation>Демон сифатида орқа фонда ишга туширинг ва буйруқларга рози бўлинг</translation>
     </message>
     <message>
-        <source>Lightning Cash Core</source>
-        <translation>Lightning Cash Core</translation>
+        <source>Lightning Cash Gold Core</source>
+        <translation>Lightning Cash Gold Core</translation>
     </message>
     <message>
         <source>Connection options:</source>

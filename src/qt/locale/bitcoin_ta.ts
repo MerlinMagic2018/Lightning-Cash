@@ -91,7 +91,7 @@
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -226,7 +226,7 @@
     </message>
     <message>
         <source>LightningCash Gold</source>
-        <translation>Lightning Cash</translation>
+        <translation>Lightning Cash Gold</translation>
     </message>
     <message>
         <source>Error</source>
@@ -708,8 +708,8 @@
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Lightning Cash Core</source>
-        <translation>Lightning Cash மையம்</translation>
+        <source>Lightning Cash Gold Core</source>
+        <translation>Lightning Cash Gold மையம்</translation>
     </message>
     <message>
         <source>(default: %u)</source>

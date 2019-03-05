@@ -89,7 +89,7 @@ unsigned int DarkGravityWave(const CBlockIndex* pindexLast, const CBlockHeader *
 	bnNew *= 100;
 
     else
-	bnnew = bnnew;
+	bnNew = bnNew;
 
 
     if (bnNew > bnPowLimit) {

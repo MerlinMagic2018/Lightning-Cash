@@ -184,7 +184,7 @@
     </message>
     <message>
         <source>Send coins to a LightningCash Gold address</source>
-        <translation>Lightning Cash ठेगानामा सिक्का पठाउनुहोस्</translation>
+        <translation>Lightning Cash Gold ठेगानामा सिक्का पठाउनुहोस्</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -361,7 +361,7 @@
     </message>
     <message>
         <source>A message that was attached to the lightningcash_gold: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the LightningCash Gold network.</source>
-        <translation>Lightning Cashमा संलग्न गरिएको सन्देश: तपाईंको मध्यस्थको लागि कारोबारको साथमा भण्डारण गरिने URI । नोट: यो सन्देश LightningCash Gold नेटवर्क मार्फत पठाइने छैन ।</translation>
+        <translation>Lightning Cash Goldमा संलग्न गरिएको सन्देश: तपाईंको मध्यस्थको लागि कारोबारको साथमा भण्डारण गरिने URI । नोट: यो सन्देश LightningCash Gold नेटवर्क मार्फत पठाइने छैन ।</translation>
     </message>
     </context>
 <context>

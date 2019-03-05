@@ -894,8 +894,8 @@
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Lightning Cash Core</source>
-        <translation>Lightning Cash ядро</translation>
+        <source>Lightning Cash Gold Core</source>
+        <translation>Lightning Cash Gold ядро</translation>
     </message>
     <message>
         <source>Information</source>

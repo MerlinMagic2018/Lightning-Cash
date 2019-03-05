@@ -23,7 +23,7 @@ static void TestBlockSubsidyHalvings(const Consensus::Params& consensusParams)
     for (int nHalvings = 0; nHalvings < maxHalvings; nHalvings++) {
         int nHeight = nHalvings * consensusParams.nSubsidyHalvingInterval;
         CAmount nSubsidy = GetBlockSubsidy(nHeight, consensusParams);
-        if(nHeight >= 6164768) {	// Lightning Cash: Money issue has finished by this point
+        if(nHeight >= 6164768) {	// Lightning Cash Gold: Money issue has finished by this point
 			BOOST_CHECK(nSubsidy == 0);
 		} else {
 			BOOST_CHECK(nSubsidy <= nInitialSubsidy);
@@ -37,11 +37,11 @@ static void TestBlockSubsidyHalvings(const Consensus::Params& consensusParams)
 static void TestBlockSubsidyHalvings(int nSubsidyHalvingInterval)
 {
     const auto chainParams = CreateChainParams(CBaseChainParams::MAIN);
-	const Consensus::Params mainConsensusParams = chainParams->GetConsensus();	// Get Lightning Cash extra params
+	const Consensus::Params mainConsensusParams = chainParams->GetConsensus();	// Get Lightning Cash Gold extra params
     Consensus::Params consensusParams;
     consensusParams.nSubsidyHalvingInterval = nSubsidyHalvingInterval;
-    consensusParams.lastScryptBlock = mainConsensusParams.lastScryptBlock;		// Set Lightning Cash extra params
-    consensusParams.slowStartBlocks = mainConsensusParams.slowStartBlocks;		// Set Lightning Cash extra params
+    consensusParams.lastScryptBlock = mainConsensusParams.lastScryptBlock;		// Set Lightning Cash Gold extra params
+    consensusParams.slowStartBlocks = mainConsensusParams.slowStartBlocks;		// Set Lightning Cash Gold extra params
     TestBlockSubsidyHalvings(consensusParams);
 }
 

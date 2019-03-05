@@ -87,7 +87,7 @@ struct Params {
     int totalMoneySupplyHeight;         // Height at which TMS is reached, do not issue rewards past this point
     uint256 powLimitSHA;                // Initial hash target at fork
 //    CAmount premineAmount;              // Premine amount
-//    CScript premineOutputScript;        // Premine output script
+    CScript premineOutputScript;        // Premine output script
 
 
     // LightningCash Gold: Hive-related consensus params

@@ -192,7 +192,7 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
         // Set icon and tooltip for tray icon
         QString tooltip, icon;
         if (clientModel && clientModel->getNumConnections() == 0) {
-            tooltip = "Lightning Cash is not connected";
+            tooltip = "Lightning Cash Gold is not connected";
             icon = ":/icons/hivestatus_disabled";
         } else if (!model->isHiveEnabled()) {
             tooltip = "The Hive is not enabled on the network";
