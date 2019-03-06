@@ -2003,8 +2003,8 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
                                block.vtx[0]->GetValueOut(), blockReward),
                                REJECT_INVALID, "bad-cb-amount");
 
-    // LitecoinCash: Ensure that lastScryptBlock+1 coinbase TX pays to the premine address
-    if (pindex->nHeight == chainparams.GetConsensus().lastScryptBlock+1) {
+    // LitecoinCash: Ensure that lastScryptBlock+1 coinbase TX pays to the premine address --- On sen calisse
+    /*if (pindex->nHeight == chainparams.GetConsensus().lastScryptBlock+1) {
         if (block.vtx[0]->vout[0].scriptPubKey.size() == 1) {
             LogPrintf("ConnectBlock(): allowing mine\n");
         } else if (block.vtx[0]->vout[0].scriptPubKey != chainparams.GetConsensus().premineOutputScript) {
@@ -2014,7 +2014,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
                     HexStr(chainparams.GetConsensus().premineOutputScript)),
                 REJECT_INVALID, "bad-pm-script");
         }
-    }
+    }*/
 
     if (!control.Wait())
         return state.DoS(100, error("%s: CheckQueue failed", __func__), REJECT_INVALID, "block-validation-failed");
