@@ -77,15 +77,15 @@ unsigned int DarkGravityWave(const CBlockIndex* pindexLast, const CBlockHeader *
     bnNew /= nTargetTimespan;
 
     // LightningCash Gold : Limit "High Hash" Attacks... Progressively lower mining difficulty if too high...
-    if (pindex->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing * 30)
+    if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing * 30)
 	bnNew = bnPowLimit;
-    else if (pindex->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing * 25)
+    else if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing * 25)
 	bnNew *= 100000;
-    else if (pindex->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing * 20)
+    else if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing * 20)
 	bnNew *= 10000;
-    else if (pindex->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing * 15)
+    else if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing * 15)
 	bnNew *= 1000;
-    else if (pindex->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing * 10)
+    else if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing * 10)
 	bnNew *= 100;
 
     else
