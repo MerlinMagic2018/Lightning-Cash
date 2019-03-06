@@ -25,7 +25,7 @@ BeePopGraphPoint beePopGraph[1024*40];       // LightningCash Gold: Hive
 // By Evan Duffield <evan@dash.org>
 unsigned int DarkGravityWave(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
 {
-    const arith_uint256 bnPowLimit = UintToArith256(params.powLimitSHA);
+    const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);   // LightningCash: Note we use the Scrypt pow limit here!
     int64_t nPastBlocks = 24;
 
     // LightningCash Gold: Allow minimum difficulty blocks if we haven't seen a block for ostensibly 10 blocks worth of time
@@ -42,7 +42,7 @@ unsigned int DarkGravityWave(const CBlockIndex* pindexLast, const CBlockHeader *
     for (unsigned int nCountBlocks = 1; nCountBlocks <= nPastBlocks; nCountBlocks++) {
         // LightningCash Gold: Hive: Skip over Hivemined blocks; we only want to consider PoW blocks
         while (pindex->GetBlockHeader().IsHiveMined(params)) {
-            LogPrintf("DarkGravityWave: Skipping hivemined block at %i\n", pindex->nHeight);
+            //LogPrintf("DarkGravityWave: Skipping hivemined block at %i\n", pindex->nHeight);
             assert(pindex->pprev); // should never fail
             pindex = pindex->pprev;
         }
