@@ -1,6 +1,8 @@
 Lightning Cash Gold Core integration/staging tree
 ===========================================
 
+https://i.ibb.co/Kh247RM/download.png
+
 What is LightningCash-Gold ?
 ----------------------
 
