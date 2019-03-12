@@ -1,61 +1,101 @@
-Lightning Cash Core integration/staging tree
+Lightning Cash Gold Core integration/staging tree
 ===========================================
 
-What is Lightning Cash?
+What is LightningCash-Gold ?
 ----------------------
 
-Lightning Cash is a SHA256 fork of Lightning. For full details, as well as prebuilt binaries for Windows, Mac and Linux, please visit our website at https://lightningca.sh.
+Lightning Cash Gold is a coin based on scrypt POW algorithm, including DarkGravityWave ( difficulty changes for every block ) and possible CURRENT block difficulty change over time to protect against high network hash variation and long stale tip. For full details, please visit our website at http://lightningcash-gold.tk . Compiled binary releases are available on LightningCash-Gold's github.
 
-Lightning Cash Core is the full node software that makes up the backbone of the LCC network.
+Lightning Cash Gold Core is the full node software that makes up the backbone of the LTNC network.
+
+
+Discord Channel : https://discord.gg/Q69zY4Y
+
+
+bitcointalk.org official announcement thread : https://bitcointalk.org/index.php?topic=5119555
+
+
+
+
+Characteristics
+---------------------------------------------------------------------------
+
+
+- Hash Algorithm : SCRYPT POW algorithm    ( Asic-friendly )
+
+( With the addition of modified Dash's DarkGravityWave v3 algorithm, that changes difficulty every block, and progressively lowers difficulty if long stale tips happens. Tested and fully working !!)
+
+- Total Supply : 2 100 000 000 LTNC ( 100 times Bitcoin's total supply )
+
+- Difficulty adjusted every block and possibly in CURRENT block if a long network stale tip happens !! This protects LightningCash-Gold from high hash variations and " high hash attacks " , that happens frequently for new coins and kills them by making the mining difficulty too high for the " normal " network's hash rate. For more info :
+		https://bitcointalk.org/index.php?topic=5119550 .
+
+- Changed famous NOMP ( node open mining portal ) pool software to include possible CURRENT block difficulty change and send new work to miners if so.
+
+NOMP's node-stratum-pool module adapted code : 
+
+		https://github.com/Lightningcash-dev/node-stratum-pool
+
+- Fast block target time of 1 minute !! 
+
+- Number of confirmations needed for a transaction : 6  ( so a transaction is confirmed on average in 6 minutes only !!! )
+
+- Premine : 22 000 000 coins, barely above 1 % of max supply
+
+- Block Reward : 500 LightningCash ( halved every 2 100 000 blocks, so every 4 years on average )
+
+- Brand New Blockchain !!  ( downloading the new blockchain or re indexing it and syncing with the network actually takes less than 1 minute on average with a normal internet speed !!! )
+
+- The Hive : A " hodl and profit " mining system accessible to everyone, that works side by side with POW mining, invented by  LitecoinCash's developers !!
+
+POOL :
+
+http://lightningcash.tk/
+
+
+
+Block explorer :
+
+http://lightningcash.tk:3000/
+
+
+
+Website :
+
+http://lightningcash-gold.tk  ( Under development )
+
+
+
+White Paper will be available on LightningCash-Gold's website.
+
+
+
+Exchange : 
+
+https://www.enmanet.com/
+
+Other exchanges are under discussions.
+
+
+LightningCash Gold is based on LitecoinCash Core's open source code.
+LightningCash Gold is an independant coin and is not associated in any way with LitecoinCash.
+
 
 License
 -------
 
-Lightning Cash Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
+Lightning Cash Gold Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
 information or see https://opensource.org/licenses/MIT.
 
 Development Process
 -------------------
 
-The `master` branch is regularly built and tested, but is not guaranteed to be
-completely stable. [Tags](https://github.com/lightningcash-project/lightningcash/tags) are created
-regularly to indicate new official, stable release versions of Lightning Cash Core.
-
-The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
-
-The developer [mailing list](https://groups.google.com/forum/#!forum/lightningcash-dev)
-should be used to discuss complicated or controversial changes before working
-on a patch set.
-
-Developer IRC can be found on Freenode at #lightningcash-dev.
+You can fork LitecoinCash-Gold github's repository, tweak the code and suggest pull request if you have bug fixes or improvements to propose.
 
 Testing
 -------
 
-Testing and code review is the bottleneck for development; we get more pull
-requests than we can review and test on short notice. Please be patient and help out by testing
-other people's pull requests, and remember this is a security-critical project where any mistake might cost people
-lots of money.
-
-### Automated Testing
-
-Developers are strongly encouraged to write [unit tests](src/test/README.md) for new code, and to
-submit new unit tests for old code. Unit tests can be compiled and run
-(assuming they weren't disabled in configure) with: `make check`. Further details on running
-and extending unit tests can be found in [/src/test/README.md](/src/test/README.md).
-
-There are also [regression and integration tests](/test), written
-in Python, that are run automatically on the build server.
-These tests can be run (if the [test dependencies](/test) are installed) with: `test/functional/test_runner.py`
-
-The Travis CI system makes sure that every pull request is built for Windows, Linux, and OS X, and that unit/sanity tests are run automatically.
-
-### Manual Quality Assurance (QA) Testing
-
-Changes should be tested by somebody other than the developer who wrote the
-code. This is especially important for large or high-risk changes. It is useful
-to add a test plan to the pull request description if testing the changes is
-not straightforward.
+For now, testing is done privately before releasing new wallet's versions.
 
 Translations
 ------------
