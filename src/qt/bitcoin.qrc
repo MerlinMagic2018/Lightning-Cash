@@ -1,7 +1,6 @@
 <RCC>
   <qresource prefix="/icons">
     <file>res/icons/transparency.png</file>
-    <file>res/icons/background.png</file>
     <file alias="bitcoin">res/icons/bitcoin.png</file>
     <file alias="lightningcash_gold_splash">res/icons/lightningcash_gold_splash.png</file>
     <file alias="address-book">res/icons/address-book.png</file>
