@@ -945,14 +945,14 @@ int GetNumCores()
 
 std::string CopyrightHolders(const std::string& strPrefix)
 {
-    // LightningCash Gold: Add a row
+    // LitecoinCash: Add a row
     std::string strFirstPrefix = strPrefix;    
     strFirstPrefix.replace(strFirstPrefix.find("2011-"), sizeof("2011-")-1, "2018-");        
     std::string strCopyrightHolders = strFirstPrefix + strprintf(_(COPYRIGHT_HOLDERS), _(COPYRIGHT_HOLDERS_SUBSTITUTION));
     
-    // LightningCash Gold: Check for untranslated substitution to make sure Litecion Core copyright is not removed by accident
-    if (strprintf(COPYRIGHT_HOLDERS, COPYRIGHT_HOLDERS_SUBSTITUTION).find("Lightning Core") == std::string::npos)
-        strCopyrightHolders += "\n" + strPrefix + "The Lightning Core developers";
+    // Litecoin: Check for untranslated substitution to make sure Litecion Core copyright is not removed by accident
+    if (strprintf(COPYRIGHT_HOLDERS, COPYRIGHT_HOLDERS_SUBSTITUTION).find("Litecoin Core") == std::string::npos)
+        strCopyrightHolders += "\n" + strPrefix + "The Litecoin Core developers";
 
     // Check for untranslated substitution to make sure Bitcoin Core copyright is not removed by accident
     if (strprintf(COPYRIGHT_HOLDERS, COPYRIGHT_HOLDERS_SUBSTITUTION).find("Bitcoin Core") == std::string::npos) {

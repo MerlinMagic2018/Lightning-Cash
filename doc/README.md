@@ -5,7 +5,7 @@ Setup
 ---------------------
 LightningCash Core is the original LightningCash client and it builds the backbone of the network. It downloads and, by default, stores the entire history of LightningCash transactions (which is currently more than 7 GBs); depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
 
-To download LightningCash Core, visit [lightningca.sh](https://lightningca.sh).
+To download LightningCash-Gold Core, visit [lightningcash-gold.tk](http://lightningcash-gold.tk).
 
 Running
 ---------------------
@@ -15,23 +15,22 @@ The following are some helpful notes on how to run LightningCash on your native 
 
 Unpack the files into a directory and run:
 
-- `bin/lightningcash-qt` (GUI) or
-- `bin/lightningcashd` (headless)
+- `bin/lightningcash_gold-qt` (GUI) or
+- `bin/lightningcash_goldd` (headless)
 
 ### Windows
 
-Unpack the files into a directory, and then run lightningcash-qt.exe.
+Unpack the files into a directory, and then run lightningcash_gold-qt.exe.
 
 ### OS X
 
-Drag LightningCash-Core to your applications folder, and then run LightningCash-Core.
+Drag LightningCash-Gold-Core to your applications folder, and then run LightningCash_gold-Core.
 
 ### Need Help?
 
-* See the documentation at the [LightningCash homepage](https://lightningca.sh/)
+* See the documentation at the [LightningCash-Gold homepage](http://lightningcash-gold.tk/)
 for help and more information.
-* Ask for help on [#lightningcash](http://webchat.freenode.net?channels=lightningcash) on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net?channels=lightningcash).
-* Ask for help on the [LightningCashTalk](https://lightningcashtalk.io/) forums.
+* Ask for help on [#lightningcash Discord Channel](https://discord.gg/Q69zY4Y)
 
 Building
 ---------------------
@@ -61,8 +60,7 @@ The LightningCash repo's [root README](/README.md) contains relevant information
 - [Benchmarking](benchmarking.md)
 
 ### Resources
-* Discuss on the [LightningCashTalk](https://lightningcashtalk.io/) forums.
-* Discuss general LightningCash development on #lightningcash-dev on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net/?channels=lightningcash-dev).
+* Discuss general LightningCash development on #lightningcash-dev .
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)
