@@ -8,7 +8,7 @@ What is LightningCash-Gold ?
 
 Lightning Cash Gold is a coin based on scrypt POW algorithm, including DarkGravityWave ( difficulty changes for every block ) and possible CURRENT block difficulty change over time to protect against high network hash variation and long stale tip. For full details, please visit our website at http://lightningcash-gold.tk . Compiled binary releases are available on LightningCash-Gold's github.
 
-Lightning Cash Gold Core is the full node software that makes up the backbone of the LTNC network.
+Lightning Cash Gold Core is the full node software that makes up the backbone of the LTNCG network.
 
 
 Discord Channel : https://discord.gg/Q69zY4Y
@@ -27,7 +27,7 @@ Characteristics
 
 ( With the addition of modified Dash's DarkGravityWave v3 algorithm, that changes difficulty every block, and progressively lowers difficulty if long stale tips happens. Tested and fully working !!)
 
-- Total Supply : 2 100 000 000 LTNC ( 100 times Bitcoin's total supply )
+- Total Supply : 2 100 000 000 LTNCG ( 100 times Bitcoin's total supply )
 
 - Difficulty adjusted every block and possibly in CURRENT block if a long network stale tip happens !! This protects LightningCash-Gold from high hash variations and " high hash attacks " , that happens frequently for new coins and kills them by making the mining difficulty too high for the " normal " network's hash rate. For more info :
 		https://bitcointalk.org/index.php?topic=5119550 .

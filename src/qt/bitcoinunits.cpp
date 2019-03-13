@@ -40,9 +40,9 @@ QString BitcoinUnits::longName(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("LTNC");                // LightningCash Gold: Updated names
-    case mBTC: return QString("mLTNC");
-    case uBTC: return QString::fromUtf8("μLTNC");
+    case BTC: return QString("LTNCG");                // LightningCash Gold: Updated names
+    case mBTC: return QString("mLTNCG");
+    case uBTC: return QString::fromUtf8("μLTNCG");
     default: return QString("???");
     }
 }
@@ -60,9 +60,9 @@ QString BitcoinUnits::description(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("LTNC");                // LightningCash Gold: Updated descriptions
-    case mBTC: return QString("Milli-LTNC (1 / 1" THIN_SP_UTF8 "000)");
-    case uBTC: return QString("Micro-LTNC (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case BTC: return QString("LTNCG");                // LightningCash Gold: Updated descriptions
+    case mBTC: return QString("Milli-LTNCG (1 / 1" THIN_SP_UTF8 "000)");
+    case uBTC: return QString("Micro-LTNCG (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     default: return QString("???");
     }
 }
