@@ -20,6 +20,8 @@ struct BeePopGraphPoint {
     int maturePop;
 };
 
+extern CAmount calisse;
+
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params&);
 unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params&);
 unsigned int GetNextHiveWorkRequired(const CBlockIndex* pindexLast, const Consensus::Params& params);                       // LightningCash Gold: Hive: Get the current Bee Hash Target

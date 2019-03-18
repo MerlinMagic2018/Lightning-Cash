@@ -43,8 +43,8 @@ HiveDialog::HiveDialog(const PlatformStyle *_platformStyle, QWidget *parent) :
         ui->createBeesButton->setIcon(QIcon());
     else
         ui->createBeesButton->setIcon(_platformStyle->SingleColorIcon(":/icons/bee"));
-
-    beeCost = totalCost = rewardsPaid = cost = profit = 0;
+    
+    beeCost = beeCost2 = totalCost = rewardsPaid = cost = profit = 0;
     immature = mature = dead = blocksFound = 0;
     lastGlobalCheckHeight = 0;
     potentialRewards = 0;
@@ -218,7 +218,8 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
         Q_EMIT hiveStatusIconChanged(icon, tooltip);
     }
 
-    beeCost = GetBeeCost(chainActive.Tip()->nHeight, consensusParams);
+     beeCost = GetBeeCost(chainActive.Tip()->nHeight, consensusParams); // PROBLEM
+     beeCost2 = 0.0004*(GetBlockSubsidy(chainActive.Tip()->nHeight, consensusParams));
     setAmountField(ui->beeCostLabel, beeCost);
     updateTotalCostDisplay();
 
@@ -249,7 +250,7 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
         ui->localHiveWeightLabel->setText((mature == 0 || globalMatureBees == 0) ? "0" : QString::number(hiveWeight, 'f', 3));
         ui->hiveWeightPie->setValue(hiveWeight);
 
-        beePopIndex = ((beeCost * globalMatureBees) / (double)potentialRewards) * 100.0;
+        beePopIndex = ((beeCost2 * globalMatureBees) / (double)potentialRewards) * 100.0;
         if (beePopIndex > 200) beePopIndex = 200;
         ui->beePopIndexLabel->setText(QString::number(floor(beePopIndex)));
         ui->beePopIndexPie->setValue(beePopIndex / 100);
@@ -394,7 +395,7 @@ void HiveDialog::updateGraph() {
     ui->beePopGraph->graph(0)->data()->set(dataImmature);
     ui->beePopGraph->graph(1)->data()->set(dataMature);
 
-    double global100 = (double)potentialRewards / beeCost;
+    double global100 = (double)potentialRewards / beeCost2;
     globalMarkerLine->start->setCoords(now, global100);
     globalMarkerLine->end->setCoords(now + consensusParams.nPowTargetSpacing / 2 * totalLifespan, global100);
     giTicker->global100 = global100;
@@ -414,7 +415,7 @@ void HiveDialog::onMouseMove(QMouseEvent *event) {
     int beeCountMature = (int)graphTracerMature->position->value();      
 
     QDateTime xDateTime = QDateTime::fromTime_t(x);
-    int global100 = (int)((double)potentialRewards / beeCost);
+    int global100 = (int)((double)potentialRewards / beeCost2);
     QColor traceColMature = beeCountMature >= global100 ? Qt::red : Qt::black;
     QColor traceColImmature = beeCountImmature >= global100 ? Qt::red : Qt::black;
 

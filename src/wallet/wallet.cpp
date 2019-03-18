@@ -2761,13 +2761,14 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
 
         // Find bee count & community donation status
         int height = chainActive.Height() - depth;
-        CAmount beeCost = GetBeeCost(height, consensusParams);
+        CAmount beeCost = GetBeeCost(height, consensusParams); // PROBLEM
+	//CAmount beeCost = 0.0004*(GetBlockSubsidy(height, consensusParams));
         bool communityContrib = false;
         if (wtx.tx->vout.size() > 1 && wtx.tx->vout[1].scriptPubKey == scriptPubKeyCF) {
             beeFeePaid += wtx.tx->vout[1].nValue;            // Add any community fund contribution back to the total paid
             communityContrib = true;
         }
-        int beeCount = beeFeePaid / beeCost;
+        int beeCount = beeFeePaid / beeCost; // PROBLEM
 
         // If mature, check for coinbase transactions from blocks minted by a bee from this BCT
         std::string bctTxid = wtx.GetHash().GetHex();

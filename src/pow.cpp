@@ -21,6 +21,8 @@
 
 BeePopGraphPoint beePopGraph[1024*40];       // LightningCash Gold: Hive
 
+CAmount calisse;
+
 // LightningCash Gold: DarkGravity V3 (https://github.com/dashpay/dash/blob/master/src/pow.cpp#L82)
 // By Evan Duffield <evan@dash.org>
 unsigned int DarkGravityWave(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
@@ -313,7 +315,8 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
                 return false;
             }
             int blockHeight = pindexPrev->nHeight;
-            CAmount beeCost = GetBeeCost(blockHeight, consensusParams);
+            CAmount beeCost = GetBeeCost(blockHeight, consensusParams); // PROBLEM
+	    // CAmount beeCost2 = 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
             if (block.vtx.size() > 0) {
                 for(const auto& tx : block.vtx) {
                     CAmount beeFeePaid;
@@ -325,14 +328,31 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
                                 continue;
                             beeFeePaid += donationAmount;                                           // Add donation amount back to total paid
                         }
-                        int beeCount = beeFeePaid / beeCost;
+
+
+			
+
+                        int beeCount = beeFeePaid / beeCost; // PROBLEM
+
+			/*if (matureBees > 378000)
+				beeCount = beeFeePaid / beeCost;
+			else
+				beeCount = beeFeePaid / beeCost2;*/
+
+
+                         LogPrintf("beeCount in pow.cpp... = %i\n", beeCount);
                         if (i < consensusParams.beeGestationBlocks) {
                             immatureBees += beeCount;
                             immatureBCTs++;
                         } else {
-                            matureBees += beeCount; 
+                            matureBees += beeCount;
+			    calisse = matureBees;
+			    LogPrintf("Total Mature Bees to date... = %i\n", matureBees);
                             matureBCTs++;
+			    
                         }
+		 	/*LogPrintf("Total Mature Bees... = %i\n", matureBees);
+			calisse = matureBees;*/
 
                         // Add these bees to pop graph
                         if (recalcGraph) {
@@ -632,7 +652,8 @@ bool CheckHiveProof(const CBlock* pblock, const Consensus::Params& consensusPara
     }
 
     // Find bee count
-    CAmount beeCost = GetBeeCost(bctFoundHeight, consensusParams);
+     CAmount beeCost = GetBeeCost(bctFoundHeight, consensusParams); // PROBLEM
+    //CAmount beeCost = 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
     if (bctValue < consensusParams.minBeeCost) {
         LogPrintf("CheckHiveProof: BCT fee is less than the minimum possible bee cost\n");
         return false;

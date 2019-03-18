@@ -80,7 +80,7 @@ private:
     ClientModel *clientModel;
     WalletModel *model;
     const PlatformStyle *platformStyle;
-    CAmount beeCost, totalCost;
+    CAmount beeCost, beeCost2, totalCost;
     int immature, mature, dead, blocksFound;
     CAmount rewardsPaid, cost, profit;
     CAmount potentialRewards;
