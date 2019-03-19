@@ -283,10 +283,14 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
     int totalBeeLifespan = consensusParams.beeLifespanBlocks + consensusParams.beeGestationBlocks;
     immatureBees = immatureBCTs = matureBees = matureBCTs = 0;
     
-    CBlockIndex* pindexPrev = chainActive.Tip();
+    //CBlockIndex* pindexStart = chainActive.Genesis();
+    CBlockIndex* pindexPrev = chainActive.Toto();
+
+    CBlockIndex* pindexLast = chainActive.Tip();
     assert(pindexPrev != nullptr);
     int tipHeight = pindexPrev->nHeight;
-    potentialLifespanRewards = (consensusParams.beeLifespanBlocks * GetBlockSubsidy(pindexPrev->nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
+
+    potentialLifespanRewards = (consensusParams.beeLifespanBlocks * GetBlockSubsidy(pindexLast->nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
 
     if (recalcGraph) {
         for (int i = 0; i < totalBeeLifespan; i++) {
@@ -303,7 +307,7 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
     CScript scriptPubKeyBCF = GetScriptForDestination(DecodeDestination(consensusParams.beeCreationAddress));
     CScript scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
 
-    for (int i = 0; i < totalBeeLifespan; i++) {
+    for (int i = 0; i < totalBeeLifespan; i++) {    // lets reverse that !!
         if (fHavePruned && !(pindexPrev->nStatus & BLOCK_HAVE_DATA) && pindexPrev->nTx > 0) {
             LogPrintf("! GetNetworkHiveInfo: Warn: Block not available (pruned data); can't calculate network bee count.");
             return false;
@@ -316,7 +320,7 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
             }
             int blockHeight = pindexPrev->nHeight;
             CAmount beeCost = GetBeeCost(blockHeight, consensusParams); // PROBLEM
-	    // CAmount beeCost2 = 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
+	    CAmount beeCost2 = 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
             if (block.vtx.size() > 0) {
                 for(const auto& tx : block.vtx) {
                     CAmount beeFeePaid;
@@ -334,11 +338,10 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
 
                         int beeCount = beeFeePaid / beeCost; // PROBLEM
 
-			/*if (matureBees > 378000)
+			/*if (matureBees > 378000) // need to find this value dynamically.....
 				beeCount = beeFeePaid / beeCost;
 			else
 				beeCount = beeFeePaid / beeCost2;*/
-
 
                          LogPrintf("beeCount in pow.cpp... = %i\n", beeCount);
                         if (i < consensusParams.beeGestationBlocks) {
@@ -386,11 +389,13 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
                 }
             }
         }
+	
+	
 
-        if (!pindexPrev->pprev)     // Check we didn't run out of blocks
+        if (!chainActive.Next(pindexPrev))     // Check we didn't run out of blocks
             return true;
 
-        pindexPrev = pindexPrev->pprev;
+        pindexPrev = chainActive.Next(pindexPrev);
     }
 
     return true;
