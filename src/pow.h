@@ -20,7 +20,7 @@ struct BeePopGraphPoint {
     int maturePop;
 };
 
-extern CAmount calisse;
+extern CAmount totalMatureBees;
 
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params&);
 unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params&);

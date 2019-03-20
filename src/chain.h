@@ -447,7 +447,7 @@ public:
         return vChain.size() > 0 ? vChain[0] : nullptr;
     }
 
-    // Returns the index equal to tip - bees total lifespan.... 
+    // Returns the index equal to tip - bees total lifespan.... will need to change 360 for mainet
     CBlockIndex *Toto() const {
 	if (vChain.size() <= 360)
 		return vChain.size() > 0 ? vChain[0] : nullptr;

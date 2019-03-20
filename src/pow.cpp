@@ -21,7 +21,7 @@
 
 BeePopGraphPoint beePopGraph[1024*40];       // LightningCash Gold: Hive
 
-CAmount calisse;
+CAmount totalMatureBees;
 
 // LightningCash Gold: DarkGravity V3 (https://github.com/dashpay/dash/blob/master/src/pow.cpp#L82)
 // By Evan Duffield <evan@dash.org>
@@ -282,7 +282,7 @@ unsigned int GetNextHiveWorkRequired(const CBlockIndex* pindexLast, const Consen
 // LightningCash Gold: Hive: Get count of all live and gestating BCTs on the network
 bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, int& matureBCTs, CAmount& potentialLifespanRewards, const Consensus::Params& consensusParams, bool recalcGraph) {
     int totalBeeLifespan = consensusParams.beeLifespanBlocks + consensusParams.beeGestationBlocks;
-    immatureBees = immatureBCTs = matureBees = matureBCTs = calisse = 0;
+    immatureBees = immatureBCTs = matureBees = matureBCTs = totalMatureBees = 0;
     
     //CBlockIndex* pindexStart = chainActive.Genesis();
     CBlockIndex* pindexPrev = chainActive.Toto();
@@ -299,7 +299,7 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
         for (int i = 0; i < totalBeeLifespan; i++) {
             beePopGraph[i].immaturePop = 0;
             beePopGraph[i].maturePop = 0;
-	    calisse = 0;
+	    totalMatureBees = 0;
         }
     }
 
@@ -358,14 +358,14 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
                             immatureBCTs++;
                         } else {
                             matureBees += beeCount;
-			    //LogPrintf("Total Mature Bees to date just before calisse... = %i\n", matureBees);
-			    calisse = matureBees;
-			    //LogPrintf("Total Mature Bees to date just after calisse... = %i\n", matureBees);
+			    //LogPrintf("Total Mature Bees to date just before totalMatureBees... = %i\n", matureBees);
+			    totalMatureBees = matureBees;
+			    //LogPrintf("Total Mature Bees to date just after totalMatureBees... = %i\n", matureBees);
                             matureBCTs++;
 			    
                         }
 		 	/*LogPrintf("Total Mature Bees... = %i\n", matureBees);
-			calisse = matureBees;*/
+			totalMatureBees = matureBees;*/
 
                         // Add these bees to pop graph
                         if (recalcGraph) {
