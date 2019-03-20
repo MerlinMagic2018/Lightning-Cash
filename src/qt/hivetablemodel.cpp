@@ -55,7 +55,7 @@ void HiveTableModel::updateBCTs(bool includeDeadBees) {
                 dead += bct.beeCount;
 
             blocksFound += bct.blocksFound;
-            cost += bct.beeFeePaid;
+            cost += bct.beeFeePaid; // PROBLEM
             rewardsPaid += bct.rewardsPaid;
             profit += bct.profit;
 

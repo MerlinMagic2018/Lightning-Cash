@@ -447,10 +447,18 @@ public:
         return vChain.size() > 0 ? vChain[0] : nullptr;
     }
 
-    /** Returns the index equal to tip - bees total lifespan.... */
+    // Returns the index equal to tip - bees total lifespan.... 
+    CBlockIndex *Toto() const {
+	if (vChain.size() <= 360)
+		return vChain.size() > 0 ? vChain[0] : nullptr;
+	else	
+		return vChain.size() > 0 ? vChain[vChain.size() - 360] : nullptr;
+    }
+
+    /** Returns the index equal to tip - bees total lifespan.... 
     CBlockIndex *Toto() const {
         return vChain.size() > 0 ? vChain[vChain.size() - 360] : nullptr;
-    }
+    }*/
 
     /** Returns the index entry for the tip of this chain, or nullptr if none. */
     CBlockIndex *Tip() const {

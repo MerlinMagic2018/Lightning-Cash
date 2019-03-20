@@ -1175,7 +1175,7 @@ CAmount GetBeeCost(int nHeight, const Consensus::Params& consensusParams)
         return consensusParams.minBeeCost;
 
 
-    LogPrintf("calisse est : %i \n", calisse);
+
     // int64_t tabarnak = 0.4; 
     CAmount blockReward = GetBlockSubsidy(nHeight, consensusParams);
     CAmount beeCost = (blockReward / consensusParams.beeCostFactor);
@@ -1194,7 +1194,7 @@ CAmount GetBeeCost(int nHeight, const Consensus::Params& consensusParams)
 
     //LogPrintf("haha = %d \n", haha);
 
-
+    //LogPrintf("calisse est : %i \n", calisse);
     if ( calisse > 0){
 	if (calisse > (haha*0.9)){
 		//LogPrintf("GI is OVER 90 !\n");

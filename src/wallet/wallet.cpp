@@ -2711,6 +2711,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
     CScript scriptPubKeyBCF = GetScriptForDestination(DecodeDestination(consensusParams.beeCreationAddress));
     CScript scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
 
+    // for (const std::pair<uint256, CWalletTx>& pairWtx : mapWallet) { // PROBLEM
     for (const std::pair<uint256, CWalletTx>& pairWtx : mapWallet) {
         const CWalletTx& wtx = pairWtx.second;
 
@@ -2761,15 +2762,15 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
 
         // Find bee count & community donation status
         int height = chainActive.Height() - depth;
-        CAmount beeCost = GetBeeCost(height, consensusParams); // PROBLEM
-	//CAmount beeCost = 0.0004*(GetBlockSubsidy(height, consensusParams));
+        // CAmount beeCost = GetBeeCost(height, consensusParams); // PROBLEM
+	CAmount beeCost = 0.0004*(GetBlockSubsidy(height, consensusParams));
         bool communityContrib = false;
         if (wtx.tx->vout.size() > 1 && wtx.tx->vout[1].scriptPubKey == scriptPubKeyCF) {
             beeFeePaid += wtx.tx->vout[1].nValue;            // Add any community fund contribution back to the total paid
             communityContrib = true;
         }
         int beeCount = beeFeePaid / beeCost; // PROBLEM
-
+	// LogPrintf ("beeCount per beecreation transaction in wallet.cpp = %i \n", beeCount);
         // If mature, check for coinbase transactions from blocks minted by a bee from this BCT
         std::string bctTxid = wtx.GetHash().GetHex();
         int blocksFound = 0;
