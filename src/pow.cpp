@@ -22,6 +22,7 @@
 BeePopGraphPoint beePopGraph[1024*40];       // LightningCash Gold: Hive
 
 CAmount totalMatureBees;
+int wontonton;
 
 // LightningCash Gold: DarkGravity V3 (https://github.com/dashpay/dash/blob/master/src/pow.cpp#L82)
 // By Evan Duffield <evan@dash.org>
@@ -340,7 +341,6 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
                         }
 			
 
-
 			
 
                         int beeCount = beeFeePaid / beeCost; // PROBLEM
@@ -360,7 +360,20 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
                             matureBees += beeCount;
 			    //LogPrintf("Total Mature Bees to date just before totalMatureBees... = %i\n", matureBees);
 			    totalMatureBees = matureBees;
-			    //LogPrintf("Total Mature Bees to date just after totalMatureBees... = %i\n", matureBees);
+			    LogPrintf("Total Mature Bees to date... = %i\n", matureBees);
+			    if (totalMatureBees > 378000){
+				int wototo;
+				if (wototo > 1){ // wototo is set once only
+					wototo = wototo;
+			
+				}
+				else{
+					wototo = block.GetBlockTime(); // AH HA !!
+					wontonton = wototo; // MAKE GLOBAL HEREEEEEEEEEE
+					LogPrintf("IF totalmaturebees in hive is above 90 then give wontonton (time) : %i\n", wontonton);
+				}
+			    	
+			    }
                             matureBCTs++;
 			    
                         }
@@ -668,8 +681,8 @@ bool CheckHiveProof(const CBlock* pblock, const Consensus::Params& consensusPara
     }
 
     // Find bee count
-     CAmount beeCost = GetBeeCost(bctFoundHeight, consensusParams); // PROBLEM
-    //CAmount beeCost2 = 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
+    CAmount beeCost = GetBeeCost(bctFoundHeight, consensusParams); // PROBLEM
+    // CAmount beeCost = 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
     if (bctValue < consensusParams.minBeeCost) {
         LogPrintf("CheckHiveProof: BCT fee is less than the minimum possible bee cost\n");
         return false;

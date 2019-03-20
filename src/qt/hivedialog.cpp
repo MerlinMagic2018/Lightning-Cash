@@ -44,7 +44,7 @@ HiveDialog::HiveDialog(const PlatformStyle *_platformStyle, QWidget *parent) :
     else
         ui->createBeesButton->setIcon(_platformStyle->SingleColorIcon(":/icons/bee"));
     
-    beeCost = beeCost2 = totalCost = rewardsPaid = cost = profit = 0;
+    beeCost = totalCost = rewardsPaid = cost = profit = 0;
     immature = mature = dead = blocksFound = 0;
     lastGlobalCheckHeight = 0;
     potentialRewards = 0;
@@ -219,7 +219,7 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
     }
 
      beeCost = GetBeeCost(chainActive.Tip()->nHeight, consensusParams); // PROBLEM
-     //beeCost2 = 0.0004*(GetBlockSubsidy(chainActive.Tip()->nHeight, consensusParams));
+     //beeCost = 0.0004*(GetBlockSubsidy(chainActive.Tip()->nHeight, consensusParams));
     setAmountField(ui->beeCostLabel, beeCost);
     updateTotalCostDisplay();
 

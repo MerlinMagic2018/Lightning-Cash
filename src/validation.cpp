@@ -1174,44 +1174,34 @@ CAmount GetBeeCost(int nHeight, const Consensus::Params& consensusParams)
     if(nHeight >= consensusParams.totalMoneySupplyHeight)
         return consensusParams.minBeeCost;
 
+    // block.GetBlockTime() .......................
+    // const CBlockHeader& block
 
-
-    // int64_t adjustedBeeCost = 0.4; 
     CAmount blockReward = GetBlockSubsidy(nHeight, consensusParams);
     CAmount beeCost = (blockReward / consensusParams.beeCostFactor);
-    //LogPrintf("Normal base beeCost is : %i \n", beeCost);
+
 
 
     CAmount potentialLifespanRewards = (consensusParams.beeLifespanBlocks * GetBlockSubsidy(nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
 
-    //LogPrintf("potentialLifespanRewards = %d \n", potentialLifespanRewards);
+
 
     CAmount voyon = 10000000 / ((GetBlockSubsidy(nHeight, consensusParams) / consensusParams.beeCostFactor));
-
-    //LogPrintf("voyon = %d \n", voyon);
-
     CAmount haha = (potentialLifespanRewards / 10000000)*voyon;
 
-    //LogPrintf("haha = %d \n", haha);
 
-    //LogPrintf("totalMatureBees est : %i \n", totalMatureBees);
     if ( totalMatureBees > 0){
 	if (totalMatureBees > (haha*0.9)){
-		//LogPrintf("GI is OVER 90 !\n");
-		CAmount adjustedBeeCost = beeCost + ((((totalMatureBees - (haha*0.9)) / haha)*beeCost)*3);
-		//LogPrintf("Actual Fee is : %d \n", adjustedBeeCost);
+		CAmount adjustedBeeCost = beeCost + (beeCost / 2);
 		return adjustedBeeCost <= consensusParams.minBeeCost ? consensusParams.minBeeCost : adjustedBeeCost;
 	}
         else{
-		//LogPrintf("GI is UNDER 90 !\n");
 		CAmount adjustedBeeCost = beeCost;
-		//LogPrintf("Actual Fee is : %d \n", adjustedBeeCost);
 		return adjustedBeeCost <= consensusParams.minBeeCost ? consensusParams.minBeeCost : adjustedBeeCost;
 	}
     }
     else{
 	CAmount adjustedBeeCost = beeCost;
-	//LogPrintf("GI is JUST over 0 and thats all !!\n");
 	return adjustedBeeCost <= consensusParams.minBeeCost ? consensusParams.minBeeCost : adjustedBeeCost;
     }
 	

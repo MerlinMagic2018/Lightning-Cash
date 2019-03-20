@@ -21,6 +21,7 @@ struct BeePopGraphPoint {
 };
 
 extern CAmount totalMatureBees;
+extern int wontonton; // this is equal to the first tx time thats making gi over 90
 
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params&);
 unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params&);
