@@ -2707,7 +2707,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
         return bcts;
 
     int maxDepth = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks;
-
+    int gestationdepth = consensusParams.beeGestationBlocks;
     CScript scriptPubKeyBCF = GetScriptForDestination(DecodeDestination(consensusParams.beeCreationAddress));
     CScript scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
 
@@ -2761,8 +2761,29 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
 
 			//LogPrintf ("depth = %i \n", depth);
 			int blocksLeft = maxDepth - depth; // so 360 - ..... ???
-			//LogPrintf ("blocksleft ( 360 - depth ) = %i \n", blocksLeft);
+			LogPrintf ("blocksleft ( 360 - depth ) = %i \n", blocksLeft);
 			blocksLeft++;   // Bee life starts at zero immediately AFTER the BCT appears in a block.
+			LogPrintf ("blocksleft just after ++ = %i \n", blocksLeft);
+			if ((blocksLeft >= 336) && (blocksLeft <= 360)){
+			    int TheHeight = chainActive.Height();
+			    int ciboire = wtx.GetTxTime();
+			    LogPrintf ("multicount is %i \n", multicount);
+			    LogPrintf ("TX time is = %i \n", ciboire);	
+			    if ((!toti) || (ciboire < toti)){ // NEEDS TO CHECK MULTICOUNT AT TIME OF TX.........
+				beeCost = 0.0004*(GetBlockSubsidy(TheHeight, consensusParams));
+				LogPrintf ("LOSTI de BEECOST DE MARDE EST %d ( immature BCT)\n", beeCost);
+				LogPrintf ("time of tx is before toti, or no toti yet, so beeCost is 0.0004\n");
+			    }
+			    if((toti) && (ciboire > toti)){
+				beeCost = 0.0008*(GetBlockSubsidy(TheHeight, consensusParams));
+				LogPrintf ("LOSTI de BEECOST DE MARDE EST %d  ( immature BCT)\n", beeCost);
+				LogPrintf ("time of tx is after toti so beeCost is 0.0008\n");
+			    }
+			    LogPrintf ("LOSTI de BEECOST DE MARDE AFTER IMMATURE COUNT EST %d \n", beeCost);
+			}
+
+
+
 			bool isMature = false;
 			std::string status = "immature";
 			if (blocksLeft < 1) {
@@ -2771,32 +2792,30 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
 			    blocksLeft = 0;
 			    status = "expired";
 			    isMature = true;    // We still want to calc rewards
-			    beeCost = 0.0004*(GetBlockSubsidy(chainActive.Height(), consensusParams));
-			    LogPrintf ("LOSTI de BEECOST DE MARDE EST %d \n", beeCost);
 			} else {
 			    if (depth > consensusParams.beeGestationBlocks) {
 				status = "mature";
 				isMature = true;
-				int height = chainActive.Height() - depth;
-				int TheHeight = chainActive.Height();
-				int ciboire = wtx.GetTxTime();
+				int height2 = chainActive.Height() - depth;
+				int TheHeight2 = chainActive.Height();
+				int ciboire2 = wtx.GetTxTime();
 				LogPrintf ("multicount is %i \n", multicount);
-				LogPrintf ("TX time is = %i \n", ciboire);	
-				if ((!toti) || (ciboire < toti)){ // NEEDS TO CHECK MULTICOUNT AT TIME OF TX.........
-					beeCost = 0.0004*(GetBlockSubsidy(TheHeight, consensusParams));
-					LogPrintf ("LOSTI de BEECOST DE MARDE EST %d \n", beeCost);
+				LogPrintf ("TX time is = %i \n", ciboire2);	
+				if ((!toti) || (ciboire2 < toti)){ // NEEDS TO CHECK MULTICOUNT AT TIME OF TX.........
+					beeCost = 0.0004*(GetBlockSubsidy(TheHeight2, consensusParams));
+					LogPrintf ("LOSTI de BEECOST DE MARDE EST %d ( MATURE )\n", beeCost);
 					LogPrintf ("time of tx is before toti, or no toti yet, so beeCost is 0.0004\n");
 				}
-				else{
-					beeCost = 0.0008*(GetBlockSubsidy(TheHeight, consensusParams));
-					LogPrintf ("LOSTI de BEECOST DE MARDE EST %d \n", beeCost);
-					LogPrintf ("time of tx is not before toti so beeCost is 0.0008\n");
+				if((toti) && (ciboire2 > toti)){
+					beeCost = 0.0008*(GetBlockSubsidy(TheHeight2, consensusParams));
+					LogPrintf ("LOSTI de BEECOST DE MARDE EST %d ( MATURE )\n", beeCost);
+					LogPrintf ("time of tx is after toti so beeCost is 0.0008\n");
 				}
 				
 				// get the bee cost according to GI  AT A GIVEN TIME....
 			    }
 			}
-			LogPrintf ("LOSTI de BEECOST DE MARDE APRES LE IF EST %d \n", beeCost);
+			LogPrintf ("LOSTI de BEECOST DE MARDE APRES IMMATURE AND IMMATURE COUNT EST %d \n", beeCost);
 
 			// Find bee count & community donation status
 			//int height = chainActive.Height() - depth;
