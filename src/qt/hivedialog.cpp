@@ -217,9 +217,14 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
         // Now update bitcoingui
         Q_EMIT hiveStatusIconChanged(icon, tooltip);
     }
-
-     beeCost = GetBeeCost(chainActive.Tip()->nHeight, consensusParams); // PROBLEM
-     //beeCost = 0.0004*(GetBlockSubsidy(chainActive.Tip()->nHeight, consensusParams));
+    int HeightX = chainActive.Height();
+	
+    /*if (!(multicount % 2)) // if multicount is pair
+	beeCost = 0.0004*(GetBlockSubsidy(HeightX, consensusParams));
+    else                   // multicount is impair
+	beeCost = 0.0006*(GetBlockSubsidy(HeightX, consensusParams));*/
+    beeCost = GetBeeCost(chainActive.Tip()->nHeight, consensusParams); // PROBLEM
+    //beeCost = 0.0004*(GetBlockSubsidy(chainActive.Tip()->nHeight, consensusParams));
     setAmountField(ui->beeCostLabel, beeCost);
     updateTotalCostDisplay();
 
@@ -250,7 +255,7 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
         ui->localHiveWeightLabel->setText((mature == 0 || globalMatureBees == 0) ? "0" : QString::number(hiveWeight, 'f', 3));
         ui->hiveWeightPie->setValue(hiveWeight);
 
-        beePopIndex = ((beeCost * globalMatureBees) / (double)potentialRewards) * 100.0; // PROBLEM
+       beePopIndex = (((0.0004*(GetBlockSubsidy(HeightX, consensusParams))) * globalMatureBees) / (double)potentialRewards) * 100.0; // PROBLEM ---> want it to always be calculated according to base bee cost....
         if (beePopIndex > 200) beePopIndex = 200;
         ui->beePopIndexLabel->setText(QString::number(floor(beePopIndex)));
         ui->beePopIndexPie->setValue(beePopIndex / 100);

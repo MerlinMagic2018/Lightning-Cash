@@ -2776,12 +2776,18 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
 				status = "mature";
 				isMature = true;
 				int height = chainActive.Height() - depth;
-				int watata = wtx.GetTxTime(); // AH HA !!  Will have to make watata global.... like in pow.cpp....
-				LogPrintf("watata = %i\n", watata);
-				if (watata <= wontonton)
+				int ciboire = wtx.GetTxTime();
+				LogPrintf ("multicount is %i \n", multicount);
+				LogPrintf ("TX time is = %i \n", ciboire);	
+				if (ciboire < toti){ // NEEDS TO CHECK MULTICOUNT AT TIME OF TX.........
 					beeCost = 0.0004*(GetBlockSubsidy(height, consensusParams));
-				else
-				   beeCost = GetBeeCost(height, consensusParams);
+					LogPrintf ("time of tx is before toti so beeCost is 0.0004\n");
+				}
+				else{
+					beeCost = 0.0006*(GetBlockSubsidy(height, consensusParams));
+					LogPrintf ("time of tx is not before toti so beeCost is 0.0006\n");
+				}
+				
 				// get the bee cost according to GI  AT A GIVEN TIME....
 			    }
 			}
@@ -2795,7 +2801,6 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
 			    beeFeePaid += wtx.tx->vout[1].nValue;            // Add any community fund contribution back to the total paid
 			    communityContrib = true;
 			}
-			LogPrintf ("beeCost, being set as variable, is : %d \n", beeCost);
 			int beeCount = beeFeePaid / beeCost; // PROBLEM HERE !!
 			LogPrintf (".......so beeCount = %i \n", beeCount);
 			// LogPrintf ("beeCount per beecreation transaction in wallet.cpp = %i \n", beeCount);
