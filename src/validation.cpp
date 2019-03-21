@@ -1192,7 +1192,7 @@ CAmount GetBeeCost(int nHeight, const Consensus::Params& consensusParams)
 
     if ( totalMatureBees > 0){
 	if (totalMatureBees > (haha*0.9)){
-		CAmount adjustedBeeCost = beeCost + (beeCost / 2);
+		CAmount adjustedBeeCost = (beeCost * 2);
 		return adjustedBeeCost <= consensusParams.minBeeCost ? consensusParams.minBeeCost : adjustedBeeCost;
 	}
         else{

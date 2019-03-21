@@ -347,16 +347,18 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
 			CAmount beeCost; // PROBLEM
 			if (!(multicount % 2)){ // if multicount is pair
 				beeCost = 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
-				LogPrintf("beecost for totalmaturebees count = %i\n", beeCost);
+				LogPrintf("beecost for totalmaturebees count = %d \n", beeCost);
 			}
 			else{                  // multicount is impair
-				beeCost = 0.0006*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
-				LogPrintf("beecost for totalmaturebees count = %i\n", beeCost);
+				//beeCost = 0.0006*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
+				beeCost = 0.0008*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams)); // wtf...
+				LogPrintf("beecost for totalmaturebees count = %d \n", beeCost);
 			}
 
 
 
                         int beeCount = beeFeePaid / beeCost; // PROBLEM
+			LogPrintf("beeCount  = %i \n", beeCount);
 
 			/*if (matureBees > 378000) // need to find this value dynamically.....
 				beeCount = beeFeePaid / beeCost;

@@ -224,7 +224,7 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
     else                   // multicount is impair
 	beeCost = 0.0006*(GetBlockSubsidy(HeightX, consensusParams));*/
     beeCost = GetBeeCost(chainActive.Tip()->nHeight, consensusParams); // PROBLEM
-    //beeCost = 0.0004*(GetBlockSubsidy(chainActive.Tip()->nHeight, consensusParams));
+    //beeCost = 0.0004*(GetBlockSubsidy(HeightX, consensusParams));
     setAmountField(ui->beeCostLabel, beeCost);
     updateTotalCostDisplay();
 

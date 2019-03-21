@@ -2738,6 +2738,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
 
 		// Skip non-BCT txs
 		CAmount beeFeePaid;
+		CAmount beeCost = 0.0004*(GetBlockSubsidy(chainActive.Height(), consensusParams));
 		CScript scriptPubKeyHoney;
 		if (!wtx.tx->IsBCT(consensusParams, scriptPubKeyBCF, &beeFeePaid, &scriptPubKeyHoney))
 		    continue;
@@ -2758,7 +2759,6 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
 
 
 
-			CAmount beeCost;
 			//LogPrintf ("depth = %i \n", depth);
 			int blocksLeft = maxDepth - depth; // so 360 - ..... ???
 			//LogPrintf ("blocksleft ( 360 - depth ) = %i \n", blocksLeft);
@@ -2771,36 +2771,43 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
 			    blocksLeft = 0;
 			    status = "expired";
 			    isMature = true;    // We still want to calc rewards
+			    beeCost = 0.0004*(GetBlockSubsidy(chainActive.Height(), consensusParams));
+			    LogPrintf ("LOSTI de BEECOST DE MARDE EST %d \n", beeCost);
 			} else {
 			    if (depth > consensusParams.beeGestationBlocks) {
 				status = "mature";
 				isMature = true;
 				int height = chainActive.Height() - depth;
+				int TheHeight = chainActive.Height();
 				int ciboire = wtx.GetTxTime();
 				LogPrintf ("multicount is %i \n", multicount);
 				LogPrintf ("TX time is = %i \n", ciboire);	
-				if (ciboire < toti){ // NEEDS TO CHECK MULTICOUNT AT TIME OF TX.........
-					beeCost = 0.0004*(GetBlockSubsidy(height, consensusParams));
-					LogPrintf ("time of tx is before toti so beeCost is 0.0004\n");
+				if ((!toti) || (ciboire < toti)){ // NEEDS TO CHECK MULTICOUNT AT TIME OF TX.........
+					beeCost = 0.0004*(GetBlockSubsidy(TheHeight, consensusParams));
+					LogPrintf ("LOSTI de BEECOST DE MARDE EST %d \n", beeCost);
+					LogPrintf ("time of tx is before toti, or no toti yet, so beeCost is 0.0004\n");
 				}
 				else{
-					beeCost = 0.0006*(GetBlockSubsidy(height, consensusParams));
-					LogPrintf ("time of tx is not before toti so beeCost is 0.0006\n");
+					beeCost = 0.0008*(GetBlockSubsidy(TheHeight, consensusParams));
+					LogPrintf ("LOSTI de BEECOST DE MARDE EST %d \n", beeCost);
+					LogPrintf ("time of tx is not before toti so beeCost is 0.0008\n");
 				}
 				
 				// get the bee cost according to GI  AT A GIVEN TIME....
 			    }
 			}
+			LogPrintf ("LOSTI de BEECOST DE MARDE APRES LE IF EST %d \n", beeCost);
 
 			// Find bee count & community donation status
 			//int height = chainActive.Height() - depth;
-			//CAmount beeCost = GetBeeCost(height, consensusParams); // PROBLEM
+			//CAmount beeCost = ostidcalisse; // PROBLEM
 			//CAmount beeCost = 0.0004*(GetBlockSubsidy(height, consensusParams));
 			bool communityContrib = false;
 			if (wtx.tx->vout.size() > 1 && wtx.tx->vout[1].scriptPubKey == scriptPubKeyCF) {
 			    beeFeePaid += wtx.tx->vout[1].nValue;            // Add any community fund contribution back to the total paid
 			    communityContrib = true;
 			}
+                        LogPrintf ("beeFeePaid / beeCost = %d / %d\n", beeFeePaid, beeCost);
 			int beeCount = beeFeePaid / beeCost; // PROBLEM HERE !!
 			LogPrintf (".......so beeCount = %i \n", beeCount);
 			// LogPrintf ("beeCount per beecreation transaction in wallet.cpp = %i \n", beeCount);
