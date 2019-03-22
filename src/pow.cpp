@@ -285,6 +285,7 @@ unsigned int GetNextHiveWorkRequired(const CBlockIndex* pindexLast, const Consen
 // LightningCash Gold: Hive: Get count of all live and gestating BCTs on the network
 bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, int& matureBCTs, CAmount& potentialLifespanRewards, const Consensus::Params& consensusParams, bool recalcGraph) {
     int totalBeeLifespan = consensusParams.beeLifespanBlocks + consensusParams.beeGestationBlocks;
+    int bordel = consensusParams.beeGestationBlocks;
     immatureBees = immatureBCTs = matureBees = matureBCTs = totalMatureBees = 0;
     
     //CBlockIndex* pindexStart = chainActive.Genesis();
@@ -295,8 +296,9 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
     CBlockIndex* pindexLast = chainActive.Tip();
     assert(pindexPrev != nullptr);
     int tipHeight = pindexLast->nHeight;
+    int countStart = pindexPrev->nHeight;    
 
-    potentialLifespanRewards = (consensusParams.beeLifespanBlocks * GetBlockSubsidy(pindexPrev->nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
+    potentialLifespanRewards = (consensusParams.beeLifespanBlocks * GetBlockSubsidy(pindexLast->nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
 
     if (recalcGraph) {
         for (int i = 0; i < totalBeeLifespan; i++) {
@@ -310,12 +312,17 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
     if (IsInitialBlockDownload())   // Refuse if we're downloading
         return false;
 
+
+
     // Count bees in next blockCount blocks
     CBlock block;
     CScript scriptPubKeyBCF = GetScriptForDestination(DecodeDestination(consensusParams.beeCreationAddress));
     CScript scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
 
-    for (int i = 0; i < totalBeeLifespan; i++) {    // lets reverse that !!
+
+    
+
+    for (int i = countStart; i < tipHeight; i++) {    // lets reverse that !!
 	//LogPrintf("i at beginning of 'for' is = %i\n", i);
         if (fHavePruned && !(pindexPrev->nStatus & BLOCK_HAVE_DATA) && pindexPrev->nTx > 0) {
             LogPrintf("! GetNetworkHiveInfo: Warn: Block not available (pruned data); can't calculate network bee count.");
@@ -327,7 +334,7 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
                 LogPrintf("! GetNetworkHiveInfo: Warn: Block not available (not found on disk); can't calculate network bee count.");
                 return false;
             }
-            int blockHeight = pindexLast->nHeight; // EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+            int blockHeight = pindexPrev->nHeight; // EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	    //LogPrintf("pindexPrev->nHeight = %i\n", blockHeight);
             //CAmount beeCost = GetBeeCost(blockHeight, consensusParams); // PROBLEM
 	    //CAmount beeCost2 = 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
@@ -367,10 +374,33 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
 
                          //LogPrintf("beeCount in pow.cpp... = %i\n", beeCount);
 
-			if (blockHeight < (i + consensusParams.beeGestationBlocks)){
+			// if (blockHeight < (i + consensusParams.beeGestationBlocks)){ // CACAAAAAAAAA
+
+			/*
+			int maxDepth = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks;
+
+			int blocktime = pindexPrev->GetBlockTime();
+
+			int depth = blockHeight;
+			int blocksLeft = maxDepth - depth;
+			if ((blocksLeft >= 336) && (blocksLeft <= 360)){
+			*/
+
+			int stupid = (i + bordel);
+			LogPrintf("i + bordel = %i \n", stupid);
+			//int moron = block.height;
+			//LogPrintf("block->nHeight = %i \n", moron);
+
+			int moron = tipHeight;
+			LogPrintf("tipHeight = %i \n", moron);
+			LogPrintf("(%i > %i) ??? ( if not then immature.... ) \n", moron, stupid);
+			if (!(tipHeight > (i + bordel))) {
+                            
                             immatureBees += beeCount;
+			    LogPrintf("total IMMATURE Bees = %i \n", immatureBees);
 			    //LogPrintf("ImmatureBees = %i\n", immatureBees);
                             immatureBCTs++;
+			
                         } else {
                             matureBees += beeCount;
 			    
@@ -380,13 +410,13 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
 			    if ((totalMatureBees > 378000) && (!(multicount % 2))){ // gets over 90 and multicount is pair
 				multicount++;
 				LogPrintf("over 90. multicount++ .... so multicount = %i \n", multicount);			    
-				toti = block.GetBlockTime();
-				LogPrintf("Time of last time it got over 90 ( toti ) = %i \n", toti);
+				toti = pindexPrev->GetBlockTime(); // WAAAAAAAAAAAAAAA
+				LogPrintf("///////SSSSSWWWWWWWWWWIIIIIIIIIITTTTCCCHHHHHHH !!!!!!!!!!!///////// ( toti ) = %i \n", toti);
 
 			    }
 			    
 			    if  ((totalMatureBees <= 378000) && (multicount % 2)){
-				tata = block.GetBlockTime();
+				tata = pindexPrev->GetBlockTime();
 				multicount++;
 				LogPrintf("Getting back under 90. multicount++ .... so multicount = %i \n", multicount);
 				LogPrintf("Time of last time it got under 90 ( tata ) = %i \n", tata);
@@ -700,13 +730,14 @@ bool CheckHiveProof(const CBlock* pblock, const Consensus::Params& consensusPara
     // Find bee count
     CAmount beeCost;
 	
-    if (!(multicount % 2)) // if multicount is pair
+    if (!(multicount % 2)){ // if multicount is pair
 	beeCost = 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
-    else                   // multicount is impair
-	beeCost = 0.0006*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
-
-
-
+	LogPrintf("beecost for Hive Proof = %d \n", beeCost);
+    }
+    else{                   // multicount is impair
+	beeCost = 0.0008*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
+	LogPrintf("beecost for Hive Proof = %d \n", beeCost);
+    }
 
     //CAmount beeCost = GetBeeCost(bctFoundHeight, consensusParams); // PROBLEM
     // CAmount beeCost = 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
