@@ -228,7 +228,7 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
     setAmountField(ui->beeCostLabel, beeCost);
     updateTotalCostDisplay();
 
-    if (forceGlobalSummaryUpdate || chainActive.Tip()->nHeight >= lastGlobalCheckHeight + 10) { // Don't update global summary every block
+    if (forceGlobalSummaryUpdate || chainActive.Tip()->nHeight >= lastGlobalCheckHeight + 1) { // Don't update global summary every block
         int globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs;
         if (!GetNetworkHiveInfo(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
             ui->globalHiveSummary->hide();
