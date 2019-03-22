@@ -455,6 +455,15 @@ public:
 		return vChain.size() > 0 ? vChain[vChain.size() - 360] : nullptr;
     }
 
+
+    /** Find the  block + 24 in this chain, or nullptr if the given index is not found or is the tip. */
+    CBlockIndex *Nono(const CBlockIndex *pindex) const {
+        if (Contains(pindex))
+            return (*this)[pindex->nHeight + 24];
+        else
+            return nullptr;
+    }
+
     /** Returns the index equal to tip - bees total lifespan.... 
     CBlockIndex *Toto() const {
         return vChain.size() > 0 ? vChain[vChain.size() - 360] : nullptr;

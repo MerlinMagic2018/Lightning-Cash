@@ -350,13 +350,19 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
                             beeFeePaid += donationAmount;                                           // Add donation amount back to total paid
                         }
 			
-
+			int maudit = pindexPrev->GetBlockTime();
+			//int maudit2 = (pindexPrev - 24)->GetBlockTime();
 			CAmount beeCost; // PROBLEM
-			if (!(multicount % 2)){ // if multicount is pair
+			LogPrintf("TOTI BEFORE CHECKING BEECOST IS = %i \n", toti);
+			LogPrintf("MAUDIT BEFORE CHECKING BEECOST IS = %i \n", maudit);
+			//LogPrintf("MAUDIT IF CHECKING '24 blocks earlier's time = %i \n", maudit2);
+			
+			if ((!(multicount % 2)) || ((multicount % 2) && (maudit < toti))){ // if multicount is pair
 				beeCost = 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
 				LogPrintf("beecost for totalmaturebees count = %d \n", beeCost);
 			}
-			else{                  // multicount is impair
+			
+			else {                  // multicount is impair
 				//beeCost = 0.0006*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
 				beeCost = 0.0008*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams)); // wtf...
 				LogPrintf("beecost for totalmaturebees count = %d \n", beeCost);
@@ -397,7 +403,7 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
 			if (!(tipHeight > (i + bordel))) {
                             
                             immatureBees += beeCount;
-			    LogPrintf("total IMMATURE Bees = %i \n", immatureBees);
+			    LogPrintf("total IMMMMMMMMMAAAAAAAAAAAATURE Bees = %i \n", immatureBees);
 			    //LogPrintf("ImmatureBees = %i\n", immatureBees);
                             immatureBCTs++;
 			
@@ -410,7 +416,12 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
 			    if ((totalMatureBees > 378000) && (!(multicount % 2))){ // gets over 90 and multicount is pair
 				multicount++;
 				LogPrintf("over 90. multicount++ .... so multicount = %i \n", multicount);			    
-				toti = pindexPrev->GetBlockTime(); // WAAAAAAAAAAAAAAA
+				//toti = pindexPrev->GetBlockTime(); // WAAAAAAAAAAAAAAA -> need to check time when switch, not time when tx that makes switch was created !!!!!!!!!! Otherwise everything is FUCKED when switch happens....lol
+				toti = (chainActive.Nono(pindexPrev))->GetBlockTime();
+
+
+				//toti = GetTime();
+				LogPrintf("TOTI = %i \n", toti);
 				LogPrintf("///////SSSSSWWWWWWWWWWIIIIIIIIIITTTTCCCHHHHHHH !!!!!!!!!!!///////// ( toti ) = %i \n", toti);
 
 			    }
@@ -729,8 +740,10 @@ bool CheckHiveProof(const CBlock* pblock, const Consensus::Params& consensusPara
 
     // Find bee count
     CAmount beeCost;
+    CBlockIndex foundAt;
+    int maudit3 = foundAt.GetBlockTime();
 	
-    if (!(multicount % 2)){ // if multicount is pair
+    if ((!(multicount % 2)) || ((multicount % 2) && (maudit3 < toti))){ // if multicount is pair
 	beeCost = 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
 	LogPrintf("beecost for Hive Proof = %d \n", beeCost);
     }
