@@ -83,43 +83,43 @@ unsigned int DarkGravityWave(const CBlockIndex* pindexLast, const CBlockHeader *
 
     // LightningCash Gold : Limit "High Hash" Attacks... Progressively lower mining difficulty if too high...
     if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing * 30){
-	LogPrintf("DarkGravityWave: 30 minutes without a block !! Resetting difficulty ! OLD Target = %s\n", bnNew.ToString());
+	//LogPrintf("DarkGravityWave: 30 minutes without a block !! Resetting difficulty ! OLD Target = %s\n", bnNew.ToString());
 	bnNew = bnPowLimit;
-	LogPrintf("DarkGravityWave: 30 minutes without a block !! Resetting difficulty ! NEW Target = %s\n", bnNew.ToString());
+	//LogPrintf("DarkGravityWave: 30 minutes without a block !! Resetting difficulty ! NEW Target = %s\n", bnNew.ToString());
     }
 
     else if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing * 25){
-	LogPrintf("DarkGravityWave: 25 minutes without a block. OLD Target = %s\n", bnNew.ToString());
+	//LogPrintf("DarkGravityWave: 25 minutes without a block. OLD Target = %s\n", bnNew.ToString());
 	bnNew *= 100000;
-	LogPrintf("DarkGravityWave: 25 minutes without a block. NEW Target = %s\n", bnNew.ToString());
+	//LogPrintf("DarkGravityWave: 25 minutes without a block. NEW Target = %s\n", bnNew.ToString());
     }
 
     else if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing * 20){
-	LogPrintf("DarkGravityWave: 20 minutes without a block. OLD Target = %s\n", bnNew.ToString());
+	//LogPrintf("DarkGravityWave: 20 minutes without a block. OLD Target = %s\n", bnNew.ToString());
 	bnNew *= 10000;
-	LogPrintf("DarkGravityWave: 20 minutes without a block. NEW Target = %s\n", bnNew.ToString());
+	//LogPrintf("DarkGravityWave: 20 minutes without a block. NEW Target = %s\n", bnNew.ToString());
     }
 
     else if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing * 15){
-	LogPrintf("DarkGravityWave: 15 minutes without a block. OLD Target = %s\n", bnNew.ToString());
+	//LogPrintf("DarkGravityWave: 15 minutes without a block. OLD Target = %s\n", bnNew.ToString());
 	bnNew *= 1000;
-	LogPrintf("DarkGravityWave: 15 minutes without a block. NEW Target = %s\n", bnNew.ToString());
+	//LogPrintf("DarkGravityWave: 15 minutes without a block. NEW Target = %s\n", bnNew.ToString());
     }
 
     else if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing * 10){
-	LogPrintf("DarkGravityWave: 10 minutes without a block. OLD Target = %s\n", bnNew.ToString());
+	//LogPrintf("DarkGravityWave: 10 minutes without a block. OLD Target = %s\n", bnNew.ToString());
 	bnNew *= 100;
-	LogPrintf("DarkGravityWave: 10 minutes without a block. NEW Target = %s\n", bnNew.ToString());
+	//LogPrintf("DarkGravityWave: 10 minutes without a block. NEW Target = %s\n", bnNew.ToString());
     }
 
     else {
 	bnNew = bnNew;
-	LogPrintf("DarkGravityWave: no stale tip over 10m detected yet so target = %s\n", bnNew.ToString());
+	//LogPrintf("DarkGravityWave: no stale tip over 10m detected yet so target = %s\n", bnNew.ToString());
     }
 
     if (bnNew > bnPowLimit) {
         bnNew = bnPowLimit;
-	LogPrintf("DarkGravityWave: target too low, so target is minimum which is = %s\n", bnNew.ToString());
+	//LogPrintf("DarkGravityWave: target too low, so target is minimum which is = %s\n", bnNew.ToString());
     }
 
     return bnNew.GetCompact();
@@ -288,7 +288,7 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
     int bordel = consensusParams.beeGestationBlocks;
     immatureBees = immatureBCTs = matureBees = matureBCTs = totalMatureBees = 0;
     
-    //CBlockIndex* pindexStart = chainActive.Genesis();
+    CBlockIndex* pindexStart = chainActive.Genesis();
     CBlockIndex* pindexPrev = chainActive.Toto();
     //int caca = pindexPrev->nHeight;
     //LogPrintf("pindexPrev->nHeight just after Toto() = %i\n", caca);
@@ -296,7 +296,8 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
     CBlockIndex* pindexLast = chainActive.Tip();
     assert(pindexPrev != nullptr);
     int tipHeight = pindexLast->nHeight;
-    int countStart = pindexPrev->nHeight;    
+    int countStart = pindexPrev->nHeight;
+    int testing = pindexStart->nHeight;    
 
     potentialLifespanRewards = (consensusParams.beeLifespanBlocks * GetBlockSubsidy(pindexLast->nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
 
@@ -322,7 +323,7 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
 
     
 
-    for (int i = countStart; i < tipHeight; i++) {    // lets reverse that !!
+    for (int i = testing; i < tipHeight; i++) {    // lets reverse that !!
 	//LogPrintf("i at beginning of 'for' is = %i\n", i);
         if (fHavePruned && !(pindexPrev->nStatus & BLOCK_HAVE_DATA) && pindexPrev->nTx > 0) {
             LogPrintf("! GetNetworkHiveInfo: Warn: Block not available (pruned data); can't calculate network bee count.");
@@ -353,25 +354,26 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
 			int maudit = pindexPrev->GetBlockTime();
 			//int maudit2 = (pindexPrev - 24)->GetBlockTime();
 			CAmount beeCost; // PROBLEM
-			LogPrintf("TOTI BEFORE CHECKING BEECOST IS = %i \n", toti);
-			LogPrintf("MAUDIT BEFORE CHECKING BEECOST IS = %i \n", maudit);
-			//LogPrintf("MAUDIT IF CHECKING '24 blocks earlier's time = %i \n", maudit2);
-			
-			if ((!(multicount % 2)) || ((multicount % 2) && (maudit < toti))){ // if multicount is pair
+			//LogPrintf("TOTI BEFORE CHECKING BEECOST IS = %i \n", toti);
+			//LogPrintf("MAUDIT BEFORE CHECKING BEECOST IS = %i \n", maudit);
+			LogPrintf("%i \n", maudit);
+			//LogPrintf("%i < %i ??? if so then 0.0004 \n", maudit, toti);
+			if ((!(multicount % 2)) || ((multicount % 2) && (maudit <= toti))){ // if multicount is pair
 				beeCost = 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
-				LogPrintf("beecost for totalmaturebees count = %d \n", beeCost);
+				//LogPrintf("beecost for totalmaturebees count = %d \n", beeCost);
 			}
 			
 			else {                  // multicount is impair
 				//beeCost = 0.0006*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
 				beeCost = 0.0008*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams)); // wtf...
-				LogPrintf("beecost for totalmaturebees count = %d \n", beeCost);
+				//LogPrintf("beecost for totalmaturebees count = %d \n", beeCost);
 			}
 
-
+			
 
                         int beeCount = beeFeePaid / beeCost; // PROBLEM
-			LogPrintf("beeCount  = %i \n", beeCount);
+			
+			LogPrintf("beeCount in pow.cpp = %i \n", beeCount);
 
 			/*if (matureBees > 378000) // need to find this value dynamically.....
 				beeCount = beeFeePaid / beeCost;
@@ -382,55 +384,68 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
 
 			// if (blockHeight < (i + consensusParams.beeGestationBlocks)){ // CACAAAAAAAAA
 
-			/*
-			int maxDepth = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks;
+			
+			int maxDepth = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks; // 360 on testnet
 
-			int blocktime = pindexPrev->GetBlockTime();
+			//int blocktime = pindexPrev->GetBlockTime();
 
-			int depth = blockHeight;
+			int depth = blockHeight; // la hauteur kon est rendu dans le loop, pars a -360 jusqua tip height
 			int blocksLeft = maxDepth - depth;
-			if ((blocksLeft >= 336) && (blocksLeft <= 360)){
-			*/
+			LogPrintf("blocksleft = %i \n", blocksLeft);
+			//if ((blocksLeft < 1){
+			
 
-			int stupid = (i + bordel);
-			LogPrintf("i + bordel = %i \n", stupid);
+			//int stupid = (i + bordel);
+			//LogPrintf("i + bordel = %i \n", stupid);
 			//int moron = block.height;
 			//LogPrintf("block->nHeight = %i \n", moron);
 
 			int moron = tipHeight;
-			LogPrintf("tipHeight = %i \n", moron);
-			LogPrintf("(%i > %i) ??? ( if not then immature.... ) \n", moron, stupid);
+			//LogPrintf("tipHeight = %i \n", moron);
+			//LogPrintf("(%i > %i) ??? ( if not then immature.... ) \n", moron, stupid);
 			if (!(tipHeight > (i + bordel))) {
                             
                             immatureBees += beeCount;
-			    LogPrintf("total IMMMMMMMMMAAAAAAAAAAAATURE Bees = %i \n", immatureBees);
-			    //LogPrintf("ImmatureBees = %i\n", immatureBees);
+			    //LogPrintf("total IMMMMMMMMMAAAAAAAAAAAATURE Bees = %i \n", immatureBees);
+			    //LogPrintf("IMMATURE Bees = %i\n", immatureBees);
                             immatureBCTs++;
 			
                         } else {
                             matureBees += beeCount;
 			    
-			    totalMatureBees = matureBees;
-			    LogPrintf("totalmatureBees = %i \n", totalMatureBees);
+			    
 
+
+
+
+
+
+			    totalMatureBees = matureBees;
+			    //LogPrintf("MATURE Bees = %i \n", totalMatureBees);
+			    LogPrintf("Pre multicount = %i \n", multicount);
 			    if ((totalMatureBees > 378000) && (!(multicount % 2))){ // gets over 90 and multicount is pair
 				multicount++;
-				LogPrintf("over 90. multicount++ .... so multicount = %i \n", multicount);			    
+				//LogPrintf("over 90. multicount++ .... so multicount = %i \n", multicount);			    
 				//toti = pindexPrev->GetBlockTime(); // WAAAAAAAAAAAAAAA -> need to check time when switch, not time when tx that makes switch was created !!!!!!!!!! Otherwise everything is FUCKED when switch happens....lol
 				toti = (chainActive.Nono(pindexPrev))->GetBlockTime();
 
-
 				//toti = GetTime();
-				LogPrintf("TOTI = %i \n", toti);
-				LogPrintf("///////SSSSSWWWWWWWWWWIIIIIIIIIITTTTCCCHHHHHHH !!!!!!!!!!!///////// ( toti ) = %i \n", toti);
+				LogPrintf("toti = %i \n", toti);
+				LogPrintf("Post multicount = %i \n", multicount);
+				LogPrintf("SWITCH ( toti ) = %i \n", toti);
 
 			    }
 			    
 			    if  ((totalMatureBees <= 378000) && (multicount % 2)){
-				tata = pindexPrev->GetBlockTime();
+				//tata = pindexPrev->GetBlockTime();
+				tata = (chainActive.Nono(pindexPrev))->GetBlockTime();
 				multicount++;
-				LogPrintf("Getting back under 90. multicount++ .... so multicount = %i \n", multicount);
-				LogPrintf("Time of last time it got under 90 ( tata ) = %i \n", tata);
+				LogPrintf("%i \n", multicount);
+				LogPrintf("Tata = %i \n", tata);
+				LogPrintf("SWITCH ( tata ) = %i \n", tata);
+				//LogPrintf("Getting back under 90. multicount++ .... so multicount = %i \n", multicount);
+				//LogPrintf("Time of last time it got under 90 ( tata ) = %i \n", tata);
+				
 			    }
                             matureBCTs++;
 			    
@@ -464,6 +479,7 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
                                     else
                                         beePopGraph[graphPos].maturePop += beeCount;
 					//LogPrintf("maturePop in recalcgraph... = %i\n", beePopGraph[graphPos].maturePop);
+					//LogPrintf("beeCount at the end of loop in pow.cpp  = %i \n", beeCount);  
                                 }
                             }
                         }
@@ -743,13 +759,13 @@ bool CheckHiveProof(const CBlock* pblock, const Consensus::Params& consensusPara
     CBlockIndex foundAt;
     int maudit3 = foundAt.GetBlockTime();
 	
-    if ((!(multicount % 2)) || ((multicount % 2) && (maudit3 < toti))){ // if multicount is pair
+    if ((!(multicount % 2)) || ((multicount % 2) && (maudit3 <= toti))){ // if multicount is pair
 	beeCost = 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
-	LogPrintf("beecost for Hive Proof = %d \n", beeCost);
+	//LogPrintf("beecost for Hive Proof = %d \n", beeCost);
     }
     else{                   // multicount is impair
 	beeCost = 0.0008*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
-	LogPrintf("beecost for Hive Proof = %d \n", beeCost);
+	//LogPrintf("beecost for Hive Proof = %d \n", beeCost);
     }
 
     //CAmount beeCost = GetBeeCost(bctFoundHeight, consensusParams); // PROBLEM
