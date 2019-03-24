@@ -218,18 +218,27 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
         Q_EMIT hiveStatusIconChanged(icon, tooltip);
     }
     int HeightX = chainActive.Height();
-	
-    /*if (!(multicount % 2)) // if multicount is pair
+    //CBlockIndex* osti = chainActive.Genesis();
+    //int mauditcaca = chainActive.GetBlockTime();
+    //LogPrintf("%i <= %i ??? ...if so, low price \n", mauditcaca, calisse);
+    //if (((!(multicount % 2)) || (multicount = 0)) || ((multicount % 2) && (mauditcaca <= calisse))) // if multicount is pair
+    if ((!(multicount % 2)) || (multicount = 0))
 	beeCost = 0.0004*(GetBlockSubsidy(HeightX, consensusParams));
     else                   // multicount is impair
-	beeCost = 0.0006*(GetBlockSubsidy(HeightX, consensusParams));*/
-    beeCost = GetBeeCost(chainActive.Tip()->nHeight, consensusParams); // PROBLEM
+	beeCost = 0.0008*(GetBlockSubsidy(HeightX, consensusParams));
+    //beeCost = GetBeeCost(chainActive.Tip()->nHeight, consensusParams); // PROBLEM
     //beeCost = 0.0004*(GetBlockSubsidy(HeightX, consensusParams));
+    LogPrintf("beeCost in Hivedialog.cpp = %i \n", beeCost);
     setAmountField(ui->beeCostLabel, beeCost);
     updateTotalCostDisplay();
 
     if (forceGlobalSummaryUpdate || chainActive.Tip()->nHeight >= lastGlobalCheckHeight + 1) { // Don't update global summary every block
         int globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs;
+	LogPrintf("thematurebees = %i \n", thematurebees);
+	LogPrintf("deadmatureBees = %i \n", deadmatureBees);
+	//globalMatureBees = (globalMatureBees - deadmatureBees);
+	int flute = (thematurebees - deadmatureBees);
+	LogPrintf("flute = %i \n", flute);
         if (!GetNetworkHiveInfo(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
             ui->globalHiveSummary->hide();
             ui->globalHiveSummaryError->show();
@@ -241,21 +250,27 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
             else
                 ui->globalImmatureLabel->setText(formatLargeNoLocale(globalImmatureBees) + " (" + QString::number(globalImmatureBCTs) + " transactions)");
 
-            if (globalMatureBees == 0)
+            if (flute == 0)
                 ui->globalMatureLabel->setText("0");
             else
-                ui->globalMatureLabel->setText(formatLargeNoLocale(globalMatureBees) + " (" + QString::number(globalMatureBCTs) + " transactions)");
+                ui->globalMatureLabel->setText(formatLargeNoLocale(flute) + " (" + QString::number(globalMatureBCTs) + " transactions)");
 
             updateGraph();
         }
 
         setAmountField(ui->potentialRewardsLabel, potentialRewards);
 
-        double hiveWeight = mature / (double)globalMatureBees;
-        ui->localHiveWeightLabel->setText((mature == 0 || globalMatureBees == 0) ? "0" : QString::number(hiveWeight, 'f', 3));
+        double hiveWeight = mature / (double)flute;
+        ui->localHiveWeightLabel->setText((mature == 0 || flute == 0) ? "0" : QString::number(hiveWeight, 'f', 3));
         ui->hiveWeightPie->setValue(hiveWeight);
+	LogPrintf("multicount = %i \n", multicount);
+	/*if (!(multicount % 2))
+       		beePopIndex = (((0.0004*(GetBlockSubsidy(HeightX, consensusParams))) * flute) / (double)potentialRewards) * 100.0; // PROBLEM ---> want it to always be calculated according to base bee cost....
+	else
+		beePopIndex = (((0.0008*(GetBlockSubsidy(HeightX, consensusParams))) * flute) / (double)potentialRewards) * 100.0;
+	LogPrintf("beePopIndex = %i \n", beePopIndex);*/
+	beePopIndex = (((0.0004*(GetBlockSubsidy(HeightX, consensusParams))) * flute) / (double)potentialRewards) * 100.0; // PROBLEM ---> want it to always be calculated according to base bee cost....
 
-       beePopIndex = (((0.0004*(GetBlockSubsidy(HeightX, consensusParams))) * globalMatureBees) / (double)potentialRewards) * 100.0; // PROBLEM ---> want it to always be calculated according to base bee cost....
         if (beePopIndex > 200) beePopIndex = 200;
         ui->beePopIndexLabel->setText(QString::number(floor(beePopIndex)));
         ui->beePopIndexPie->setValue(beePopIndex / 100);

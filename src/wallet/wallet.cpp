@@ -2707,7 +2707,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
         return bcts;
 
     int maxDepth = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks;
-    int gestationdepth = consensusParams.beeGestationBlocks;
+    //int gestationdepth = consensusParams.beeGestationBlocks;
     CScript scriptPubKeyBCF = GetScriptForDestination(DecodeDestination(consensusParams.beeCreationAddress));
     CScript scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
 
@@ -2720,8 +2720,8 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
 	    for (const std::pair<uint256, CWalletTx>& pairWtx : mapWallet) {
 		const CWalletTx& wtx = pairWtx.second;
 
-	    int totito = toti;
-    	    //LogPrintf ("toti is  %i  so totito is %i)\n", toti, totito);
+	    int totito = calisse;
+    	    //LogPrintf ("toti is  %i  so totito is %i)\n", calisse, totito);
 	    
 
 
@@ -2765,9 +2765,13 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
 			//LogPrintf ("blocksleft ( 360 - depth ) = %i \n", blocksLeft);
 			blocksLeft++;   // Bee life starts at zero immediately AFTER the BCT appears in a block.
 			//LogPrintf ("blocksleft just after ++ = %i \n", blocksLeft);
+
+
+			int TheHeight = chainActive.Height();
+			int ciboire = mapBlockIndex[wtx.hashBlock]->GetBlockTime();
+
 			if ((blocksLeft >= 336) && (blocksLeft <= 360)){
-			    int TheHeight = chainActive.Height();
-			    int ciboire = mapBlockIndex[wtx.hashBlock]->GetBlockTime();
+			    
 			    //LogPrintf ("multicount is                                                               %i \n", multicount);
 			    //LogPrintf ("///////////////////// IMMATURE TX BLOCK time is = %i \n", ciboire);
 			    //LogPrintf ("////////////////////////////////////////////   Last Switch Time = %i \n", totito);
@@ -2777,6 +2781,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
 				//LogPrintf ("beecost (xxxXXXXX immature BCT XXXXXxxx) = %d \n", beeCost);
 				//LogPrintf ("time of tx block is before Last Switch Time, or no switch yet, so beeCost was 0.0004\n");
 			    }
+			    //LogPrintf ("Is %i > %i ??? If yes then high price !!\n",ciboire, totito);
 			    if ((totito) && (ciboire > totito)){
 				beeCost = 0.0008*(GetBlockSubsidy(TheHeight, consensusParams));
 				//LogPrintf ("beecost (xxxXXXXX immature BCT XXXXXxxx) = %d \n", beeCost);
@@ -2789,16 +2794,16 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
 			bool isMature = false;
 			std::string status = "immature";
 			if (blocksLeft < 1) {
-			    if (!includeDead)   // Skip dead bees unless explicitly including them
+			    if (!includeDead)   // Skip dead bees unless explicitly including them  ------->   always include them...
 				continue;
 			    blocksLeft = 0;
 			    status = "expired";
 			    isMature = true;    // We still want to calc rewards
 			} else {
-			    if (depth > consensusParams.beeGestationBlocks) {
+			    if ((depth > consensusParams.beeGestationBlocks) || (blocksLeft >= 1)) {
 				status = "mature";
 				isMature = true;
-				int height2 = chainActive.Height() - depth;
+				//int height2 = chainActive.Height() - depth;
 				int TheHeight2 = chainActive.Height();
 				int ciboire2 = mapBlockIndex[wtx.hashBlock]->GetBlockTime(); ////////////
 				//LogPrintf ("multicount is                                                           %i \n", multicount);
@@ -2809,6 +2814,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
 					//LogPrintf ("beecost ( MATURE BCT) = %d \n", beeCost);
 					//LogPrintf ("time of tx block is before Last Switch Time, or no switch yet, so beeCost is 0.0004\n");
 				}
+				//LogPrintf ("Is %i > %i ??? If yes then mature BCT got high price !!\n",ciboire2, totito);
 				if((totito) && (ciboire2 > totito)){
 					beeCost = 0.0008*(GetBlockSubsidy(TheHeight2, consensusParams));
 					//LogPrintf ("beecost ( MATURE BCT ) = %d \n", beeCost);

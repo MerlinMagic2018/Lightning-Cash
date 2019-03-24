@@ -24,6 +24,9 @@ extern CAmount totalMatureBees;
 extern int multicount;
 extern int toti;
 extern int tata;
+extern int calisse;
+extern int deadmatureBees;
+extern int thematurebees;
 
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params&);
 unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params&);

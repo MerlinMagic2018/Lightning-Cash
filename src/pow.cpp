@@ -22,9 +22,12 @@
 BeePopGraphPoint beePopGraph[1024*40];       // LightningCash Gold: Hive
 
 CAmount totalMatureBees;
+int deadmatureBees;
 int multicount;
 int toti;
 int tata;
+int calisse;
+int thematurebees;
 
 // LightningCash Gold: DarkGravity V3 (https://github.com/dashpay/dash/blob/master/src/pow.cpp#L82)
 // By Evan Duffield <evan@dash.org>
@@ -286,17 +289,17 @@ unsigned int GetNextHiveWorkRequired(const CBlockIndex* pindexLast, const Consen
 bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, int& matureBCTs, CAmount& potentialLifespanRewards, const Consensus::Params& consensusParams, bool recalcGraph) {
     int totalBeeLifespan = consensusParams.beeLifespanBlocks + consensusParams.beeGestationBlocks;
     int bordel = consensusParams.beeGestationBlocks;
-    immatureBees = immatureBCTs = matureBees = matureBCTs = totalMatureBees = 0;
+    immatureBees = immatureBCTs = matureBees = matureBCTs = totalMatureBees = deadmatureBees = 0;
     
     CBlockIndex* pindexStart = chainActive.Genesis();
-    CBlockIndex* pindexPrev = chainActive.Toto();
+    CBlockIndex* pindexPrev = chainActive.Genesis();
     //int caca = pindexPrev->nHeight;
     //LogPrintf("pindexPrev->nHeight just after Toto() = %i\n", caca);
 
     CBlockIndex* pindexLast = chainActive.Tip();
     assert(pindexPrev != nullptr);
     int tipHeight = pindexLast->nHeight;
-    int countStart = pindexPrev->nHeight;
+    //int countStart = pindexPrev->nHeight;
     int testing = pindexStart->nHeight;    
 
     potentialLifespanRewards = (consensusParams.beeLifespanBlocks * GetBlockSubsidy(pindexLast->nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
@@ -306,7 +309,6 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
             beePopGraph[i].immaturePop = 0;
             beePopGraph[i].maturePop = 0;
 	    totalMatureBees = 0;
-	    multicount = 0;
         }
     }
 
@@ -321,7 +323,6 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
     CScript scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
 
 
-    
 
     for (int i = testing; i < tipHeight; i++) {    // lets reverse that !!
 	//LogPrintf("i at beginning of 'for' is = %i\n", i);
@@ -356,20 +357,28 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
 			CAmount beeCost; // PROBLEM
 			//LogPrintf("TOTI BEFORE CHECKING BEECOST IS = %i \n", toti);
 			//LogPrintf("MAUDIT BEFORE CHECKING BEECOST IS = %i \n", maudit);
-			LogPrintf("%i \n", maudit);
+			//LogPrintf("%i \n", maudit);
 			//LogPrintf("%i < %i ??? if so then 0.0004 \n", maudit, toti);
-			if ((!(multicount % 2)) || ((multicount % 2) && (maudit <= toti))){ // if multicount is pair
+			toti = calisse;			
+			//LogPrintf("TOTI is : %i  \n",toti);
+			//LogPrintf("calisse ( old TOTI ) is : %i  \n",calisse);
+			//LogPrintf("Multicount is : %i  \n",multicount);
+
+			if ((!(multicount % 2)) || ((multicount % 2) && (maudit <= toti)) || (toti = 0)){ // if multicount is even, or odd and maudit is before toti
 				beeCost = 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
 				//LogPrintf("beecost for totalmaturebees count = %d \n", beeCost);
 			}
+			else {
+				beeCost = 0.0008*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
+			}
 			
-			else {                  // multicount is impair
+			/*if ((!(multicount % 2)) {                  // multicount is odd
 				//beeCost = 0.0006*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
 				beeCost = 0.0008*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams)); // wtf...
 				//LogPrintf("beecost for totalmaturebees count = %d \n", beeCost);
-			}
+			}*/
 
-			
+			//LogPrintf("Decided BEECOST ------------------------ : %i  \n",beeCost);
 
                         int beeCount = beeFeePaid / beeCost; // PROBLEM
 			
@@ -385,13 +394,13 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
 			// if (blockHeight < (i + consensusParams.beeGestationBlocks)){ // CACAAAAAAAAA
 
 			
-			int maxDepth = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks; // 360 on testnet
+			//int maxDepth = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks; // 360 on testnet
 
 			//int blocktime = pindexPrev->GetBlockTime();
 
-			int depth = blockHeight; // la hauteur kon est rendu dans le loop, pars a -360 jusqua tip height
-			int blocksLeft = maxDepth - depth;
-			LogPrintf("blocksleft = %i \n", blocksLeft);
+			//int depth = blockHeight; // la hauteur kon est rendu dans le loop, pars a -360 jusqua tip height
+			//int blocksLeft = maxDepth - depth;
+			//LogPrintf("blocksleft = %i \n", blocksLeft);
 			//if ((blocksLeft < 1){
 			
 
@@ -400,7 +409,7 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
 			//int moron = block.height;
 			//LogPrintf("block->nHeight = %i \n", moron);
 
-			int moron = tipHeight;
+			//int moron = tipHeight;
 			//LogPrintf("tipHeight = %i \n", moron);
 			//LogPrintf("(%i > %i) ??? ( if not then immature.... ) \n", moron, stupid);
 			if (!(tipHeight > (i + bordel))) {
@@ -412,37 +421,41 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
 			
                         } else {
                             matureBees += beeCount;
-			    
-			    
-
-
-
-
-
-
+			    	
+			    //LogPrintf("MATURE Bees = %i \n", matureBees);
+			    int beeDiesBlockX = blockHeight + consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks;
+			    if (tipHeight > beeDiesBlockX){
+					deadmatureBees += beeCount; // count dead bees too for Pre multicount
+					//LogPrintf("dead bees = %i \n", deadmatureBees);
+			    }
+			    //LogPrintf("DEAD Bees = %i \n", deadmatureBees);
 			    totalMatureBees = matureBees;
-			    //LogPrintf("MATURE Bees = %i \n", totalMatureBees);
-			    LogPrintf("Pre multicount = %i \n", multicount);
-			    if ((totalMatureBees > 378000) && (!(multicount % 2))){ // gets over 90 and multicount is pair
+			    thematurebees = matureBees;
+			    
+			    //LogPrintf("Total MATURE Bees = %i \n", totalMatureBees);
+			    //LogPrintf("Pre multicount = %i \n", multicount);
+			   // int coucou = matureBees;
+			    if (((matureBees - deadmatureBees) > 378000) && (!(multicount % 2))){ // gets over 90 and multicount is pair
 				multicount++;
 				//LogPrintf("over 90. multicount++ .... so multicount = %i \n", multicount);			    
 				//toti = pindexPrev->GetBlockTime(); // WAAAAAAAAAAAAAAA -> need to check time when switch, not time when tx that makes switch was created !!!!!!!!!! Otherwise everything is FUCKED when switch happens....lol
 				toti = (chainActive.Nono(pindexPrev))->GetBlockTime();
-
+				calisse = toti;
 				//toti = GetTime();
-				LogPrintf("toti = %i \n", toti);
-				LogPrintf("Post multicount = %i \n", multicount);
-				LogPrintf("SWITCH ( toti ) = %i \n", toti);
+				//LogPrintf("toti = %i \n", toti);
+				//LogPrintf("Post multicount = %i \n", multicount);
+				LogPrintf("SWITCH ---------------------------------------------------------------------------- ( TOTI ) = %i \n", toti);
 
 			    }
 			    
-			    if  ((totalMatureBees <= 378000) && (multicount % 2)){
+			    if  (((matureBees - deadmatureBees) <= 378000) && (multicount % 2)){
 				//tata = pindexPrev->GetBlockTime();
 				tata = (chainActive.Nono(pindexPrev))->GetBlockTime();
+				//tata = (chainActive.Nono(pindexPrev))->GetBlockTime();
 				multicount++;
-				LogPrintf("%i \n", multicount);
-				LogPrintf("Tata = %i \n", tata);
-				LogPrintf("SWITCH ( tata ) = %i \n", tata);
+				//LogPrintf("%i \n", multicount);
+				//LogPrintf("Tata = %i \n", tata);
+				LogPrintf("SWITCH ---------------------------------------------------------------------------- ( tata ) = %i \n", tata);
 				//LogPrintf("Getting back under 90. multicount++ .... so multicount = %i \n", multicount);
 				//LogPrintf("Time of last time it got under 90 ( tata ) = %i \n", tata);
 				
@@ -466,7 +479,7 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
                                         beePopGraph[j].immaturePop += beeCount;
                                     else
                                         beePopGraph[j].maturePop += beeCount;
-                                }
+                                }           int beeDiesBlockX = blockHeight + consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks;
                             }*/
                             int beeBornBlock = blockHeight;
                             int beeMaturesBlock = beeBornBlock + consensusParams.beeGestationBlocks;
