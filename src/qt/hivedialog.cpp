@@ -220,7 +220,7 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
     int HeightX = chainActive.Height();
     //CBlockIndex* osti = chainActive.Genesis();
     //int mauditcaca = chainActive.GetBlockTime();
-    //LogPrintf("%i <= %i ??? ...if so, low price \n", mauditcaca, calisse);
+    LogPrintf("multicount for beecost in hivedialog : %i  \n", multicount);
     //if (((!(multicount % 2)) || (multicount = 0)) || ((multicount % 2) && (mauditcaca <= calisse))) // if multicount is pair
     if ((!(multicount % 2)) || (multicount = 0))
 	beeCost = 0.0004*(GetBlockSubsidy(HeightX, consensusParams));
