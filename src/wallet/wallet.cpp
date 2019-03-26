@@ -2722,8 +2722,8 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
 
 	    int totito = calisse;
             int torpinouche = pet;
-    	    LogPrintf ("toti is  %i  so totito is %i)\n", calisse, totito);
-	    LogPrintf ("tata is  %i  so torpinouche is %i)\n", pet, torpinouche);
+    	    //LogPrintf ("toti is  %i  so totito is %i)\n", calisse, totito);
+	    //LogPrintf ("tata is  %i  so torpinouche is %i)\n", pet, torpinouche);
 
 
 		// Skip unconfirmed transactions and orphans
@@ -2761,9 +2761,9 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
 
 
 
-			LogPrintf ("depth... which is:( wtx.GetDepthInMainChain() ) = %i \n", depth);
+			//LogPrintf ("depth... which is:( wtx.GetDepthInMainChain() ) = %i \n", depth);
 			int blocksLeft = maxDepth - depth; // so 360 - ..... ???
-			LogPrintf ("blocksleft ( maxDepth which is 360 - depth ) = %i \n", blocksLeft);
+			//LogPrintf ("blocksleft ( maxDepth which is 360 - depth ) = %i \n", blocksLeft);
 			// blocksLeft++; // useless in my code......  // Bee life starts at zero immediately AFTER the BCT appears in a block.
 			//LogPrintf ("blocksleft just after ++ = %i \n", blocksLeft);
 
@@ -2822,12 +2822,15 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
                             int ciboire2 = mapBlockIndex[wtx.hashBlock]->GetBlockTime(); ////////////
                             //LogPrintf ("multicount is                                                           %i \n", multicount);
                             //LogPrintf ("///////////////////// MATURITY FOR TX BLOCK time is = %i \n", ciboire2);
-                            //LogPrintf ("////////////////////////////////////////////   Last Switch Time = %i \n", totito);	
+                            LogPrintf ("toti for wallet.cpp beecount... = %i \n", totito);
+                            LogPrintf ("tata for wallet.cpp beecount... = %i \n", torpinouche);
+                            LogPrintf ("TX Time for wallet.cpp beecount... = %i \n", ciboire2);
                             //if ((!totito) || (ciboire2 <= totito)){ // NEEDS TO CHECK MULTICOUNT AT TIME OF TX.........
                             //if ((!(multicount % 2)) || (multicount = 0)){
                             //if(mangedlacrotte <= 378000){
-                            if ((((totito > torpinouche) || (!torpinouche)) && (ciboire2 <= totito)) || (!totito) || (((torpinouche) && (torpinouche > totito)) && (ciboire2 > torpinouche))){
-                                    beeCost = 0.0004*(GetBlockSubsidy(TheHeight2, consensusParams));
+                            //if ((((totito > torpinouche) || (!torpinouche)) && (ciboire2 <= totito)) || (!totito) || (((torpinouche) && (torpinouche > totito)) && (ciboire2 > torpinouche))){
+                            if (((torpinouche > totito) && ((ciboire2 > totito) && (ciboire2 < torpinouche))) || ((totito > torpinouche) && (ciboire2 > totito))){
+                                    beeCost = 0.0008*(GetBlockSubsidy(TheHeight2, consensusParams));
                                     //LogPrintf ("beecost ( MATURE BCT) = %d \n", beeCost);
                                     //LogPrintf ("time of tx block is before Last Switch Time, or no switch yet, so beeCost is 0.0004\n");
                             }
@@ -2836,7 +2839,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
                             //if (multicount % 2){
                             //if(mangedlacrotte > 378000){
                             else{
-                                    beeCost = 0.0008*(GetBlockSubsidy(TheHeight2, consensusParams));
+                                    beeCost = 0.0004*(GetBlockSubsidy(TheHeight2, consensusParams));
                                     //LogPrintf ("beecost ( MATURE BCT ) = %d \n", beeCost);
                                     //LogPrintf ("time of tx block is after Last Switch Time so beeCost is 0.0008\n");
                             }
@@ -2858,7 +2861,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
                         //LogPrintf ("-----so beeFeePaid / beeCost = %d / %d\n", beeFeePaid, beeCost);
 			int beeCount = beeFeePaid / beeCost; // PROBLEM HERE !!
 			LogPrintf ("beeCount in wallet.cpp = %i \n", beeCount);
-                        LogPrintf ("bees status for        ^^^^^^  = %s \n", status);
+                        LogPrintf ("                         ^^^^^  = %s \n", status);
 			// LogPrintf ("beeCount per beecreation transaction in wallet.cpp = %i \n", beeCount);
 
 

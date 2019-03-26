@@ -221,7 +221,7 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
     //CBlockIndex* osti = chainActive.Genesis();
     //int mauditcaca = chainActive.GetBlockTime();
     int vadonchier = (thematurebees - deadBees);
-    LogPrintf("vadonchier : %i  ( is it over or under 378000 ??? ) \n", vadonchier);
+    //LogPrintf("vadonchier : %i  ( is it over or under 378000 ??? ) \n", vadonchier);
     //if (((!(memory % 2)) || (memory = 0)) || ((memory % 2) && (mauditcaca <= calisse))) // if memory is pair
     if (vadonchier <= 378000)
 	beeCost = 0.0004*(GetBlockSubsidy(HeightX, consensusParams));
@@ -229,7 +229,7 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
 	beeCost = 0.0008*(GetBlockSubsidy(HeightX, consensusParams));
     //beeCost = GetBeeCost(chainActive.Tip()->nHeight, consensusParams); // PROBLEM
     //beeCost = 0.0004*(GetBlockSubsidy(HeightX, consensusParams));
-    LogPrintf("beeCost in Hivedialog.cpp = %i \n", beeCost);
+    //LogPrintf("beeCost in Hivedialog.cpp = %i \n", beeCost);
     setAmountField(ui->beeCostLabel, beeCost);
     updateTotalCostDisplay();
 
@@ -239,7 +239,7 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
 	//LogPrintf("deadmatureBees = %i \n", deadmatureBees);
 	//globalMatureBees = (globalMatureBees - deadmatureBees);
 	int flute = (thematurebees - deadBees);
-	LogPrintf("thematurebees - deadBees = %i (flute in hivedialog.cpp and coucou in pow.cpp) \n", flute);
+	//LogPrintf("thematurebees - deadBees = %i (flute in hivedialog.cpp and coucou in pow.cpp) \n", flute);
         if (!GetNetworkHiveInfo(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
             ui->globalHiveSummary->hide();
             ui->globalHiveSummaryError->show();

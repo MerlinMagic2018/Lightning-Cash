@@ -361,10 +361,10 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
 		
 			toti = calisse;			
                         tata = pet;
-                        LogPrintf("multicount = %i \n", multicount);
-                        LogPrintf("maudit = %i \n", maudit);
-                        LogPrintf("toti = %i \n", toti);
-                        LogPrintf("toti selon calisse = %i \n", calisse);
+                        //LogPrintf("multicount = %i \n", multicount);
+                        //LogPrintf("maudit = %i \n", maudit);
+                        //LogPrintf("toti = %i \n", toti);
+                        //LogPrintf("toti selon calisse = %i \n", calisse);
 			if ((!(multicount % 2)) || ((multicount % 2) && (maudit <= toti)) || (toti = 0)){ // if multicount is even, or odd and maudit is before toti
 				beeCost = 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
 				
@@ -378,27 +378,28 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
 
                         int beeCount = beeFeePaid / beeCost; // PROBLEM
 			
-			LogPrintf("beeCount in pow.cpp = %i \n", beeCount);
-
+                        if (beeCount > 0)
+                            LogPrintf("beeCount in pow.cpp  = + %i \n", beeCount);
+                            LogPrintf("Height = %i \n", currentCheckedHeight);
 			
 			if (!((tipHeight) > (i + bordel))) {
                             
                             immatureBees += beeCount;
-                            LogPrintf("immatureBees = %i \n", immatureBees);
+                            //LogPrintf("immatureBees = %i \n", immatureBees);
                             immatureBCTs++;
 			
                         }  
 
                         if ((tipHeight) > (i + bordel)) { // will count expired bees too.....
                             matureBees += beeCount;
-			    LogPrintf("matureBees = %i \n", matureBees);	
+			    //LogPrintf("matureBees = %i \n", matureBees);	
 
 			    totalMatureBees = matureBees;
 			    thematurebees = matureBees;
                             matureBCTs++;
                         }
                         
-                        LogPrintf("CURRENT CHECKED HEIGHT (i) = %i \n", currentCheckedHeight);
+                        
                        
  
                             //LogPrintf("Current checked Height ( queried AFTER the new loop !.... ) = %i \n", currentCheckedHeight);
@@ -448,8 +449,9 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
                 }
             }    // luiiiiii
         }
-        LogPrintf("CURRENT CHECKED HEIGHT (i) JUST BEFORE DEADBEES CHECKING = %i \n", currentCheckedHeight);
-                if (i > 360){
+        
+        //LogPrintf("CURRENT CHECKED HEIGHT (i) JUST BEFORE DEADBEES CHECKING = %i \n", currentCheckedHeight);
+        if (i > 360){
 
             
     CBlockIndex* pindexCoco = chainActive.Back(pindexPrev);
@@ -478,17 +480,17 @@ if (fHavePruned && !(pindexCoco->nStatus & BLOCK_HAVE_DATA) && pindexCoco->nTx >
                             beeFeePaid2 += donationAmount2;                                           // Add donation amount back to total paid
                         }
 			
-			int maudit2 = pindexCoco->GetBlockTime();
-			
+			int maudit2 = pindexCoco->GetBlockTime(); // time of death, but we want time of creation...
+			//int tabarnouche = (chainActive.Back(pindexCoco))->GetBlockTime();
 			CAmount beeCost2; // PROBLEM
 		
 			toti = calisse;			
                         tata = pet;
-                        LogPrintf("multicount = %i \n", multicount);
+                        //LogPrintf("multicount = %i \n", multicount);
                         LogPrintf("maudit2 = %i \n", maudit2);
                         LogPrintf("toti = %i \n", toti);
-                        LogPrintf("toti selon calisse = %i \n", calisse);
-			if ((!(multicount % 2)) || ((multicount % 2) && (maudit2 <= toti)) || (toti = 0)){ // if multicount is even, or odd and maudit is before toti
+                        //LogPrintf("toti selon calisse = %i \n", calisse);
+			if ((maudit2 <= toti) || (toti = 0)){ // cant check against multicount here
 				beeCost2 = 0.0004*(GetBlockSubsidy(pindexCoco->nHeight, consensusParams));
 				
 			}
@@ -500,8 +502,9 @@ if (fHavePruned && !(pindexCoco->nStatus & BLOCK_HAVE_DATA) && pindexCoco->nTx >
 	
 
                         int beeCount2 = beeFeePaid2 / beeCost2; // PROBLEM
-			
-			LogPrintf("beeCount2 in pow.cpp ( deadbees count... ) = %i \n", beeCount2);
+			if (beeCount2 > 0)
+                            LogPrintf("beeCount2 in pow.cpp  = - %i \n", beeCount2);
+                            LogPrintf("Height = %i \n", currentCheckedHeight);
                         deadBees += beeCount2;
 		    }
 		}
@@ -509,10 +512,10 @@ if (fHavePruned && !(pindexCoco->nStatus & BLOCK_HAVE_DATA) && pindexCoco->nTx >
 	}
     
 }
-        LogPrintf("CURRENT CHECKED HEIGHT (i) JUST AFTER DEADBEES CHECK = %i \n", currentCheckedHeight);
+        //LogPrintf("CURRENT CHECKED HEIGHT (i) JUST AFTER DEADBEES CHECK = %i \n", currentCheckedHeight);
                             int coucou = (matureBees - deadBees);
-                            LogPrintf("matureBees - deadBees = %i \n", coucou);
-                            LogPrintf("multicount just before ( is it over 90 ) = %i \n", multicount);
+                            //LogPrintf("matureBees - deadBees = %i \n", coucou);
+                            //LogPrintf("multicount just before ( is it over 90 ) = %i \n", multicount);
 			    if (((coucou) > 378000) && (!(multicount % 2))){ // gets over 90 and multicount is pair
 				multicount++;
 				//LogPrintf("over 90. multicount++ .... so multicount = %i \n", multicount);			    
@@ -522,15 +525,19 @@ if (fHavePruned && !(pindexCoco->nStatus & BLOCK_HAVE_DATA) && pindexCoco->nTx >
 				//toti = GetTime();
 				//LogPrintf("toti = %i \n", toti);
 				//LogPrintf("Post multicount = %i \n", multicount);
-				LogPrintf("SWITCH ---------------------------------------------------------------------------- ( TOTI ) = %i \n", toti);
-
+                                
+				LogPrintf(" %i SWITCH ------------------------------------------- ( TOTI ) = %i \n", coucou, toti);
+                                //LogPrintf("^^^^^^  %i ( Decompte ) \n", coucou);
 			    }
-                            
-                            int volvo = (chainActive.Nono(pindexPrev))->GetBlockTime();
+                            int volvo;
+                            if (((pindexPrev->nHeight) + 24) <= (tipHeight - 1))
+                                volvo = (chainActive.Nono(pindexPrev))->GetBlockTime();
+                            else
+                                volvo = pindexPrev->GetBlockTime();
 			    //LogPrintf("deadmatureBees = %i \n", deadmatureBees);
 			    //LogPrintf("actualdeadmatureBees = %i \n", actualdeadmatureBees);			    
-                            LogPrintf("multicount just before ( is it under 90 ) = %i \n", multicount);
-                            LogPrintf("Is Tx time greater than toti ? ----- Is %i > %i  ??? \n", volvo, calisse);
+                            //LogPrintf("multicount just before ( is it under 90 ) = %i \n", multicount);
+                            //LogPrintf("Is Tx time greater than toti ? ----- Is %i > %i  ??? \n", volvo, calisse);
 			    if  ((((coucou) <= 378000) && (multicount % 2)) && (volvo > calisse)){
 				//tata = pindexPrev->GetBlockTime();
 				tata = (chainActive.Nono(pindexPrev))->GetBlockTime();
@@ -540,7 +547,7 @@ if (fHavePruned && !(pindexCoco->nStatus & BLOCK_HAVE_DATA) && pindexCoco->nTx >
                                 pet = tata;
 				//LogPrintf("%i \n", multicount);
 				//LogPrintf("Tata = %i \n", tata);
-				LogPrintf("SWITCH ---------------------------------------------------------------------------- ( tata ) = %i \n", tata);
+				LogPrintf(" %i SWITCH ------------------------------------------- ( tata ) = %i \n", coucou, tata);
 				//LogPrintf("Getting back under 90. multicount++ .... so multicount = %i \n", multicount);
 				//LogPrintf("Time of last time it got under 90 ( tata ) = %i \n", tata);
 				
