@@ -2721,8 +2721,9 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
 		const CWalletTx& wtx = pairWtx.second;
 
 	    int totito = calisse;
-    	    //LogPrintf ("toti is  %i  so totito is %i)\n", calisse, totito);
-	    
+            int torpinouche = pet;
+    	    LogPrintf ("toti is  %i  so totito is %i)\n", calisse, totito);
+	    LogPrintf ("tata is  %i  so torpinouche is %i)\n", pet, torpinouche);
 
 
 		// Skip unconfirmed transactions and orphans
@@ -2760,70 +2761,89 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
 
 
 
-			//LogPrintf ("depth = %i \n", depth);
+			LogPrintf ("depth... which is:( wtx.GetDepthInMainChain() ) = %i \n", depth);
 			int blocksLeft = maxDepth - depth; // so 360 - ..... ???
-			//LogPrintf ("blocksleft ( 360 - depth ) = %i \n", blocksLeft);
-			blocksLeft++;   // Bee life starts at zero immediately AFTER the BCT appears in a block.
+			LogPrintf ("blocksleft ( maxDepth which is 360 - depth ) = %i \n", blocksLeft);
+			// blocksLeft++; // useless in my code......  // Bee life starts at zero immediately AFTER the BCT appears in a block.
 			//LogPrintf ("blocksleft just after ++ = %i \n", blocksLeft);
 
 
 			int TheHeight = chainActive.Height();
 			int ciboire = mapBlockIndex[wtx.hashBlock]->GetBlockTime();
+                        //int mangedlacrotte = (thematurebees - deadBees);
+                        //LogPrintf ("mangedlacrotte = %i ( over or under 378000 ??? ) \n", mangedlacrotte);
+                        bool isMature;
+                        std::string status;
 
-			if ((blocksLeft >= 336) && (blocksLeft <= 360)){
+			if ((blocksLeft > 336) && (blocksLeft <= 360)){
 			    
 			    //LogPrintf ("multicount is                                                               %i \n", multicount);
 			    //LogPrintf ("///////////////////// IMMATURE TX BLOCK time is = %i \n", ciboire);
 			    //LogPrintf ("////////////////////////////////////////////   Last Switch Time = %i \n", totito);
-			    	
-			    if ((!totito) || (ciboire <= totito)){ // NEEDS TO CHECK MULTICOUNT AT TIME OF TX.........
+			    LogPrintf ("Lets recheck totito's value... = %i \n", totito);
+                            LogPrintf ("Lets recheck torpinouche's value... = %i \n", torpinouche);
+			    if ((((totito > torpinouche) || (!torpinouche)) && (ciboire <= totito)) || (!totito) || (((torpinouche) && (torpinouche > totito)) && (ciboire > torpinouche))){ // NEEDS TO CHECK MULTICOUNT AT TIME OF TX.........
+			    //if ((!(multicount % 2)) || (multicount = 0)){
+                            //if (mangedlacrotte <= 378000){
 				beeCost = 0.0004*(GetBlockSubsidy(TheHeight, consensusParams));
 				//LogPrintf ("beecost (xxxXXXXX immature BCT XXXXXxxx) = %d \n", beeCost);
 				//LogPrintf ("time of tx block is before Last Switch Time, or no switch yet, so beeCost was 0.0004\n");
 			    }
 			    //LogPrintf ("Is %i > %i ??? If yes then high price !!\n",ciboire, totito);
-			    if ((totito) && (ciboire > totito)){
+			    //if (torpinouche > totito)((totito) && (ciboire > totito)){
+			    //if (multicount % 2){
+                            //if (mangedlacrotte > 378000){
+                            else{
 				beeCost = 0.0008*(GetBlockSubsidy(TheHeight, consensusParams));
 				//LogPrintf ("beecost (xxxXXXXX immature BCT XXXXXxxx) = %d \n", beeCost);
 				//LogPrintf ("time of tx block is after Last Switch Time so beeCost was 0.0008\n");
 			    }
-			}
+			
 
 
 
-			bool isMature = false;
-			std::string status = "immature";
+			isMature = false;
+			status = "immature";
+                        }
+                        
 			if (blocksLeft < 1) {
 			    if (!includeDead)   // Skip dead bees unless explicitly including them  ------->   always include them...
 				continue;
 			    blocksLeft = 0;
 			    status = "expired";
 			    isMature = true;    // We still want to calc rewards
-			} else {
-			    if ((depth > consensusParams.beeGestationBlocks) || (blocksLeft >= 1)) {
-				status = "mature";
-				isMature = true;
-				//int height2 = chainActive.Height() - depth;
-				int TheHeight2 = chainActive.Height();
-				int ciboire2 = mapBlockIndex[wtx.hashBlock]->GetBlockTime(); ////////////
-				//LogPrintf ("multicount is                                                           %i \n", multicount);
-				//LogPrintf ("///////////////////// MATURITY FOR TX BLOCK time is = %i \n", ciboire2);
-				//LogPrintf ("////////////////////////////////////////////   Last Switch Time = %i \n", totito);	
-				if ((!totito) || (ciboire2 <= totito)){ // NEEDS TO CHECK MULTICOUNT AT TIME OF TX.........
-					beeCost = 0.0004*(GetBlockSubsidy(TheHeight2, consensusParams));
-					//LogPrintf ("beecost ( MATURE BCT) = %d \n", beeCost);
-					//LogPrintf ("time of tx block is before Last Switch Time, or no switch yet, so beeCost is 0.0004\n");
-				}
-				//LogPrintf ("Is %i > %i ??? If yes then mature BCT got high price !!\n",ciboire2, totito);
-				if((totito) && (ciboire2 > totito)){
-					beeCost = 0.0008*(GetBlockSubsidy(TheHeight2, consensusParams));
-					//LogPrintf ("beecost ( MATURE BCT ) = %d \n", beeCost);
-					//LogPrintf ("time of tx block is after Last Switch Time so beeCost is 0.0008\n");
-				}
-				
-				// get the bee cost according to GI  AT A GIVEN TIME....
-			    }
 			}
+                        
+                        if ((blocksLeft <= 336) && (blocksLeft >= 1)) {
+                            status = "mature";
+                            isMature = true;
+                            //int height2 = chainActive.Height() - depth;
+                            int TheHeight2 = chainActive.Height();
+                            int ciboire2 = mapBlockIndex[wtx.hashBlock]->GetBlockTime(); ////////////
+                            //LogPrintf ("multicount is                                                           %i \n", multicount);
+                            //LogPrintf ("///////////////////// MATURITY FOR TX BLOCK time is = %i \n", ciboire2);
+                            //LogPrintf ("////////////////////////////////////////////   Last Switch Time = %i \n", totito);	
+                            //if ((!totito) || (ciboire2 <= totito)){ // NEEDS TO CHECK MULTICOUNT AT TIME OF TX.........
+                            //if ((!(multicount % 2)) || (multicount = 0)){
+                            //if(mangedlacrotte <= 378000){
+                            if ((((totito > torpinouche) || (!torpinouche)) && (ciboire2 <= totito)) || (!totito) || (((torpinouche) && (torpinouche > totito)) && (ciboire2 > torpinouche))){
+                                    beeCost = 0.0004*(GetBlockSubsidy(TheHeight2, consensusParams));
+                                    //LogPrintf ("beecost ( MATURE BCT) = %d \n", beeCost);
+                                    //LogPrintf ("time of tx block is before Last Switch Time, or no switch yet, so beeCost is 0.0004\n");
+                            }
+                            //LogPrintf ("Is %i > %i ??? If yes then mature BCT got high price !!\n",ciboire2, totito);
+                            //if((totito) && (ciboire2 > totito)){
+                            //if (multicount % 2){
+                            //if(mangedlacrotte > 378000){
+                            else{
+                                    beeCost = 0.0008*(GetBlockSubsidy(TheHeight2, consensusParams));
+                                    //LogPrintf ("beecost ( MATURE BCT ) = %d \n", beeCost);
+                                    //LogPrintf ("time of tx block is after Last Switch Time so beeCost is 0.0008\n");
+                            }
+
+                            // get the bee cost according to GI  AT A GIVEN TIME....
+                        }
+			
 			//LogPrintf ("--beecost, in the end, is = %d \n", beeCost);
 
 			// Find bee count & community donation status
@@ -2838,6 +2858,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
                         //LogPrintf ("-----so beeFeePaid / beeCost = %d / %d\n", beeFeePaid, beeCost);
 			int beeCount = beeFeePaid / beeCost; // PROBLEM HERE !!
 			LogPrintf ("beeCount in wallet.cpp = %i \n", beeCount);
+                        LogPrintf ("bees status for        ^^^^^^  = %s \n", status);
 			// LogPrintf ("beeCount per beecreation transaction in wallet.cpp = %i \n", beeCount);
 
 
@@ -2916,7 +2937,17 @@ bool CWallet::CreateBeeTransaction(int beeCount, CWalletTx& wtxNew, CReserveKey&
     }
 	
     // Check available balance (note: can't check fee at this point because we don't know the tx size)
-    CAmount beeCost = GetBeeCost(chainActive.Height(), consensusParams);
+    int HeightZ = chainActive.Height();
+    int mangedlamarde = (thematurebees - deadBees);
+    //LogPrintf("multicount to know beecost for tx is : %i \n", multicount);
+    LogPrintf("High or Low cost according to current mature bees : %i \n", mangedlamarde);
+    CAmount beeCost;
+    if (mangedlamarde <= 378000)
+	beeCost = 0.0004*(GetBlockSubsidy(HeightZ, consensusParams));
+    else                   // multicount is impair
+	beeCost = 0.0008*(GetBlockSubsidy(HeightZ, consensusParams)); 
+    LogPrintf("BeeCost for TRansaction is : %i \n", beeCost);
+
     CAmount curBalance = GetAvailableBalance();
     CAmount totalBeeCost = beeCost * beeCount;
     if (totalBeeCost > curBalance) {

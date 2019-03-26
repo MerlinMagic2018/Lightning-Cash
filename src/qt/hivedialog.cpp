@@ -220,11 +220,12 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
     int HeightX = chainActive.Height();
     //CBlockIndex* osti = chainActive.Genesis();
     //int mauditcaca = chainActive.GetBlockTime();
-    LogPrintf("multicount for beecost in hivedialog : %i  \n", multicount);
-    //if (((!(multicount % 2)) || (multicount = 0)) || ((multicount % 2) && (mauditcaca <= calisse))) // if multicount is pair
-    if ((!(multicount % 2)) || (multicount = 0))
+    int vadonchier = (thematurebees - deadBees);
+    LogPrintf("vadonchier : %i  ( is it over or under 378000 ??? ) \n", vadonchier);
+    //if (((!(memory % 2)) || (memory = 0)) || ((memory % 2) && (mauditcaca <= calisse))) // if memory is pair
+    if (vadonchier <= 378000)
 	beeCost = 0.0004*(GetBlockSubsidy(HeightX, consensusParams));
-    else                   // multicount is impair
+    else                   // memory is impair
 	beeCost = 0.0008*(GetBlockSubsidy(HeightX, consensusParams));
     //beeCost = GetBeeCost(chainActive.Tip()->nHeight, consensusParams); // PROBLEM
     //beeCost = 0.0004*(GetBlockSubsidy(HeightX, consensusParams));
@@ -234,11 +235,11 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
 
     if (forceGlobalSummaryUpdate || chainActive.Tip()->nHeight >= lastGlobalCheckHeight + 1) { // Don't update global summary every block
         int globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs;
-	LogPrintf("thematurebees = %i \n", thematurebees);
-	LogPrintf("deadmatureBees = %i \n", deadmatureBees);
+	//LogPrintf("thematurebees = %i \n", thematurebees);
+	//LogPrintf("deadmatureBees = %i \n", deadmatureBees);
 	//globalMatureBees = (globalMatureBees - deadmatureBees);
-	int flute = (thematurebees - deadmatureBees);
-	LogPrintf("flute = %i \n", flute);
+	int flute = (thematurebees - deadBees);
+	LogPrintf("thematurebees - deadBees = %i (flute in hivedialog.cpp and coucou in pow.cpp) \n", flute);
         if (!GetNetworkHiveInfo(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
             ui->globalHiveSummary->hide();
             ui->globalHiveSummaryError->show();
@@ -263,13 +264,18 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
         double hiveWeight = mature / (double)flute;
         ui->localHiveWeightLabel->setText((mature == 0 || flute == 0) ? "0" : QString::number(hiveWeight, 'f', 3));
         ui->hiveWeightPie->setValue(hiveWeight);
-	LogPrintf("multicount = %i \n", multicount);
-	/*if (!(multicount % 2))
+	/*LogPrintf("memory = %i \n", memory);
+	if ((!(memory % 2)) || (memory = 0))
        		beePopIndex = (((0.0004*(GetBlockSubsidy(HeightX, consensusParams))) * flute) / (double)potentialRewards) * 100.0; // PROBLEM ---> want it to always be calculated according to base bee cost....
 	else
 		beePopIndex = (((0.0008*(GetBlockSubsidy(HeightX, consensusParams))) * flute) / (double)potentialRewards) * 100.0;
-	LogPrintf("beePopIndex = %i \n", beePopIndex);*/
-	beePopIndex = (((0.0004*(GetBlockSubsidy(HeightX, consensusParams))) * flute) / (double)potentialRewards) * 100.0; // PROBLEM ---> want it to always be calculated according to base bee cost....
+	LogPrintf("beePopIndex = %i \n", beePopIndex);
+	//beePopIndex = (((0.0004*(GetBlockSubsidy(HeightX, consensusParams))) * flute) / (double)potentialRewards) * 100.0; // PROBLEM ---> want it to always be calculated according to base bee cost....*/
+
+	//beePopIndex = (flute*5) / (double)potentialRewards) * 100.0; // total global mature bees X ( 1 / basecost )
+
+	// (consensusParams.beeLifespanBlocks * GetBlockSubsidy(pindexLast->nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
+	beePopIndex = (((0.0004*(GetBlockSubsidy(HeightX, consensusParams))) * flute) / (double)potentialRewards) * 100.0;
 
         if (beePopIndex > 200) beePopIndex = 200;
         ui->beePopIndexLabel->setText(QString::number(floor(beePopIndex)));
