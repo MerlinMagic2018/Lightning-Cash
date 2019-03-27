@@ -464,12 +464,14 @@ public:
             return nullptr;
     }
     
+        /** Find the  block - 360 in this chain, or nullptr if the given index is not found. */
     CBlockIndex *Back(const CBlockIndex *pindex) const {
-        if ((Contains(pindex)) && ((pindex->nHeight - 360) >= 0))
+        if (Contains(pindex))
             return (*this)[pindex->nHeight - 360];
         else
             return nullptr;
     }
+    
 
     /** Returns the index equal to tip - bees total lifespan.... 
     CBlockIndex *Toto() const {
@@ -506,6 +508,8 @@ public:
         else
             return nullptr;
     }
+    
+
 
     /** Return the maximal height in the chain. Is equal to chain.Tip() ? chain.Tip()->nHeight : -1. */
     int Height() const {
