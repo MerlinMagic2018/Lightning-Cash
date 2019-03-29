@@ -492,14 +492,14 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
 
 			    
                             matureBCTs++;
-                            /*if (beeCount3 > 0) {
-                                LogPrintf("                                 \n");
-                                LogPrintf(" %i ----> le temps du BLOC qu'on check en ce moment  \n", soso);
-                                LogPrintf(" Mature, excluding EXPIRED... \n");
-                                LogPrintf(" BeeCost : %i \n", beeCost3);
+                            if (beeCount3 > 0) {
+                                //LogPrintf("                                 \n");
+                                //LogPrintf(" %i ----> le temps du BLOC qu'on check en ce moment  \n", soso);
+                                //LogPrintf(" Mature, excluding EXPIRED... \n");
+                                //LogPrintf(" BeeCost : %i \n", beeCost3);
                                 LogPrintf("beeCount in pow.cpp  = + %i \n", beeCount3);
-                                LogPrintf("Height = %i ----> la hauteur du BLOC qu'on check en ce moment  \n", currentCheckedHeight);
-                            }*/
+                                //LogPrintf("Height = %i ----> la hauteur du BLOC qu'on check en ce moment  \n", currentCheckedHeight);
+                            }
                         
                         
                        
@@ -585,14 +585,14 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
                             
                             
 
-                            /*if (beeCountZ > 0) {
-                                    LogPrintf("                                 \n");
-                                    LogPrintf(" %i ----> time of creation   \n", maudit2);
-                                    LogPrintf(" Expired \n");
-                                    LogPrintf(" BeeCost : %i \n", beeCostX);
+                            if (beeCountZ > 0) {
+                                    //LogPrintf("                                 \n");
+                                    //LogPrintf(" %i ----> time of creation   \n", maudit2);
+                                    //LogPrintf(" Expired \n");
+                                    //LogPrintf(" BeeCost : %i \n", beeCostX);
                                     LogPrintf("bees dying count in pow.cpp  = - %i \n", beeCountZ);
-                                    LogPrintf("Height = %i ----> la hauteur du BLOC qu'on check en ce moment, et non celui 360 BLOCs avant...  \n", currentCheckedHeight);
-                            }*/
+                                    //LogPrintf("Height = %i ----> la hauteur du BLOC qu'on check en ce moment, et non celui 360 BLOCs avant...  \n", currentCheckedHeight);
+                            }
 
                         }                
                 }
@@ -635,7 +635,7 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
             //zazaza = zaza;
 
             int switchHeight = pindexPrev->nHeight; // current checked height
-            //LogPrintf(" %i %i SWITCH ------------------------------------------- ( TOTI ) = %i \n", coucou, switchHeight, toti);
+            LogPrintf(" %i %i SWITCH ------------------------------------------- ( TOTI ) = %i \n", coucou, switchHeight, toti);
 
         }
         //int volvo = pindexPrev->GetBlockTime();
@@ -649,7 +649,7 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
             pet = tata;
 
             int switchHeight2 = pindexPrev->nHeight;
-            //LogPrintf(" %i %i SWITCH ------------------------------------------- ( tata ) = %i \n", coucou, switchHeight2, tata);
+            LogPrintf(" %i %i SWITCH ------------------------------------------- ( tata ) = %i \n", coucou, switchHeight2, tata);
         }
              
             

@@ -233,7 +233,7 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
     setAmountField(ui->beeCostLabel, beeCost);
     updateTotalCostDisplay();
 
-    if (forceGlobalSummaryUpdate || chainActive.Tip()->nHeight >= lastGlobalCheckHeight + 1) { // Don't update global summary every block
+    if (forceGlobalSummaryUpdate || chainActive.Tip()->nHeight > lastGlobalCheckHeight) { // Don't update global summary every block
         int globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs;
 	//LogPrintf("thematurebees in hivedialog = %i \n", thematurebees);
 	//LogPrintf("deadmatureBees = %i \n", deadmatureBees);
