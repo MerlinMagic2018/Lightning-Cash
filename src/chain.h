@@ -472,6 +472,13 @@ public:
             return nullptr;
     }
     
+    CBlockIndex *Back24(const CBlockIndex *pindex) const {
+        if (Contains(pindex))
+            return (*this)[pindex->nHeight - 24];
+        else
+            return nullptr;
+    }
+    
 
     /** Returns the index equal to tip - bees total lifespan.... 
     CBlockIndex *Toto() const {

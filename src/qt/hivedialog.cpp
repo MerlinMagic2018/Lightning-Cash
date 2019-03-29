@@ -221,8 +221,8 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
     //CBlockIndex* osti = chainActive.Genesis();
     //int mauditcaca = chainActive.GetBlockTime();
     int vadonchier = (thematurebees - deadBees);
-    //LogPrintf("vadonchier : %i  ( is it over or under 378000 ??? ) \n", vadonchier);
-    //if (((!(memory % 2)) || (memory = 0)) || ((memory % 2) && (mauditcaca <= calisse))) // if memory is pair
+    
+ 
     if (vadonchier <= 378000)
 	beeCost = 0.0004*(GetBlockSubsidy(HeightX, consensusParams));
     else                   // memory is impair
@@ -235,10 +235,10 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
 
     if (forceGlobalSummaryUpdate || chainActive.Tip()->nHeight >= lastGlobalCheckHeight + 1) { // Don't update global summary every block
         int globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs;
-	//LogPrintf("thematurebees = %i \n", thematurebees);
+	//LogPrintf("thematurebees in hivedialog = %i \n", thematurebees);
 	//LogPrintf("deadmatureBees = %i \n", deadmatureBees);
 	//globalMatureBees = (globalMatureBees - deadmatureBees);
-	int flute = (thematurebees - deadBees);
+	int flute = thematurebees;
 	//LogPrintf("thematurebees - deadBees = %i (flute in hivedialog.cpp and coucou in pow.cpp) \n", flute);
         if (!GetNetworkHiveInfo(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
             ui->globalHiveSummary->hide();

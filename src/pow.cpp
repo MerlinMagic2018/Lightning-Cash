@@ -30,6 +30,7 @@ int calisse;
 int pet;
 int thematurebees;
 int deadBees;
+int beesDying;
 //int zaza;
 //int zozo;
 //int zazaza;
@@ -296,7 +297,7 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
     int totalBeeLifespan = consensusParams.beeLifespanBlocks + consensusParams.beeGestationBlocks;
     int bordel = consensusParams.beeGestationBlocks;
     
-    immatureBees = immatureBCTs = matureBees = matureBCTs = totalMatureBees = deadBees = thematurebees = 0;
+    immatureBees = immatureBCTs = matureBees = matureBCTs = totalMatureBees = deadBees = thematurebees = beesDying = 0;
     
     //tata = 1551819029;
     //tata = ((chainActive.Genesis())->GetBlockTime());
@@ -305,7 +306,7 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
 //    CBlockIndex* pindexCaca = chainActive.Genesis(); // sert a rien...
 //    int patatesale = ((chainActive.Back(pindexPrev))->nTime); // 360 Blocs avant celui qu'on check...
     CBlockIndex* pindexLast = chainActive.Tip();
-    CBlockIndex* pindexCoco = chainActive.Genesis();
+//    CBlockIndex* pindexCoco = chainActive.Genesis();
     
 //    int patatesale = pindexCoco->nTime; // 360 Blocs avant celui qu'on check...
     assert(pindexPrev != nullptr);
@@ -337,24 +338,25 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
 
 
     for (int i = testing; i < tipHeight; i++) {    // lets reverse that !!
-
+        //LogPrintf("                                                           %i \n", i);
 	int currentCheckedHeight = pindexPrev->nHeight;
-        if ((fHavePruned && !(pindexPrev->nStatus & BLOCK_HAVE_DATA) && pindexPrev->nTx > 0) || ((i > (totalBeeLifespan + 125)) && (fHavePruned && !(pindexCoco->nStatus & BLOCK_HAVE_DATA) && pindexCoco->nTx > 0))) {
-            LogPrintf("! GetNetworkHiveInfo: Warn: Block not available (pruned data); can't calculate network bee count.");
-            return false;
-        }
-
-        if ((!pindexPrev->GetBlockHeader().IsHiveMined(consensusParams))) {  // Don't check Hivemined blocks (no BCTs will be found in them)
+        int beeCountZ; // dying bees
+        int beeCount3; // maturing bees
+        int beeCount; // born bees
+        
+        if (i > 125) {           
+                if ((fHavePruned && !pindexPrev->nStatus & BLOCK_HAVE_DATA) && pindexPrev->nTx > 0) {
+                    LogPrintf("! GetNetworkHiveInfo: Warn: Block not available (pruned data); can't calculate network bee count.");
+                    return false;
+                }        
+            if (!pindexPrev->GetBlockHeader().IsHiveMined(consensusParams)) {  // Don't check Hivemined blocks (no BCTs will be found in them)
             if (!ReadBlockFromDisk(block, pindexPrev, consensusParams)) {
                 LogPrintf("! GetNetworkHiveInfo: Warn: Block not available (not found on disk); can't calculate network bee count.");
                 return false;
             }
-            /*if ((!ReadBlockFromDisk(block, pindexCoco, consensusParams)) && (i >= 360)) {
-                LogPrintf("! GetNetworkHiveInfo: Warn: Block not available (not found on disk); can't calculate network bee count.");
-                return false;
-            }*/ // Useless ??
+            
 
-            int blockHeight = pindexPrev->nHeight; 
+            int blockHeightZ = pindexPrev->nHeight; 
 	    
             if (block.vtx.size() > 0) {
                 for(const auto& tx : block.vtx) {
@@ -369,33 +371,31 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
                         }
 			
 			int maudit;
-                        int maudit2; // time of creation for dead bees...
-                        int maudit3;
+                      
+
 			
 			CAmount beeCost; // PROBLEM ---> RESOLVED !!!!
-                        CAmount beeCost2; // PROBLEM ---> RESOLVED !!!!!
-                        CAmount beeCost3;
+                     
+
 		
 			toti = calisse;	// This is to remember switch times for each loop...
-                        //zaza = zazaza;
+                        
                         if (!tata)
                             tata = ((chainActive.Genesis())->GetBlockTime());
                         else    
                             tata = pet; // This is to remember switch times for each loop...
-                        //zozo = zozozo;
                         
-                        int beeCount;
-                        int beeCount2;
-                        int beeCount3;
-			
                         
+                        
+
+
+                         // mature bees count here
                             
-			
-			if ((tipHeight) < (i + bordel)) { // immature bees count here
                             
                             maudit = pindexPrev->GetBlockTime();
                             
-                            if (((maudit > tata) && (tata > toti)) || ((toti > tata) && ((maudit > tata) && (maudit < toti))) || (!(toti))){ // toti can be known before we check beeCost here, so must check if TX is after tata AND before toti !!!
+                            
+                            if (((maudit > tata) && (tata > toti)) || ((tata > toti) && (maudit < toti)) || ((toti > tata) && ((maudit > tata) && (maudit < toti))) || (!(toti))) { // toti can be known before we check beeCost here, so must check if TX is after tata AND before toti !!!
 				beeCost = 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
 				
                             }
@@ -406,98 +406,207 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
                             beeCount = beeFeePaid / beeCost;
                             
                             immatureBees += beeCount;
-                            //LogPrintf("immatureBees = %i \n", immatureBees);
+			    //LogPrintf("matureBees = %i \n", matureBees);	
+
+			    
                             immatureBCTs++;
-                            if (beeCount > 0) {
+                            /*if (beeCount > 0) {
                                 LogPrintf("                                 \n");
-                                LogPrintf(" %i ----> le temps du BLOC qu'on check en ce moment \n", maudit);
+                                LogPrintf(" %i ----> le temps du BLOC qu'on check en ce moment  \n", maudit);
                                 LogPrintf(" Immature \n");
                                 LogPrintf(" BeeCost : %i \n", beeCost);
                                 LogPrintf("beeCount in pow.cpp  = + %i \n", beeCount);
-                                LogPrintf("Height = %i ----> la hauteur du BLOC qu'on check en ce moment \n", currentCheckedHeight);
-                            }
-                        }
+                                LogPrintf("Height = %i ----> la hauteur du BLOC qu'on check en ce moment  \n", currentCheckedHeight);
+                            }*/
+                        
+                        
+                       
+                        
 
-                        if ((tipHeight) >= (i + bordel)) { // mature bees count here
+                        
+                    }
+                }
+            }
+        }
+        }// count created bees
+        if (i > 149) {
+            if (fHavePruned && !((chainActive.Back24(pindexPrev))->nStatus & BLOCK_HAVE_DATA) && (chainActive.Back24(pindexPrev))->nTx > 0) {
+                    LogPrintf("! GetNetworkHiveInfo: Warn: Block not available (pruned data); can't calculate network bee count.");
+                    return false;
+                }        
+            if ((!(chainActive.Back24(pindexPrev))->GetBlockHeader().IsHiveMined(consensusParams))) {  // Don't check Hivemined blocks (no BCTs will be found in them)
+            if (!ReadBlockFromDisk(block, (chainActive.Back24(pindexPrev)), consensusParams)) {
+                LogPrintf("! GetNetworkHiveInfo: Warn: Block not available (not found on disk); can't calculate network bee count.");
+                return false;
+            }
+            
+
+            int blockHeightZ = pindexPrev->nHeight; 
+	    
+            if (block.vtx.size() > 0) {
+                for(const auto& tx : block.vtx) {
+                    CAmount beeFeePaid;          
+                    if (tx->IsBCT(consensusParams, scriptPubKeyBCF, &beeFeePaid)) {                 // If it's a BCT, total its bees
+                        if (tx->vout.size() > 1 && tx->vout[1].scriptPubKey == scriptPubKeyCF) {    // If it has a community fund contrib...
+                            CAmount donationAmount = tx->vout[1].nValue;
+                            CAmount expectedDonationAmount = (beeFeePaid + donationAmount) / consensusParams.communityContribFactor;  // ...check for valid donation amount
+                            if (donationAmount != expectedDonationAmount)
+                                continue;
+                            beeFeePaid += donationAmount;                                           // Add donation amount back to total paid
+                        }
+			
+			int maudit3;
+                      
+
+			
+			CAmount beeCost3; // PROBLEM ---> RESOLVED !!!!
+                     
+
+		
+			toti = calisse;	// This is to remember switch times for each loop...
+                        
+                        if (!tata)
+                            tata = ((chainActive.Genesis())->GetBlockTime());
+                        else    
+                            tata = pet; // This is to remember switch times for each loop...
+                        
+                        
+                        
+
+
+                         // mature bees count here
                             
                             
-                            maudit3 = (pindexPrev->GetBlockTime());
+                            maudit3 = ((chainActive.Back24(pindexPrev))->GetBlockTime());
+                            int soso = pindexPrev->GetBlockTime();
                             
-                            
-                            if (((maudit3 > tata) && (tata > toti)) || ((toti > tata) && ((maudit3 > tata) && (maudit3 < toti))) || (!(toti))){ // toti can be known before we check beeCost here, so must check if TX is after tata AND before toti !!!
-				beeCost3 = 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
+                            if (((maudit3 > tata) && (tata > toti)) || ((tata > toti) && (maudit3 < toti)) || ((toti > tata) && ((maudit3 > tata) && (maudit3 < toti))) || (!(toti))) { // toti can be known before we check beeCost here, so must check if TX is after tata AND before toti !!!
+				beeCost3 = 0.0004*(GetBlockSubsidy((chainActive.Back24(pindexPrev))->nHeight, consensusParams));
 				
                             }
                             else {
-				beeCost3 = 0.0008*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
+				beeCost3 = 0.0008*(GetBlockSubsidy((chainActive.Back24(pindexPrev))->nHeight, consensusParams));
                             }
                             
                             beeCount3 = beeFeePaid / beeCost3;
                             
                             matureBees += beeCount3;
+                            immatureBees -= beeCount3;
 			    //LogPrintf("matureBees = %i \n", matureBees);	
 
-			    totalMatureBees = matureBees;
-			    thematurebees = matureBees;
+			    
                             matureBCTs++;
-                            if (beeCount3 > 0) {
+                            /*if (beeCount3 > 0) {
                                 LogPrintf("                                 \n");
-                                LogPrintf(" %i ----> le temps du BLOC qu'on check en ce moment  \n", maudit3);
+                                LogPrintf(" %i ----> le temps du BLOC qu'on check en ce moment  \n", soso);
                                 LogPrintf(" Mature, excluding EXPIRED... \n");
                                 LogPrintf(" BeeCost : %i \n", beeCost3);
                                 LogPrintf("beeCount in pow.cpp  = + %i \n", beeCount3);
                                 LogPrintf("Height = %i ----> la hauteur du BLOC qu'on check en ce moment  \n", currentCheckedHeight);
-                            }
-                        }
-                        //for (int k = (totalBeeLifespan + 125); k < tipHeight; k++) {
+                            }*/
                         
-                            //if (((tipHeight) >= (i + totalBeeLifespan)) && (i > (totalBeeLifespan + 125))) {
-                        if (i > (totalBeeLifespan + 125)) { // dead bees count here
-                            LogPrintf(" %i ----> La hauteur quon commence a checker pour les abeilles mortes  \n", currentCheckedHeight);
-                            maudit2 = (chainActive.Back(pindexCoco))->GetBlockTime(); // Time of bloc when this dying BCT was created !!
-                            LogPrintf(" %i ----> The block TIME that deadbees were created...  \n", maudit2);
-                            //maudit2 = patatesale;
+                        
+                       
+                        
 
-                            if (((maudit2 > tata) && (tata > toti)) || ((toti > tata) && ((maudit2 > tata) && (maudit2 <= toti))) || (!(toti))){
-                                    beeCost2 = 0.0004*(GetBlockSubsidy(pindexCoco->nHeight, consensusParams));
+                        
+                    }
+                }
+            }
+        }
+        }// count maturing bees
+        if (i > 485) {
+            if (fHavePruned && !((chainActive.Back(pindexPrev))->nStatus & BLOCK_HAVE_DATA) && (chainActive.Back(pindexPrev))->nTx > 0) {
+                LogPrintf("! GetNetworkHiveInfo: Warn: Block not available (pruned data); can't calculate network bee count.");
+                return false;
+            }
+            
+            if ((!(chainActive.Back(pindexPrev))->GetBlockHeader().IsHiveMined(consensusParams))) {  // Don't check Hivemined blocks (no BCTs will be found in them)
+            if (!ReadBlockFromDisk(block, (chainActive.Back(pindexPrev)), consensusParams)) {
+                LogPrintf("! GetNetworkHiveInfo: Warn: Block not available (not found on disk); can't calculate network bee count.");
+                return false;
+            }
+            /*if ((!ReadBlockFromDisk(block, pindexCoco, consensusParams)) && (i >= 360)) {
+                LogPrintf("! GetNetworkHiveInfo: Warn: Block not available (not found on disk); can't calculate network bee count.");
+                return false;
+            }*/ // Useless ??
+
+            int blockHeightX = (chainActive.Back(pindexPrev))->nHeight; 
+	    
+            if (block.vtx.size() > 0) {
+                for(const auto& tx : block.vtx) {
+                    CAmount beeFeePaidX;          
+                    if (tx->IsBCT(consensusParams, scriptPubKeyBCF, &beeFeePaidX)) {                 // If it's a BCT, total its bees
+                        if (tx->vout.size() > 1 && tx->vout[1].scriptPubKey == scriptPubKeyCF) {    // If it has a community fund contrib...
+                            CAmount donationAmountX = tx->vout[1].nValue;
+                            CAmount expectedDonationAmountX = (beeFeePaidX + donationAmountX) / consensusParams.communityContribFactor;  // ...check for valid donation amount
+                            if (donationAmountX != expectedDonationAmountX)
+                                continue;
+                            beeFeePaidX += donationAmountX;                                           // Add donation amount back to total paid
+                        }
+			
+			
+                        int maudit2; // time of creation for dead bees...
+                        
+			
+                        CAmount beeCostX; // PROBLEM ---> RESOLVED !!!!!
+                        
+		
+			toti = calisse;	// This is to remember switch times for each loop...
+                        //zaza = zazaza;
+                        if (!tata)
+                            tata = ((chainActive.Genesis())->GetBlockTime());
+                        else    
+                            tata = pet; // This is to remember switch times for each loop...
+                        //zozo = zozozo;
+                        
+                     
+                        
+
+			
+                                  						
+                       
+                            //LogPrintf(" %i ----> La hauteur quon commence a checker pour les abeilles mortes  \n", currentCheckedHeight);
+                            //maudit2 = (chainActive.Back(pindexCoco))->GetBlockTime(); // Time of bloc when this dying BCT was created !!
+                            maudit2 = (chainActive.Back(pindexPrev))->GetBlockTime();
+                            //LogPrintf(" %i ----> The block TIME that dying bees were created...  \n", maudit2);
+                            
+
+                            if (((maudit2 > tata) && (tata > toti)) || ((tata > toti) && (maudit2 < toti)) || ((toti > tata) && ((maudit2 > tata) && (maudit2 <= toti))) || (!(toti))) {
+                                    beeCostX = 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
 
                             }
                             else {
-                                    beeCost2 = 0.0008*(GetBlockSubsidy(pindexCoco->nHeight, consensusParams));
+                                    beeCostX = 0.0008*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
                             }
 
 
-                            int beeCount2 = beeFeePaid / beeCost2; // PROBLEM
-                            deadBees += beeCount2;
+                            beeCountZ = beeFeePaidX / beeCostX; // PROBLEM
+                            beesDying += beeCountZ;
+                            
+                            matureBees -= beeCountZ;
+                            
+                            
 
-                            if (beeCount2 > 0) {
+                            /*if (beeCountZ > 0) {
                                     LogPrintf("                                 \n");
                                     LogPrintf(" %i ----> time of creation   \n", maudit2);
                                     LogPrintf(" Expired \n");
-                                    LogPrintf(" BeeCost : %i \n", beeCost2);
-                                    LogPrintf("beeCount in pow.cpp  = - %i \n", beeCount2);
+                                    LogPrintf(" BeeCost : %i \n", beeCostX);
+                                    LogPrintf("bees dying count in pow.cpp  = - %i \n", beeCountZ);
                                     LogPrintf("Height = %i ----> la hauteur du BLOC qu'on check en ce moment, et non celui 360 BLOCs avant...  \n", currentCheckedHeight);
-                            }
-
-                        }
-                        //}
-
-                        // Add these bees to pop graph
-                        if (recalcGraph) {
-                            /*
-                            int beeStart = blockHeight + consensusParams.beeGestationBlocks;
-                            int beeStop = beeStart + consensusParams.beeLifespanBlocks;
-                            beeStart -= tipHeight;
-                            beeStop -= tipHeight;
-                            for (int j = beeStart; j < beeStop; j++) {
-                                if (j > 0 && j < totalBeeLifespan) {
-                                    if (i < consensusParams.beeGestationBlocks) // THIS IS WRONG
-                                        beePopGraph[j].immaturePop += beeCount;
-                                    else
-                                        beePopGraph[j].maturePop += beeCount;
-                                }           int beeDiesBlockX = blockHeight + consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks;
                             }*/
-                            int beeBornBlock = blockHeight;
+
+                        }                
+                }
+            }    
+            }   
+        }// count dying bees
+           
+        
+                        if (recalcGraph) {
+                            
+                            int beeBornBlock = currentCheckedHeight;
                             int beeMaturesBlock = beeBornBlock + consensusParams.beeGestationBlocks;
                             int beeDiesBlock = beeMaturesBlock + consensusParams.beeLifespanBlocks;
                             for (int j = beeBornBlock; j < beeDiesBlock; j++) {
@@ -506,32 +615,31 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
                                     if (j < beeMaturesBlock)
                                         beePopGraph[graphPos].immaturePop += beeCount;
                                     else
-                                        beePopGraph[graphPos].maturePop += beeCount;
-					//LogPrintf("maturePop in recalcgraph... = %i\n", beePopGraph[graphPos].maturePop);
-					//LogPrintf("beeCount at the end of loop in pow.cpp  = %i \n", beeCount);  
+                                        beePopGraph[graphPos].maturePop += beeCount3;
+					  
                                 }
                             }
-                        }
-                    }
-                }
-            }
-        }
+                        }// Add these bees to pop graph
+        
+        
                             // check switch time to know beeCost for every BCT !!
-                            int coucou = (matureBees - deadBees);
- 
+                            int coucou = matureBees;
+                            //LogPrintf(" matureBees excluding the one that died= %i \n", coucou);
+                            totalMatureBees = matureBees;
+			    thematurebees = matureBees;
 			    if (((coucou) > 378000) && (!(multicount % 2))){ // gets over 90 and multicount is pair
 				multicount++;
 
-				toti = (chainActive.Nono(pindexPrev))->GetBlockTime(); // Time of bloc when this BCT will mature
+				toti = pindexPrev->GetBlockTime(); // Time of current checked block
                                 //zaza = ((pindexPrev->nHeight) + 24);
 				calisse = toti;
                                 //zazaza = zaza;
 
-                                int switchHeight = ((pindexPrev->nHeight) + 24); // height when this switching BCT will matures
-				LogPrintf(" %i %i SWITCH ------------------------------------------- ( TOTI ) = %i \n", coucou, switchHeight, toti);
+                                int switchHeight = pindexPrev->nHeight; // current checked height
+				//LogPrintf(" %i %i SWITCH ------------------------------------------- ( TOTI ) = %i \n", coucou, switchHeight, toti);
 
 			    }
-                            int volvo = pindexPrev->GetBlockTime();
+                            //int volvo = pindexPrev->GetBlockTime();
 
 			    if  (((coucou) <= 378000) && (multicount % 2)){
 				tata = pindexPrev->GetBlockTime(); // Time of block when bees DIES ( no "maturity time" for death... ) lol
@@ -542,7 +650,7 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
                                 pet = tata;
 
                                 int switchHeight2 = pindexPrev->nHeight;
-				LogPrintf(" %i %i SWITCH ------------------------------------------- ( tata ) = %i \n", coucou, switchHeight2, tata);
+				//LogPrintf(" %i %i SWITCH ------------------------------------------- ( tata ) = %i \n", coucou, switchHeight2, tata);
 
 				
 			    }
@@ -553,11 +661,10 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
 	
 	
 
-        if ((!chainActive.Next(pindexPrev)) || (!chainActive.Next(pindexCoco)))    // Check we didn't run out of blocks
+        if (!chainActive.Next(pindexPrev))    // Check we didn't run out of blocks
             return true;
 
         pindexPrev = chainActive.Next(pindexPrev);
-        pindexCoco = chainActive.Next(pindexCoco);
     }
 
     return true;
@@ -831,7 +938,7 @@ bool CheckHiveProof(const CBlock* pblock, const Consensus::Params& consensusPara
 	beeCost = 0.0008*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
 	//LogPrintf("beecost for Hive Proof = %d \n", beeCost);
     }
-    LogPrintf("decided beeCost in checkHiveProof() (pow.cpp) = %d \n", beeCost);
+    //LogPrintf("decided beeCost in checkHiveProof() (pow.cpp) = %d \n", beeCost);
     //CAmount beeCost = GetBeeCost(bctFoundHeight, consensusParams); // PROBLEM
     // CAmount beeCost = 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
     if (bctValue < consensusParams.minBeeCost) {

@@ -2775,10 +2775,10 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
                         bool isMature;
                         std::string status;
                         
-                        LogPrintf (" %i \n", ciboire);
+                        //LogPrintf (" %i \n", ciboire);
 			if ((blocksLeft > 336) && (blocksLeft <= 360)){ // count immature bees
 			    
-			    LogPrintf (" Immature \n");
+			    //LogPrintf (" Immature \n");
 			    /*if ((((totito > torpinouche) || (!torpinouche)) && (ciboire <= totito)) || (!totito) || (((torpinouche) && (torpinouche > totito)) && (ciboire > torpinouche))){ // NEEDS TO CHECK MULTICOUNT AT TIME OF TX.........
 			    
 				beeCost = 0.0004*(GetBlockSubsidy(TheHeight, consensusParams));
@@ -2791,12 +2791,12 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
 			    }*/
 			    if (((torpinouche > totito) && ((ciboire > totito) && (ciboire < torpinouche))) || ((totito > torpinouche) && (ciboire > totito))){
                                     beeCost = 0.0008*(GetBlockSubsidy(cocorico, consensusParams));
-                                    LogPrintf (" beeCost = %i \n", beeCost);
+                                    //LogPrintf (" beeCost = %i \n", beeCost);
                             }
                             
                             else{
                                     beeCost = 0.0004*(GetBlockSubsidy(cocorico, consensusParams));
-                                    LogPrintf (" beeCost = %i \n", beeCost);
+                                    //LogPrintf (" beeCost = %i \n", beeCost);
                             }
 
 
@@ -2807,7 +2807,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
                         
 			if (blocksLeft < 1) { // count dead bees
 			    
-                            LogPrintf (" Expired \n");
+                            //LogPrintf (" Expired \n");
 			    blocksLeft = 0;
 			    status = "expired";
 			    isMature = true;    // We still want to calc rewards
@@ -2817,12 +2817,12 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
                             
                             if (((torpinouche > totito) && ((ciboire3 > totito) && (ciboire3 < torpinouche))) || ((totito > torpinouche) && (ciboire3 > totito))){
                                     beeCost = 0.0008*(GetBlockSubsidy(cocorico2, consensusParams));
-                                    LogPrintf (" beeCost = %i \n", beeCost);
+                                    //LogPrintf (" beeCost = %i \n", beeCost);
                             }
                             
                             else{
                                     beeCost = 0.0004*(GetBlockSubsidy(cocorico2, consensusParams));
-                                    LogPrintf (" beeCost = %i \n", beeCost);
+                                    //LogPrintf (" beeCost = %i \n", beeCost);
                             }
                             if (!includeDead)   // Skip dead bees unless explicitly including them  ------->   always include them...
 				continue;
@@ -2836,16 +2836,16 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
                             int ciboire2 = mapBlockIndex[wtx.hashBlock]->GetBlockTime();
                             int cocorico3 = (chainActive.Height() - depth);
                             
-                            LogPrintf (" Mature \n");
+                            //LogPrintf (" Mature \n");
                             
                             if (((torpinouche > totito) && ((ciboire2 > totito) && (ciboire2 < torpinouche))) || ((totito > torpinouche) && (ciboire2 > totito))){
                                     beeCost = 0.0008*(GetBlockSubsidy(cocorico3, consensusParams));
-                                    LogPrintf (" beeCost = %i \n", beeCost);
+                                    //LogPrintf (" beeCost = %i \n", beeCost);
                             }
                             
                             else{
                                     beeCost = 0.0004*(GetBlockSubsidy(cocorico3, consensusParams));
-                                    LogPrintf (" beeCost = %i \n", beeCost);
+                                    //LogPrintf (" beeCost = %i \n", beeCost);
                             }
 
                             // get the bee cost according to GI  AT A GIVEN TIME....
@@ -2859,8 +2859,8 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
 			}
                         //LogPrintf ("-----so beeFeePaid / beeCost = %d / %d\n", beeFeePaid, beeCost);
 			int beeCount = beeFeePaid / beeCost; // PROBLEM HERE !!
-			LogPrintf ("beeCount in wallet.cpp = %i \n", beeCount);
-                        LogPrintf (" Height = %i \n", cocorico); // not sure...
+			//LogPrintf ("beeCount in wallet.cpp = %i \n", beeCount);
+                        //LogPrintf (" Height = %i \n", cocorico); // not sure...
 			// LogPrintf ("beeCount per beecreation transaction in wallet.cpp = %i \n", beeCount);
 
 
@@ -2942,13 +2942,13 @@ bool CWallet::CreateBeeTransaction(int beeCount, CWalletTx& wtxNew, CReserveKey&
     int HeightZ = chainActive.Height();
     int mangedlamarde = (thematurebees - deadBees);
     //LogPrintf("multicount to know beecost for tx is : %i \n", multicount);
-    LogPrintf("High or Low cost according to current mature bees : %i \n", mangedlamarde);
+    //LogPrintf("High or Low cost according to current mature bees : %i \n", mangedlamarde);
     CAmount beeCost;
     if (mangedlamarde <= 378000)
 	beeCost = 0.0004*(GetBlockSubsidy(HeightZ, consensusParams));
     else                   // multicount is impair
 	beeCost = 0.0008*(GetBlockSubsidy(HeightZ, consensusParams)); 
-    LogPrintf("BeeCost for TRansaction is : %i \n", beeCost);
+    //LogPrintf("BeeCost for TRansaction is : %i \n", beeCost);
 
     CAmount curBalance = GetAvailableBalance();
     CAmount totalBeeCost = beeCost * beeCount;
