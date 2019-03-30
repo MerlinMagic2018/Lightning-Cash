@@ -13,6 +13,7 @@
 #include <uint256.h>
 
 #include <vector>
+#include <consensus/params.h>
 
 /**
  * Maximum amount of time that a block timestamp is allowed to exceed the
@@ -450,7 +451,7 @@ public:
     // Returns the index equal to tip - bees total lifespan.... will need to change 360 for mainet
     
     CBlockIndex *Toto() const {
-	int supertata = ((Params().GetConsensus().beeGestationBlocks) + (Params().GetConsensus().beeLifespanBlocks));
+	int supertata = 360;
 	if (vChain.size() <= supertata)
 		return vChain.size() > 0 ? vChain[0] : nullptr;
 	else	
@@ -460,7 +461,7 @@ public:
 
     /** Find the  block + 24 in this chain, or nullptr if the given index is not found or is the tip. */
     CBlockIndex *Nono(const CBlockIndex *pindex) const {
-	int supertiti = (Params().GetConsensus().beeGestationBlocks);
+	int supertiti = 24;
         if (Contains(pindex))
             return (*this)[pindex->nHeight + supertiti];
         else
@@ -469,7 +470,7 @@ public:
     
         /** Find the  block - 360 in this chain, or nullptr if the given index is not found. */
     CBlockIndex *Back(const CBlockIndex *pindex) const {
-	int supertonton = ((Params().GetConsensus().beeGestationBlocks) + (Params().GetConsensus().beeLifespanBlocks));
+	int supertonton = 360;
         if (Contains(pindex))
             return (*this)[pindex->nHeight - supertonton];
         else
@@ -477,7 +478,7 @@ public:
     }
     
     CBlockIndex *Back24(const CBlockIndex *pindex) const {
-	int supertutu = (Params().GetConsensus().beeGestationBlocks);
+	int supertutu = 24;
         if (Contains(pindex))
             return (*this)[pindex->nHeight - supertutu];
         else

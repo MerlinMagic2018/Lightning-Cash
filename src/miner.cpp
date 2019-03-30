@@ -612,13 +612,13 @@ bool BusyBees(const Consensus::Params& consensusParams) {
     std::vector<CBeeCreationTransactionInfo> bcts;
 
     if (consensusParams.variableBeecost) {
-	LogPrintf("OK \n");
+	//LogPrintf("OK \n");
 
     	bcts = pwallet->GetBCTs2(false, false, consensusParams);
 
     }
     else {
-	LogPrintf("NOT OK \n");
+	//LogPrintf("NOT OK \n");
     	bcts = pwallet->GetBCTs(false, false, consensusParams);
 
     }

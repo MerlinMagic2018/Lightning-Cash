@@ -631,7 +631,7 @@ UniValue createbees(const JSONRPCRequest& request)
     CReserveKey reservekeyHoney(pwallet);
 
     if (Params().GetConsensus().variableBeecost) {
-	    LogPrintf("OK \n");
+	    //LogPrintf("OK \n");
 
 	    if (pwallet->CreateBeeTransaction2(beeCount, wtxNew, reservekeyChange, reservekeyHoney, honeyAddress, communityContrib, strError, Params().GetConsensus())) {
 		CValidationState state;
@@ -645,7 +645,7 @@ UniValue createbees(const JSONRPCRequest& request)
 
     }
     else {
-	    LogPrintf("NOT OK \n");
+	    //LogPrintf("NOT OK \n");
 	    if (pwallet->CreateBeeTransaction(beeCount, wtxNew, reservekeyChange, reservekeyHoney, honeyAddress, communityContrib, strError, Params().GetConsensus())) {
 		CValidationState state;
 		if (honeyAddress.empty()) // If not using a custom honey address, keep the honey key
@@ -701,12 +701,12 @@ UniValue getnetworkhiveinfo(const JSONRPCRequest& request)
 
 
     if (consensusParams.variableBeecost) {
-	    LogPrintf("OK \n");
+	    //LogPrintf("OK \n");
 	    if (!GetNetworkHiveInfo2(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, includeGraph))
 		throw std::runtime_error("Error: A block required to calculate network bee population was not available (pruned data / not found on disk)");
     }
     else {
-	    LogPrintf("NOT OK \n");
+	    //LogPrintf("NOT OK \n");
 	    if (!GetNetworkHiveInfo(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, includeGraph))
 		throw std::runtime_error("Error: A block required to calculate network bee population was not available (pruned data / not found on disk)");
 
@@ -858,13 +858,13 @@ UniValue gethiveinfo(const JSONRPCRequest& request)
     std::vector<CBeeCreationTransactionInfo> bcts;
 
     if (consensusParams.variableBeecost) {
-	    LogPrintf("OK \n");
+	    //LogPrintf("OK \n");
 
 	    bcts = pwallet->GetBCTs2(includeDead, true, consensusParams, minHoneyConfirms);
 
     }
     else {
-	    LogPrintf("NOT OK \n");
+	    //LogPrintf("NOT OK \n");
 	    bcts = pwallet->GetBCTs(includeDead, true, consensusParams, minHoneyConfirms);
     }
 

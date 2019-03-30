@@ -200,11 +200,11 @@ void WalletView::gotoHivePage()
 {
 
     if (Params().GetConsensus().variableBeecost) {
-	    LogPrintf("OK \n");
+	    //LogPrintf("OK \n");
 	    hivePage->updateData2();
     }
     else {
-	    LogPrintf("NOT OK \n");
+	    //LogPrintf("NOT OK \n");
 	    hivePage->updateData();
     }
 

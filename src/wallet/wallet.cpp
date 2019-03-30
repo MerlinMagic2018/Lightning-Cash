@@ -4749,7 +4749,7 @@ void CMerkleTx::SetMerkleBranch(const CBlockIndex* pindex, int posInBlock)
 int CMerkleTx::GetDepthInMainChain(const CBlockIndex* &pindexRet) const
 {
     if (hashUnset()){
-	LogPrintf("hashUnset is true so returning 0\n");
+	//LogPrintf("hashUnset is true so returning 0\n");
         return 0;
     }
 
@@ -4774,7 +4774,7 @@ int CMerkleTx::GetDepthInMainChain(const CBlockIndex* &pindexRet) const
 int CMerkleTx::GetDepthInOrder(const CBlockIndex* &pindexRet) const
 {
     if (hashUnset()){
-	LogPrintf("hashUnset is true so returning 0\n");
+	//LogPrintf("hashUnset is true so returning 0\n");
         return 0;
     }
 
