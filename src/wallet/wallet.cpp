@@ -2828,7 +2828,9 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs2(bool includeDead, boo
     if (chainActive.Height() == 0)  // Don't continue if chainActive is invalid; we may be reindexing
         return bcts;
 
-    int maxDepth = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks;
+    int maxDepth = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks; // 360 on testnet
+    int wititi = consensusParams.beeLifespanBlocks; // 336 on testnet
+
     //int gestationdepth = consensusParams.beeGestationBlocks;
     CScript scriptPubKeyBCF = GetScriptForDestination(DecodeDestination(consensusParams.beeCreationAddress));
     CScript scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
@@ -2898,7 +2900,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs2(bool includeDead, boo
                         std::string status;
                         
                         //LogPrintf (" %i \n", ciboire);
-			if ((blocksLeft > 336) && (blocksLeft <= 360)){ // count immature bees
+			if ((blocksLeft > wititi) && (blocksLeft <= maxDepth)){ // count immature bees
 			    
 			    //LogPrintf (" Immature \n");
 			    /*if ((((totito > torpinouche) || (!torpinouche)) && (ciboire <= totito)) || (!totito) || (((torpinouche) && (torpinouche > totito)) && (ciboire > torpinouche))){ // NEEDS TO CHECK MULTICOUNT AT TIME OF TX.........
@@ -2950,7 +2952,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs2(bool includeDead, boo
 				continue;
 			}
                         
-                        if ((blocksLeft <= 336) && (blocksLeft >= 1)) { // count mature bees
+                        if ((blocksLeft <= wititi) && (blocksLeft >= 1)) { // count mature bees
                             status = "mature";
                             isMature = true;
                             

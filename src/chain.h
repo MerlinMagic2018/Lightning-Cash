@@ -448,33 +448,38 @@ public:
     }
 
     // Returns the index equal to tip - bees total lifespan.... will need to change 360 for mainet
+    
     CBlockIndex *Toto() const {
-	if (vChain.size() <= 360)
+	int supertata = ((Params().GetConsensus().beeGestationBlocks) + (Params().GetConsensus().beeLifespanBlocks));
+	if (vChain.size() <= supertata)
 		return vChain.size() > 0 ? vChain[0] : nullptr;
 	else	
-		return vChain.size() > 0 ? vChain[vChain.size() - 360] : nullptr;
+		return vChain.size() > 0 ? vChain[vChain.size() - supertata] : nullptr;
     }
 
 
     /** Find the  block + 24 in this chain, or nullptr if the given index is not found or is the tip. */
     CBlockIndex *Nono(const CBlockIndex *pindex) const {
+	int supertiti = (Params().GetConsensus().beeGestationBlocks);
         if (Contains(pindex))
-            return (*this)[pindex->nHeight + 24];
+            return (*this)[pindex->nHeight + supertiti];
         else
             return nullptr;
     }
     
         /** Find the  block - 360 in this chain, or nullptr if the given index is not found. */
     CBlockIndex *Back(const CBlockIndex *pindex) const {
+	int supertonton = ((Params().GetConsensus().beeGestationBlocks) + (Params().GetConsensus().beeLifespanBlocks));
         if (Contains(pindex))
-            return (*this)[pindex->nHeight - 360];
+            return (*this)[pindex->nHeight - supertonton];
         else
             return nullptr;
     }
     
     CBlockIndex *Back24(const CBlockIndex *pindex) const {
+	int supertutu = (Params().GetConsensus().beeGestationBlocks);
         if (Contains(pindex))
-            return (*this)[pindex->nHeight - 24];
+            return (*this)[pindex->nHeight - supertutu];
         else
             return nullptr;
     }

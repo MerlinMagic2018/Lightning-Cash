@@ -579,7 +579,7 @@ bool BusyBees(const Consensus::Params& consensusParams) {
     }
     if (pindexPrev->GetBlockHeader().IsHiveMined(consensusParams)) {
         LogPrint(BCLog::HIVE, "BusyBees: Skipping hive check (last block was hive mined)\n");
-        LogPrintf("BusyBees: Skipping hive check (last block was hive mined)\n");
+        //LogPrintf("BusyBees: Skipping hive check (last block was hive mined)\n");
         return false;
     }
 
