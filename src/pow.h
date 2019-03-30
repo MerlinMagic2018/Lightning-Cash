@@ -30,6 +30,8 @@ extern int pet;
 extern int thematurebees;
 extern int deadBees;
 extern int beesDying;
+extern int wototo;
+extern double super;
 
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params&);
 unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params&);

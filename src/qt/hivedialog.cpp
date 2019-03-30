@@ -217,13 +217,15 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
         // Now update bitcoingui
         Q_EMIT hiveStatusIconChanged(icon, tooltip);
     }
-    int HeightX = chainActive.Height();
+    int HeightX = (chainActive.Height() - 1);
     //CBlockIndex* osti = chainActive.Genesis();
     //int mauditcaca = chainActive.GetBlockTime();
-    int vadonchier = (thematurebees - deadBees);
+    int vadonchier = wototo;
     
- 
-    if (vadonchier <= 378000)
+    int superX = super;
+    //LogPrintf("is %i <= %i ??? if so, low cost !! \n", vadonchier, superX);
+    
+    if (vadonchier <= superX)
 	beeCost = 0.0004*(GetBlockSubsidy(HeightX, consensusParams));
     else                   // memory is impair
 	beeCost = 0.0008*(GetBlockSubsidy(HeightX, consensusParams));
@@ -233,7 +235,7 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
     setAmountField(ui->beeCostLabel, beeCost);
     updateTotalCostDisplay();
 
-    if (forceGlobalSummaryUpdate || chainActive.Tip()->nHeight > lastGlobalCheckHeight) { // Don't update global summary every block
+    if (forceGlobalSummaryUpdate || chainActive.Tip()->nHeight >= (lastGlobalCheckHeight + 10)) { // Don't update global summary every block
         int globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs;
 	//LogPrintf("thematurebees in hivedialog = %i \n", thematurebees);
 	//LogPrintf("deadmatureBees = %i \n", deadmatureBees);
@@ -343,6 +345,9 @@ void HiveDialog::on_releaseSwarmButton_clicked() {
 }
 
 void HiveDialog::on_createBeesButton_clicked() {
+    
+    updateData(true);
+    
     if (model) {
         if (totalCost > model->getBalance()) {
             QMessageBox::critical(this, tr("Error"), tr("Insufficient balance to create bees."));

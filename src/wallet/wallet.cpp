@@ -2937,14 +2937,18 @@ bool CWallet::CreateBeeTransaction(int beeCount, CWalletTx& wtxNew, CReserveKey&
         strFailReason = "Error: At least 1 bee must be created";
         return false;
     }
-	
+
+    
     // Check available balance (note: can't check fee at this point because we don't know the tx size)
     int HeightZ = chainActive.Height();
-    int mangedlamarde = (thematurebees - deadBees);
+    int mangedlamarde = wototo;
     //LogPrintf("multicount to know beecost for tx is : %i \n", multicount);
     //LogPrintf("High or Low cost according to current mature bees : %i \n", mangedlamarde);
     CAmount beeCost;
-    if (mangedlamarde <= 378000)
+   
+    double superZ = super;
+    //LogPrintf("is %i <= %i ??? if so, low cost !! \n", mangedlamarde, superZ);
+    if (mangedlamarde <= superZ)
 	beeCost = 0.0004*(GetBlockSubsidy(HeightZ, consensusParams));
     else                   // multicount is impair
 	beeCost = 0.0008*(GetBlockSubsidy(HeightZ, consensusParams)); 
