@@ -1108,8 +1108,19 @@ bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus:
 
     // LightningCash Gold: Hive: Check PoW or Hive work depending on blocktype
     if (block.IsHiveMined(consensusParams)) {
-        if (!CheckHiveProof(&block, consensusParams))
-            return error("ReadBlockFromDisk: Errors in Hive block header at %s", pos.ToString());
+
+	if consensusParams.variableBeecost {
+
+		if (!CheckHiveProof2(&block, consensusParams))
+		    return error("ReadBlockFromDisk: Errors in Hive block header at %s", pos.ToString());
+	}
+	else {
+		if (!CheckHiveProof(&block, consensusParams))
+		    return error("ReadBlockFromDisk: Errors in Hive block header at %s", pos.ToString());
+	}
+	
+
+
     } else {
         if (!CheckProofOfWork(block.GetPoWHash(), block.nBits, consensusParams))
             return error("ReadBlockFromDisk: Errors in PoW block header at %s", pos.ToString());
@@ -3049,8 +3060,16 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
 
     // LightningCash Gold: Hive: Check Hive proof
     if (block.IsHiveMined(consensusParams))
-        if (!CheckHiveProof(&block, consensusParams))
-            return state.DoS(100, false, REJECT_INVALID, "bad-hive-proof", false, "proof of hive failed");
+
+	if consensusParams.variableBeecost {
+
+		if (!CheckHiveProof2(&block, consensusParams))
+		    return state.DoS(100, false, REJECT_INVALID, "bad-hive-proof", false, "proof of hive failed");
+	}
+	else {
+		if (!CheckHiveProof(&block, consensusParams))
+		    return state.DoS(100, false, REJECT_INVALID, "bad-hive-proof", false, "proof of hive failed");
+	}
 
     // Check the merkle root.
     if (fCheckMerkleRoot) {

@@ -196,7 +196,15 @@ void WalletView::gotoOverviewPage()
 // LightningCash Gold: Hive page
 void WalletView::gotoHivePage()
 {
-    hivePage->updateData();
+
+    if consensusParams.variableBeecost {
+	    hivePage->updateData2();
+    }
+    else {
+	    hivePage->updateData();
+    }
+
+
     setCurrentWidget(hivePage);
 }
 

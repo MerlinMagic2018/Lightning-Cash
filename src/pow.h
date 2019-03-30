@@ -37,7 +37,9 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params&);
 unsigned int GetNextHiveWorkRequired(const CBlockIndex* pindexLast, const Consensus::Params& params);                       // LightningCash Gold: Hive: Get the current Bee Hash Target
 bool CheckHiveProof(const CBlock* pblock, const Consensus::Params& params);                                                 // LightningCash Gold: Hive: Check the hive proof for given block
+bool CheckHiveProof2(const CBlock* pblock, const Consensus::Params& params);                                                 // LightningCash Gold: Hive: Check the hive proof for given block
 bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, int& matureBCTs, CAmount& potentialLifespanRewards, const Consensus::Params& consensusParams, bool recalcGraph = false); // LightningCash Gold: Hive: Get count of all live and gestating BCTs on the network
+bool GetNetworkHiveInfo2(int& immatureBees, int& immatureBCTs, int& matureBees, int& matureBCTs, CAmount& potentialLifespanRewards, const Consensus::Params& consensusParams, bool recalcGraph = false); // LightningCash Gold: Hive: Get count of all live and gestating BCTs on the network
 
 /** Check whether a block hash satisfies the proof-of-work requirement specified by nBits */
 bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params&);

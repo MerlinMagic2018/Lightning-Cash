@@ -663,8 +663,14 @@ void WalletModel::loadReceiveRequests(std::vector<std::string>& vReceiveRequests
 
 // LightningCash Gold: Hive
 void WalletModel::getBCTs(std::vector<CBeeCreationTransactionInfo>& vBeeCreationTransactions, bool includeDeadBees) {
-    if (wallet)
-        vBeeCreationTransactions = wallet->GetBCTs(includeDeadBees, true, Params().GetConsensus());
+    if (wallet) {
+	if Params().GetConsensus().variableBeecost {
+        	vBeeCreationTransactions = wallet->GetBCTs2(includeDeadBees, true, Params().GetConsensus());
+	}
+	else {
+        	vBeeCreationTransactions = wallet->GetBCTs(includeDeadBees, true, Params().GetConsensus());
+	}
+    }
 }
 
 // LightningCash Gold: Hive
@@ -678,9 +684,20 @@ bool WalletModel::createBees(int beeCount, bool communityContrib, QWidget *paren
     std::string honeyAddress;
     CReserveKey reservekeyChange(wallet);
     CReserveKey reservekeyHoney(wallet);
-    if (!wallet->CreateBeeTransaction(beeCount, wtxNew, reservekeyChange, reservekeyHoney, honeyAddress, communityContrib, strError, Params().GetConsensus())) {
-        QMessageBox::critical(parent, tr("Error"), "Bee creation error: " + QString::fromStdString(strError));
-        return false;
+
+    if Params().GetConsensus().variableBeecost {
+
+	    if (!wallet->CreateBeeTransaction2(beeCount, wtxNew, reservekeyChange, reservekeyHoney, honeyAddress, communityContrib, strError, Params().GetConsensus())) {
+		QMessageBox::critical(parent, tr("Error"), "Bee creation error: " + QString::fromStdString(strError));
+		return false;
+	    }
+    }
+    else {
+	    if (!wallet->CreateBeeTransaction(beeCount, wtxNew, reservekeyChange, reservekeyHoney, honeyAddress, communityContrib, strError, Params().GetConsensus())) {
+		QMessageBox::critical(parent, tr("Error"), "Bee creation error: " + QString::fromStdString(strError));
+		return false;
+	    }
+
     }
 
     CAmount totalAmount = wtxNew.GetDebit(ISMINE_ALL) - wtxNew.GetCredit(ISMINE_ALL);

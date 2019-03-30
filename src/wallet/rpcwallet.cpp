@@ -629,15 +629,33 @@ UniValue createbees(const JSONRPCRequest& request)
 	
     CReserveKey reservekeyChange(pwallet);
     CReserveKey reservekeyHoney(pwallet);
-    if (pwallet->CreateBeeTransaction(beeCount, wtxNew, reservekeyChange, reservekeyHoney, honeyAddress, communityContrib, strError, Params().GetConsensus())) {
-        CValidationState state;
-        if (honeyAddress.empty()) // If not using a custom honey address, keep the honey key
-            reservekeyHoney.KeepKey();
-        if (!pwallet->CommitTransaction(wtxNew, reservekeyChange, g_connman.get(), state))
-            throw JSONRPCError(RPC_WALLET_BCT_FAIL, "Error: Bee creation transaction was rejected. Reason given: " + state.GetRejectReason());
-        return wtxNew.GetHash().GetHex();
-    } else
-        throw JSONRPCError(RPC_WALLET_BCT_FAIL, strError);
+
+    if Params().GetConsensus().variableBeecost {
+
+
+	    if (pwallet->CreateBeeTransaction2(beeCount, wtxNew, reservekeyChange, reservekeyHoney, honeyAddress, communityContrib, strError, Params().GetConsensus())) {
+		CValidationState state;
+		if (honeyAddress.empty()) // If not using a custom honey address, keep the honey key
+		    reservekeyHoney.KeepKey();
+		if (!pwallet->CommitTransaction(wtxNew, reservekeyChange, g_connman.get(), state))
+		    throw JSONRPCError(RPC_WALLET_BCT_FAIL, "Error: Bee creation transaction was rejected. Reason given: " + state.GetRejectReason());
+		return wtxNew.GetHash().GetHex();
+	    } else
+		throw JSONRPCError(RPC_WALLET_BCT_FAIL, strError);
+
+    }
+    else {
+	    if (pwallet->CreateBeeTransaction(beeCount, wtxNew, reservekeyChange, reservekeyHoney, honeyAddress, communityContrib, strError, Params().GetConsensus())) {
+		CValidationState state;
+		if (honeyAddress.empty()) // If not using a custom honey address, keep the honey key
+		    reservekeyHoney.KeepKey();
+		if (!pwallet->CommitTransaction(wtxNew, reservekeyChange, g_connman.get(), state))
+		    throw JSONRPCError(RPC_WALLET_BCT_FAIL, "Error: Bee creation transaction was rejected. Reason given: " + state.GetRejectReason());
+		return wtxNew.GetHash().GetHex();
+	    } else
+		throw JSONRPCError(RPC_WALLET_BCT_FAIL, strError);
+    }
+
 }
 
 // LightningCash Gold: Hive: Get network hive info
@@ -679,8 +697,18 @@ UniValue getnetworkhiveinfo(const JSONRPCRequest& request)
 
     int globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs;
     CAmount potentialRewards;
-    if (!GetNetworkHiveInfo(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, includeGraph))
-        throw std::runtime_error("Error: A block required to calculate network bee population was not available (pruned data / not found on disk)");
+
+
+    if consensusParams.variableBeecost {
+
+	    if (!GetNetworkHiveInfo2(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, includeGraph))
+		throw std::runtime_error("Error: A block required to calculate network bee population was not available (pruned data / not found on disk)");
+    }
+    else {
+	    if (!GetNetworkHiveInfo(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, includeGraph))
+		throw std::runtime_error("Error: A block required to calculate network bee population was not available (pruned data / not found on disk)");
+
+    }
 
     UniValue jsonResults(UniValue::VOBJ);
     jsonResults.push_back(Pair("immature_bee_count", globalImmatureBees));
@@ -825,7 +853,17 @@ UniValue gethiveinfo(const JSONRPCRequest& request)
     LOCK2(cs_main, pwallet->cs_wallet);
 
     // Iterate wallet txs looking for bee creation txs (BCTs)
-    std::vector<CBeeCreationTransactionInfo> bcts = pwallet->GetBCTs(includeDead, true, consensusParams, minHoneyConfirms);
+
+
+    if consensusParams.variableBeecost {
+
+	    std::vector<CBeeCreationTransactionInfo> bcts = pwallet->GetBCTs2(includeDead, true, consensusParams, minHoneyConfirms);
+
+    }
+    else {
+	    std::vector<CBeeCreationTransactionInfo> bcts = pwallet->GetBCTs(includeDead, true, consensusParams, minHoneyConfirms);
+    }
+
     UniValue bctList(UniValue::VARR);
 
     int totalBees = 0;
