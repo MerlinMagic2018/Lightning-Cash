@@ -630,8 +630,8 @@ UniValue createbees(const JSONRPCRequest& request)
     CReserveKey reservekeyChange(pwallet);
     CReserveKey reservekeyHoney(pwallet);
 
-    if Params().GetConsensus().variableBeecost {
-
+    if (Params().GetConsensus().variableBeecost) {
+	    LogPrintf("OK \n");
 
 	    if (pwallet->CreateBeeTransaction2(beeCount, wtxNew, reservekeyChange, reservekeyHoney, honeyAddress, communityContrib, strError, Params().GetConsensus())) {
 		CValidationState state;
@@ -645,6 +645,7 @@ UniValue createbees(const JSONRPCRequest& request)
 
     }
     else {
+	    LogPrintf("NOT OK \n");
 	    if (pwallet->CreateBeeTransaction(beeCount, wtxNew, reservekeyChange, reservekeyHoney, honeyAddress, communityContrib, strError, Params().GetConsensus())) {
 		CValidationState state;
 		if (honeyAddress.empty()) // If not using a custom honey address, keep the honey key
@@ -699,12 +700,13 @@ UniValue getnetworkhiveinfo(const JSONRPCRequest& request)
     CAmount potentialRewards;
 
 
-    if consensusParams.variableBeecost {
-
+    if (consensusParams.variableBeecost) {
+	    LogPrintf("OK \n");
 	    if (!GetNetworkHiveInfo2(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, includeGraph))
 		throw std::runtime_error("Error: A block required to calculate network bee population was not available (pruned data / not found on disk)");
     }
     else {
+	    LogPrintf("NOT OK \n");
 	    if (!GetNetworkHiveInfo(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, includeGraph))
 		throw std::runtime_error("Error: A block required to calculate network bee population was not available (pruned data / not found on disk)");
 
@@ -853,15 +855,17 @@ UniValue gethiveinfo(const JSONRPCRequest& request)
     LOCK2(cs_main, pwallet->cs_wallet);
 
     // Iterate wallet txs looking for bee creation txs (BCTs)
+    std::vector<CBeeCreationTransactionInfo> bcts;
 
+    if (consensusParams.variableBeecost) {
+	    LogPrintf("OK \n");
 
-    if consensusParams.variableBeecost {
-
-	    std::vector<CBeeCreationTransactionInfo> bcts = pwallet->GetBCTs2(includeDead, true, consensusParams, minHoneyConfirms);
+	    bcts = pwallet->GetBCTs2(includeDead, true, consensusParams, minHoneyConfirms);
 
     }
     else {
-	    std::vector<CBeeCreationTransactionInfo> bcts = pwallet->GetBCTs(includeDead, true, consensusParams, minHoneyConfirms);
+	    LogPrintf("NOT OK \n");
+	    bcts = pwallet->GetBCTs(includeDead, true, consensusParams, minHoneyConfirms);
     }
 
     UniValue bctList(UniValue::VARR);

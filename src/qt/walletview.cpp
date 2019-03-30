@@ -35,6 +35,8 @@
 #include <QVBoxLayout>
 #include <QInputDialog>         // LightningCash Gold: Key import helper
 
+#include <util.h> // to see if its ok...
+
 WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     QStackedWidget(parent),
     clientModel(0),
@@ -197,10 +199,12 @@ void WalletView::gotoOverviewPage()
 void WalletView::gotoHivePage()
 {
 
-    if consensusParams.variableBeecost {
+    if (Params().GetConsensus().variableBeecost) {
+	    LogPrintf("OK \n");
 	    hivePage->updateData2();
     }
     else {
+	    LogPrintf("NOT OK \n");
 	    hivePage->updateData();
     }
 

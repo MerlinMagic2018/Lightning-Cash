@@ -69,12 +69,13 @@ void HiveDialog::setClientModel(ClientModel *_clientModel) {
     this->clientModel = _clientModel;
 
     if (_clientModel) {
-	if Params().GetConsensus().variableBeecost {
-
+	if (Params().GetConsensus().variableBeecost) {
+		LogPrintf("OK \n");
 		connect(_clientModel, SIGNAL(numBlocksChanged(int,QDateTime,double,bool)), this, SLOT(updateData2()));
 		connect(_clientModel, SIGNAL(numConnectionsChanged(int)), this, SLOT(updateData2()));    // TODO: This may be too expensive to call here, and the only point is to update the hive status icon.
 	}
 	else {
+		LogPrintf("NOT OK \n");
 		connect(_clientModel, SIGNAL(numBlocksChanged(int,QDateTime,double,bool)), this, SLOT(updateData()));
 		connect(_clientModel, SIGNAL(numConnectionsChanged(int)), this, SLOT(updateData()));    // TODO: This may be too expensive to call here, and the only point is to update the hive status icon.
 	}
@@ -121,11 +122,12 @@ void HiveDialog::setModel(WalletModel *_model) {
 
         // Populate initial data
 
-	if Params().GetConsensus().variableBeecost { 
-
+	if (Params().GetConsensus().variableBeecost) { 
+		LogPrintf("OK \n");
         	updateData2(true);
 	}
 	else {
+		LogPrintf("NOT OK \n");
 		updateData(true);
 	}
     }
@@ -152,10 +154,12 @@ void HiveDialog::setEncryptionStatus(int status) {
     }
 
 
-    if Params().GetConsensus().variableBeecost {
+    if (Params().GetConsensus().variableBeecost) {
+	LogPrintf("OK \n");
     	updateData2();
     }
     else {
+	LogPrintf("NOT OK \n");
     	updateData();
     }
 }
@@ -250,8 +254,8 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
         int globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs;
 
 
-	if consensusParams.variableBeecost {
-
+	if (consensusParams.variableBeecost) {
+		LogPrintf("OK \n");
 		if (!GetNetworkHiveInfo2(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
 		    ui->globalHiveSummary->hide();
 		    ui->globalHiveSummaryError->show();
@@ -272,6 +276,7 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
 		}
 	}
 	else {
+		LogPrintf("NOT OK \n");
 		if (!GetNetworkHiveInfo(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
 		    ui->globalHiveSummary->hide();
 		    ui->globalHiveSummaryError->show();
@@ -397,7 +402,8 @@ void HiveDialog::updateData2(bool forceGlobalSummaryUpdate) {
 	//LogPrintf("thematurebees - deadBees = %i (flute in hivedialog.cpp and coucou in pow.cpp) \n", flute);
 
 
-	if consensusParams.variableBeecost {
+	if (consensusParams.variableBeecost) {
+		LogPrintf("OK \n");
 
 		if (!GetNetworkHiveInfo2(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
 		    ui->globalHiveSummary->hide();
@@ -420,6 +426,7 @@ void HiveDialog::updateData2(bool forceGlobalSummaryUpdate) {
 
 	}
 	else {
+		LogPrintf("NOT OK \n");
 		if (!GetNetworkHiveInfo(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
 		    ui->globalHiveSummary->hide();
 		    ui->globalHiveSummaryError->show();
@@ -501,10 +508,12 @@ void HiveDialog::on_beeCountSpinner_valueChanged(int i) {
 
 void HiveDialog::on_includeDeadBeesCheckbox_stateChanged() {
 
-    if Params().GetConsensus().variableBeecost {
+    if (Params().GetConsensus().variableBeecost) {
+	LogPrintf("OK \n");
     	updateData2();
     }
     else {
+	LogPrintf("NOT OK \n");
     	updateData();
     }
 }
@@ -517,19 +526,23 @@ void HiveDialog::on_showAdvancedStatsCheckbox_stateChanged() {
 }
 
 void HiveDialog::on_retryGlobalSummaryButton_clicked() {
-    if Params().GetConsensus().variableBeecost {
+    if (Params().GetConsensus().variableBeecost) {
+	LogPrintf("OK \n");
     	updateData2(true);
     }
     else {
+	LogPrintf("NOT OK \n");
     	updateData(true);
     }
 }
 
 void HiveDialog::on_refreshGlobalSummaryButton_clicked() {
-    if Params().GetConsensus().variableBeecost {
+    if (Params().GetConsensus().variableBeecost) {
+	LogPrintf("OK \n");
     	updateData2(true);
     }
     else {
+	LogPrintf("NOT OK \n");
     	updateData(true);
     }
 }
@@ -540,10 +553,12 @@ void HiveDialog::on_releaseSwarmButton_clicked() {
 }
 
 void HiveDialog::on_createBeesButton_clicked() {
-    if Params().GetConsensus().variableBeecost {
+    if (Params().GetConsensus().variableBeecost) {
+	LogPrintf("OK \n");
     	updateData2(true);
     }
     else {
+	LogPrintf("NOT OK \n");
     	updateData(true);
     }
     

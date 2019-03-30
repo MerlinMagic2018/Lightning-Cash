@@ -608,16 +608,18 @@ bool BusyBees(const Consensus::Params& consensusParams) {
 
     // Iterate all our active BCTs, letting their bees try and solve
     LogPrint(BCLog::HIVE, "BusyBees: Checking bee hashes....\n");
+    
+    std::vector<CBeeCreationTransactionInfo> bcts;
 
+    if (consensusParams.variableBeecost) {
+	LogPrintf("OK \n");
 
-    if consensusParams.variableBeecost {
-
-    	std::vector<CBeeCreationTransactionInfo> bcts = pwallet->GetBCTs2(false, false, consensusParams);
+    	bcts = pwallet->GetBCTs2(false, false, consensusParams);
 
     }
     else {
-
-    	std::vector<CBeeCreationTransactionInfo> bcts = pwallet->GetBCTs(false, false, consensusParams);
+	LogPrintf("NOT OK \n");
+    	bcts = pwallet->GetBCTs(false, false, consensusParams);
 
     }
     arith_uint256 bestHash = arith_uint256("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
