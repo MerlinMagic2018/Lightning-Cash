@@ -1109,7 +1109,7 @@ bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus:
     // LightningCash Gold: Hive: Check PoW or Hive work depending on blocktype
     if (block.IsHiveMined(consensusParams)) {
 
-	if (consensusParams.variableBeecost) {
+	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock))) {
 		//LogPrintf("OK \n");
 		if (!CheckHiveProof2(&block, consensusParams))
 		    return error("ReadBlockFromDisk: Errors in Hive block header at %s", pos.ToString());
@@ -3062,7 +3062,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
     // LightningCash Gold: Hive: Check Hive proof
     if (block.IsHiveMined(consensusParams))
 
-	if (consensusParams.variableBeecost) {
+	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock))){
 		//LogPrintf("OK \n");
 		if (!CheckHiveProof2(&block, consensusParams))
 		    return state.DoS(100, false, REJECT_INVALID, "bad-hive-proof", false, "proof of hive failed");

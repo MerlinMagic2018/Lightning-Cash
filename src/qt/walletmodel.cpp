@@ -664,7 +664,7 @@ void WalletModel::loadReceiveRequests(std::vector<std::string>& vReceiveRequests
 // LightningCash Gold: Hive
 void WalletModel::getBCTs(std::vector<CBeeCreationTransactionInfo>& vBeeCreationTransactions, bool includeDeadBees) {
     if (wallet) {
-	if (Params().GetConsensus().variableBeecost) {
+	if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock))) {
 		//LogPrintf("OK \n");
         	vBeeCreationTransactions = wallet->GetBCTs2(includeDeadBees, true, Params().GetConsensus());
 	}
@@ -687,7 +687,7 @@ bool WalletModel::createBees(int beeCount, bool communityContrib, QWidget *paren
     CReserveKey reservekeyChange(wallet);
     CReserveKey reservekeyHoney(wallet);
 
-    if (Params().GetConsensus().variableBeecost) {
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock))) {
 	   // LogPrintf("OK \n");
 	    if (!wallet->CreateBeeTransaction2(beeCount, wtxNew, reservekeyChange, reservekeyHoney, honeyAddress, communityContrib, strError, Params().GetConsensus())) {
 		QMessageBox::critical(parent, tr("Error"), "Bee creation error: " + QString::fromStdString(strError));

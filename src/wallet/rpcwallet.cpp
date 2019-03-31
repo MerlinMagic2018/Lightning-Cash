@@ -630,7 +630,7 @@ UniValue createbees(const JSONRPCRequest& request)
     CReserveKey reservekeyChange(pwallet);
     CReserveKey reservekeyHoney(pwallet);
 
-    if (Params().GetConsensus().variableBeecost) {
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock))) {
 	    //LogPrintf("OK \n");
 
 	    if (pwallet->CreateBeeTransaction2(beeCount, wtxNew, reservekeyChange, reservekeyHoney, honeyAddress, communityContrib, strError, Params().GetConsensus())) {
@@ -700,7 +700,7 @@ UniValue getnetworkhiveinfo(const JSONRPCRequest& request)
     CAmount potentialRewards;
 
 
-    if (consensusParams.variableBeecost) {
+    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock))) {
 	    //LogPrintf("OK \n");
 	    if (!GetNetworkHiveInfo2(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, includeGraph))
 		throw std::runtime_error("Error: A block required to calculate network bee population was not available (pruned data / not found on disk)");
@@ -857,7 +857,7 @@ UniValue gethiveinfo(const JSONRPCRequest& request)
     // Iterate wallet txs looking for bee creation txs (BCTs)
     std::vector<CBeeCreationTransactionInfo> bcts;
 
-    if (consensusParams.variableBeecost) {
+    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock))) {
 	    //LogPrintf("OK \n");
 
 	    bcts = pwallet->GetBCTs2(includeDead, true, consensusParams, minHoneyConfirms);

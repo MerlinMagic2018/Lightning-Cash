@@ -104,6 +104,7 @@ struct Params {
     int hiveTargetAdjustAggression;     // Snap speed for bee hash target adjustment EMA
     int hiveBlockSpacingTarget;         // Target Hive block frequency (1 out of this many blocks should be Hive)
     bool variableBeecost;
+    int variableForkBlock;
 };
 } // namespace Consensus
 
