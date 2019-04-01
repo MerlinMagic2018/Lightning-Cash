@@ -154,7 +154,7 @@ void HiveDialog::setEncryptionStatus(int status) {
     }
 
 
-    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)))) {
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock))) {
 	//LogPrintf("OK \n");
     	updateData2();
     }
@@ -508,7 +508,7 @@ void HiveDialog::on_beeCountSpinner_valueChanged(int i) {
 
 void HiveDialog::on_includeDeadBeesCheckbox_stateChanged() {
 
-    if (Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) {
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock))) {
 	//LogPrintf("OK \n");
     	updateData2();
     }

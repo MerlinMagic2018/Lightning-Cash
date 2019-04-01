@@ -451,7 +451,7 @@ public:
     // Returns the index equal to tip - bees total lifespan.... will need to change 360 for mainet
     
     CBlockIndex *Toto() const {
-	int supertata = 360;
+	int supertata = 17280;
 	if (vChain.size() <= supertata)
 		return vChain.size() > 0 ? vChain[0] : nullptr;
 	else	
@@ -461,7 +461,7 @@ public:
 
     /** Find the  block + 24 in this chain, or nullptr if the given index is not found or is the tip. */
     CBlockIndex *Nono(const CBlockIndex *pindex) const {
-	int supertiti = 24;
+	int supertiti = 1152;
         if (Contains(pindex))
             return (*this)[pindex->nHeight + supertiti];
         else
@@ -470,7 +470,7 @@ public:
     
         /** Find the  block - 360 in this chain, or nullptr if the given index is not found. */
     CBlockIndex *Back(const CBlockIndex *pindex) const {
-	int supertonton = 360;
+	int supertonton = 17280;
         if (Contains(pindex))
             return (*this)[pindex->nHeight - supertonton];
         else
@@ -478,7 +478,7 @@ public:
     }
     
     CBlockIndex *Back24(const CBlockIndex *pindex) const {
-	int supertutu = 24;
+	int supertutu = 1152;
         if (Contains(pindex))
             return (*this)[pindex->nHeight - supertutu];
         else
