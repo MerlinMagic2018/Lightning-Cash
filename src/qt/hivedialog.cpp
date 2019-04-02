@@ -378,12 +378,12 @@ void HiveDialog::updateData2(bool forceGlobalSummaryUpdate) {
     int HeightX = (chainActive.Height() - 1);
     //CBlockIndex* osti = chainActive.Genesis();
     //int mauditcaca = chainActive.GetBlockTime();
-    int vadonchier = wototo;
+    int vadonchier = wototo; // matureBees
     
-    int superX = super;
+    int superX = super; // # of bees for global index at 90
     //LogPrintf("is %i <= %i ??? if so, low cost !! \n", vadonchier, superX);
     
-    if (vadonchier <= superX)
+    if (vadonchier <= superX) // if maturebees is under 90...
 	beeCost = 0.0004*(GetBlockSubsidy(HeightX, consensusParams));
     else                   // memory is impair
 	beeCost = 0.0008*(GetBlockSubsidy(HeightX, consensusParams));
@@ -463,8 +463,8 @@ void HiveDialog::updateData2(bool forceGlobalSummaryUpdate) {
 	//beePopIndex = (flute*5) / (double)potentialRewards) * 100.0; // total global mature bees X ( 1 / basecost )
 
 	// (consensusParams.beeLifespanBlocks * GetBlockSubsidy(pindexLast->nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
-	beePopIndex = (((0.0004*(GetBlockSubsidy(HeightX, consensusParams))) * flute) / (double)potentialRewards) * 100.0;
-
+	beePopIndex = (((0.0004*(GetBlockSubsidy(HeightX, consensusParams))) * flute) / (double)potentialRewards) * 100.0; // low price times thematurebees.... on 
+        LogPrintf("beePopIndex = %i \n", beePopIndex);
         if (beePopIndex > 200) beePopIndex = 200;
         ui->beePopIndexLabel->setText(QString::number(floor(beePopIndex)));
         ui->beePopIndexPie->setValue(beePopIndex / 100);
@@ -639,8 +639,11 @@ void HiveDialog::updateGraph() {
     }
     ui->beePopGraph->graph(0)->data()->set(dataImmature);
     ui->beePopGraph->graph(1)->data()->set(dataMature);
+    
+    int HeightXosti = (chainActive.Height() - 1);
+    int beeCostStable = 0.0004*(GetBlockSubsidy(HeightXosti, consensusParams));
 
-    double global100 = (double)potentialRewards / beeCost;
+    double global100 = (double)potentialRewards / beeCostStable;
     globalMarkerLine->start->setCoords(now, global100);
     globalMarkerLine->end->setCoords(now + consensusParams.nPowTargetSpacing / 2 * totalLifespan, global100);
     giTicker->global100 = global100;

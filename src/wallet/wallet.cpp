@@ -2913,7 +2913,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs2(bool includeDead, boo
 				beeCost = 0.0008*(GetBlockSubsidy(TheHeight, consensusParams));
 				
 			    }*/
-			    if (((torpinouche > totito) && ((ciboire > totito) && (ciboire < torpinouche))) || ((totito > torpinouche) && (ciboire > totito))){
+			    if (((torpinouche > totito) && ((ciboire > totito) && (ciboire < torpinouche))) || ((totito > torpinouche) && ((ciboire > totito) || (ciboire < torpinouche)))) {
                                     beeCost = 0.0008*(GetBlockSubsidy(cocorico, consensusParams));
                                     //LogPrintf (" beeCost = %i \n", beeCost);
                             }
@@ -2939,7 +2939,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs2(bool includeDead, boo
                             //int TheHeight3 = chainActive.Height();
                             int ciboire3 = mapBlockIndex[wtx.hashBlock]->GetBlockTime();
                             
-                            if (((torpinouche > totito) && ((ciboire3 > totito) && (ciboire3 < torpinouche))) || ((totito > torpinouche) && (ciboire3 > totito))){
+                            if (((torpinouche > totito) && ((ciboire3 > totito) && (ciboire3 < torpinouche))) || ((totito > torpinouche) && ((ciboire3 > totito) || (ciboire3 < torpinouche)))){
                                     beeCost = 0.0008*(GetBlockSubsidy(cocorico2, consensusParams));
                                     //LogPrintf (" beeCost = %i \n", beeCost);
                             }
@@ -2962,7 +2962,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs2(bool includeDead, boo
                             
                             //LogPrintf (" Mature \n");
                             
-                            if (((torpinouche > totito) && ((ciboire2 > totito) && (ciboire2 < torpinouche))) || ((totito > torpinouche) && (ciboire2 > totito))){
+                            if (((torpinouche > totito) && ((ciboire2 > totito) && (ciboire2 < torpinouche))) || ((totito > torpinouche) && ((ciboire2 > totito) || (ciboire2 < torpinouche)))) {
                                     beeCost = 0.0008*(GetBlockSubsidy(cocorico3, consensusParams));
                                     //LogPrintf (" beeCost = %i \n", beeCost);
                             }

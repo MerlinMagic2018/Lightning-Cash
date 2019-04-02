@@ -42,6 +42,8 @@ int letsremembertata; // tata after 1st loop
 int letsremembermaturebees; // maturebees  after first loop
 int letsrememberimmaturebees; // immature bees after first loop
 int letsrememberexpiredbees; // expired bees after first loop
+int letsremembermatureBCTs; // # of mature BCTs after first loop
+int letsrememberimmatureBCTs; // # of immature BCTs after first loop
 CBlockIndex* pindexNow; // the pointer after first loop...
 
 //int zaza;
@@ -453,7 +455,7 @@ bool GetNetworkHiveInfo2(int& immatureBees, int& immatureBCTs, int& matureBees, 
             }
         }
         
-        for (int i = testing; i < (tipHeight - 10); i++) {
+        for (int i = testing; i < (tipHeight - 2); i++) {
         
         int totalBeeLifespan = consensusParams.beeLifespanBlocks + consensusParams.beeGestationBlocks;
         int bordel = consensusParams.beeGestationBlocks;
@@ -625,6 +627,7 @@ bool GetNetworkHiveInfo2(int& immatureBees, int& immatureBCTs, int& matureBees, 
 
 			    
                             matureBCTs++;
+                            immatureBCTs--;
                                                                                                                                                
                     }
                 }
@@ -696,23 +699,14 @@ bool GetNetworkHiveInfo2(int& immatureBees, int& immatureBCTs, int& matureBees, 
                             beesDying += beeCountZ;
                             
                             matureBees -= beeCountZ;                                                                                  
-
+                            matureBCTs--;
                         }                
                 }
             }    
             }   
         } // count dying bees
-           
-        
-        
-        
-        
+                   
         // check switch time to know beeCost for every BCT !!
-        
-        
-        
-        
-        
         int coucou = matureBees;
         
         totalMatureBees = matureBees;
@@ -752,6 +746,8 @@ bool GetNetworkHiveInfo2(int& immatureBees, int& immatureBCTs, int& matureBees, 
         letsremembermaturebees = coucou; // coucou is the same as matureBees
         letsrememberimmaturebees = immatureBees;
         letsrememberexpiredbees = beesDying;
+        letsremembermatureBCTs = matureBCTs;
+        letsrememberimmatureBCTs = immatureBCTs;
         
 	scanedonce = 1;
 	
@@ -782,10 +778,13 @@ bool GetNetworkHiveInfo2(int& immatureBees, int& immatureBCTs, int& matureBees, 
 
         calisse = letsremembertoti; // the last toti from first loop
         pet = letsremembertata; // the last tata from first loop
-        pindexPrev = pindexNow; // the last checked height from first loop
+        pindexPrev = chainActive.Next(pindexNow); // the last pointer from first loop + 1 ...
         matureBees = letsremembermaturebees;
+        //LogPrintf("maturebees = %i \n", matureBees);
         immatureBees = letsrememberimmaturebees;
         beesDying = letsrememberexpiredbees;
+        matureBCTs = letsremembermatureBCTs;
+        immatureBCTs = letsrememberimmatureBCTs;
         
         for (int i = (letsrememberheight + 1); i < tipHeight; i++) {
         
@@ -963,7 +962,7 @@ bool GetNetworkHiveInfo2(int& immatureBees, int& immatureBCTs, int& matureBees, 
                             immatureBees -= beeCount3;
 			    	
 
-			    
+			    immatureBCTs--;
                             matureBCTs++;
                                                                                                                                                    
                     }
@@ -1037,7 +1036,7 @@ bool GetNetworkHiveInfo2(int& immatureBees, int& immatureBCTs, int& matureBees, 
                             beesDying += beeCountZ;
                             
                             matureBees -= beeCountZ;
-                                                                                    
+                            matureBCTs--;                                                        
                         }                
                 }
             }    
@@ -1048,7 +1047,7 @@ bool GetNetworkHiveInfo2(int& immatureBees, int& immatureBCTs, int& matureBees, 
         
         // check switch time to know beeCost for every BCT !!
         int coucou = matureBees;
-        
+        LogPrintf("coucou = %s\n", coucou);
         totalMatureBees = coucou;
         thematurebees = coucou;
         wototo = coucou;
