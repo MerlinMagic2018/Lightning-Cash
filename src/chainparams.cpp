@@ -133,7 +133,8 @@ public:
         consensus.hiveBlockSpacingTarget = 2;               // Target Hive block frequency (1 out of this many blocks should be Hivemined)
         consensus.hiveNonceMarker = 192;                    // Nonce marker for hivemined blocks
 	consensus.variableBeecost = true;
-	consensus.variableForkBlock = 60000;
+	consensus.variableForkBlock = 62000;
+	consensus.isTestnet = false;
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");  // LightningCash Gold new blockchain
@@ -249,8 +250,8 @@ public:
         consensus.beeCreationAddress = "tEstNetCreateLCCWorkerBeeXXXYq6T3r";        // Unspendable address for bee creation
         consensus.hiveCommunityAddress = "t9ctP2rDfvnqUr9kmo2nb1LEDpu1Lc5sQn";      // Community fund address
         consensus.communityContribFactor = 10;              // Optionally, donate bct_value/maxCommunityContribFactor to community fund
-        consensus.beeGestationBlocks = 48*24;               // The number of blocks for a new bee to mature 24 times faster for testnet
-        consensus.beeLifespanBlocks = 48*24*14;             // The number of blocks a bee lives for after maturation 24 times faster for testnet
+        consensus.beeGestationBlocks = 24;               // The number of blocks for a new bee to mature 24 times faster for testnet
+        consensus.beeLifespanBlocks = 24*14;             // The number of blocks a bee lives for after maturation 24 times faster for testnet
         consensus.powLimitHive = uint256S("0ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");  // Highest (easiest) bee hash target
         consensus.minHiveCheckBlock = 1;                  // Don't bother checking below this height for Hive blocks (not used for consensus/validation checks, just efficiency when looking for potential BCTs)
         consensus.hiveTargetAdjustAggression = 30;          // Snap speed for bee hash target adjustment EMA
@@ -258,6 +259,7 @@ public:
         consensus.hiveNonceMarker = 192;                    // Nonce marker for hivemined blocks
 	consensus.variableBeecost = true;
 	consensus.variableForkBlock = 0;
+	consensus.isTestnet = true;
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");  // LightningCash Gold

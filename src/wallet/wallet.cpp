@@ -2831,14 +2831,11 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs2(bool includeDead, boo
     int maxDepth = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks; // 360 on testnet
     int wititi = consensusParams.beeLifespanBlocks; // 336 on testnet
 
-    //int gestationdepth = consensusParams.beeGestationBlocks;
+   
     CScript scriptPubKeyBCF = GetScriptForDestination(DecodeDestination(consensusParams.beeCreationAddress));
     CScript scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
 
-    // for (const std::pair<uint256, CWalletTx>& pairWtx : mapWallet) { // PROBLEM
-
-    //int depth;
-    //for (depth = 0; depth < maxDepth; depth++){
+    
 
 
 	    for (const std::pair<uint256, CWalletTx>& pairWtx : mapWallet) {
@@ -2846,8 +2843,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs2(bool includeDead, boo
 
 	    int totito = switchHmem;
             int torpinouche = switchLmem;
-    	    //LogPrintf ("toti is  %i  so totito is %i)\n", calisse, totito);
-	    //LogPrintf ("tata is  %i  so torpinouche is %i)\n", pet, torpinouche);
+    	    
 
 
 		// Skip unconfirmed transactions and orphans
@@ -2878,49 +2874,36 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs2(bool includeDead, boo
 		std::string honeyAddress = EncodeDestination(honeyDestination);
 
 		// Check lifespan & maturity
-		int depth = wtx.GetDepthInMainChain(); // TRY....what ?!?!
+		int depth = wtx.GetDepthInMainChain();
 
 
 
 
 
 
-			//LogPrintf ("depth... which is:( wtx.GetDepthInMainChain() ) = %i \n", depth);
+			
 			int blocksLeft = maxDepth - depth; // so 360 - ..... ???
-			//LogPrintf ("blocksleft ( maxDepth which is 360 - depth ) = %i \n", blocksLeft);
-			// blocksLeft++; // useless in my code......  // Bee life starts at zero immediately AFTER the BCT appears in a block.
-			//LogPrintf ("blocksleft just after ++ = %i \n", blocksLeft);
+			
 
                         int cocorico = (chainActive.Height() - depth); // this will give the block height for the current checked BCT
 			int TheHeight = chainActive.Height();
 			int ciboire = mapBlockIndex[wtx.hashBlock]->GetBlockTime();
-                        //int mangedlacrotte = (thematurebees - deadBees);
-                        //LogPrintf ("mangedlacrotte = %i ( over or under 378000 ??? ) \n", mangedlacrotte);
+                        
                         bool isMature;
                         std::string status;
                         
-                        //LogPrintf (" %i \n", ciboire);
+                       
 			if ((blocksLeft > wititi) && (blocksLeft <= maxDepth)){ // count immature bees
 			    
-			    //LogPrintf (" Immature \n");
-			    /*if ((((totito > torpinouche) || (!torpinouche)) && (ciboire <= totito)) || (!totito) || (((torpinouche) && (torpinouche > totito)) && (ciboire > torpinouche))){ // NEEDS TO CHECK MULTICOUNT AT TIME OF TX.........
 			    
-				beeCost = 0.0004*(GetBlockSubsidy(TheHeight, consensusParams));
-				
-			    }
-			    
-                            else{
-				beeCost = 0.0008*(GetBlockSubsidy(TheHeight, consensusParams));
-				
-			    }*/
 			    if (((torpinouche > totito) && ((ciboire > totito) && (ciboire < torpinouche))) || ((totito > torpinouche) && ((ciboire > totito) || (ciboire < torpinouche)))) {
                                     beeCost = 0.0008*(GetBlockSubsidy(cocorico, consensusParams));
-                                    //LogPrintf (" beeCost = %i \n", beeCost);
+                                   
                             }
                             
                             else{
                                     beeCost = 0.0004*(GetBlockSubsidy(cocorico, consensusParams));
-                                    //LogPrintf (" beeCost = %i \n", beeCost);
+                                    
                             }
 
 
@@ -2931,22 +2914,22 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs2(bool includeDead, boo
                         
 			if (blocksLeft < 1) { // count dead bees
 			    
-                            //LogPrintf (" Expired \n");
+                            
 			    blocksLeft = 0;
 			    status = "expired";
 			    isMature = true;    // We still want to calc rewards
                             int cocorico2 = (chainActive.Height() - depth);
-                            //int TheHeight3 = chainActive.Height();
+                            
                             int ciboire3 = mapBlockIndex[wtx.hashBlock]->GetBlockTime();
                             
                             if (((torpinouche > totito) && ((ciboire3 > totito) && (ciboire3 < torpinouche))) || ((totito > torpinouche) && ((ciboire3 > totito) || (ciboire3 < torpinouche)))){
                                     beeCost = 0.0008*(GetBlockSubsidy(cocorico2, consensusParams));
-                                    //LogPrintf (" beeCost = %i \n", beeCost);
+                                    
                             }
                             
                             else{
                                     beeCost = 0.0004*(GetBlockSubsidy(cocorico2, consensusParams));
-                                    //LogPrintf (" beeCost = %i \n", beeCost);
+                                   
                             }
                             if (!includeDead)   // Skip dead bees unless explicitly including them  ------->   always include them...
 				continue;
@@ -2960,16 +2943,16 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs2(bool includeDead, boo
                             int ciboire2 = mapBlockIndex[wtx.hashBlock]->GetBlockTime();
                             int cocorico3 = (chainActive.Height() - depth);
                             
-                            //LogPrintf (" Mature \n");
+                           
                             
                             if (((torpinouche > totito) && ((ciboire2 > totito) && (ciboire2 < torpinouche))) || ((totito > torpinouche) && ((ciboire2 > totito) || (ciboire2 < torpinouche)))) {
                                     beeCost = 0.0008*(GetBlockSubsidy(cocorico3, consensusParams));
-                                    //LogPrintf (" beeCost = %i \n", beeCost);
+                                    
                             }
                             
                             else{
                                     beeCost = 0.0004*(GetBlockSubsidy(cocorico3, consensusParams));
-                                    //LogPrintf (" beeCost = %i \n", beeCost);
+                                   
                             }
 
                             // get the bee cost according to GI  AT A GIVEN TIME....
@@ -2981,11 +2964,9 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs2(bool includeDead, boo
 			    beeFeePaid += wtx.tx->vout[1].nValue;            // Add any community fund contribution back to the total paid
 			    communityContrib = true;
 			}
-                        //LogPrintf ("-----so beeFeePaid / beeCost = %d / %d\n", beeFeePaid, beeCost);
-			int beeCount = beeFeePaid / beeCost; // PROBLEM HERE !!
-			//LogPrintf ("beeCount in wallet.cpp = %i \n", beeCount);
-                        //LogPrintf (" Height = %i \n", cocorico); // not sure...
-			// LogPrintf ("beeCount per beecreation transaction in wallet.cpp = %i \n", beeCount);
+                       
+			int beeCount = beeFeePaid / beeCost;
+			
 
 
 
@@ -3016,7 +2997,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs2(bool includeDead, boo
 
 				blocksFound++;
 				rewardsPaid += wtx2.tx->vout[1].nValue;
-				//LogPrintf("rewardsPaid = %d \n", rewardsPaid);
+				
 			    }
 			}
 
@@ -3181,17 +3162,16 @@ bool CWallet::CreateBeeTransaction2(int beeCount, CWalletTx& wtxNew, CReserveKey
     // Check available balance (note: can't check fee at this point because we don't know the tx size)
     int HeightZ = chainActive.Height();
     int mangedlamarde = wototo;
-    //LogPrintf("multicount to know beecost for tx is : %i \n", multicount);
-    //LogPrintf("High or Low cost according to current mature bees : %i \n", mangedlamarde);
+    
     CAmount beeCost;
    
     double superZ = threshold;
-    //LogPrintf("is %i <= %i ??? if so, low cost !! \n", mangedlamarde, superZ);
+    
     if (mangedlamarde <= superZ)
 	beeCost = 0.0004*(GetBlockSubsidy(HeightZ, consensusParams));
-    else                   // multicount is impair
+    else                  
 	beeCost = 0.0008*(GetBlockSubsidy(HeightZ, consensusParams)); 
-    //LogPrintf("BeeCost for TRansaction is : %i \n", beeCost);
+    
 
     CAmount curBalance = GetAvailableBalance();
     CAmount totalBeeCost = beeCost * beeCount;
@@ -4792,7 +4772,7 @@ int CMerkleTx::GetDepthInOrder(const CBlockIndex* &pindexRet) const
     // LogPrintf("pindexRet = pindex = %i \n", pindex);
 
     int coco = (chainActive.Height() - pindex->nHeight + 1);
-    LogPrintf("GetDepthInOrder is returning : %i \n", coco);
+    //LogPrintf("GetDepthInOrder is returning : %i \n", coco);
     return (chainActive.Height() - pindex->nHeight + 1);
 }
 

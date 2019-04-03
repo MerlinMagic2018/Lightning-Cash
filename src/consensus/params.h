@@ -105,6 +105,7 @@ struct Params {
     int hiveBlockSpacingTarget;         // Target Hive block frequency (1 out of this many blocks should be Hive)
     bool variableBeecost;
     int variableForkBlock;
+    bool isTestnet;
 };
 } // namespace Consensus
 

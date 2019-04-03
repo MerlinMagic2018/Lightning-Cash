@@ -21,17 +21,12 @@ struct BeePopGraphPoint {
 };
 
 extern CAmount totalMatureBees;
-//extern int multicount;
-//extern int toti;
-//extern int tata;
-//extern int calisse;
-//extern int pet;
-//extern int deadmatureBees;
+
 extern int thematurebees;
 extern int deadBees;
-//extern int beesDying;
+
 extern int wototo;
-//extern double super;
+
 extern int switchHmem;
 extern int switchLmem;
 extern int threshold;

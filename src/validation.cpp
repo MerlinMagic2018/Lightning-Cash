@@ -1186,8 +1186,7 @@ CAmount GetBeeCost(int nHeight, const Consensus::Params& consensusParams)
     if(nHeight >= consensusParams.totalMoneySupplyHeight)
         return consensusParams.minBeeCost;
 
-    // block.GetBlockTime() .......................
-    // const CBlockHeader& block
+ 
 
     CAmount blockReward = GetBlockSubsidy(nHeight, consensusParams);
     CAmount beeCost = (blockReward / consensusParams.beeCostFactor);

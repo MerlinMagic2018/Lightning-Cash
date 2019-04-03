@@ -448,27 +448,27 @@ public:
         return vChain.size() > 0 ? vChain[0] : nullptr;
     }
 
-    // Returns the index equal to tip - bees total lifespan.... will need to change 360 for mainet
     
-    CBlockIndex *Toto() const {
+    
+/*    CBlockIndex *Toto() const {
 	int supertata = 17280;
 	if (vChain.size() <= supertata)
 		return vChain.size() > 0 ? vChain[0] : nullptr;
 	else	
 		return vChain.size() > 0 ? vChain[vChain.size() - supertata] : nullptr;
-    }
+    }*/
 
 
-    /** Find the  block + 24 in this chain, or nullptr if the given index is not found or is the tip. */
-    CBlockIndex *Nono(const CBlockIndex *pindex) const {
+    
+/*    CBlockIndex *Nono(const CBlockIndex *pindex) const {
 	int supertiti = 1152;
         if (Contains(pindex))
             return (*this)[pindex->nHeight + supertiti];
         else
             return nullptr;
-    }
+    }*/
     
-        /** Find the  block - 360 in this chain, or nullptr if the given index is not found. */
+        
     CBlockIndex *Back(const CBlockIndex *pindex) const {
 	int supertonton = 17280;
         if (Contains(pindex))
@@ -477,18 +477,48 @@ public:
             return nullptr;
     }
     
-    CBlockIndex *Back24(const CBlockIndex *pindex) const {
+/*    CBlockIndex *Back24(const CBlockIndex *pindex) const {
 	int supertutu = 1152;
         if (Contains(pindex))
             return (*this)[pindex->nHeight - supertutu];
         else
             return nullptr;
+    }*/
+    
+    // Same stuff but for testnet
+/*    CBlockIndex *Tototestnet() const {
+	int supertata = 360;
+	if (vChain.size() <= supertata)
+		return vChain.size() > 0 ? vChain[0] : nullptr;
+	else	
+		return vChain.size() > 0 ? vChain[vChain.size() - supertata] : nullptr;
+    }*/
+
+
+    
+/*    CBlockIndex *Nonotestnet(const CBlockIndex *pindex) const {
+	int supertiti = 24;
+        if (Contains(pindex))
+            return (*this)[pindex->nHeight + supertiti];
+        else
+            return nullptr;
+    }*/
+    
+        
+    CBlockIndex *Backtestnet(const CBlockIndex *pindex) const {
+	int supertonton = 360;
+        if (Contains(pindex))
+            return (*this)[pindex->nHeight - supertonton];
+        else
+            return nullptr;
     }
     
-
-    /** Returns the index equal to tip - bees total lifespan.... 
-    CBlockIndex *Toto() const {
-        return vChain.size() > 0 ? vChain[vChain.size() - 360] : nullptr;
+/*    CBlockIndex *Back24testnet(const CBlockIndex *pindex) const {
+	int supertutu = 24;
+        if (Contains(pindex))
+            return (*this)[pindex->nHeight - supertutu];
+        else
+            return nullptr;
     }*/
 
     /** Returns the index entry for the tip of this chain, or nullptr if none. */
