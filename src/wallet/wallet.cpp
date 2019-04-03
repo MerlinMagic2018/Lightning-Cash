@@ -2844,8 +2844,8 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs2(bool includeDead, boo
 	    for (const std::pair<uint256, CWalletTx>& pairWtx : mapWallet) {
 		const CWalletTx& wtx = pairWtx.second;
 
-	    int totito = calisse;
-            int torpinouche = pet;
+	    int totito = switchHmem;
+            int torpinouche = switchLmem;
     	    //LogPrintf ("toti is  %i  so totito is %i)\n", calisse, totito);
 	    //LogPrintf ("tata is  %i  so torpinouche is %i)\n", pet, torpinouche);
 
@@ -3185,7 +3185,7 @@ bool CWallet::CreateBeeTransaction2(int beeCount, CWalletTx& wtxNew, CReserveKey
     //LogPrintf("High or Low cost according to current mature bees : %i \n", mangedlamarde);
     CAmount beeCost;
    
-    double superZ = super;
+    double superZ = threshold;
     //LogPrintf("is %i <= %i ??? if so, low cost !! \n", mangedlamarde, superZ);
     if (mangedlamarde <= superZ)
 	beeCost = 0.0004*(GetBlockSubsidy(HeightZ, consensusParams));

@@ -21,17 +21,21 @@ struct BeePopGraphPoint {
 };
 
 extern CAmount totalMatureBees;
-extern int multicount;
-extern int toti;
-extern int tata;
-extern int calisse;
-extern int pet;
+//extern int multicount;
+//extern int toti;
+//extern int tata;
+//extern int calisse;
+//extern int pet;
 //extern int deadmatureBees;
 extern int thematurebees;
 extern int deadBees;
-extern int beesDying;
+//extern int beesDying;
 extern int wototo;
-extern double super;
+//extern double super;
+extern int switchHmem;
+extern int switchLmem;
+extern int threshold;
+
 
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params&);
 unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params&);

@@ -380,7 +380,7 @@ void HiveDialog::updateData2(bool forceGlobalSummaryUpdate) {
     //int mauditcaca = chainActive.GetBlockTime();
     int vadonchier = wototo; // matureBees
     
-    int superX = super; // # of bees for global index at 90
+    int superX = threshold; // # of bees for global index at 90
     //LogPrintf("is %i <= %i ??? if so, low cost !! \n", vadonchier, superX);
     
     if (vadonchier <= superX) // if maturebees is under 90...
