@@ -448,27 +448,12 @@ public:
         return vChain.size() > 0 ? vChain[0] : nullptr;
     }
 
+    /** Returns the index entry for the first mined block of this chain. */
+    CBlockIndex *FirstBlock() const {
+        return  vChain[1];
+    }
     
-    
-/*    CBlockIndex *Toto() const {
-	int supertata = 17280;
-	if (vChain.size() <= supertata)
-		return vChain.size() > 0 ? vChain[0] : nullptr;
-	else	
-		return vChain.size() > 0 ? vChain[vChain.size() - supertata] : nullptr;
-    }*/
-
-
-    
-/*    CBlockIndex *Nono(const CBlockIndex *pindex) const {
-	int supertiti = 1152;
-        if (Contains(pindex))
-            return (*this)[pindex->nHeight + supertiti];
-        else
-            return nullptr;
-    }*/
-    
-        
+            
     CBlockIndex *Back(const CBlockIndex *pindex) const {
 	int supertonton = 17280;
         if (Contains(pindex))
@@ -477,34 +462,7 @@ public:
             return nullptr;
     }
     
-/*    CBlockIndex *Back24(const CBlockIndex *pindex) const {
-	int supertutu = 1152;
-        if (Contains(pindex))
-            return (*this)[pindex->nHeight - supertutu];
-        else
-            return nullptr;
-    }*/
-    
-    // Same stuff but for testnet
-/*    CBlockIndex *Tototestnet() const {
-	int supertata = 360;
-	if (vChain.size() <= supertata)
-		return vChain.size() > 0 ? vChain[0] : nullptr;
-	else	
-		return vChain.size() > 0 ? vChain[vChain.size() - supertata] : nullptr;
-    }*/
-
-
-    
-/*    CBlockIndex *Nonotestnet(const CBlockIndex *pindex) const {
-	int supertiti = 24;
-        if (Contains(pindex))
-            return (*this)[pindex->nHeight + supertiti];
-        else
-            return nullptr;
-    }*/
-    
-        
+            
     CBlockIndex *Backtestnet(const CBlockIndex *pindex) const {
 	int supertonton = 360;
         if (Contains(pindex))
@@ -512,14 +470,25 @@ public:
         else
             return nullptr;
     }
-    
-/*    CBlockIndex *Back24testnet(const CBlockIndex *pindex) const {
-	int supertutu = 24;
+
+
+    CBlockIndex *Back24(const CBlockIndex *pindex) const {
+	int supertutu = 1152;
         if (Contains(pindex))
             return (*this)[pindex->nHeight - supertutu];
         else
             return nullptr;
-    }*/
+    }
+
+
+    CBlockIndex *Back24testnet(const CBlockIndex *pindex) const {
+	int supertutu2 = 24;
+        if (Contains(pindex))
+            return (*this)[pindex->nHeight - supertutu2];
+        else
+            return nullptr;
+    }
+    
 
     /** Returns the index entry for the tip of this chain, or nullptr if none. */
     CBlockIndex *Tip() const {

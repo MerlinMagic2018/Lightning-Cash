@@ -258,7 +258,7 @@ public:
         consensus.hiveBlockSpacingTarget = 2;               // Target Hive block frequency (1 out of this many blocks should be Hivemined)
         consensus.hiveNonceMarker = 192;                    // Nonce marker for hivemined blocks
 	consensus.variableBeecost = true;
-	consensus.variableForkBlock = 0;
+	consensus.variableForkBlock = 126;
 	consensus.isTestnet = true;
 
         // The best chain should have at least this much work.
