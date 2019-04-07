@@ -453,6 +453,26 @@ public:
         return  vChain[1];
     }
     
+    CBlockIndex *FirstHiveBlock() const {
+        return  vChain[126];
+    }
+    
+    CBlockIndex *varForkBlock() const {
+        return  vChain[67777];
+    }
+    
+    CBlockIndex *varForkBlocktestnet() const {
+        return  vChain[500];
+    }
+    
+    CBlockIndex *preForkBlock() const {
+        return  vChain[67776];
+    }
+    
+    CBlockIndex *preForkBlocktestnet() const {
+        return  vChain[499];
+    }
+    
             
     CBlockIndex *Back(const CBlockIndex *pindex) const {
 	int supertonton = 17280;

@@ -2886,7 +2886,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs2(bool includeDead, boo
 			
 
                         int cocorico = (chainActive.Height() - depth); // this will give the block height for the current checked BCT
-			int TheHeight = chainActive.Height();
+			//int TheHeight = chainActive.Height();
 			int ciboire = mapBlockIndex[wtx.hashBlock]->GetBlockTime();
                         
                         bool isMature;
@@ -2939,7 +2939,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs2(bool includeDead, boo
                             status = "mature";
                             isMature = true;
                             
-                            int TheHeight2 = chainActive.Height();
+                            //int TheHeight2 = chainActive.Height();
                             int ciboire2 = mapBlockIndex[wtx.hashBlock]->GetBlockTime();
                             int cocorico3 = (chainActive.Height() - depth);
                             
@@ -4771,7 +4771,7 @@ int CMerkleTx::GetDepthInOrder(const CBlockIndex* &pindexRet) const
     pindexRet = pindex;
     // LogPrintf("pindexRet = pindex = %i \n", pindex);
 
-    int coco = (chainActive.Height() - pindex->nHeight + 1);
+    //int coco = (chainActive.Height() - pindex->nHeight + 1);
     //LogPrintf("GetDepthInOrder is returning : %i \n", coco);
     return (chainActive.Height() - pindex->nHeight + 1);
 }

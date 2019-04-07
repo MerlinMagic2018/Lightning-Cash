@@ -3059,7 +3059,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
         return false;
 
     // LightningCash Gold: Hive: Check Hive proof
-    if (block.IsHiveMined(consensusParams))
+    if (block.IsHiveMined(consensusParams)) {
 
 	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock))){
 		//LogPrintf("OK \n");
@@ -3071,6 +3071,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
 		if (!CheckHiveProof(&block, consensusParams))
 		    return state.DoS(100, false, REJECT_INVALID, "bad-hive-proof", false, "proof of hive failed");
 	}
+    }
 
     // Check the merkle root.
     if (fCheckMerkleRoot) {
