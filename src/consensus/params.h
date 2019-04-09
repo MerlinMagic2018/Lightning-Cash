@@ -106,6 +106,7 @@ struct Params {
     bool variableBeecost;
     int variableForkBlock;
     bool isTestnet;
+    int ratioForkBlock;
 };
 } // namespace Consensus
 

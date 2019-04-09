@@ -135,6 +135,7 @@ public:
 	consensus.variableBeecost = true;
 	consensus.variableForkBlock = 67777;
 	consensus.isTestnet = false;
+	consensus.ratioForkBlock = 72000;
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");  // LightningCash Gold new blockchain
@@ -260,6 +261,7 @@ public:
 	consensus.variableBeecost = true;
 	consensus.variableForkBlock = 500;
 	consensus.isTestnet = true;
+	consensus.ratioForkBlock = 550;
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");  // LightningCash Gold

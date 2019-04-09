@@ -508,6 +508,46 @@ public:
         else
             return nullptr;
     }
+
+        CBlockIndex *BackOne(const CBlockIndex *pindex) const {
+	int supertutu3 = 1;
+        if (Contains(pindex))
+            return (*this)[pindex->nHeight - supertutu3];
+        else
+            return nullptr;
+    }
+
+    CBlockIndex *BackTwo(const CBlockIndex *pindex) const {
+	int supertutu4 = 2;
+        if (Contains(pindex))
+            return (*this)[pindex->nHeight - supertutu4];
+        else
+            return nullptr;
+    }
+
+    CBlockIndex *BackThree(const CBlockIndex *pindex) const {
+	int supertutu5 = 3;
+        if (Contains(pindex))
+            return (*this)[pindex->nHeight - supertutu5];
+        else
+            return nullptr;
+    }
+
+    CBlockIndex *BackFour(const CBlockIndex *pindex) const {
+	int supertutu6 = 4;
+        if (Contains(pindex))
+            return (*this)[pindex->nHeight - supertutu6];
+        else
+            return nullptr;
+    }
+
+    CBlockIndex *BackFive(const CBlockIndex *pindex) const {
+	int supertutu7 = 5;
+        if (Contains(pindex))
+            return (*this)[pindex->nHeight - supertutu7];
+        else
+            return nullptr;
+    }
     
 
     /** Returns the index entry for the tip of this chain, or nullptr if none. */
