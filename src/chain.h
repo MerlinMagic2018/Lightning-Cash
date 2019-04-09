@@ -473,6 +473,10 @@ public:
         return  vChain[499];
     }
     
+    CBlockIndex *firstLoop() const {
+        return  vChain[33217];
+    }
+    
             
     CBlockIndex *Back(const CBlockIndex *pindex) const {
 	int supertonton = 17280;

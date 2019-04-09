@@ -1109,7 +1109,7 @@ bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus:
     // LightningCash Gold: Hive: Check PoW or Hive work depending on blocktype
     if (block.IsHiveMined(consensusParams)) {
 	
-	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock))) {
+	/*if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock))) {
 		//LogPrintf("OK \n");
 		if (!CheckHiveProof3(&block, consensusParams))
 		    return error("ReadBlockFromDisk: Errors in Hive block header at %s", pos.ToString());
@@ -1123,8 +1123,17 @@ bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus:
 		//LogPrintf("NOT OK \n");
 		if (!CheckHiveProof(&block, consensusParams))
 		    return error("ReadBlockFromDisk: Errors in Hive block header at %s", pos.ToString());
+	}*/
+	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock))) {
+		//LogPrintf("OK \n");
+		if (!CheckHiveProof2(&block, consensusParams))
+		    return error("ReadBlockFromDisk: Errors in Hive block header at %s", pos.ToString());
 	}
-	
+	else {
+		//LogPrintf("NOT OK \n");
+		if (!CheckHiveProof(&block, consensusParams))
+		    return error("ReadBlockFromDisk: Errors in Hive block header at %s", pos.ToString());
+	}
 
 
     } else {
