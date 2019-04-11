@@ -558,6 +558,16 @@ public:
     CBlockIndex *Tip() const {
         return vChain.size() > 0 ? vChain[vChain.size() - 1] : nullptr;
     }
+    
+    /** Returns the index entry for the tip of this chain - 17280 */
+    CBlockIndex *TipMinusLifespan() const {
+        return vChain.size() > 0 ? vChain[vChain.size() - 17281] : nullptr;
+    }
+    
+    /** Returns the index entry for the tip of this chain - 360 ( testnet ) */
+    CBlockIndex *TipMinusLifespanT() const {
+        return vChain.size() > 0 ? vChain[vChain.size() - 361] : nullptr;
+    }
 
     /** Returns the index entry at a particular height in this chain, or nullptr if no such height exists. */
     CBlockIndex *operator[](int nHeight) const {
