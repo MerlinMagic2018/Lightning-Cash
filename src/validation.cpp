@@ -1205,10 +1205,11 @@ CAmount GetBeeCost(int nHeight, const Consensus::Params& consensusParams)
     CAmount blockReward = GetBlockSubsidy(nHeight, consensusParams);
     CAmount beeCost = (blockReward / consensusParams.beeCostFactor);
 
-
-
-    CAmount potentialLifespanRewards = (consensusParams.beeLifespanBlocks * GetBlockSubsidy(nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
-
+    CAmount potentialLifespanRewards;
+    if (chainActive.Height() >= consensusParams.ratioForkBlock)
+        potentialLifespanRewards = (consensusParams.beeLifespanBlocks2 * GetBlockSubsidy(nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
+    else
+        potentialLifespanRewards = (consensusParams.beeLifespanBlocks * GetBlockSubsidy(nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
 
 
     CAmount voyon = 10000000 / ((GetBlockSubsidy(nHeight, consensusParams) / consensusParams.beeCostFactor));

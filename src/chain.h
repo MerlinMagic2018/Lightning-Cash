@@ -486,9 +486,25 @@ public:
             return nullptr;
     }
     
+    CBlockIndex *ReBack(const CBlockIndex *pindex) const {
+	int supertonton = 25344;
+        if (Contains(pindex))
+            return (*this)[pindex->nHeight - supertonton];
+        else
+            return nullptr;
+    }
+    
             
     CBlockIndex *Backtestnet(const CBlockIndex *pindex) const {
 	int supertonton = 360;
+        if (Contains(pindex))
+            return (*this)[pindex->nHeight - supertonton];
+        else
+            return nullptr;
+    }
+    
+    CBlockIndex *ReBacktestnet(const CBlockIndex *pindex) const {
+	int supertonton = 528;
         if (Contains(pindex))
             return (*this)[pindex->nHeight - supertonton];
         else
@@ -503,6 +519,7 @@ public:
         else
             return nullptr;
     }
+    
 
 
     CBlockIndex *Back24testnet(const CBlockIndex *pindex) const {
@@ -513,46 +530,6 @@ public:
             return nullptr;
     }
 
-        CBlockIndex *BackOne(const CBlockIndex *pindex) const {
-	int supertutu3 = 1;
-        if (Contains(pindex))
-            return (*this)[pindex->nHeight - supertutu3];
-        else
-            return nullptr;
-    }
-
-    CBlockIndex *BackTwo(const CBlockIndex *pindex) const {
-	int supertutu4 = 2;
-        if (Contains(pindex))
-            return (*this)[pindex->nHeight - supertutu4];
-        else
-            return nullptr;
-    }
-
-    CBlockIndex *BackThree(const CBlockIndex *pindex) const {
-	int supertutu5 = 3;
-        if (Contains(pindex))
-            return (*this)[pindex->nHeight - supertutu5];
-        else
-            return nullptr;
-    }
-
-    CBlockIndex *BackFour(const CBlockIndex *pindex) const {
-	int supertutu6 = 4;
-        if (Contains(pindex))
-            return (*this)[pindex->nHeight - supertutu6];
-        else
-            return nullptr;
-    }
-
-    CBlockIndex *BackFive(const CBlockIndex *pindex) const {
-	int supertutu7 = 5;
-        if (Contains(pindex))
-            return (*this)[pindex->nHeight - supertutu7];
-        else
-            return nullptr;
-    }
-    
 
     /** Returns the index entry for the tip of this chain, or nullptr if none. */
     CBlockIndex *Tip() const {
@@ -564,9 +541,19 @@ public:
         return vChain.size() > 0 ? vChain[vChain.size() - 17281] : nullptr;
     }
     
+    /** Returns the index entry for the tip of this chain - 17280 */
+    CBlockIndex *ReTipMinusLifespan() const {
+        return vChain.size() > 0 ? vChain[vChain.size() - 25345] : nullptr;
+    }
+    
     /** Returns the index entry for the tip of this chain - 360 ( testnet ) */
     CBlockIndex *TipMinusLifespanT() const {
         return vChain.size() > 0 ? vChain[vChain.size() - 361] : nullptr;
+    }
+    
+    /** Returns the index entry for the tip of this chain - 360 ( testnet ) */
+    CBlockIndex *ReTipMinusLifespanT() const {
+        return vChain.size() > 0 ? vChain[vChain.size() - 529] : nullptr;
     }
 
     /** Returns the index entry at a particular height in this chain, or nullptr if no such height exists. */

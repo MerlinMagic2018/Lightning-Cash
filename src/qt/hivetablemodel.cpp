@@ -15,6 +15,10 @@
 
 #include <util.h>
 
+#include "chain.h"
+
+#include <validation.h>
+
 HiveTableModel::HiveTableModel(const PlatformStyle *_platformStyle, CWallet *wallet, WalletModel *parent) : platformStyle(_platformStyle), QAbstractTableModel(parent), walletModel(parent)
 {
     Q_UNUSED(wallet);
@@ -42,7 +46,15 @@ void HiveTableModel::updateBCTs(bool includeDeadBees) {
 
         // Load entries from wallet
         std::vector<CBeeCreationTransactionInfo> vBeeCreationTransactions;
-        walletModel->getBCTs(vBeeCreationTransactions, includeDeadBees);
+
+
+/*	if (chainActive.Height() >= Params().GetConsensus().ratioForkBlock)
+		walletModel->getBCTs2(vBeeCreationTransactions, includeDeadBees);
+	else
+		walletModel->getBCTs(vBeeCreationTransactions, includeDeadBees);*/
+
+	walletModel->getBCTs(vBeeCreationTransactions, includeDeadBees);
+
         beginInsertRows(QModelIndex(), 0, 0);
         immature = 0, mature = 0, dead = 0, blocksFound = 0;
         cost = rewardsPaid = profit = 0;
@@ -114,7 +126,13 @@ QVariant HiveTableModel::data(const QModelIndex &index, int role) const {
                 {
                     QString status = "";
                     if (rec->beeStatus == "immature") {
-                        int blocksTillMature = rec->blocksLeft - Params().GetConsensus().beeLifespanBlocks;
+                        int blocksTillMature;
+                        if (chainActive.Height() >= Params().GetConsensus().ratioForkBlock)
+                            blocksTillMature = rec->blocksLeft - Params().GetConsensus().beeLifespanBlocks2;
+                        else
+                            blocksTillMature = rec->blocksLeft - Params().GetConsensus().beeLifespanBlocks;
+                        
+                        
                         status = "Matures in " + QString::number(blocksTillMature) + " blocks (" + secondsToString(blocksTillMature * Params().GetConsensus().nPowTargetSpacing / 2) + ")";
                     } else if (rec->beeStatus == "mature")
                         status = "Expires in " + QString::number(rec->blocksLeft) + " blocks (" + secondsToString(rec->blocksLeft * Params().GetConsensus().nPowTargetSpacing / 2) + ")";

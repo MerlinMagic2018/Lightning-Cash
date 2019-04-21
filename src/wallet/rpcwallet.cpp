@@ -698,14 +698,19 @@ UniValue getnetworkhiveinfo(const JSONRPCRequest& request)
 
     int globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs;
     CAmount potentialRewards;
+    
+    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock))) {
+	    //LogPrintf("OK \n");
+	    if (!GetNetworkHiveInfo3(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, includeGraph))
+		throw std::runtime_error("Error: A block required to calculate network bee population was not available (pruned data / not found on disk)");
+    }
 
-
-    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock))) {
+    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.ratioForkBlock))) {
 	    //LogPrintf("OK \n");
 	    if (!GetNetworkHiveInfo2(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, includeGraph))
 		throw std::runtime_error("Error: A block required to calculate network bee population was not available (pruned data / not found on disk)");
     }
-    else {
+    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.variableForkBlock))) {
 	    //LogPrintf("NOT OK \n");
 	    if (!GetNetworkHiveInfo(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, includeGraph))
 		throw std::runtime_error("Error: A block required to calculate network bee population was not available (pruned data / not found on disk)");
@@ -720,7 +725,11 @@ UniValue getnetworkhiveinfo(const JSONRPCRequest& request)
     jsonResults.push_back(Pair("honey_pot", potentialRewards));
 
     if (includeGraph) {
-        int totalBeeLifespan = consensusParams.beeLifespanBlocks + consensusParams.beeGestationBlocks;
+        int totalBeeLifespan;
+        if (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock))
+            totalBeeLifespan = consensusParams.beeLifespanBlocks2 + consensusParams.beeGestationBlocks;
+        else
+            totalBeeLifespan = consensusParams.beeLifespanBlocks + consensusParams.beeGestationBlocks;
         UniValue maturePopJSON(UniValue::VARR);
         for (int i = 1; i < totalBeeLifespan; i++)
             maturePopJSON.push_back(beePopGraph[i].maturePop);
