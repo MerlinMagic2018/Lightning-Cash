@@ -461,6 +461,10 @@ public:
         return  vChain[67777];
     }
     
+    CBlockIndex *speedUpdate() const {
+        return  vChain[76325];
+    }
+    
     CBlockIndex *varForkBlocktestnet() const {
         return  vChain[500];
     }
@@ -539,6 +543,11 @@ public:
     /** Returns the index entry for the tip of this chain - 17280 */
     CBlockIndex *TipMinusLifespan() const {
         return vChain.size() > 0 ? vChain[vChain.size() - 17281] : nullptr;
+    }
+    
+    /** Returns the index entry for the tip of this chain - 10 */
+    CBlockIndex *TipMinusTen() const {
+        return vChain.size() > 0 ? vChain[vChain.size() - 11] : nullptr;
     }
     
     /** Returns the index entry for the tip of this chain - 17280 */
