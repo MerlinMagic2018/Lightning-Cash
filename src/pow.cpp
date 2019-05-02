@@ -2539,12 +2539,7 @@ bool GetNetworkHiveInfo4(int& immatureBees, int& immatureBCTs, int& matureBees, 
     
     CBlockIndex* pindexPrev;
 
-    // here, we count NOT backwards. Starts from tip minus totalBeeLifespan to forkHeight for graph only loop
-    /*if (consensusParams.isTestnet == true)
-        //pindexPrev = chainActive.ReTipMinusLifespanT();
-        pindexPrev = chainActive.TipMinusLifespanT();
-    else
-        pindexPrev = chainActive.TipMinusLifespan();*/
+    
 
     if (consensusParams.isTestnet == true)   
         pindexPrev = chainActive.varForkBlocktestnet();
@@ -3070,19 +3065,7 @@ bool GetNetworkHiveInfo4(int& immatureBees, int& immatureBCTs, int& matureBees, 
         thematurebees = matureBees;
         wototo = matureBees;
 
-      /*  if ((matureBees > threshold) && (priceState == 0)) {
-            priceState = 1;
-            int switchHigher = pindexPrev->GetBlockTime();
-            switchHmem = switchHigher;
-            //LogPrintf("switchHmem = %i \n", switchHmem);
-        }
-
-        if ((matureBees <= threshold) && (priceState == 1)) {
-            priceState = 0;
-            int switchLower = pindexPrev->GetBlockTime();
-            switchLmem = switchLower;
-            //LogPrintf("switchLmem = %i \n", switchLmem);
-        }*/
+      
 
         if (!chainActive.Next(pindexPrev))  // Check we didn't run out of blocks
             return true;
@@ -3593,19 +3576,7 @@ bool GetNetworkHiveInfo4(int& immatureBees, int& immatureBCTs, int& matureBees, 
             thematurebees = matureBees;
             wototo = matureBees;
 
-        /*    if ((matureBees > threshold) && (priceState == 0)) {
-                priceState = 1;
-                int switchHigher = pindexPrev->GetBlockTime();
-                switchHmem = switchHigher;
-                //LogPrintf("switchHmem = %i \n", switchHmem);
-            }
-
-            if ((matureBees <= threshold) && (priceState == 1)) {
-                priceState = 0;
-                int switchLower = pindexPrev->GetBlockTime();
-                switchLmem = switchLower;
-                //LogPrintf("switchLmem = %i \n", switchLmem);
-            } */
+        
 
             if (!chainActive.Next(pindexPrev))  // Check we didn't run out of blocks
                 return true;
@@ -3619,6 +3590,8 @@ bool GetNetworkHiveInfo4(int& immatureBees, int& immatureBCTs, int& matureBees, 
     
     return true;
 }
+
+
 
 // LightningCash Gold: Hive: Check the hive proof for given block
 bool CheckHiveProof(const CBlock* pblock, const Consensus::Params& consensusParams) {

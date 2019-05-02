@@ -6,7 +6,7 @@ Lightning Cash Gold Core integration/staging tree
 What is LightningCash-Gold ?
 ----------------------
 
-Lightning Cash Gold is a coin based on scrypt POW algorithm, including DarkGravityWave ( difficulty changes for every block ) and possible CURRENT block difficulty change over time to protect against high network hash variation and long stale tip. For full details, please visit our website at http://lightningcash-gold.tk . Compiled binary releases are available on LightningCash-Gold's github.
+Lightning Cash Gold is a coin based on scrypt POW algorithm, including DarkGravityWave ( difficulty changes for every block ) and possible CURRENT block difficulty change over time to protect against high network hash variation and long stale tip. For full details, please visit our website at http://lightningcash-gold.com . Compiled binary releases are available on LightningCash-Gold's github.
 
 Lightning Cash Gold Core is the full node software that makes up the backbone of the LTNCG network.
 
@@ -52,29 +52,29 @@ NOMP's node-stratum-pool module adapted code :
 
 POOL :
 
-http://lightningcash.tk/
+http://pool.lightningcash-gold.com/
 
 
 
 Block explorer :
 
-http://lightningcash.tk:3000/
+http://explorer.lightningcash-gold.com/
 
 
 
 Website :
 
-http://lightningcash-gold.tk  ( Under development )
+http://lightningcash-gold.com
 
 
 
-White Paper will be available on LightningCash-Gold's website.
+White Paper available on LightningCash-Gold's website.
 
 
 
 Exchange : 
 
-https://www.enmanet.com/
+https://fcbaccount.com/
 
 Other exchanges are under discussions.
 

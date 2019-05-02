@@ -265,6 +265,7 @@ public:
 	consensus.isTestnet = true;
 	consensus.ratioForkBlock = 550;
         consensus.beeLifespanBlocks2 = 24*21;
+	consensus.remvariableForkBlock = 2000;
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");  // LightningCash Gold
@@ -358,6 +359,7 @@ public:
  //       consensus.premineOutputScript = CScript(vch.begin(), vch.end());	// Output script for premine block (tAGaQ7rk3NE7etu3bU6yAJF3KSKeDhTHry)
         consensus.totalMoneySupplyHeight = 6215968;         // Height at which TMS is reached, do not issue rewards past this point (Note, not accurate value for testnet)
         consensus.hiveNonceMarker = 192;                    // Nonce marker for hivemined blocks
+	consensus.remvariableForkBlock = 118956;
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x00");

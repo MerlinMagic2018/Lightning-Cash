@@ -108,6 +108,8 @@ struct Params {
     bool isTestnet;
     int ratioForkBlock;
     int beeLifespanBlocks2;
+    int remvariableForkBlock;
+
 };
 } // namespace Consensus
 
