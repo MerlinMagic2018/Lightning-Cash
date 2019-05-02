@@ -610,14 +610,19 @@ bool BusyBees(const Consensus::Params& consensusParams) {
     LogPrint(BCLog::HIVE, "BusyBees: Checking bee hashes....\n");
     
     std::vector<CBeeCreationTransactionInfo> bcts;
+    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.remvariableForkBlock))) {
+	//LogPrintf("OK \n");
 
-    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock))) {
+    	bcts = pwallet->GetBCTs3(false, false, consensusParams);
+
+    }
+    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.remvariableForkBlock))) {
 	//LogPrintf("OK \n");
 
     	bcts = pwallet->GetBCTs2(false, false, consensusParams);
 
     }
-    else {
+    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.variableForkBlock))) {
 	//LogPrintf("NOT OK \n");
     	bcts = pwallet->GetBCTs(false, false, consensusParams);
 

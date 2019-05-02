@@ -198,12 +198,15 @@ void WalletView::gotoOverviewPage()
 // LightningCash Gold: Hive page
 void WalletView::gotoHivePage()
 {
-
-    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock))) {
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().remvariableForkBlock))) {
+	    //LogPrintf("OK \n");
+	    hivePage->updateData3();
+    }
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (Params().GetConsensus().remvariableForkBlock))) {
 	    //LogPrintf("OK \n");
 	    hivePage->updateData2();
     }
-    else {
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (Params().GetConsensus().variableForkBlock))) {
 	    //LogPrintf("NOT OK \n");
 	    hivePage->updateData();
     }

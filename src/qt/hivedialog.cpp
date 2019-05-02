@@ -69,12 +69,17 @@ void HiveDialog::setClientModel(ClientModel *_clientModel) {
     this->clientModel = _clientModel;
 
     if (_clientModel) {
-	if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock))) {
+	if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().remvariableForkBlock))) {
+		//LogPrintf("OK \n");
+		connect(_clientModel, SIGNAL(numBlocksChanged(int,QDateTime,double,bool)), this, SLOT(updateData3()));
+		connect(_clientModel, SIGNAL(numConnectionsChanged(int)), this, SLOT(updateData3()));    // TODO: This may be too expensive to call here, and the only point is to update the hive status icon.
+	}
+	if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (Params().GetConsensus().remvariableForkBlock))) {
 		//LogPrintf("OK \n");
 		connect(_clientModel, SIGNAL(numBlocksChanged(int,QDateTime,double,bool)), this, SLOT(updateData2()));
 		connect(_clientModel, SIGNAL(numConnectionsChanged(int)), this, SLOT(updateData2()));    // TODO: This may be too expensive to call here, and the only point is to update the hive status icon.
 	}
-	else {
+	if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (Params().GetConsensus().variableForkBlock))) {
 		//LogPrintf("NOT OK \n");
 		connect(_clientModel, SIGNAL(numBlocksChanged(int,QDateTime,double,bool)), this, SLOT(updateData()));
 		connect(_clientModel, SIGNAL(numConnectionsChanged(int)), this, SLOT(updateData()));    // TODO: This may be too expensive to call here, and the only point is to update the hive status icon.
@@ -121,12 +126,15 @@ void HiveDialog::setModel(WalletModel *_model) {
         columnResizingFixer = new GUIUtil::TableViewLastColumnResizingFixer(tableView, REWARDS_COLUMN_WIDTH, HIVE_COL_MIN_WIDTH, this);
 
         // Populate initial data
-
-	if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock))) { 
+	if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().remvariableForkBlock))) { 
+		//LogPrintf("OK \n");
+        	updateData3(true);
+	}
+	if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (Params().GetConsensus().remvariableForkBlock))) { 
 		//LogPrintf("OK \n");
         	updateData2(true);
 	}
-	else {
+	if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (Params().GetConsensus().variableForkBlock))) {
 		//LogPrintf("NOT OK \n");
 		updateData(true);
 	}
@@ -153,12 +161,15 @@ void HiveDialog::setEncryptionStatus(int status) {
             break;
     }
 
-
-    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock))) {
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().remvariableForkBlock))) {
+	//LogPrintf("OK \n");
+    	updateData3();
+    }
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (Params().GetConsensus().remvariableForkBlock))) {
 	//LogPrintf("OK \n");
     	updateData2();
     }
-    else {
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (Params().GetConsensus().variableForkBlock))) {
 	//LogPrintf("NOT OK \n");
     	updateData();
     }
@@ -252,8 +263,28 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
 
     if (forceGlobalSummaryUpdate || chainActive.Tip()->nHeight >= lastGlobalCheckHeight + 10) { // Don't update global summary every block
         int globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs;
+	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.remvariableForkBlock))) {
+		//LogPrintf("OK \n");
+		if (!GetNetworkHiveInfo4(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
+		    ui->globalHiveSummary->hide();
+		    ui->globalHiveSummaryError->show();
+		} else {
+		    ui->globalHiveSummaryError->hide();
+		    ui->globalHiveSummary->show();
+		    if (globalImmatureBees == 0)
+		        ui->globalImmatureLabel->setText("0");
+		    else
+		        ui->globalImmatureLabel->setText(formatLargeNoLocale(globalImmatureBees) + " (" + QString::number(globalImmatureBCTs) + " transactions)");
 
-        if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock))) {
+		    if (globalMatureBees == 0)
+		        ui->globalMatureLabel->setText("0");
+		    else
+		        ui->globalMatureLabel->setText(formatLargeNoLocale(globalMatureBees) + " (" + QString::number(globalMatureBCTs) + " transactions)");
+
+		    updateGraph();
+		}
+	}
+        if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.remvariableForkBlock))) {
 		//LogPrintf("OK \n");
 		if (!GetNetworkHiveInfo3(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
 		    ui->globalHiveSummary->hide();
@@ -420,8 +451,238 @@ void HiveDialog::updateData2(bool forceGlobalSummaryUpdate) {
 	//globalMatureBees = (globalMatureBees - deadmatureBees);
 	int flute = thematurebees;
 	//LogPrintf("thematurebees - deadBees = %i (flute in hivedialog.cpp and coucou in pow.cpp) \n", flute);
+	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.remvariableForkBlock))) {
+		//LogPrintf("OK \n");
 
-        if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock))) {
+		if (!GetNetworkHiveInfo4(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
+		    ui->globalHiveSummary->hide();
+		    ui->globalHiveSummaryError->show();
+		} else {
+		    ui->globalHiveSummaryError->hide();
+		    ui->globalHiveSummary->show();
+		    if (globalImmatureBees == 0)
+		        ui->globalImmatureLabel->setText("0");
+		    else
+		        ui->globalImmatureLabel->setText(formatLargeNoLocale(globalImmatureBees) + " (" + QString::number(globalImmatureBCTs) + " transactions)");
+
+		    if (flute == 0)
+		        ui->globalMatureLabel->setText("0");
+		    else
+		        ui->globalMatureLabel->setText(formatLargeNoLocale(flute) + " (" + QString::number(globalMatureBCTs) + " transactions)");
+
+		    updateGraph();
+		}
+
+	}
+        if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.remvariableForkBlock))) {
+		//LogPrintf("OK \n");
+
+		if (!GetNetworkHiveInfo3(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
+		    ui->globalHiveSummary->hide();
+		    ui->globalHiveSummaryError->show();
+		} else {
+		    ui->globalHiveSummaryError->hide();
+		    ui->globalHiveSummary->show();
+		    if (globalImmatureBees == 0)
+		        ui->globalImmatureLabel->setText("0");
+		    else
+		        ui->globalImmatureLabel->setText(formatLargeNoLocale(globalImmatureBees) + " (" + QString::number(globalImmatureBCTs) + " transactions)");
+
+		    if (flute == 0)
+		        ui->globalMatureLabel->setText("0");
+		    else
+		        ui->globalMatureLabel->setText(formatLargeNoLocale(flute) + " (" + QString::number(globalMatureBCTs) + " transactions)");
+
+		    updateGraph();
+		}
+
+	}
+	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.ratioForkBlock))) {
+		//LogPrintf("OK \n");
+
+		if (!GetNetworkHiveInfo2(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
+		    ui->globalHiveSummary->hide();
+		    ui->globalHiveSummaryError->show();
+		} else {
+		    ui->globalHiveSummaryError->hide();
+		    ui->globalHiveSummary->show();
+		    if (globalImmatureBees == 0)
+		        ui->globalImmatureLabel->setText("0");
+		    else
+		        ui->globalImmatureLabel->setText(formatLargeNoLocale(globalImmatureBees) + " (" + QString::number(globalImmatureBCTs) + " transactions)");
+
+		    if (flute == 0)
+		        ui->globalMatureLabel->setText("0");
+		    else
+		        ui->globalMatureLabel->setText(formatLargeNoLocale(flute) + " (" + QString::number(globalMatureBCTs) + " transactions)");
+
+		    updateGraph();
+		}
+
+	}
+	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.variableForkBlock))) {
+		//LogPrintf("NOT OK \n");
+		if (!GetNetworkHiveInfo(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
+		    ui->globalHiveSummary->hide();
+		    ui->globalHiveSummaryError->show();
+		} else {
+		    ui->globalHiveSummaryError->hide();
+		    ui->globalHiveSummary->show();
+		    if (globalImmatureBees == 0)
+		        ui->globalImmatureLabel->setText("0");
+		    else
+		        ui->globalImmatureLabel->setText(formatLargeNoLocale(globalImmatureBees) + " (" + QString::number(globalImmatureBCTs) + " transactions)");
+
+		    if (flute == 0)
+		        ui->globalMatureLabel->setText("0");
+		    else
+		        ui->globalMatureLabel->setText(formatLargeNoLocale(flute) + " (" + QString::number(globalMatureBCTs) + " transactions)");
+
+		    updateGraph();
+		}
+	}
+
+        setAmountField(ui->potentialRewardsLabel, potentialRewards);
+
+        double hiveWeight = mature / (double)flute;
+        ui->localHiveWeightLabel->setText((mature == 0 || flute == 0) ? "0" : QString::number(hiveWeight, 'f', 3));
+        ui->hiveWeightPie->setValue(hiveWeight);
+	/*LogPrintf("memory = %i \n", memory);
+	if ((!(memory % 2)) || (memory = 0))
+       		beePopIndex = (((0.0004*(GetBlockSubsidy(HeightX, consensusParams))) * flute) / (double)potentialRewards) * 100.0; // PROBLEM ---> want it to always be calculated according to base bee cost....
+	else
+		beePopIndex = (((0.0008*(GetBlockSubsidy(HeightX, consensusParams))) * flute) / (double)potentialRewards) * 100.0;
+	LogPrintf("beePopIndex = %i \n", beePopIndex);
+	//beePopIndex = (((0.0004*(GetBlockSubsidy(HeightX, consensusParams))) * flute) / (double)potentialRewards) * 100.0; // PROBLEM ---> want it to always be calculated according to base bee cost....*/
+
+	//beePopIndex = (flute*5) / (double)potentialRewards) * 100.0; // total global mature bees X ( 1 / basecost )
+
+	// (consensusParams.beeLifespanBlocks * GetBlockSubsidy(pindexLast->nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
+
+	CAmount npotentialRewards = (consensusParams.beeLifespanBlocks * GetBlockSubsidy(chainActive.Tip()->nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget; // to show Global Index based on NORMAL totalBeeLifespan
+
+
+	beePopIndex = (((0.0004*(GetBlockSubsidy(HeightX, consensusParams))) * flute) / (double)npotentialRewards) * 100.0; // low price times thematurebees.... on 
+        LogPrintf("beePopIndex = %i \n", beePopIndex);
+        if (beePopIndex > 200) beePopIndex = 200;
+        ui->beePopIndexLabel->setText(QString::number(floor(beePopIndex)));
+        ui->beePopIndexPie->setValue(beePopIndex / 100);
+        
+        lastGlobalCheckHeight = chainActive.Tip()->nHeight;
+    }
+
+    ui->blocksTillGlobalRefresh->setText(QString::number(10 - (chainActive.Tip()->nHeight - lastGlobalCheckHeight)));
+}
+
+void HiveDialog::updateData3(bool forceGlobalSummaryUpdate) {
+    if(IsInitialBlockDownload() || chainActive.Height() == 0) {
+        ui->globalHiveSummary->hide();
+        ui->globalHiveSummaryError->show();
+        return;
+    }
+    
+    const Consensus::Params& consensusParams = Params().GetConsensus();
+
+    if(model && model->getHiveTableModel()) {
+        model->getHiveTableModel()->updateBCTs(ui->includeDeadBeesCheckbox->isChecked());
+        model->getHiveTableModel()->getSummaryValues(immature, mature, dead, blocksFound, cost, rewardsPaid, profit);
+        
+        // Update labels
+        setAmountField(ui->rewardsPaidLabel, rewardsPaid);
+        setAmountField(ui->costLabel, cost);
+        setAmountField(ui->profitLabel, profit);
+        ui->matureLabel->setText(formatLargeNoLocale(mature));
+        ui->immatureLabel->setText(formatLargeNoLocale(immature));
+        ui->blocksFoundLabel->setText(QString::number(blocksFound));
+
+        if(dead == 0) {
+            ui->deadLabel->hide();
+            ui->deadTitleLabel->hide();
+            ui->deadLabelSpacer->changeSize(0, 0, QSizePolicy::Fixed, QSizePolicy::Fixed);
+        } else {
+            ui->deadLabel->setText(formatLargeNoLocale(dead));
+            ui->deadLabel->show();
+            ui->deadTitleLabel->show();
+            ui->deadLabelSpacer->changeSize(ui->immatureLabelSpacer->geometry().width(), 0, QSizePolicy::Fixed, QSizePolicy::Fixed);
+        }
+
+        // Set icon and tooltip for tray icon
+        QString tooltip, icon;
+        if (clientModel && clientModel->getNumConnections() == 0) {
+            tooltip = "Lightning Cash Gold is not connected";
+            icon = ":/icons/hivestatus_disabled";
+        } else if (!model->isHiveEnabled()) {
+            tooltip = "The Hive is not enabled on the network";
+            icon = ":/icons/hivestatus_disabled";
+        } else {
+            if (mature + immature == 0) {
+                tooltip = "No live bees currently in wallet";
+                icon = ":/icons/hivestatus_clear";
+            } else if (mature == 0) {
+                tooltip = "Only immature bees currently in wallet";
+                icon = ":/icons/hivestatus_orange";
+            } else {
+                if (model->getEncryptionStatus() == WalletModel::Locked) {
+                    tooltip = "WARNING: Bees mature but not mining because wallet is locked";
+                    icon = ":/icons/hivestatus_red";
+                } else {
+                    tooltip = "Bees mature and mining";
+                    icon = ":/icons/hivestatus_green";
+                }
+            }
+        }
+        // Now update bitcoingui
+        Q_EMIT hiveStatusIconChanged(icon, tooltip);
+    }
+    int HeightX = (chainActive.Height() - 1);
+    //CBlockIndex* osti = chainActive.Genesis();
+    //int mauditcaca = chainActive.GetBlockTime();
+    int vadonchier = wototo; // matureBees
+    
+    //int superX = threshold; // # of bees for global index at 90
+    //LogPrintf("is %i <= %i ??? if so, low cost !! \n", vadonchier, superX);
+    
+    //if (vadonchier <= superX) // if maturebees is under 90...
+	beeCost = 0.0004*(GetBlockSubsidy(HeightX, consensusParams));
+    //else                   // memory is impair
+	//beeCost = 0.0008*(GetBlockSubsidy(HeightX, consensusParams));
+    //beeCost = GetBeeCost(chainActive.Tip()->nHeight, consensusParams); // PROBLEM
+    //beeCost = 0.0004*(GetBlockSubsidy(HeightX, consensusParams));
+    //LogPrintf("beeCost in Hivedialog.cpp = %i \n", beeCost);
+    setAmountField(ui->beeCostLabel, beeCost);
+    updateTotalCostDisplay();
+
+    if (forceGlobalSummaryUpdate || chainActive.Tip()->nHeight >= (lastGlobalCheckHeight + 10)) { // Don't update global summary every block
+        int globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs;
+	//LogPrintf("thematurebees in hivedialog = %i \n", thematurebees);
+	//LogPrintf("deadmatureBees = %i \n", deadmatureBees);
+	//globalMatureBees = (globalMatureBees - deadmatureBees);
+	int flute = thematurebees;
+	//LogPrintf("thematurebees - deadBees = %i (flute in hivedialog.cpp and coucou in pow.cpp) \n", flute);
+	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.remvariableForkBlock))) {
+		//LogPrintf("OK \n");
+
+		if (!GetNetworkHiveInfo4(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
+		    ui->globalHiveSummary->hide();
+		    ui->globalHiveSummaryError->show();
+		} else {
+		    ui->globalHiveSummaryError->hide();
+		    ui->globalHiveSummary->show();
+		    if (globalImmatureBees == 0)
+		        ui->globalImmatureLabel->setText("0");
+		    else
+		        ui->globalImmatureLabel->setText(formatLargeNoLocale(globalImmatureBees) + " (" + QString::number(globalImmatureBCTs) + " transactions)");
+
+		    if (flute == 0)
+		        ui->globalMatureLabel->setText("0");
+		    else
+		        ui->globalMatureLabel->setText(formatLargeNoLocale(flute) + " (" + QString::number(globalMatureBCTs) + " transactions)");
+
+		    updateGraph();
+		}
+
+	}
+        if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.remvariableForkBlock))) {
 		//LogPrintf("OK \n");
 
 		if (!GetNetworkHiveInfo3(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
@@ -553,12 +814,15 @@ void HiveDialog::on_beeCountSpinner_valueChanged(int i) {
 }
 
 void HiveDialog::on_includeDeadBeesCheckbox_stateChanged() {
-
-    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock))) {
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().remvariableForkBlock))) {
+	//LogPrintf("OK \n");
+    	updateData3();
+    }
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock))  && (((chainActive.Tip()->nHeight) - 1) < (Params().GetConsensus().remvariableForkBlock))) {
 	//LogPrintf("OK \n");
     	updateData2();
     }
-    else {
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (Params().GetConsensus().variableForkBlock))) {
 	//LogPrintf("NOT OK \n");
     	updateData();
     }
@@ -572,22 +836,30 @@ void HiveDialog::on_showAdvancedStatsCheckbox_stateChanged() {
 }
 
 void HiveDialog::on_retryGlobalSummaryButton_clicked() {
-    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock))) {
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().remvariableForkBlock))) {
+	//LogPrintf("OK \n");
+    	updateData3(true);
+    }
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (Params().GetConsensus().remvariableForkBlock))) {
 	//LogPrintf("OK \n");
     	updateData2(true);
     }
-    else {
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (Params().GetConsensus().variableForkBlock))) {
 	//LogPrintf("NOT OK \n");
     	updateData(true);
     }
 }
 
 void HiveDialog::on_refreshGlobalSummaryButton_clicked() {
-    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock))) {
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().remvariableForkBlock))) {
+	//LogPrintf("OK \n");
+    	updateData3(true);
+    }
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (Params().GetConsensus().remvariableForkBlock))) {
 	//LogPrintf("OK \n");
     	updateData2(true);
     }
-    else {
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (Params().GetConsensus().variableForkBlock))) {
 	//LogPrintf("NOT OK \n");
     	updateData(true);
     }
@@ -599,11 +871,15 @@ void HiveDialog::on_releaseSwarmButton_clicked() {
 }
 
 void HiveDialog::on_createBeesButton_clicked() {
-    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock))) {
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().remvariableForkBlock))) {
+	//LogPrintf("OK \n");
+    	updateData3(true);
+    }
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (Params().GetConsensus().remvariableForkBlock))) {
 	//LogPrintf("OK \n");
     	updateData2(true);
     }
-    else {
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (Params().GetConsensus().variableForkBlock))) {
 	//LogPrintf("NOT OK \n");
     	updateData(true);
     }
