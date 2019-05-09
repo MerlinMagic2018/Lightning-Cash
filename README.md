@@ -27,6 +27,8 @@ Characteristics
 
 ( With the addition of modified Dash's DarkGravityWave v3 algorithm, that changes difficulty every block, and progressively lowers difficulty if long stale tips happens. Tested and fully working !!)
 
+- The Hive : A " hodl and profit " mining system accessible to everyone, that works side by side with POW mining, invented by  LitecoinCash's developers !!
+
 - Total Supply : 2 100 000 000 LTNCG ( 100 times Bitcoin's total supply )
 
 - Difficulty adjusted every block and possibly in CURRENT block if a long network stale tip happens !! This protects LightningCash-Gold from high hash variations and " high hash attacks " , that happens frequently for new coins and kills them by making the mining difficulty too high for the " normal " network's hash rate. For more info :
@@ -38,9 +40,9 @@ NOMP's node-stratum-pool module adapted code :
 
 		https://github.com/Lightningcash-dev/node-stratum-pool
 
-- Fast block target time of 1 minute !! 
+- Fast POW / Hive block pair target time of 1 minute !! 
 
-- Number of confirmations needed for a transaction : 6  ( so a transaction is confirmed on average in 6 minutes only !!! )
+- Number of confirmations needed for a transaction : 6  ( so a transaction is confirmed on average in 3 minutes only !!! )
 
 - Premine : 22 000 000 coins, barely above 1 % of max supply
 
@@ -48,23 +50,23 @@ NOMP's node-stratum-pool module adapted code :
 
 - Brand New Blockchain !!  ( downloading the new blockchain or re indexing it and syncing with the network actually takes less than 1 minute on average with a normal internet speed !!! )
 
-- The Hive : A " hodl and profit " mining system accessible to everyone, that works side by side with POW mining, invented by  LitecoinCash's developers !!
 
-POOL :
+Official Website :
+
+http://lightningcash-gold.com
+
+
+
+Official Mining Pool :
 
 http://pool.lightningcash-gold.com/
 
 
 
-Block explorer :
+Official Block Explorer :
 
 http://explorer.lightningcash-gold.com/
 
-
-
-Website :
-
-http://lightningcash-gold.com
 
 
 
@@ -75,6 +77,9 @@ White Paper available on LightningCash-Gold's website.
 Exchange : 
 
 https://fcbaccount.com/
+https://swiftex.co/
+https://probitex.com/
+https://enmanet.com/
 
 Other exchanges are under discussions.
 
