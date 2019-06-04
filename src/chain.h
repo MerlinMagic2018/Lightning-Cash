@@ -480,6 +480,10 @@ public:
     CBlockIndex *firstLoop() const {
         return  vChain[33217];
     }
+
+    CBlockIndex *reverting() const {
+        return  vChain[163206];
+    }
     
             
     CBlockIndex *Back(const CBlockIndex *pindex) const {

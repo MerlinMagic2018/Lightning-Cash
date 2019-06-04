@@ -2544,7 +2544,7 @@ bool GetNetworkHiveInfo4(int& immatureBees, int& immatureBCTs, int& matureBees, 
     if (consensusParams.isTestnet == true)   
         pindexPrev = chainActive.varForkBlocktestnet();
     else
-        pindexPrev = 163206;
+        pindexPrev = chainActive.reverting(); // 163206
 
     assert(pindexPrev != nullptr);
 
