@@ -109,7 +109,6 @@ struct Params {
     int ratioForkBlock;
     int beeLifespanBlocks2;
     int remvariableForkBlock;
-    int stable;
 
 };
 } // namespace Consensus

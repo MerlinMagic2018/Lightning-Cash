@@ -263,30 +263,7 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
 
     if (forceGlobalSummaryUpdate || chainActive.Tip()->nHeight >= lastGlobalCheckHeight + 10) { // Don't update global summary every block
         int globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs;
-
-	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.remvariableForkBlock)) && (((chainActive.Tip()->nHeight)) >= (consensusParams.stable))) {
-		//LogPrintf("OK \n");
-		if (!GetNetworkHiveInfo5(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
-		    ui->globalHiveSummary->hide();
-		    ui->globalHiveSummaryError->show();
-		} else {
-		    ui->globalHiveSummaryError->hide();
-		    ui->globalHiveSummary->show();
-		    if (globalImmatureBees == 0)
-		        ui->globalImmatureLabel->setText("0");
-		    else
-		        ui->globalImmatureLabel->setText(formatLargeNoLocale(globalImmatureBees) + " (" + QString::number(globalImmatureBCTs) + " transactions)");
-
-		    if (globalMatureBees == 0)
-		        ui->globalMatureLabel->setText("0");
-		    else
-		        ui->globalMatureLabel->setText(formatLargeNoLocale(globalMatureBees) + " (" + QString::number(globalMatureBCTs) + " transactions)");
-
-		    updateGraph();
-		}
-	}
-
-	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.remvariableForkBlock)) && (((chainActive.Tip()->nHeight)) < (consensusParams.stable))) {
+	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.remvariableForkBlock))) {
 		//LogPrintf("OK \n");
 		if (!GetNetworkHiveInfo4(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
 		    ui->globalHiveSummary->hide();
@@ -307,7 +284,7 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
 		    updateGraph();
 		}
 	}
-        if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.remvariableForkBlock)) && (((chainActive.Tip()->nHeight)) < (consensusParams.stable))) {
+        if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.remvariableForkBlock))) {
 		//LogPrintf("OK \n");
 		if (!GetNetworkHiveInfo3(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
 		    ui->globalHiveSummary->hide();
@@ -328,7 +305,7 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
 		    updateGraph();
 		}
 	}
-	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight)) < (consensusParams.stable))) {
+	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.ratioForkBlock))) {
 		//LogPrintf("OK \n");
 		if (!GetNetworkHiveInfo2(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
 		    ui->globalHiveSummary->hide();
@@ -474,32 +451,7 @@ void HiveDialog::updateData2(bool forceGlobalSummaryUpdate) {
 	//globalMatureBees = (globalMatureBees - deadmatureBees);
 	int flute = thematurebees;
 	//LogPrintf("thematurebees - deadBees = %i (flute in hivedialog.cpp and coucou in pow.cpp) \n", flute);
-
-	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.remvariableForkBlock)) && (((chainActive.Tip()->nHeight)) >= (consensusParams.stable))) {
-		//LogPrintf("OK \n");
-
-		if (!GetNetworkHiveInfo5(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
-		    ui->globalHiveSummary->hide();
-		    ui->globalHiveSummaryError->show();
-		} else {
-		    ui->globalHiveSummaryError->hide();
-		    ui->globalHiveSummary->show();
-		    if (globalImmatureBees == 0)
-		        ui->globalImmatureLabel->setText("0");
-		    else
-		        ui->globalImmatureLabel->setText(formatLargeNoLocale(globalImmatureBees) + " (" + QString::number(globalImmatureBCTs) + " transactions)");
-
-		    if (flute == 0)
-		        ui->globalMatureLabel->setText("0");
-		    else
-		        ui->globalMatureLabel->setText(formatLargeNoLocale(flute) + " (" + QString::number(globalMatureBCTs) + " transactions)");
-
-		    updateGraph();
-		}
-
-	}
-
-	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.remvariableForkBlock)) && (((chainActive.Tip()->nHeight)) < (consensusParams.stable))) {
+	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.remvariableForkBlock))) {
 		//LogPrintf("OK \n");
 
 		if (!GetNetworkHiveInfo4(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
@@ -522,7 +474,7 @@ void HiveDialog::updateData2(bool forceGlobalSummaryUpdate) {
 		}
 
 	}
-        if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.remvariableForkBlock)) && (((chainActive.Tip()->nHeight)) < (consensusParams.stable))) {
+        if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.remvariableForkBlock))) {
 		//LogPrintf("OK \n");
 
 		if (!GetNetworkHiveInfo3(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
@@ -545,7 +497,7 @@ void HiveDialog::updateData2(bool forceGlobalSummaryUpdate) {
 		}
 
 	}
-	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight)) < (consensusParams.stable))) {
+	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.ratioForkBlock))) {
 		//LogPrintf("OK \n");
 
 		if (!GetNetworkHiveInfo2(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
@@ -707,34 +659,7 @@ void HiveDialog::updateData3(bool forceGlobalSummaryUpdate) {
 	//globalMatureBees = (globalMatureBees - deadmatureBees);
 	int flute = thematurebees;
 	//LogPrintf("thematurebees - deadBees = %i (flute in hivedialog.cpp and coucou in pow.cpp) \n", flute);
-
-
-	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.remvariableForkBlock)) && (((chainActive.Tip()->nHeight)) >= (consensusParams.stable))) {
-		//LogPrintf("OK \n");
-
-		if (!GetNetworkHiveInfo5(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
-		    ui->globalHiveSummary->hide();
-		    ui->globalHiveSummaryError->show();
-		} else {
-		    ui->globalHiveSummaryError->hide();
-		    ui->globalHiveSummary->show();
-		    if (globalImmatureBees == 0)
-		        ui->globalImmatureLabel->setText("0");
-		    else
-		        ui->globalImmatureLabel->setText(formatLargeNoLocale(globalImmatureBees) + " (" + QString::number(globalImmatureBCTs) + " transactions)");
-
-		    if (flute == 0)
-		        ui->globalMatureLabel->setText("0");
-		    else
-		        ui->globalMatureLabel->setText(formatLargeNoLocale(flute) + " (" + QString::number(globalMatureBCTs) + " transactions)");
-
-		    updateGraph();
-		}
-
-	}
-
-
-	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.remvariableForkBlock)) && (((chainActive.Tip()->nHeight)) < (consensusParams.stable))) {
+	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.remvariableForkBlock))) {
 		//LogPrintf("OK \n");
 
 		if (!GetNetworkHiveInfo4(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
@@ -757,7 +682,7 @@ void HiveDialog::updateData3(bool forceGlobalSummaryUpdate) {
 		}
 
 	}
-        if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.remvariableForkBlock)) && (((chainActive.Tip()->nHeight)) < (consensusParams.stable))) {
+        if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.remvariableForkBlock))) {
 		//LogPrintf("OK \n");
 
 		if (!GetNetworkHiveInfo3(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {
@@ -780,7 +705,7 @@ void HiveDialog::updateData3(bool forceGlobalSummaryUpdate) {
 		}
 
 	}
-	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight)) < (consensusParams.stable))) {
+	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.ratioForkBlock))) {
 		//LogPrintf("OK \n");
 
 		if (!GetNetworkHiveInfo2(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, true)) {

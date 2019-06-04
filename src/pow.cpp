@@ -2544,7 +2544,7 @@ bool GetNetworkHiveInfo4(int& immatureBees, int& immatureBCTs, int& matureBees, 
     if (consensusParams.isTestnet == true)   
         pindexPrev = chainActive.varForkBlocktestnet();
     else
-        pindexPrev = chainActive.varForkBlock();
+        pindexPrev = 163206;
 
     assert(pindexPrev != nullptr);
 
@@ -2574,10 +2574,10 @@ bool GetNetworkHiveInfo4(int& immatureBees, int& immatureBCTs, int& matureBees, 
         }       
         else {
             priceState = 0;
-            immatureBees = 8702499; 
-            immatureBCTs = 3;
-            matureBees = 14359051;
-            matureBCTs = 79;
+            immatureBees = 20000; 
+            immatureBCTs = 1;
+            matureBees = 17605004;
+            matureBCTs = 130;
         }
     
     }
@@ -2595,7 +2595,7 @@ bool GetNetworkHiveInfo4(int& immatureBees, int& immatureBCTs, int& matureBees, 
 
     if (firstRun == 0) {
 
-    for (int i = 67777; i < remTipHeight; i++) { // count bees by kind in order
+    for (int i = 163206; i < remTipHeight; i++) { // count bees by kind in order
         if (fHavePruned && !(pindexPrev->nStatus & BLOCK_HAVE_DATA) && pindexPrev->nTx > 0) {
             LogPrintf("! GetNetworkHiveInfo: Warn: Block not available (pruned data); can't calculate network bee count.");
             return false;
@@ -3591,93 +3591,7 @@ bool GetNetworkHiveInfo4(int& immatureBees, int& immatureBCTs, int& matureBees, 
     return true;
 }
 
-// LightningCash Gold: Hive: Get count of all live and gestating BCTs on the network
-bool GetNetworkHiveInfo5(int& immatureBees, int& immatureBCTs, int& matureBees, int& matureBCTs, CAmount& potentialLifespanRewards, const Consensus::Params& consensusParams, bool recalcGraph) {
-    int totalBeeLifespan2 = consensusParams.beeLifespanBlocks2 + consensusParams.beeGestationBlocks;
-    int totalBeeLifespan = consensusParams.beeLifespanBlocks + consensusParams.beeGestationBlocks;
-    immatureBees = immatureBCTs = matureBees = matureBCTs = 0;
-    
-    CBlockIndex* pindexPrev = chainActive.Tip();
-    assert(pindexPrev != nullptr);
-    int tipHeight = pindexPrev->nHeight;
-    potentialLifespanRewards = (consensusParams.beeLifespanBlocks2 * GetBlockSubsidy(pindexPrev->nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
 
-    if (recalcGraph) {
-        for (int i = 0; i < totalBeeLifespan2; i++) {
-            beePopGraph[i].immaturePop = 0;
-            beePopGraph[i].maturePop = 0;
-        }
-    }
-
-    if (IsInitialBlockDownload())   // Refuse if we're downloading
-        return false;
-
-    // Count bees in next blockCount blocks
-    CBlock block;
-    CScript scriptPubKeyBCF = GetScriptForDestination(DecodeDestination(consensusParams.beeCreationAddress));
-    CScript scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
-
-    for (int i = 0; i < totalBeeLifespan2; i++) {
-        if (fHavePruned && !(pindexPrev->nStatus & BLOCK_HAVE_DATA) && pindexPrev->nTx > 0) {
-            LogPrintf("! GetNetworkHiveInfo: Warn: Block not available (pruned data); can't calculate network bee count.");
-            return false;
-        }
-
-        if (!pindexPrev->GetBlockHeader().IsHiveMined(consensusParams)) {                          // Don't check Hivemined blocks (no BCTs will be found in them)
-            if (!ReadBlockFromDisk(block, pindexPrev, consensusParams)) {
-                LogPrintf("! GetNetworkHiveInfo: Warn: Block not available (not found on disk); can't calculate network bee count.");
-                return false;
-            }
-            int blockHeight = pindexPrev->nHeight;
-            CAmount beeCost = 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams)); // since its prefork, will always be this so its ok here
-            if (block.vtx.size() > 0) {
-                for(const auto& tx : block.vtx) {
-                    CAmount beeFeePaid;
-                    if (tx->IsBCT(consensusParams, scriptPubKeyBCF, &beeFeePaid)) {                 // If it's a BCT, total its bees
-                        if (tx->vout.size() > 1 && tx->vout[1].scriptPubKey == scriptPubKeyCF) {    // If it has a community fund contrib...
-                            CAmount donationAmount = tx->vout[1].nValue;
-                            CAmount expectedDonationAmount = (beeFeePaid + donationAmount) / consensusParams.communityContribFactor;  // ...check for valid donation amount
-                            if (donationAmount != expectedDonationAmount)
-                                continue;
-                            beeFeePaid += donationAmount;                                           // Add donation amount back to total paid
-                        }
-                        int beeCount = beeFeePaid / beeCost;
-                        if (i < consensusParams.beeGestationBlocks) {
-                            immatureBees += beeCount;
-                            immatureBCTs++;
-                        } else {
-                            matureBees += beeCount; 
-                            matureBCTs++;
-                        }
-                        
-                        if (recalcGraph) {
-                            
-                            int beeBornBlock = blockHeight;
-                            int beeMaturesBlock = beeBornBlock + consensusParams.beeGestationBlocks;
-                            int beeDiesBlock = beeMaturesBlock + consensusParams.beeLifespanBlocks2;
-                            for (int j = beeBornBlock; j < beeDiesBlock; j++) {
-                                int graphPos = j - tipHeight;
-                                if (graphPos > 0 && graphPos < totalBeeLifespan2) {
-                                    if (j < beeMaturesBlock)
-                                        beePopGraph[graphPos].immaturePop += beeCount;
-                                    else
-                                        beePopGraph[graphPos].maturePop += beeCount;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        if (!pindexPrev->pprev)     // Check we didn't run out of blocks
-            return true;
-
-        pindexPrev = pindexPrev->pprev;
-    }
-
-    return true;
-}
 
 // LightningCash Gold: Hive: Check the hive proof for given block
 bool CheckHiveProof(const CBlock* pblock, const Consensus::Params& consensusParams) {

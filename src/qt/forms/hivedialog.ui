@@ -223,7 +223,7 @@ background-color:white;}</string>
            <enum>Qt::StrongFocus</enum>
           </property>
           <property name="toolTip">
-           <string>The community fund works by diverting a portion of the unspendable bee creation fee to the spendable community fund address. This enables us to keep developing LightningCash-Gold.</string>
+           <string>The community fund works by diverting a portion of the unspendable bee creation fee to the spendable community fund address. This enables us to keep developing Litecoin Cash.</string>
           </property>
           <property name="text">
            <string>Send 10% of bee fee to Community Fund (Bee price remains the same and you still get the same number of bees)</string>
@@ -636,7 +636,7 @@ the network is saturated with the maximum number of bees that are expected
 to make back their cost. At values below 100, it is expected at all bees will be profitable.</string>
            </property>
            <property name="text">
-            <string>&lt;a href=&quot;https://hive.lightningca.sh/gi/&quot;&gt;&lt;span style=&quot;text-decoration: underline;&quot;&gt;Global index&lt;/span&gt;&lt;/a&gt;: </string>
+            <string>&lt;a href=&quot;https://hive.litecoinca.sh/gi/&quot;&gt;&lt;span style=&quot;text-decoration: underline;&quot;&gt;Global index&lt;/span&gt;&lt;/a&gt;: </string>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
