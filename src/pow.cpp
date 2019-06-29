@@ -199,6 +199,10 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 {
     assert(pindexLast != nullptr);
 
+    if ((pindexLast->nHeight+1 >= nYesPowerFork-5) && (pindexLast->nHeight+1 <= nYesPowerFork+5))
+        return UintToArith256(params.powLimit).GetCompact();
+
+
     // LitecoinCash: If past fork time, use Dark Gravity Wave
     if (pindexLast->nHeight >= params.lastScryptBlock)
         return DarkGravityWave(pindexLast, pblock, params);

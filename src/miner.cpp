@@ -224,7 +224,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     if (hiveProofScript)
         pblock->nBits = GetNextHiveWorkRequired(pindexPrev, chainparams.GetConsensus());
     else
-        pblock->nBits = GetNextWorkRequired(pindexPrev, pblock, chainparams.GetConsensus());
+        pblock->nBits = GetNextWorkRequired(pindexPrev, pblock, chainparams.GetConsensus()); // OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 
     // LightningCash Gold: Hive: Set nonce marker for hivemined blocks
     pblock->nNonce = hiveProofScript ? chainparams.GetConsensus().hiveNonceMarker : 0;

@@ -64,6 +64,8 @@ public:
 
     uint256 GetPoWHash() const;
 
+    uint256 GetHashYespower() const;
+
     int64_t GetBlockTime() const
     {
         return (int64_t)nTime;

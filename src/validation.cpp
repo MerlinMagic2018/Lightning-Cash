@@ -221,6 +221,7 @@ size_t nCoinCacheUsage = 5000 * 300;
 uint64_t nPruneTarget = 0;
 int64_t nMaxTipAge = DEFAULT_MAX_TIP_AGE;
 bool fEnableReplacement = DEFAULT_ENABLE_REPLACEMENT;
+const int nYesPowerFork = 242019;
 
 uint256 hashAssumeValid;
 arith_uint256 nMinimumChainWork;
@@ -1106,6 +1107,8 @@ bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus:
         return error("%s: Deserialize or I/O error - %s at %s", __func__, e.what(), pos.ToString());
     }
 
+    /*
+
     // LightningCash Gold: Hive: Check PoW or Hive work depending on blocktype
     if (block.IsHiveMined(consensusParams)) {
 	
@@ -1127,10 +1130,10 @@ bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus:
 
 
     } else {
-        if (!CheckProofOfWork(block.GetPoWHash(), block.nBits, consensusParams))
+        if (!CheckProofOfWork(IsYesPower() ? block.GetHashYespower() : block.GetPoWHash(), block.nBits, consensusParams))
             return error("ReadBlockFromDisk: Errors in PoW block header at %s", pos.ToString());
     }
-
+*/
     return true;
 }
 
@@ -3042,9 +3045,23 @@ static bool FindUndoPos(CValidationState &state, int nFile, CDiskBlockPos &pos, 
 
 static bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, const Consensus::Params& consensusParams, bool fCheckPOW = true)
 {
+    // Get prev block index
+    CBlockIndex* pindexPrev = NULL;
+    int nHeight = 0;
+    BlockMap::iterator mi = mapBlockIndex.find(block.hashPrevBlock);
+    if (mi != mapBlockIndex.end()) {
+        pindexPrev = mi->second;
+        nHeight = pindexPrev->nHeight + 1;
+    }
+
+    // Skip headers validation until we're close to chaintip
+    if (Params().NetworkIDString() == CBaseChainParams::MAIN)
+      if (nHeight < SKIP_BLOCKHEADER_POW)
+        return true;
+    
     // LightningCash Gold: Hive: Check PoW or Hive work depending on blocktype
     if (fCheckPOW && !block.IsHiveMined(consensusParams)) {
-        if (!CheckProofOfWork(block.GetPoWHash(), block.nBits, consensusParams))
+        if (!CheckProofOfWork(IsYesPower(nHeight) ? block.GetHashYespower() : block.GetPoWHash(), block.nBits, consensusParams))
             return state.DoS(50, false, REJECT_INVALID, "high-hash", false, "proof of work failed");
     }
 
@@ -4862,6 +4879,13 @@ double GuessVerificationProgress(const ChainTxData& data, const CBlockIndex *pin
     }
 
     return pindex->nChainTx / fTxTotal;
+}
+
+bool IsYesPower(int nHeight)
+{
+    // return (chainActive.Height > x);
+    // return gArgs.GetBoolArg("-testnet", false);
+	return (nHeight >= nYesPowerFork);
 }
 
 class CMainCleanup
