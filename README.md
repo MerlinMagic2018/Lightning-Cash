@@ -23,32 +23,26 @@ Characteristics
 ---------------------------------------------------------------------------
 
 
-- Hash Algorithm : SCRYPT POW algorithm    ( Asic-friendly )
+- Hash Algorithm : Modified Yespower POW algorithm    ( CPU-Only )
 
 ( With the addition of modified Dash's DarkGravityWave v3 algorithm, that changes difficulty every block, and progressively lowers difficulty if long stale tips happens. Tested and fully working !!)
 
 - The Hive : A " hodl and profit " mining system accessible to everyone, that works side by side with POW mining, invented by  LitecoinCash's developers !!
 
-- Total Supply : 2 100 000 000 LTNCG ( 100 times Bitcoin's total supply )
+- Maximum Supply : 2 100 000 000 LTNCG ( 100 times Bitcoin's total supply )
 
 - Difficulty adjusted every block and possibly in CURRENT block if a long network stale tip happens !! This protects LightningCash-Gold from high hash variations and " high hash attacks " , that happens frequently for new coins and kills them by making the mining difficulty too high for the " normal " network's hash rate. For more info :
 		https://bitcointalk.org/index.php?topic=5119550 .
 
-- Changed famous NOMP ( node open mining portal ) pool software to include possible CURRENT block difficulty change and send new work to miners if so.
+- Fast POW / Hive block pair target time of 80 seconds on average !! ( 40 seconds per block )
 
-NOMP's node-stratum-pool module adapted code : 
-
-		https://github.com/Lightningcash-dev/node-stratum-pool
-
-- Fast POW / Hive block pair target time of 1 minute !! 
-
-- Number of confirmations needed for a transaction : 6  ( so a transaction is confirmed on average in 3 minutes only !!! )
+- Number of confirmations needed for a transaction : 6  ( so a transaction is confirmed on average in 4 minutes only !!! )
 
 - Premine : 22 000 000 coins, barely above 1 % of max supply
 
 - Block Reward : 500 LightningCash ( halved every 2 100 000 blocks, so every 4 years on average )
 
-- Brand New Blockchain !!  ( downloading the new blockchain or re indexing it and syncing with the network actually takes less than 1 minute on average with a normal internet speed !!! )
+- Brand New Blockchain !!  ( downloading the new blockchain or re indexing it and syncing with the network actually takes less than 5 minute on average with a normal internet speed !!! )
 
 
 Official Website :
