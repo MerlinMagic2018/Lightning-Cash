@@ -85,6 +85,7 @@ public:
         consensus.powLimit = uint256S("00000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 3840;
         consensus.nPowTargetSpacing = 60; // target of 1 minute per block
+        consensus.nPowTargetSpacing2 = 10; // target of 10 seconds per block
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
         consensus.nRuleChangeActivationThreshold = 192; // 75% of 256
@@ -109,6 +110,11 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_HIVE].nStartTime = Consensus::BIP9Deployment::ALWAYS_ACTIVE; // active from the start
         consensus.vDeployments[Consensus::DEPLOYMENT_HIVE].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
 
+        // LightningCash Gold: Hive 1.1: Deployment
+        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_1].bit = 9;
+        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_1].nStartTime = 2000000000;  // Far future
+        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_1].nTimeout = 2100000000;  // Far future
+
         // LightningCash Gold fields
         consensus.powForkTime = 1551819029;                 // Time of PoW hash method change
         consensus.lastScryptBlock = 0;                // Height of last scrypt block
@@ -128,10 +134,20 @@ public:
         consensus.beeGestationBlocks = 48*24;               // The number of blocks for a new bee to mature
         consensus.beeLifespanBlocks = 48*24*14;             // The number of blocks a bee lives for after maturation
         consensus.powLimitHive = uint256S("0ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");  // Highest (easiest) bee hash target
+        consensus.powLimitHive2 = uint256S("7ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");  // Highest (easiest) bee hash target
         consensus.minHiveCheckBlock = 1;              // Don't bother checking below this height for Hive blocks (not used for consensus/validation checks, just efficiency when looking for potential BCTs)
         consensus.hiveTargetAdjustAggression = 30;          // Snap speed for bee hash target adjustment EMA
         consensus.hiveBlockSpacingTarget = 2;               // Target Hive block frequency (1 out of this many blocks should be Hivemined)
         consensus.hiveNonceMarker = 192;                    // Nonce marker for hivemined blocks
+
+        // LightningCash Gold: Hive 1.1-related consensus fields
+        consensus.minK = 1;                                 // Minimum chainwork scale for Hive blocks (see Hive whitepaper section 5)
+        consensus.maxK = 8;                                 // Maximum chainwork scale for Hive blocks (see Hive whitepaper section 5)
+        consensus.maxHiveDiff = 0.006;                      // Hive difficulty at which max chainwork bonus is awarded
+        consensus.maxKPow = 5;                              // Maximum chainwork scale for PoW blocks
+        consensus.powSplit1 = 0.005;                        // Below this Hive difficulty threshold, PoW block chainwork bonus is halved
+        consensus.powSplit2 = 0.0025;                       // Below this Hive difficulty threshold, PoW block chainwork bonus is halved again
+
 	consensus.variableBeecost = true;
 	consensus.variableForkBlock = 67777;
 	consensus.isTestnet = false;
@@ -214,6 +230,7 @@ public:
         consensus.powLimit = uint256S("00000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 3840; //
         consensus.nPowTargetSpacing = 60;
+        consensus.nPowTargetSpacing2 = 10;
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
         consensus.nRuleChangeActivationThreshold = 192; // Require 75% of last 40 blocks to activate rulechanges
@@ -237,6 +254,11 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_HIVE].nStartTime = Consensus::BIP9Deployment::ALWAYS_ACTIVE; // active from the start
         consensus.vDeployments[Consensus::DEPLOYMENT_HIVE].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
 
+        // LitecoinCash: Hive 1.1: Deployment
+        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_1].bit = 9;
+        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_1].nStartTime = Consensus::BIP9Deployment::ALWAYS_ACTIVE;  // active from the start
+        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_1].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;  // active from the start
+
         // LightningCash Gold fields
         consensus.powForkTime = 1551819029;                 // Time of PoW hash method change (block 100)
         consensus.lastScryptBlock = 0;                    // Height of last scrypt block
@@ -253,19 +275,29 @@ public:
         consensus.beeCreationAddress = "tEstNetCreateLCCWorkerBeeXXXYq6T3r";        // Unspendable address for bee creation
         consensus.hiveCommunityAddress = "t9ctP2rDfvnqUr9kmo2nb1LEDpu1Lc5sQn";      // Community fund address
         consensus.communityContribFactor = 10;              // Optionally, donate bct_value/maxCommunityContribFactor to community fund
-        consensus.beeGestationBlocks = 24;               // The number of blocks for a new bee to mature 24 times faster for testnet
-        consensus.beeLifespanBlocks = 24*14;             // The number of blocks a bee lives for after maturation 24 times faster for testnet
+        consensus.beeGestationBlocks = 48*24;               // The number of blocks for a new bee to mature 24 times faster for testnet
+        consensus.beeLifespanBlocks = 48*24*14;             // The number of blocks a bee lives for after maturation 24 times faster for testnet
         consensus.powLimitHive = uint256S("0ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");  // Highest (easiest) bee hash target
+        consensus.powLimitHive2 = uint256S("7ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");  // Highest (easiest) bee hash target
         consensus.minHiveCheckBlock = 1;                  // Don't bother checking below this height for Hive blocks (not used for consensus/validation checks, just efficiency when looking for potential BCTs)
         consensus.hiveTargetAdjustAggression = 30;          // Snap speed for bee hash target adjustment EMA
         consensus.hiveBlockSpacingTarget = 2;               // Target Hive block frequency (1 out of this many blocks should be Hivemined)
         consensus.hiveNonceMarker = 192;                    // Nonce marker for hivemined blocks
+
+        // LightningCash Gold: Hive 1.1-related consensus fields
+        consensus.minK = 1;                                 // Minimum chainwork scale for Hive blocks (see Hive whitepaper section 5)
+        consensus.maxK = 8;                                 // Maximum chainwork scale for Hive blocks (see Hive whitepaper section 5)
+        consensus.maxHiveDiff = 0.002;                      // Hive difficulty at which max chainwork bonus is awarded
+        consensus.maxKPow = 5;                              // Maximum chainwork scale for PoW blocks
+        consensus.powSplit1 = 0.001;                        // Below this Hive difficulty threshold, PoW block chainwork bonus is halved
+        consensus.powSplit2 = 0.0005;                       // Below this Hive difficulty threshold, PoW block chainwork bonus is halved again
+
 	consensus.variableBeecost = true;
-	consensus.variableForkBlock = 500;
+	consensus.variableForkBlock = 5000000; // never happens
 	consensus.isTestnet = true;
-	consensus.ratioForkBlock = 550;
-        consensus.beeLifespanBlocks2 = 24*21;
-	consensus.remvariableForkBlock = 2000;
+	consensus.ratioForkBlock = 5500000; // never happens
+        consensus.beeLifespanBlocks2 = 48*24*21;
+	consensus.remvariableForkBlock = 2000000; // never happens
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");  // LightningCash Gold

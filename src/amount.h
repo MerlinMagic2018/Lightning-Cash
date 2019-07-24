@@ -11,7 +11,7 @@
 /** Amount in satoshis (Can be negative) */
 typedef int64_t CAmount;
 
-static const CAmount COIN_SCALE = 10;                   // 10 times as fast as bitcoin and 10 times more coins so 2100000000 coins 
+static const CAmount COIN_SCALE = 1; 
 
 static const CAmount COIN = 100000000 / COIN_SCALE;     // LightningCash Gold: Account for coinscale
 static const CAmount CENT = 1000000 / COIN_SCALE;       // LightningCash Gold: Account for coinscale

@@ -531,7 +531,7 @@ void BeeKeeper(const CChainParams& chainparams) {
 
     try {
         while (true) {
-            MilliSleep(5000);
+            MilliSleep(1000);
             int newHeight;
             {
                 LOCK(cs_main);
@@ -610,19 +610,28 @@ bool BusyBees(const Consensus::Params& consensusParams) {
     LogPrint(BCLog::HIVE, "BusyBees: Checking bee hashes....\n");
     
     std::vector<CBeeCreationTransactionInfo> bcts;
-    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.remvariableForkBlock))) {
+
+    if (((chainActive.Tip()->nHeight) - 1) >= nSpeedFork) {
+	//LogPrintf("OK \n");
+
+    	bcts = pwallet->GetBCTs(false, false, consensusParams);
+
+    }
+
+
+    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.remvariableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < nSpeedFork)) {
 	//LogPrintf("OK \n");
 
     	bcts = pwallet->GetBCTs3(false, false, consensusParams);
 
     }
-    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.remvariableForkBlock))) {
+    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.remvariableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < nSpeedFork)) {
 	//LogPrintf("OK \n");
 
     	bcts = pwallet->GetBCTs2(false, false, consensusParams);
 
     }
-    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.variableForkBlock))) {
+    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < nSpeedFork)) {
 	//LogPrintf("NOT OK \n");
     	bcts = pwallet->GetBCTs(false, false, consensusParams);
 
@@ -637,19 +646,19 @@ bool BusyBees(const Consensus::Params& consensusParams) {
         if (bct.beeStatus != "mature")
             continue;
 
-        // Iterate all bees in this BCT, keeping only the best hash found so far across all bees
-        for (uint32_t bee = 0; bee < (uint32_t)bct.beeCount; bee++) {
-            std::string hashHex = (CHashWriter(SER_GETHASH, 0) << deterministicRandString << bct.txid << bee).GetHash().GetHex();
-            //LogPrintf("Bee %i gives hash %s\n", bee, hashHex);
-            arith_uint256 beeHash = arith_uint256(hashHex);
-            if (beeHash < bestHash) {
-                bestHash = beeHash;
-                bestHashBee = bee;
-                bestBct = bct;
-            }
-
-            beesChecked++;
-        }
+        // Iterate all bees in this BCT, looking for any winner
+	    for (uint32_t bee = 0; bee < (uint32_t)bct.beeCount; bee++) {
+		std::string hashHex = (CHashWriter(SER_GETHASH, 0) << deterministicRandString << bct.txid << bee).GetHash().GetHex();
+		beesChecked++;
+		//LogPrintf("Bee %i gives hash %s\n", bee, hashHex);
+		arith_uint256 beeHash = arith_uint256(hashHex);
+		if (beeHash < beeHashTarget) {
+		    bestHash = beeHash;
+		    bestHashBee = bee;
+		    bestBct = bct;
+		    break;
+		}            
+	    }
     }
 
     if (beesChecked == 0) {

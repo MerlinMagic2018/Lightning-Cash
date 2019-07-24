@@ -82,9 +82,9 @@ int BitcoinUnits::decimals(int unit)
 {
     switch(unit)
     {
-    case BTC: return 7;                             // LightningCash Gold: Updated decimals
-    case mBTC: return 4;
-    case uBTC: return 1;
+    case BTC: return 8;                             // LightningCash Gold: Updated decimals
+    case mBTC: return 5;
+    case uBTC: return 2;
     default: return 0;
     }
 }

@@ -151,6 +151,107 @@ unsigned int DarkGravityWave(const CBlockIndex* pindexLast, const CBlockHeader *
     return bnNew.GetCompact();
 }
 
+// LightningCash Gold: DarkGravity V3 (https://github.com/dashpay/dash/blob/master/src/pow.cpp#L82)
+// By Evan Duffield <evan@dash.org>
+unsigned int DarkGravityWave2(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
+{
+    const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);   // LightningCash: Note we use the Scrypt pow limit here!
+    int64_t nPastBlocks = 24;
+
+    // LightningCash Gold: Allow minimum difficulty blocks if we haven't seen a block for ostensibly 10 blocks worth of time
+    if (params.fPowAllowMinDifficultyBlocks && pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing2 * 10)
+        return bnPowLimit.GetCompact();
+
+    // LightningCash Gold: Make sure we have at least (nPastBlocks + 1) blocks since the fork, otherwise just return powLimitSHA
+    if (!pindexLast || pindexLast->nHeight - params.lastScryptBlock < nPastBlocks)
+        return bnPowLimit.GetCompact();
+
+    const CBlockIndex *pindex = pindexLast;
+    arith_uint256 bnPastTargetAvg;
+    //int watata = pindex->nHeight;
+    //LogPrintf(" pindex->nHeight = %i\n", watata);
+    for (unsigned int nCountBlocks = 1; nCountBlocks <= nPastBlocks; nCountBlocks++) {
+        // LightningCash Gold: Hive: Skip over Hivemined blocks; we only want to consider PoW blocks
+        //LogPrintf("nCountBlocks = %i \n", nCountBlocks);
+        while (pindex->GetBlockHeader().IsHiveMined(params)) {
+            //LogPrintf("DarkGravityWave: Skipping hivemined block at %i\n", pindex->nHeight);
+            assert(pindex->pprev); // should never fail
+            pindex = pindex->pprev;
+        }
+
+        arith_uint256 bnTarget = arith_uint256().SetCompact(pindex->nBits);
+        if (nCountBlocks == 1) {
+            bnPastTargetAvg = bnTarget;
+        } else {
+            // NOTE: that's not an average really...
+            bnPastTargetAvg = (bnPastTargetAvg * nCountBlocks + bnTarget) / (nCountBlocks + 1);
+        }
+
+        if(nCountBlocks != nPastBlocks) {
+            assert(pindex->pprev); // should never fail
+            pindex = pindex->pprev;
+        }
+    }
+
+    arith_uint256 bnNew(bnPastTargetAvg);
+
+    int64_t nActualTimespan = pindexLast->GetBlockTime() - pindex->GetBlockTime();
+    // NOTE: is this accurate? nActualTimespan counts it for (nPastBlocks - 1) blocks only...
+    int64_t nTargetTimespan = nPastBlocks * params.nPowTargetSpacing2;
+
+    if (nActualTimespan < nTargetTimespan/3)
+        nActualTimespan = nTargetTimespan/3;
+    if (nActualTimespan > nTargetTimespan*3)
+        nActualTimespan = nTargetTimespan*3;
+
+    // Retarget
+    bnNew *= nActualTimespan;
+    bnNew /= nTargetTimespan;
+
+    // LightningCash Gold : Limit "High Hash" Attacks... Progressively lower mining difficulty if too high...
+    if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing * 300){
+	//LogPrintf("DarkGravityWave: 30 minutes without a block !! Resetting difficulty ! OLD Target = %s\n", bnNew.ToString());
+	bnNew = bnPowLimit;
+	//LogPrintf("DarkGravityWave: 30 minutes without a block !! Resetting difficulty ! NEW Target = %s\n", bnNew.ToString());
+    }
+
+    else if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing2 * 250){
+	//LogPrintf("DarkGravityWave: 25 minutes without a block. OLD Target = %s\n", bnNew.ToString());
+	bnNew *= 100000;
+	//LogPrintf("DarkGravityWave: 25 minutes without a block. NEW Target = %s\n", bnNew.ToString());
+    }
+
+    else if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing2 * 200){
+	//LogPrintf("DarkGravityWave: 20 minutes without a block. OLD Target = %s\n", bnNew.ToString());
+	bnNew *= 10000;
+	//LogPrintf("DarkGravityWave: 20 minutes without a block. NEW Target = %s\n", bnNew.ToString());
+    }
+
+    else if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing2 * 150){
+	//LogPrintf("DarkGravityWave: 15 minutes without a block. OLD Target = %s\n", bnNew.ToString());
+	bnNew *= 1000;
+	//LogPrintf("DarkGravityWave: 15 minutes without a block. NEW Target = %s\n", bnNew.ToString());
+    }
+
+    else if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing2 * 100){
+	//LogPrintf("DarkGravityWave: 10 minutes without a block. OLD Target = %s\n", bnNew.ToString());
+	bnNew *= 100;
+	//LogPrintf("DarkGravityWave: 10 minutes without a block. NEW Target = %s\n", bnNew.ToString());
+    }
+
+    else {
+	bnNew = bnNew;
+	//LogPrintf("DarkGravityWave: no stale tip over 10m detected yet so target = %s\n", bnNew.ToString());
+    }
+
+    if (bnNew > bnPowLimit) {
+        bnNew = bnPowLimit;
+	//LogPrintf("DarkGravityWave: target too low, so target is minimum which is = %s\n", bnNew.ToString());
+    }
+
+    return bnNew.GetCompact();
+}
+
 unsigned int GetNextWorkRequiredLTC(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
 {
     assert(pindexLast != nullptr);
@@ -200,11 +301,20 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     assert(pindexLast != nullptr);
 
     if ((pindexLast->nHeight+1 >= nYesPowerFork-5) && (pindexLast->nHeight+1 <= nYesPowerFork+5))
-        return UintToArith256(params.powLimit).GetCompact();
+        return UintToArith256(params.powLimit).GetCompact(); // mainet and testnet yespower fork
 
+    if ((gArgs.GetBoolArg("-testnet", false)) && ((pindexLast->nHeight+1 >= 5) && (pindexLast->nHeight+1 <= nSpeedFork+5)))
+        return UintToArith256(params.powLimit).GetCompact(); // testnet pre speed fork and speed fork
+
+    if ((!gArgs.GetBoolArg("-testnet", false)) && ((pindexLast->nHeight+1 >= nSpeedFork-5) && (pindexLast->nHeight+1 <= nSpeedFork+5)))
+        return UintToArith256(params.powLimit).GetCompact(); // mainet Speed Fork
+
+    
 
     // LitecoinCash: If past fork time, use Dark Gravity Wave
-    if (pindexLast->nHeight >= params.lastScryptBlock)
+    if (pindexLast->nHeight+1 >= nSpeedFork+6)
+        return DarkGravityWave2(pindexLast, pblock, params); // both for mainet and testnet
+    else if (pindexLast->nHeight >= params.lastScryptBlock)
         return DarkGravityWave(pindexLast, pblock, params);
     else
         return GetNextWorkRequiredLTC(pindexLast, pblock, params);
@@ -267,6 +377,7 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params&
 // LightningCash Gold: Hive: Get the current Bee Hash Target
 unsigned int GetNextHiveWorkRequired(const CBlockIndex* pindexLast, const Consensus::Params& params) {
     const arith_uint256 bnPowLimit = UintToArith256(params.powLimitHive);
+    const arith_uint256 bnPowLimit2 = UintToArith256(params.powLimitHive2);
     const arith_uint256 bnImpossible = 0;
     arith_uint256 beeHashTarget;
 
@@ -278,7 +389,10 @@ unsigned int GetNextHiveWorkRequired(const CBlockIndex* pindexLast, const Consen
         if (!pindexLast->pprev || pindexLast->nHeight < params.minHiveCheckBlock) {   // Ran out of blocks without finding a Hive block? Return min target
             LogPrintf("GetNextHiveWorkRequired: No hivemined blocks found in history\n");
             //LogPrintf("GetNextHiveWorkRequired: This target= %s\n", bnPowLimit.ToString());
-            return bnPowLimit.GetCompact();
+	    if ((pindexLast->nHeight + 1) >= nSpeedFork)
+            	return bnPowLimit2.GetCompact();
+	    else
+		return bnPowLimit.GetCompact();
         }
 
         block = pindexLast->GetBlockHeader();
@@ -303,7 +417,9 @@ unsigned int GetNextHiveWorkRequired(const CBlockIndex* pindexLast, const Consen
 	beeHashTarget /= (interval + 1) * params.hiveBlockSpacingTarget;
 
 	// Clamp to min difficulty
-	if (beeHashTarget > bnPowLimit)
+	if ((pindexLast->nHeight + 1 >= nSpeedFork) && (beeHashTarget > bnPowLimit2))
+		beeHashTarget = bnPowLimit2;
+	if ((pindexLast->nHeight + 1 < nSpeedFork) && (beeHashTarget > bnPowLimit))
 		beeHashTarget = bnPowLimit;
 
     //LogPrintf("GetNextHiveWorkRequired: This target= %s\n", beeHashTarget.ToString());
@@ -313,7 +429,13 @@ unsigned int GetNextHiveWorkRequired(const CBlockIndex* pindexLast, const Consen
 
 // LightningCash Gold: Hive: Get count of all live and gestating BCTs on the network
 bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, int& matureBCTs, CAmount& potentialLifespanRewards, const Consensus::Params& consensusParams, bool recalcGraph) {
-    int totalBeeLifespan = consensusParams.beeLifespanBlocks + consensusParams.beeGestationBlocks;
+    int totalBeeLifespan;
+    
+    if (((chainActive.Tip()->nHeight) - 1) >= nSpeedFork)
+	totalBeeLifespan = consensusParams.beeLifespanBlocks2 + consensusParams.beeGestationBlocks;
+    else
+	totalBeeLifespan = consensusParams.beeLifespanBlocks + consensusParams.beeGestationBlocks;
+
     immatureBees = immatureBCTs = matureBees = matureBCTs = 0;
     
     CBlockIndex* pindexPrev = chainActive.Tip();
@@ -373,7 +495,11 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
                             
                             int beeBornBlock = blockHeight;
                             int beeMaturesBlock = beeBornBlock + consensusParams.beeGestationBlocks;
-                            int beeDiesBlock = beeMaturesBlock + consensusParams.beeLifespanBlocks;
+                            int beeDiesBlock;
+			    if (((chainActive.Tip()->nHeight) - 1) >= nSpeedFork)
+			    	beeDiesBlock = beeMaturesBlock + consensusParams.beeLifespanBlocks2;
+			    else
+				beeDiesBlock = beeMaturesBlock + consensusParams.beeLifespanBlocks;
                             for (int j = beeBornBlock; j < beeDiesBlock; j++) {
                                 int graphPos = j - tipHeight;
                                 if (graphPos > 0 && graphPos < totalBeeLifespan) {
@@ -3828,9 +3954,20 @@ bool CheckHiveProof(const CBlock* pblock, const Consensus::Params& consensusPara
         LogPrintf("CheckHiveProof: Indicated BCT is immature.\n");
         return false;
     }
-    if (bctDepth > consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks) {
-        LogPrintf("CheckHiveProof: Indicated BCT is too old.\n");
-        return false;
+
+
+    if (bctFoundHeight >= nSpeedFork) {
+
+	    if (bctDepth > consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks2) {
+		LogPrintf("CheckHiveProof: Indicated BCT is too old.\n");
+		return false;
+	    }
+    }
+    else {
+	    if (bctDepth > consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks) {
+		LogPrintf("CheckHiveProof: Indicated BCT is too old.\n");
+		return false;
+	    }
     }
 
     // Check for valid bee creation script and get honey scriptPubKey from BCT

@@ -198,15 +198,18 @@ void WalletView::gotoOverviewPage()
 // LightningCash Gold: Hive page
 void WalletView::gotoHivePage()
 {
-    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().remvariableForkBlock))) {
+    if (((chainActive.Tip()->nHeight) - 1) >= nSpeedFork)
+	hivePage->updateData();
+
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().remvariableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < nSpeedFork)) {
 	    //LogPrintf("OK \n");
 	    hivePage->updateData3();
     }
-    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (Params().GetConsensus().remvariableForkBlock))) {
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (Params().GetConsensus().remvariableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < nSpeedFork)) {
 	    //LogPrintf("OK \n");
 	    hivePage->updateData2();
     }
-    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (Params().GetConsensus().variableForkBlock))) {
+    if (((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < nSpeedFork)) {
 	    //LogPrintf("NOT OK \n");
 	    hivePage->updateData();
     }

@@ -127,7 +127,7 @@ QVariant HiveTableModel::data(const QModelIndex &index, int role) const {
                     QString status = "";
                     if (rec->beeStatus == "immature") {
                         int blocksTillMature;
-                        if (chainActive.Height() >= Params().GetConsensus().ratioForkBlock)
+                        if ((chainActive.Height() >= Params().GetConsensus().ratioForkBlock) || (chainActive.Height() >= nSpeedFork))
                             blocksTillMature = rec->blocksLeft - Params().GetConsensus().beeLifespanBlocks2;
                         else
                             blocksTillMature = rec->blocksLeft - Params().GetConsensus().beeLifespanBlocks;

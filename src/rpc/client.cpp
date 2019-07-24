@@ -91,6 +91,10 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "createrawtransaction", 1, "outputs" },
     { "createrawtransaction", 2, "locktime" },
     { "createrawtransaction", 3, "replaceable" },
+    { "createrawbct", 0, "inputs" },                // LightningCash Gold: Hive: Create a Raw BCT
+    { "createrawbct", 1, "bee_count" },             // LightningCash Gold: Hive: Create a Raw BCT
+    { "createrawbct", 3, "community_contrib" },     // LightningCash Gold: Hive: Create a Raw BCT
+    { "createrawbct", 4, "locktime" },              // LightningCash Gold: Hive: Create a Raw BCT
     { "createbees", 0, "beecount" },                // LightningCash Gold: Hive: Create a BCT
     { "createbees", 1, "community_contrib" },       // LightningCash Gold: Hive: Create a BCT
     { "getbeecost", 0, "height" },                  // LightningCash Gold: Hive: Get cost of a single bee

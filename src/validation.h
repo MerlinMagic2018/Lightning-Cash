@@ -77,7 +77,7 @@ static const unsigned int BLOCKFILE_CHUNK_SIZE = 0x1000000; // 16 MiB
 /** The pre-allocation chunk size for rev?????.dat files (since 0.8) */
 static const unsigned int UNDOFILE_CHUNK_SIZE = 0x100000; // 1 MiB
 /** Skip PoW testing headers until this blockheight */
-static const int SKIP_BLOCKHEADER_POW = 238900;
+static const int SKIP_BLOCKHEADER_POW = 290000;
 
 /** Maximum number of script-checking threads allowed */
 static const int MAX_SCRIPTCHECK_THREADS = 16;
@@ -184,7 +184,8 @@ extern CAmount maxTxFee;
 /** If the tip is older than this (in seconds), the node is considered to be in initial block download. */
 extern int64_t nMaxTipAge;
 extern bool fEnableReplacement;
-extern const int nYesPowerFork;
+extern int nYesPowerFork;
+extern int nSpeedFork;
 
 /** Block hash whose ancestors we will assume to have valid scripts without checking them. */
 extern uint256 hashAssumeValid;
@@ -414,6 +415,9 @@ bool IsWitnessEnabled(const CBlockIndex* pindexPrev, const Consensus::Params& pa
 
 // LightningCash Gold: Hive: Check if Hive is activated at given point
 bool IsHiveEnabled(const CBlockIndex* pindexPrev, const Consensus::Params& params);
+
+// LightningCash Gold: Hive: Check if Hive 1.1 is activated at given point
+bool IsHive11Enabled(const CBlockIndex* pindexPrev, const Consensus::Params& params);
 
 // LightningCash Gold: Hive: Get the well-rooted deterministic random string (see whitepaper section 4.1)
 std::string GetDeterministicRandString(const CBlockIndex* pindexPrev);

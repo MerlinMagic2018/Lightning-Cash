@@ -221,7 +221,19 @@ size_t nCoinCacheUsage = 5000 * 300;
 uint64_t nPruneTarget = 0;
 int64_t nMaxTipAge = DEFAULT_MAX_TIP_AGE;
 bool fEnableReplacement = DEFAULT_ENABLE_REPLACEMENT;
-const int nYesPowerFork = 247777;
+int nYesPowerFork;
+
+	if (gArgs.GetBoolArg("-testnet", false))
+		nYesPowerFork = 25550;
+	else
+		nYesPowerFork = 247777;
+
+int nSpeedFork;
+
+	if (gArgs.GetBoolArg("-testnet", false))
+		nSpeedFork = 25555;
+	else
+		nSpeedFork = 10000000; // to be announced....
 
 uint256 hashAssumeValid;
 arith_uint256 nMinimumChainWork;
@@ -1160,6 +1172,10 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
         return consensusParams.premineAmount * COIN * COIN_SCALE;*/
 
     int halvings = nHeight / consensusParams.nSubsidyHalvingInterval;
+
+    if (nHeight >= nSpeedFork)
+	halvings = nHeight / consensusParams.nSubsidyHalvingInterval2;
+
     // LitecoinCash: Force block reward to zero when right shift is undefined, and don't attempt to issue past total money supply
     if (halvings >= 64 || nHeight >= consensusParams.totalMoneySupplyHeight)
         return 0;
@@ -1174,7 +1190,11 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 	return 550000 * COIN * COIN_SCALE;
 
     CAmount nSubsidy = 50 * COIN * COIN_SCALE;
-    // Subsidy is cut in half every 210,000 blocks which will occur approximately every 4 years.
+
+    if (nHeight >= nSpeedFork)
+	nSubsidy = 5 * COIN * COIN_SCALE;
+
+    // Subsidy is cut in half every 21,000,000 blocks which will occur approximately every 2.6 years.
     nSubsidy >>= halvings;
 
     // LightningCash Gold: Slow-start the first n blocks  blocks to prevent early miners having an unfair advantage
@@ -1199,7 +1219,7 @@ CAmount GetBeeCost(int nHeight, const Consensus::Params& consensusParams)
     CAmount beeCost = (blockReward / consensusParams.beeCostFactor);
 
     CAmount potentialLifespanRewards;
-    if (chainActive.Height() >= consensusParams.ratioForkBlock)
+    if ((chainActive.Height() >= consensusParams.ratioForkBlock) || (chainActive.Height() >= nSpeedFork))
         potentialLifespanRewards = (consensusParams.beeLifespanBlocks2 * GetBlockSubsidy(nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
     else
         potentialLifespanRewards = (consensusParams.beeLifespanBlocks * GetBlockSubsidy(nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
@@ -3082,17 +3102,24 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
 
     // LightningCash Gold: Hive: Check Hive proof
     if (block.IsHiveMined(consensusParams)) {
-	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.remvariableForkBlock))){
+
+	if (((chainActive.Tip()->nHeight) - 1) >= nSpeedFork) {
+		//LogPrintf("OK \n");
+		if (!CheckHiveProof(&block, consensusParams))
+		    return state.DoS(100, false, REJECT_INVALID, "bad-hive-proof", false, "proof of hive failed");
+	}
+
+	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.remvariableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < nSpeedFork)){
 		//LogPrintf("OK \n");
 		if (!CheckHiveProof3(&block, consensusParams))
 		    return state.DoS(100, false, REJECT_INVALID, "bad-hive-proof", false, "proof of hive failed");
 	}
-	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.remvariableForkBlock))){
+	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.remvariableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < nSpeedFork)){
 		//LogPrintf("OK \n");
 		if (!CheckHiveProof2(&block, consensusParams))
 		    return state.DoS(100, false, REJECT_INVALID, "bad-hive-proof", false, "proof of hive failed");
 	}
-	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.variableForkBlock))) {
+	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < nSpeedFork)) {
 		//LogPrintf("NOT OK \n");
 		if (!CheckHiveProof(&block, consensusParams))
 		    return state.DoS(100, false, REJECT_INVALID, "bad-hive-proof", false, "proof of hive failed");
@@ -3161,6 +3188,13 @@ bool IsHiveEnabled(const CBlockIndex* pindexPrev, const Consensus::Params& param
 {
     LOCK(cs_main);
     return (VersionBitsState(pindexPrev, params, Consensus::DEPLOYMENT_HIVE, versionbitscache) == THRESHOLD_ACTIVE);
+}
+
+// LightningCash-Gold: Hive: Check if Hive 1.1 is activated at given point
+bool IsHive11Enabled(const CBlockIndex* pindexPrev, const Consensus::Params& params)
+{
+    LOCK(cs_main);
+    return (VersionBitsState(pindexPrev, params, Consensus::DEPLOYMENT_HIVE_1_1, versionbitscache) == THRESHOLD_ACTIVE);
 }
 
 // LightningCash Gold: Hive: Get the well-rooted deterministic random string (see whitepaper section 4.1)
@@ -4886,6 +4920,13 @@ bool IsYesPower(int nHeight)
     // return (chainActive.Height > x);
     // return gArgs.GetBoolArg("-testnet", false);
 	return (nHeight >= nYesPowerFork);
+}
+
+bool IsSpeedFork(int nHeight)
+{
+    // return (chainActive.Height > x);
+    // return gArgs.GetBoolArg("-testnet", false);
+	return (nHeight >= nSpeedFork);
 }
 
 class CMainCleanup
