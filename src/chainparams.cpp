@@ -228,6 +228,7 @@ public:
         consensus.BIP65Height = 14600000;
         consensus.BIP66Height = 14600000;
         consensus.powLimit = uint256S("00000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        consensus.powLimit2 = uint256S("0007fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 3840; //
         consensus.nPowTargetSpacing = 60;
         consensus.nPowTargetSpacing2 = 10;
@@ -256,8 +257,8 @@ public:
 
         // LitecoinCash: Hive 1.1: Deployment
         consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_1].bit = 9;
-        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_1].nStartTime = Consensus::BIP9Deployment::ALWAYS_ACTIVE;  // active from the start
-        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_1].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;  // active from the start
+        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_1].nStartTime = 1563993908;  // active from the start
+        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_1].nTimeout = 1563993908 + 31536000;  // active from the start
 
         // LightningCash Gold fields
         consensus.powForkTime = 1551819029;                 // Time of PoW hash method change (block 100)

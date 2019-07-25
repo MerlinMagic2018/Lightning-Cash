@@ -54,6 +54,7 @@ struct BIP9Deployment {
 struct Params {
     uint256 hashGenesisBlock;
     int nSubsidyHalvingInterval;
+    int nSubsidyHalvingInterval2;
     /** Block height at which BIP16 becomes active */
     int BIP16Height;
     /** Block height and hash at which BIP34 becomes active */
@@ -73,9 +74,11 @@ struct Params {
     BIP9Deployment vDeployments[MAX_VERSION_BITS_DEPLOYMENTS];
     /** Proof of work parameters */
     uint256 powLimit;
+    uint256 powLimit2;
     bool fPowAllowMinDifficultyBlocks;
     bool fPowNoRetargeting;
     int64_t nPowTargetSpacing;
+    int64_t nPowTargetSpacing2;
     int64_t nPowTargetTimespan;
     int64_t DifficultyAdjustmentInterval() const { return nPowTargetTimespan / nPowTargetSpacing; }
     uint256 nMinimumChainWork;

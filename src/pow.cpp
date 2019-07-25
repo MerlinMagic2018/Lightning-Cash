@@ -155,16 +155,16 @@ unsigned int DarkGravityWave(const CBlockIndex* pindexLast, const CBlockHeader *
 // By Evan Duffield <evan@dash.org>
 unsigned int DarkGravityWave2(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
 {
-    const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);   // LightningCash: Note we use the Scrypt pow limit here!
+    const arith_uint256 bnPowLimit2 = UintToArith256(params.powLimit2);   // LightningCash: Note we use the Scrypt pow limit here!
     int64_t nPastBlocks = 24;
 
     // LightningCash Gold: Allow minimum difficulty blocks if we haven't seen a block for ostensibly 10 blocks worth of time
     if (params.fPowAllowMinDifficultyBlocks && pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing2 * 10)
-        return bnPowLimit.GetCompact();
+        return bnPowLimit2.GetCompact();
 
     // LightningCash Gold: Make sure we have at least (nPastBlocks + 1) blocks since the fork, otherwise just return powLimitSHA
     if (!pindexLast || pindexLast->nHeight - params.lastScryptBlock < nPastBlocks)
-        return bnPowLimit.GetCompact();
+        return bnPowLimit2.GetCompact();
 
     const CBlockIndex *pindex = pindexLast;
     arith_uint256 bnPastTargetAvg;
@@ -209,9 +209,9 @@ unsigned int DarkGravityWave2(const CBlockIndex* pindexLast, const CBlockHeader 
     bnNew /= nTargetTimespan;
 
     // LightningCash Gold : Limit "High Hash" Attacks... Progressively lower mining difficulty if too high...
-    if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing * 300){
+    if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing2 * 300){
 	//LogPrintf("DarkGravityWave: 30 minutes without a block !! Resetting difficulty ! OLD Target = %s\n", bnNew.ToString());
-	bnNew = bnPowLimit;
+	bnNew = bnPowLimit2;
 	//LogPrintf("DarkGravityWave: 30 minutes without a block !! Resetting difficulty ! NEW Target = %s\n", bnNew.ToString());
     }
 
@@ -244,8 +244,8 @@ unsigned int DarkGravityWave2(const CBlockIndex* pindexLast, const CBlockHeader 
 	//LogPrintf("DarkGravityWave: no stale tip over 10m detected yet so target = %s\n", bnNew.ToString());
     }
 
-    if (bnNew > bnPowLimit) {
-        bnNew = bnPowLimit;
+    if (bnNew > bnPowLimit2) {
+        bnNew = bnPowLimit2;
 	//LogPrintf("DarkGravityWave: target too low, so target is minimum which is = %s\n", bnNew.ToString());
     }
 
@@ -300,20 +300,16 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 {
     assert(pindexLast != nullptr);
 
-    if ((pindexLast->nHeight+1 >= nYesPowerFork-5) && (pindexLast->nHeight+1 <= nYesPowerFork+5))
-        return UintToArith256(params.powLimit).GetCompact(); // mainet and testnet yespower fork
+    if ((pindexLast->nHeight+1 >= 5) && (pindexLast->nHeight+1 <= nYesPowerFork+5))
+        return UintToArith256(params.powLimit).GetCompact();
 
-    if ((gArgs.GetBoolArg("-testnet", false)) && ((pindexLast->nHeight+1 >= 5) && (pindexLast->nHeight+1 <= nSpeedFork+5)))
-        return UintToArith256(params.powLimit).GetCompact(); // testnet pre speed fork and speed fork
+    if ((pindexLast->nHeight+1 >= nSpeedFork) && (pindexLast->nHeight+1 <= nSpeedFork+5))
+        return UintToArith256(params.powLimit2).GetCompact();
 
-    if ((!gArgs.GetBoolArg("-testnet", false)) && ((pindexLast->nHeight+1 >= nSpeedFork-5) && (pindexLast->nHeight+1 <= nSpeedFork+5)))
-        return UintToArith256(params.powLimit).GetCompact(); // mainet Speed Fork
-
-    
 
     // LitecoinCash: If past fork time, use Dark Gravity Wave
-    if (pindexLast->nHeight+1 >= nSpeedFork+6)
-        return DarkGravityWave2(pindexLast, pblock, params); // both for mainet and testnet
+    if (pindexLast->nHeight+1 >= nSpeedFork)
+	return DarkGravityWave2(pindexLast, pblock, params);
     else if (pindexLast->nHeight >= params.lastScryptBlock)
         return DarkGravityWave(pindexLast, pblock, params);
     else
@@ -365,6 +361,25 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params&
 
     // Check range
     if (fNegative || bnTarget == 0 || fOverflow || bnTarget > UintToArith256(params.powLimit))
+        return false;
+
+    // Check proof of work matches claimed amount
+    if (UintToArith256(hash) > bnTarget)
+        return false;
+
+    return true;
+}
+
+bool CheckProofOfWork2(uint256 hash, unsigned int nBits, const Consensus::Params& params)
+{
+    bool fNegative;
+    bool fOverflow;
+    arith_uint256 bnTarget;
+
+    bnTarget.SetCompact(nBits, &fNegative, &fOverflow);
+
+    // Check range
+    if (fNegative || bnTarget == 0 || fOverflow || bnTarget > UintToArith256(params.powLimit2))
         return false;
 
     // Check proof of work matches claimed amount
@@ -431,7 +446,7 @@ unsigned int GetNextHiveWorkRequired(const CBlockIndex* pindexLast, const Consen
 bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, int& matureBCTs, CAmount& potentialLifespanRewards, const Consensus::Params& consensusParams, bool recalcGraph) {
     int totalBeeLifespan;
     
-    if (((chainActive.Tip()->nHeight) - 1) >= nSpeedFork)
+    if ((chainActive.Tip()->nHeight) >= nSpeedFork)
 	totalBeeLifespan = consensusParams.beeLifespanBlocks2 + consensusParams.beeGestationBlocks;
     else
 	totalBeeLifespan = consensusParams.beeLifespanBlocks + consensusParams.beeGestationBlocks;
@@ -496,7 +511,7 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
                             int beeBornBlock = blockHeight;
                             int beeMaturesBlock = beeBornBlock + consensusParams.beeGestationBlocks;
                             int beeDiesBlock;
-			    if (((chainActive.Tip()->nHeight) - 1) >= nSpeedFork)
+			    if ((chainActive.Tip()->nHeight) >= nSpeedFork)
 			    	beeDiesBlock = beeMaturesBlock + consensusParams.beeLifespanBlocks2;
 			    else
 				beeDiesBlock = beeMaturesBlock + consensusParams.beeLifespanBlocks;

@@ -630,7 +630,7 @@ UniValue createbees(const JSONRPCRequest& request)
     CReserveKey reservekeyChange(pwallet);
     CReserveKey reservekeyHoney(pwallet);
 
-    if (((chainActive.Tip()->nHeight) - 1) >= nSpeedFork) {
+    if ((chainActive.Tip()->nHeight) >= nSpeedFork) {
 	    //LogPrintf("OK \n");
 
 	    if (pwallet->CreateBeeTransaction(beeCount, wtxNew, reservekeyChange, reservekeyHoney, honeyAddress, communityContrib, strError, Params().GetConsensus())) {
@@ -645,7 +645,7 @@ UniValue createbees(const JSONRPCRequest& request)
 
     }
 
-    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().remvariableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < nSpeedFork)) {
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().remvariableForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)) {
 	    //LogPrintf("OK \n");
 
 	    if (pwallet->CreateBeeTransaction3(beeCount, wtxNew, reservekeyChange, reservekeyHoney, honeyAddress, communityContrib, strError, Params().GetConsensus())) {
@@ -659,7 +659,7 @@ UniValue createbees(const JSONRPCRequest& request)
 		throw JSONRPCError(RPC_WALLET_BCT_FAIL, strError);
 
     }
-    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (Params().GetConsensus().remvariableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < nSpeedFork)) {
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (Params().GetConsensus().remvariableForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)) {
 	    //LogPrintf("OK \n");
 
 	    if (pwallet->CreateBeeTransaction2(beeCount, wtxNew, reservekeyChange, reservekeyHoney, honeyAddress, communityContrib, strError, Params().GetConsensus())) {
@@ -673,7 +673,7 @@ UniValue createbees(const JSONRPCRequest& request)
 		throw JSONRPCError(RPC_WALLET_BCT_FAIL, strError);
 
     }
-    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < nSpeedFork)) {
+    if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (Params().GetConsensus().variableForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)) {
 	    //LogPrintf("NOT OK \n");
 	    if (pwallet->CreateBeeTransaction(beeCount, wtxNew, reservekeyChange, reservekeyHoney, honeyAddress, communityContrib, strError, Params().GetConsensus())) {
 		CValidationState state;
@@ -728,31 +728,31 @@ UniValue getnetworkhiveinfo(const JSONRPCRequest& request)
     int globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs;
     CAmount potentialRewards;
 
-    if (((chainActive.Tip()->nHeight) - 1) >= nSpeedFork) {
+    if ((chainActive.Tip()->nHeight) >= nSpeedFork) {
 	    //LogPrintf("OK \n");
 	    if (!GetNetworkHiveInfo(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, includeGraph))
 		throw std::runtime_error("Error: A block required to calculate network bee population was not available (pruned data / not found on disk)");
     }
 
 
-    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.remvariableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < nSpeedFork)) {
+    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.remvariableForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)) {
 	    //LogPrintf("OK \n");
 	    if (!GetNetworkHiveInfo4(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, includeGraph))
 		throw std::runtime_error("Error: A block required to calculate network bee population was not available (pruned data / not found on disk)");
     }
     
-    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.remvariableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < nSpeedFork)) {
+    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.remvariableForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)) {
 	    //LogPrintf("OK \n");
 	    if (!GetNetworkHiveInfo3(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, includeGraph))
 		throw std::runtime_error("Error: A block required to calculate network bee population was not available (pruned data / not found on disk)");
     }
 
-    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < nSpeedFork)) {
+    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.ratioForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)) {
 	    //LogPrintf("OK \n");
 	    if (!GetNetworkHiveInfo2(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, includeGraph))
 		throw std::runtime_error("Error: A block required to calculate network bee population was not available (pruned data / not found on disk)");
     }
-    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < nSpeedFork)) {
+    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.variableForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)) {
 	    //LogPrintf("NOT OK \n");
 	    if (!GetNetworkHiveInfo(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, includeGraph))
 		throw std::runtime_error("Error: A block required to calculate network bee population was not available (pruned data / not found on disk)");
@@ -908,26 +908,26 @@ UniValue gethiveinfo(const JSONRPCRequest& request)
     // Iterate wallet txs looking for bee creation txs (BCTs)
     std::vector<CBeeCreationTransactionInfo> bcts;
 
-    if (((chainActive.Tip()->nHeight) - 1) >= nSpeedFork) {
+    if ((chainActive.Tip()->nHeight) >= nSpeedFork) {
 	    //LogPrintf("OK \n");
 
 	    bcts = pwallet->GetBCTs(includeDead, true, consensusParams, minHoneyConfirms);
 
     }
 
-    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.remvariableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < nSpeedFork)) {
+    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.remvariableForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)) {
 	    //LogPrintf("OK \n");
 
 	    bcts = pwallet->GetBCTs3(includeDead, true, consensusParams, minHoneyConfirms);
 
     }
-    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.remvariableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < nSpeedFork)) {
+    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.remvariableForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)) {
 	    //LogPrintf("OK \n");
 
 	    bcts = pwallet->GetBCTs2(includeDead, true, consensusParams, minHoneyConfirms);
 
     }
-    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < nSpeedFork)) {
+    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.variableForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)) {
 	    //LogPrintf("NOT OK \n");
 	    bcts = pwallet->GetBCTs(includeDead, true, consensusParams, minHoneyConfirms);
     }

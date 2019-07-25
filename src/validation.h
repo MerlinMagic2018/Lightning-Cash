@@ -184,8 +184,8 @@ extern CAmount maxTxFee;
 /** If the tip is older than this (in seconds), the node is considered to be in initial block download. */
 extern int64_t nMaxTipAge;
 extern bool fEnableReplacement;
-extern int nYesPowerFork;
-extern int nSpeedFork;
+extern const int nYesPowerFork;
+extern const int nSpeedFork;
 
 /** Block hash whose ancestors we will assume to have valid scripts without checking them. */
 extern uint256 hashAssumeValid;

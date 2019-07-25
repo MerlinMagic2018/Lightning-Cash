@@ -45,6 +45,7 @@ bool GetNetworkHiveInfo4(int& immatureBees, int& immatureBCTs, int& matureBees, 
 
 /** Check whether a block hash satisfies the proof-of-work requirement specified by nBits */
 bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params&);
+bool CheckProofOfWork2(uint256 hash, unsigned int nBits, const Consensus::Params&);
 
 
 

@@ -611,7 +611,7 @@ bool BusyBees(const Consensus::Params& consensusParams) {
     
     std::vector<CBeeCreationTransactionInfo> bcts;
 
-    if (((chainActive.Tip()->nHeight) - 1) >= nSpeedFork) {
+    if ((chainActive.Tip()->nHeight) >= nSpeedFork) {
 	//LogPrintf("OK \n");
 
     	bcts = pwallet->GetBCTs(false, false, consensusParams);
@@ -619,19 +619,19 @@ bool BusyBees(const Consensus::Params& consensusParams) {
     }
 
 
-    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.remvariableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < nSpeedFork)) {
+    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.remvariableForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)) {
 	//LogPrintf("OK \n");
 
     	bcts = pwallet->GetBCTs3(false, false, consensusParams);
 
     }
-    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.remvariableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < nSpeedFork)) {
+    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.remvariableForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)) {
 	//LogPrintf("OK \n");
 
     	bcts = pwallet->GetBCTs2(false, false, consensusParams);
 
     }
-    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < nSpeedFork)) {
+    if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.variableForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)) {
 	//LogPrintf("NOT OK \n");
     	bcts = pwallet->GetBCTs(false, false, consensusParams);
 

@@ -221,19 +221,8 @@ size_t nCoinCacheUsage = 5000 * 300;
 uint64_t nPruneTarget = 0;
 int64_t nMaxTipAge = DEFAULT_MAX_TIP_AGE;
 bool fEnableReplacement = DEFAULT_ENABLE_REPLACEMENT;
-int nYesPowerFork;
-
-	if (gArgs.GetBoolArg("-testnet", false))
-		nYesPowerFork = 25550;
-	else
-		nYesPowerFork = 247777;
-
-int nSpeedFork;
-
-	if (gArgs.GetBoolArg("-testnet", false))
-		nSpeedFork = 25555;
-	else
-		nSpeedFork = 10000000; // to be announced....
+const int nYesPowerFork = 150; // 247777
+const int nSpeedFork = 165; // ????
 
 uint256 hashAssumeValid;
 arith_uint256 nMinimumChainWork;
@@ -3079,10 +3068,21 @@ static bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state,
       if (nHeight < SKIP_BLOCKHEADER_POW)
         return true;
     
-    // LightningCash Gold: Hive: Check PoW or Hive work depending on blocktype
-    if (fCheckPOW && !block.IsHiveMined(consensusParams)) {
-        if (!CheckProofOfWork(IsYesPower(nHeight) ? block.GetHashYespower() : block.GetPoWHash(), block.nBits, consensusParams))
-            return state.DoS(50, false, REJECT_INVALID, "high-hash", false, "proof of work failed");
+    if (nHeight >= nSpeedFork) {
+
+	    // LightningCash Gold: Hive: Check PoW or Hive work depending on blocktype
+	    if (fCheckPOW && !block.IsHiveMined(consensusParams)) {
+		if (!CheckProofOfWork2(IsYesPower(nHeight) ? block.GetHashYespower() : block.GetPoWHash(), block.nBits, consensusParams))
+		    return state.DoS(50, false, REJECT_INVALID, "high-hash", false, "proof of work failed");
+	    }
+    }
+    else {
+
+	    // LightningCash Gold: Hive: Check PoW or Hive work depending on blocktype
+	    if (fCheckPOW && !block.IsHiveMined(consensusParams)) {
+		if (!CheckProofOfWork(IsYesPower(nHeight) ? block.GetHashYespower() : block.GetPoWHash(), block.nBits, consensusParams))
+		    return state.DoS(50, false, REJECT_INVALID, "high-hash", false, "proof of work failed");
+	    }
     }
 
     return true;
@@ -3103,23 +3103,23 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
     // LightningCash Gold: Hive: Check Hive proof
     if (block.IsHiveMined(consensusParams)) {
 
-	if (((chainActive.Tip()->nHeight) - 1) >= nSpeedFork) {
+	if ((chainActive.Tip()->nHeight) >= nSpeedFork) {
 		//LogPrintf("OK \n");
 		if (!CheckHiveProof(&block, consensusParams))
 		    return state.DoS(100, false, REJECT_INVALID, "bad-hive-proof", false, "proof of hive failed");
 	}
 
-	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.remvariableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < nSpeedFork)){
+	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.remvariableForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)){
 		//LogPrintf("OK \n");
 		if (!CheckHiveProof3(&block, consensusParams))
 		    return state.DoS(100, false, REJECT_INVALID, "bad-hive-proof", false, "proof of hive failed");
 	}
-	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.remvariableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < nSpeedFork)){
+	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.remvariableForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)){
 		//LogPrintf("OK \n");
 		if (!CheckHiveProof2(&block, consensusParams))
 		    return state.DoS(100, false, REJECT_INVALID, "bad-hive-proof", false, "proof of hive failed");
 	}
-	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < nSpeedFork)) {
+	if ((consensusParams.variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (consensusParams.variableForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)) {
 		//LogPrintf("NOT OK \n");
 		if (!CheckHiveProof(&block, consensusParams))
 		    return state.DoS(100, false, REJECT_INVALID, "bad-hive-proof", false, "proof of hive failed");
