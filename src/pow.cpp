@@ -491,9 +491,9 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
                 return false;
             }
             int blockHeight = pindexPrev->nHeight;
-	    CAmount beeCost = GetBeeCost(chainActive.Height(), consensusParams);
+	//    CAmount beeCost = GetBeeCost(chainActive.Height(), consensusParams);
 
-        //    CAmount beeCost = 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams)); // since its prefork, will always be this so its ok here
+            CAmount beeCost = 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams)); // since its prefork, will always be this so its ok here
             if (block.vtx.size() > 0) {
                 for(const auto& tx : block.vtx) {
                     CAmount beeFeePaid;

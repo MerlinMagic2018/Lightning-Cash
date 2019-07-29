@@ -199,7 +199,7 @@ void WalletView::gotoOverviewPage()
 void WalletView::gotoHivePage()
 {
     if ((chainActive.Tip()->nHeight) >= nSpeedFork)
-	hivePage->updateData();
+	hivePage->updateData3();
 
     if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().remvariableForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)) {
 	    //LogPrintf("OK \n");

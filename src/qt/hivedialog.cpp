@@ -71,7 +71,7 @@ void HiveDialog::setClientModel(ClientModel *_clientModel) {
     if (_clientModel) {
 	if ((chainActive.Tip()->nHeight) >= nSpeedFork) {
 		//LogPrintf("OK \n");
-		connect(_clientModel, SIGNAL(numBlocksChanged(int,QDateTime,double,bool)), this, SLOT(updateData()));
+		connect(_clientModel, SIGNAL(numBlocksChanged(int,QDateTime,double,bool)), this, SLOT(updateData3()));
 		connect(_clientModel, SIGNAL(numConnectionsChanged(int)), this, SLOT(updateData()));    // TODO: This may be too expensive to call here, and the only point is to update the hive status icon.
 	}
 	if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().remvariableForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)) {
@@ -133,7 +133,7 @@ void HiveDialog::setModel(WalletModel *_model) {
         // Populate initial data
 	if ((chainActive.Tip()->nHeight) >= nSpeedFork) { 
 		//LogPrintf("OK \n");
-        	updateData(true);
+        	updateData3(true);
 	}
 	if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().remvariableForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)) { 
 		//LogPrintf("OK \n");
@@ -171,7 +171,7 @@ void HiveDialog::setEncryptionStatus(int status) {
     }
     if ((chainActive.Tip()->nHeight) >= nSpeedFork) {
 	//LogPrintf("OK \n");
-    	updateData();
+    	updateData3();
     }
     if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().remvariableForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)) {
 	//LogPrintf("OK \n");
@@ -849,7 +849,7 @@ void HiveDialog::on_beeCountSpinner_valueChanged(int i) {
 void HiveDialog::on_includeDeadBeesCheckbox_stateChanged() {
     if ((chainActive.Tip()->nHeight) >= nSpeedFork) {
 	//LogPrintf("OK \n");
-    	updateData();
+    	updateData3();
     }
     if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().remvariableForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)) {
 	//LogPrintf("OK \n");
@@ -875,7 +875,7 @@ void HiveDialog::on_showAdvancedStatsCheckbox_stateChanged() {
 void HiveDialog::on_retryGlobalSummaryButton_clicked() {
     if ((chainActive.Tip()->nHeight) >= nSpeedFork) {
 	//LogPrintf("OK \n");
-    	updateData(true);
+    	updateData3(true);
     }
     if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().remvariableForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)) {
 	//LogPrintf("OK \n");
@@ -894,7 +894,7 @@ void HiveDialog::on_retryGlobalSummaryButton_clicked() {
 void HiveDialog::on_refreshGlobalSummaryButton_clicked() {
     if ((chainActive.Tip()->nHeight) >= nSpeedFork) {
 	//LogPrintf("OK \n");
-    	updateData(true);
+    	updateData3(true);
     }
     if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().remvariableForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)) {
 	//LogPrintf("OK \n");
@@ -918,7 +918,7 @@ void HiveDialog::on_releaseSwarmButton_clicked() {
 void HiveDialog::on_createBeesButton_clicked() {
     if ((chainActive.Tip()->nHeight) >= nSpeedFork) {
 	//LogPrintf("OK \n");
-    	updateData(true);
+    	updateData3(true);
     }
     if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().remvariableForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)) {
 	//LogPrintf("OK \n");
@@ -1023,7 +1023,7 @@ void HiveDialog::updateGraph() {
     int HeightXosti = (chainActive.Height() - 1);
 
 
-    int beeCostStable = GetBeeCost(chainActive.Tip()->nHeight, consensusParams);
+    int beeCostStable = 0.0004*(GetBlockSubsidy(chainActive.Tip()->nHeight, consensusParams)); 
 
     double global100 = (double)potentialRewards / beeCostStable;
     globalMarkerLine->start->setCoords(now, global100);

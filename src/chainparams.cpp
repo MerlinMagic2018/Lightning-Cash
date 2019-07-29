@@ -76,14 +76,14 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
-        consensus.nSubsidyHalvingInterval = 21000000;
+        consensus.nSubsidyHalvingInterval = 2100000;
         consensus.BIP16Height = 0; // enforce BIP16 at start !
         consensus.BIP34Height = 71000000; // never happens
         consensus.BIP34Hash = uint256S("fa09d204a83a768ed5a7c8d441fa62f2043abf420cff1226c7b4329aeb9d51cf");
         consensus.BIP65Height = 91868400; // never happens
         consensus.BIP66Height = 81187900; // never happens
         consensus.powLimit = uint256S("00000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-	consensus.powLimit2 = uint256S("0007fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+	consensus.powLimit2 = uint256S("00007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 3840;
         consensus.nPowTargetSpacing = 60; // target of 1 minute per block
         consensus.nPowTargetSpacing2 = 10; // target of 10 seconds per block
@@ -98,8 +98,8 @@ public:
 
         // Deployment of BIP68, BIP112, and BIP113.
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 1564332708; // January 28, 2017
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1564332708 + 31536000; // January 31st, 2018
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 1564531200; // July 31st 2019
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1564531200 + 31536000; // July 31st 2020
 
         // Deployment of SegWit (BIP141, BIP143, and BIP147)
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].bit = 1;
@@ -113,8 +113,8 @@ public:
 
         // LightningCash Gold: Hive 1.1: Deployment
         consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_1].bit = 9;
-        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_1].nStartTime = 1564332708;  // Far future
-        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_1].nTimeout = 1564332708 + 31536000;  // Far future
+        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_1].nStartTime = 1564531200;  // July 31st 2019
+        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_1].nTimeout = 1564531200 + 31536000;  // July 31st 2020
 
         // LightningCash Gold fields
         consensus.powForkTime = 1551819029;                 // Time of PoW hash method change
@@ -144,10 +144,10 @@ public:
         // LightningCash Gold: Hive 1.1-related consensus fields
         consensus.minK = 1;                                 // Minimum chainwork scale for Hive blocks (see Hive whitepaper section 5)
         consensus.maxK = 8;                                 // Maximum chainwork scale for Hive blocks (see Hive whitepaper section 5)
-        consensus.maxHiveDiff = 0.006;                      // Hive difficulty at which max chainwork bonus is awarded
+        consensus.maxHiveDiff = 0.001;                      // Hive difficulty at which max chainwork bonus is awarded
         consensus.maxKPow = 5;                              // Maximum chainwork scale for PoW blocks
-        consensus.powSplit1 = 0.005;                        // Below this Hive difficulty threshold, PoW block chainwork bonus is halved
-        consensus.powSplit2 = 0.0025;                       // Below this Hive difficulty threshold, PoW block chainwork bonus is halved again
+        consensus.powSplit1 = 0.000833;                        // Below this Hive difficulty threshold, PoW block chainwork bonus is halved
+        consensus.powSplit2 = 0.000416;                       // Below this Hive difficulty threshold, PoW block chainwork bonus is halved again
 
 	consensus.variableBeecost = true;
 	consensus.variableForkBlock = 67777;
@@ -223,7 +223,7 @@ class CTestNetParams : public CChainParams {
 public:
     CTestNetParams() {
         strNetworkID = "test";
-        consensus.nSubsidyHalvingInterval = 21000000;
+        consensus.nSubsidyHalvingInterval = 2100000;
         consensus.BIP16Height = 0; // always enforce P2SH BIP16 on regtest
         consensus.BIP34Height = 14600000;
         consensus.BIP34Hash = uint256S("000000042bcd56d6ea0509230b76fe850f0a40a9110f7dba979fd5d707e47c8a"); // Block hash at block 146

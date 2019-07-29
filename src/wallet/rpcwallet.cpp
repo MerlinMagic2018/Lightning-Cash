@@ -730,7 +730,7 @@ UniValue getnetworkhiveinfo(const JSONRPCRequest& request)
 
     if ((chainActive.Tip()->nHeight) >= nSpeedFork) {
 	    //LogPrintf("OK \n");
-	    if (!GetNetworkHiveInfo(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, includeGraph))
+	    if (!GetNetworkHiveInfo4(globalImmatureBees, globalImmatureBCTs, globalMatureBees, globalMatureBCTs, potentialRewards, consensusParams, includeGraph))
 		throw std::runtime_error("Error: A block required to calculate network bee population was not available (pruned data / not found on disk)");
     }
 
