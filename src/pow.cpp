@@ -450,7 +450,7 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
     int totalBeeLifespan;
     
     if ((chainActive.Tip()->nHeight) >= nSpeedFork)
-	totalBeeLifespan = consensusParams.beeLifespanBlocks3 + consensusParams.beeGestationBlocks;
+	totalBeeLifespan = consensusParams.beeLifespanBlocks2 + consensusParams.beeGestationBlocks;
     else
 	totalBeeLifespan = consensusParams.beeLifespanBlocks + consensusParams.beeGestationBlocks;
 
@@ -516,7 +516,7 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
                             int beeMaturesBlock = beeBornBlock + consensusParams.beeGestationBlocks;
                             int beeDiesBlock;
 			    if ((chainActive.Tip()->nHeight) >= nSpeedFork)
-			    	beeDiesBlock = beeMaturesBlock + consensusParams.beeLifespanBlocks3;
+			    	beeDiesBlock = beeMaturesBlock + consensusParams.beeLifespanBlocks2;
 			    else
 				beeDiesBlock = beeMaturesBlock + consensusParams.beeLifespanBlocks;
                             for (int j = beeBornBlock; j < beeDiesBlock; j++) {
@@ -3974,14 +3974,7 @@ bool CheckHiveProof(const CBlock* pblock, const Consensus::Params& consensusPara
         return false;
     }
 
-    if (bctFoundHeight >= nSpeedFork) {
-
-	    if (bctDepth > consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks3) {
-		LogPrintf("CheckHiveProof: Indicated BCT is too old.\n");
-		return false;
-	    }
-    }
-    else if (bctFoundHeight >= consensusParams.ratioForkBlock) {
+    if (bctFoundHeight >= consensusParams.ratioForkBlock) {
 
 	    if (bctDepth > consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks2) {
 		LogPrintf("CheckHiveProof: Indicated BCT is too old.\n");

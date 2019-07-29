@@ -154,7 +154,6 @@ public:
 	consensus.isTestnet = false;
 	consensus.ratioForkBlock = 83880;
         consensus.beeLifespanBlocks2 = 48*24*21;
-        consensus.beeLifespanBlocks3 = 48*24*21*10;
 	consensus.remvariableForkBlock = 118956;
         
         // The best chain should have at least this much work.
@@ -300,7 +299,6 @@ public:
 	consensus.isTestnet = true;
 	consensus.ratioForkBlock = 5500000; // never happens
         consensus.beeLifespanBlocks2 = 48*24*21;
-        consensus.beeLifespanBlocks2 = 48*24*21*10;
 	consensus.remvariableForkBlock = 2000000; // never happens
 
         // The best chain should have at least this much work.

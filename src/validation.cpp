@@ -222,7 +222,7 @@ uint64_t nPruneTarget = 0;
 int64_t nMaxTipAge = DEFAULT_MAX_TIP_AGE;
 bool fEnableReplacement = DEFAULT_ENABLE_REPLACEMENT;
 const int nYesPowerFork = 247777; // 247777
-const int nSpeedFork = 301600; // ????
+const int nSpeedFork = 302260; // ????
 
 uint256 hashAssumeValid;
 arith_uint256 nMinimumChainWork;
@@ -1202,15 +1202,11 @@ CAmount GetBeeCost(int nHeight, const Consensus::Params& consensusParams)
  
 
     CAmount blockReward = GetBlockSubsidy(nHeight, consensusParams);
-    CAmount beeCost;
-    if (chainActive.Height() >= nSpeedFork)
-	beeCost = (blockReward / consensusParams.beeCostFactor)*10; // because it mines 10 times longer.... and for fork easyness....
-    else
-	beeCost = (blockReward / consensusParams.beeCostFactor);
+    CAmount beeCost = (blockReward / consensusParams.beeCostFactor);
+    CAmount potentialLifespanRewards;
 
-    if (chainActive.Height() < nSpeedFork) {
-	    CAmount potentialLifespanRewards;
-	    if (chainActive.Height() >= consensusParams.ratioForkBlock)
+    
+	    if ((chainActive.Height() >= consensusParams.ratioForkBlock) || (chainActive.Height() >= nSpeedFork))
 		potentialLifespanRewards = (consensusParams.beeLifespanBlocks2 * GetBlockSubsidy(nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
 	    else
 		potentialLifespanRewards = (consensusParams.beeLifespanBlocks * GetBlockSubsidy(nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
@@ -1219,6 +1215,8 @@ CAmount GetBeeCost(int nHeight, const Consensus::Params& consensusParams)
 	    CAmount voyon = 10000000 / ((GetBlockSubsidy(nHeight, consensusParams) / consensusParams.beeCostFactor));
 	    CAmount haha = (potentialLifespanRewards / 10000000)*voyon;
 
+	    if (chainActive.Height() >= nSpeedFork)
+		return beeCost <= consensusParams.minBeeCost ? consensusParams.minBeeCost : beeCost;
 
 	    if ( totalMatureBees > 0){
 		if (totalMatureBees > (haha*0.9)){
@@ -1234,9 +1232,6 @@ CAmount GetBeeCost(int nHeight, const Consensus::Params& consensusParams)
 		CAmount adjustedBeeCost = beeCost;
 		return adjustedBeeCost <= consensusParams.minBeeCost ? consensusParams.minBeeCost : adjustedBeeCost;
 	    }
-    }
-    else
-	return beeCost <= consensusParams.minBeeCost ? consensusParams.minBeeCost : beeCost;
 	
 }
 

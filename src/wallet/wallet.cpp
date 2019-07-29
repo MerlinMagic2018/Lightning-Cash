@@ -2709,7 +2709,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
     
     int maxDepth;
     if (chainActive.Height() >= nSpeedFork) // not sure
-	maxDepth = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks3;
+	maxDepth = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks2;
     else
 	maxDepth = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks;
     
@@ -3589,9 +3589,7 @@ bool CWallet::CreateBeeTransaction(int beeCount, CWalletTx& wtxNew, CReserveKey&
 
     // Don't spend more than potential rewards in a single BCT
     CAmount totalPotentialReward; 
-    if (chainActive.Height() >= nSpeedFork)
-	totalPotentialReward = (consensusParams.beeLifespanBlocks3 * GetBlockSubsidy(pindexPrev->nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
-    else if (chainActive.Height() >= consensusParams.ratioForkBlock)
+    if ((chainActive.Height() >= consensusParams.ratioForkBlock) || (chainActive.Height() >= nSpeedFork))
 	totalPotentialReward = (consensusParams.beeLifespanBlocks2 * GetBlockSubsidy(pindexPrev->nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
     else
 	totalPotentialReward = (consensusParams.beeLifespanBlocks * GetBlockSubsidy(pindexPrev->nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;

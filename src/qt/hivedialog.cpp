@@ -999,9 +999,7 @@ void HiveDialog::updateGraph() {
     ui->beePopGraph->graph()->data()->clear();
     double now = QDateTime::currentDateTime().toTime_t();
     int totalLifespan;
-    if (chainActive.Height() >= nSpeedFork)
-        totalLifespan = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks3;
-    else if (chainActive.Height() >= consensusParams.ratioForkBlock)
+    if ((chainActive.Height() >= consensusParams.ratioForkBlock) || (chainActive.Height() >= nSpeedFork))
         totalLifespan = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks2;
     else
         totalLifespan = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks;
