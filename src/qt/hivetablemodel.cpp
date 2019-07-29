@@ -127,9 +127,11 @@ QVariant HiveTableModel::data(const QModelIndex &index, int role) const {
                     QString status = "";
                     if (rec->beeStatus == "immature") {
                         int blocksTillMature;
-                        if ((chainActive.Height() >= Params().GetConsensus().ratioForkBlock) || (chainActive.Height() >= nSpeedFork))
+                        if (chainActive.Height() >= nSpeedFork)
+                            blocksTillMature = rec->blocksLeft - Params().GetConsensus().beeLifespanBlocks3;
+                        if ((chainActive.Height() >= Params().GetConsensus().ratioForkBlock) && (chainActive.Height() < nSpeedFork))
                             blocksTillMature = rec->blocksLeft - Params().GetConsensus().beeLifespanBlocks2;
-                        else
+                        if (chainActive.Height() < Params().GetConsensus().ratioForkBlock)
                             blocksTillMature = rec->blocksLeft - Params().GetConsensus().beeLifespanBlocks;
                         
                         
@@ -230,7 +232,8 @@ bool CBeeCreationTransactionInfoLessThan::operator()(CBeeCreationTransactionInfo
 }
 
 QString HiveTableModel::secondsToString(qint64 seconds) {
-    const qint64 DAY = 86400;
+//    const qint64 DAY = 86400; // lets see.....
+    const qint64 DAY = 8640;
     qint64 days = seconds / DAY;
     QTime t = QTime(0,0).addSecs(seconds % DAY);
     return QString("%1 days %2 hrs %3 mins").arg(days).arg(t.hour()).arg(t.minute());

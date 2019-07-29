@@ -222,7 +222,7 @@ uint64_t nPruneTarget = 0;
 int64_t nMaxTipAge = DEFAULT_MAX_TIP_AGE;
 bool fEnableReplacement = DEFAULT_ENABLE_REPLACEMENT;
 const int nYesPowerFork = 247777; // 247777
-const int nSpeedFork = 302260; // ????
+const int nSpeedFork = 302650; // ????
 
 uint256 hashAssumeValid;
 arith_uint256 nMinimumChainWork;
@@ -1177,10 +1177,7 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 
     CAmount nSubsidy = 50 * COIN * COIN_SCALE;
 
-    if (nHeight >= nSpeedFork)
-	nSubsidy = 5 * COIN * COIN_SCALE;
-
-    // Subsidy is cut in half every 21,000,000 blocks which will occur approximately every 2.6 years.
+    // Subsidy is cut in half every 2,100,000 blocks which will occur approximately every 5 months and a half.
     nSubsidy >>= halvings;
 
     // LightningCash Gold: Slow-start the first n blocks  blocks to prevent early miners having an unfair advantage
@@ -1204,11 +1201,13 @@ CAmount GetBeeCost(int nHeight, const Consensus::Params& consensusParams)
     CAmount blockReward = GetBlockSubsidy(nHeight, consensusParams);
     CAmount beeCost = (blockReward / consensusParams.beeCostFactor);
     CAmount potentialLifespanRewards;
-
+	    
+	    if (chainActive.Height() >= nSpeedFork)
+		potentialLifespanRewards = (consensusParams.beeLifespanBlocks3 * GetBlockSubsidy(nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
     
-	    if ((chainActive.Height() >= consensusParams.ratioForkBlock) || (chainActive.Height() >= nSpeedFork))
+	    if ((chainActive.Height() >= consensusParams.ratioForkBlock) && (chainActive.Height() < nSpeedFork))
 		potentialLifespanRewards = (consensusParams.beeLifespanBlocks2 * GetBlockSubsidy(nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
-	    else
+	    if (chainActive.Height() < consensusParams.ratioForkBlock)
 		potentialLifespanRewards = (consensusParams.beeLifespanBlocks * GetBlockSubsidy(nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
 
 

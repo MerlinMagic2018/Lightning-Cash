@@ -768,9 +768,11 @@ UniValue getnetworkhiveinfo(const JSONRPCRequest& request)
 
     if (includeGraph) {
         int totalBeeLifespan;
-        if (((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock))
+        if (((chainActive.Tip()->nHeight) - 1) >= nSpeedFork)
+            totalBeeLifespan = consensusParams.beeLifespanBlocks3 + consensusParams.beeGestationBlocks;
+        if ((((chainActive.Tip()->nHeight) - 1) >= (consensusParams.ratioForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < nSpeedFork))
             totalBeeLifespan = consensusParams.beeLifespanBlocks2 + consensusParams.beeGestationBlocks;
-        else
+        if (((chainActive.Tip()->nHeight) - 1) < (consensusParams.ratioForkBlock))
             totalBeeLifespan = consensusParams.beeLifespanBlocks + consensusParams.beeGestationBlocks;
         UniValue maturePopJSON(UniValue::VARR);
         for (int i = 1; i < totalBeeLifespan; i++)

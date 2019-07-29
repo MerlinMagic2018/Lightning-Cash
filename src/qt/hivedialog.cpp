@@ -999,9 +999,11 @@ void HiveDialog::updateGraph() {
     ui->beePopGraph->graph()->data()->clear();
     double now = QDateTime::currentDateTime().toTime_t();
     int totalLifespan;
-    if ((chainActive.Height() >= consensusParams.ratioForkBlock) || (chainActive.Height() >= nSpeedFork))
+    if (chainActive.Height() >= nSpeedFork)
+        totalLifespan = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks3;
+    if ((chainActive.Height() >= consensusParams.ratioForkBlock) && (chainActive.Height() < nSpeedFork))
         totalLifespan = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks2;
-    else
+    if (chainActive.Height() < consensusParams.ratioForkBlock)
         totalLifespan = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks;
     
     
@@ -1019,7 +1021,9 @@ void HiveDialog::updateGraph() {
     ui->beePopGraph->graph(1)->data()->set(dataMature);
     
     int HeightXosti = (chainActive.Height() - 1);
-    int beeCostStable = 0.0004*(GetBlockSubsidy(HeightXosti, consensusParams));
+
+
+    int beeCostStable = GetBeeCost(chainActive.Tip()->nHeight, consensusParams);
 
     double global100 = (double)potentialRewards / beeCostStable;
     globalMarkerLine->start->setCoords(now, global100);

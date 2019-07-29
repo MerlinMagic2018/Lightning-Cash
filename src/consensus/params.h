@@ -122,6 +122,7 @@ struct Params {
     bool isTestnet;
     int ratioForkBlock;
     int beeLifespanBlocks2;
+    int beeLifespanBlocks3;
     int remvariableForkBlock;
 
 };
