@@ -3275,7 +3275,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs3(bool includeDead, boo
 
                         
 			//int TheHeight = chainActive.Height();
-			int ciboire = mapBlockIndex[wtx.hashBlock]->GetBlockTime();
+			//int ciboire = mapBlockIndex[wtx.hashBlock]->GetBlockTime();
                         
                         bool isMature;
                         std::string status;
@@ -3309,7 +3309,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs3(bool includeDead, boo
 			    isMature = true;    // We still want to calc rewards
                             int cocorico2 = (chainActive.Height() - depth);
                             
-                            int ciboire3 = mapBlockIndex[wtx.hashBlock]->GetBlockTime();
+                            //int ciboire3 = mapBlockIndex[wtx.hashBlock]->GetBlockTime();
                             
                             //if (((torpinouche > totito) && ((ciboire3 > totito) && (ciboire3 < torpinouche))) || ((totito > torpinouche) && ((ciboire3 > totito) || (ciboire3 < torpinouche)))){
                             //        beeCost = 0.0008*(GetBlockSubsidy(cocorico2, consensusParams));
@@ -3330,7 +3330,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs3(bool includeDead, boo
                             isMature = true;
                             
                             //int TheHeight2 = chainActive.Height();
-                            int ciboire2 = mapBlockIndex[wtx.hashBlock]->GetBlockTime();
+                            //int ciboire2 = mapBlockIndex[wtx.hashBlock]->GetBlockTime();
                             int cocorico3 = (chainActive.Height() - depth);
                             
                            
@@ -3420,7 +3420,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs3(bool includeDead, boo
 
                         
 			//int TheHeight = chainActive.Height();
-			int ciboire = mapBlockIndex[wtx.hashBlock]->GetBlockTime();
+			//int ciboire = mapBlockIndex[wtx.hashBlock]->GetBlockTime();
                         
                         bool isMature;
                         std::string status;
@@ -3454,7 +3454,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs3(bool includeDead, boo
 			    isMature = true;    // We still want to calc rewards
                             int cocorico2 = (chainActive.Height() - depth);
                             
-                            int ciboire3 = mapBlockIndex[wtx.hashBlock]->GetBlockTime();
+                            //int ciboire3 = mapBlockIndex[wtx.hashBlock]->GetBlockTime();
                             
                             //if (((torpinouche > totito) && ((ciboire3 > totito) && (ciboire3 < torpinouche))) || ((totito > torpinouche) && ((ciboire3 > totito) || (ciboire3 < torpinouche)))){
                             //        beeCost = 0.0008*(GetBlockSubsidy(cocorico2, consensusParams));
@@ -3475,7 +3475,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs3(bool includeDead, boo
                             isMature = true;
                             
                             //int TheHeight2 = chainActive.Height();
-                            int ciboire2 = mapBlockIndex[wtx.hashBlock]->GetBlockTime();
+                            //int ciboire2 = mapBlockIndex[wtx.hashBlock]->GetBlockTime();
                             int cocorico3 = (chainActive.Height() - depth);
                             
                            
@@ -3834,11 +3834,11 @@ bool CWallet::CreateBeeTransaction3(int beeCount, CWalletTx& wtxNew, CReserveKey
     
     // Check available balance (note: can't check fee at this point because we don't know the tx size)
     int HeightZ = chainActive.Height();
-    int mangedlamarde = wototo;
+    //int mangedlamarde = wototo;
     
     CAmount beeCost;
    
-    double superZ = threshold;
+    //double superZ = threshold;
     
     //if (mangedlamarde <= superZ)
 	beeCost = 0.0004*(GetBlockSubsidy(HeightZ, consensusParams));
