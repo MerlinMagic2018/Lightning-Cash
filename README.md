@@ -6,7 +6,7 @@ Lightning Cash Gold Core integration/staging tree
 What is LightningCash-Gold ?
 ----------------------
 
-Lightning Cash Gold is a coin based on scrypt POW algorithm, including DarkGravityWave ( difficulty changes for every block ) and possible CURRENT block difficulty change over time to protect against high network hash variation and long stale tip. For full details, please visit our website at http://lightningcash-gold.com . Compiled binary releases are available on LightningCash-Gold's github.
+Lightning Cash Gold is a coin based on yespower POW algorithm, including DarkGravityWave ( difficulty changes for every block ) and possible CURRENT block difficulty change over time to protect against high network hash variation and long stale tip. For full details, please visit our website at http://lightningcash-gold.com . Compiled binary releases are available on LightningCash-Gold's github.
 
 Lightning Cash Gold Core is the full node software that makes up the backbone of the LTNCG network.
 
@@ -29,37 +29,37 @@ Characteristics
 
 - The Hive : A " hodl and profit " mining system accessible to everyone, that works side by side with POW mining, invented by  LitecoinCash's developers !!
 
-- Maximum Supply : 2 100 000 000 LTNCG ( 100 times Bitcoin's total supply )
+- Maximum Supply : 210 000 000 LTNCG ( 10 times Bitcoin's total supply )
 
 - Difficulty adjusted every block and possibly in CURRENT block if a long network stale tip happens !! This protects LightningCash-Gold from high hash variations and " high hash attacks " , that happens frequently for new coins and kills them by making the mining difficulty too high for the " normal " network's hash rate. For more info :
 		https://bitcointalk.org/index.php?topic=5119550 .
 
-- Fast POW / Hive block pair target time of 80 seconds on average !! ( 40 seconds per block )
+- Fast block target time of 6.6 seconds on average !!
 
-- Number of confirmations needed for a transaction : 6  ( so a transaction is confirmed on average in 4 minutes only !!! )
+- Number of confirmations needed for a transaction : 6 ( so a transaction is confirmed on average in 39.6 seconds only !!! )
 
-- Premine : 22 000 000 coins, barely above 1 % of max supply
+- Premine : 2 200 000 coins, barely above 1 % of max supply
 
-- Block Reward : 500 LightningCash ( halved every 2 100 000 blocks, so every 4 years on average )
+- Block Reward : 50 LightningCash-Gold ( halved every 2 100 000 blocks, so every 6 months on average )
 
-- Brand New Blockchain !!  ( downloading the new blockchain or re indexing it and syncing with the network actually takes less than 5 minute on average with a normal internet speed !!! )
+- Brand New Blockchain !!  ( downloading the new blockchain or re indexing it and syncing with the network actually takes less than 10 minute on average with a normal internet speed !!! )
 
 
 Official Website :
 
-http://lightningcash-gold.com
+http://lightningcash.gold/
 
 
 
 Official Mining Pool :
 
-http://pool.lightningcash-gold.com/
+http://pool.lightningcash.gold/
 
 
 
 Official Block Explorer :
 
-http://explorer.lightningcash-gold.com/
+http://explorer.lightningcash.gold/
 
 
 
@@ -70,12 +70,10 @@ White Paper available on LightningCash-Gold's website.
 
 Exchange : 
 
-https://fcbaccount.com/
-https://swiftex.co/
-https://probitex.com/
-https://enmanet.com/
+https://trade.swiftex.co/
 
-Other exchanges are under discussions.
+
+Other exchanges under discussions.
 
 
 LightningCash Gold is based on LitecoinCash Core's open source code.
