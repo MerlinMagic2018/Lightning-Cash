@@ -437,6 +437,9 @@ unsigned int GetNextHiveWorkRequired(const CBlockIndex* pindexLast, const Consen
 	if ((pindexLast->nHeight + 1 < nSpeedFork) && (beeHashTarget > bnPowLimit))
 		beeHashTarget = bnPowLimit;
 
+	if ((pindexLast->nHeight + 1 >= nSpeedFork) && (pindexLast->nHeight + 1 <= nSpeedFork+25)) // reset hive difficulty at SpeedFork during 25 blocks
+		beeHashTarget = bnPowLimit2; 
+
     //LogPrintf("GetNextHiveWorkRequired: This target= %s\n", beeHashTarget.ToString());
 
     return beeHashTarget.GetCompact();
@@ -447,7 +450,7 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
     int totalBeeLifespan;
     
     if ((chainActive.Tip()->nHeight) >= nSpeedFork)
-	totalBeeLifespan = consensusParams.beeLifespanBlocks2 + consensusParams.beeGestationBlocks;
+	totalBeeLifespan = consensusParams.beeLifespanBlocks3 + consensusParams.beeGestationBlocks;
     else
 	totalBeeLifespan = consensusParams.beeLifespanBlocks + consensusParams.beeGestationBlocks;
 
@@ -485,7 +488,8 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
                 return false;
             }
             int blockHeight = pindexPrev->nHeight;
-            CAmount beeCost = 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams)); // since its prefork, will always be this so its ok here
+	    CAmount beeCost = GetBeeCost(chainActive.Height(), consensusParams);
+        //    CAmount beeCost = 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams)); // since its prefork, will always be this so its ok here
             if (block.vtx.size() > 0) {
                 for(const auto& tx : block.vtx) {
                     CAmount beeFeePaid;
@@ -512,7 +516,7 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
                             int beeMaturesBlock = beeBornBlock + consensusParams.beeGestationBlocks;
                             int beeDiesBlock;
 			    if ((chainActive.Tip()->nHeight) >= nSpeedFork)
-			    	beeDiesBlock = beeMaturesBlock + consensusParams.beeLifespanBlocks2;
+			    	beeDiesBlock = beeMaturesBlock + consensusParams.beeLifespanBlocks3;
 			    else
 				beeDiesBlock = beeMaturesBlock + consensusParams.beeLifespanBlocks;
                             for (int j = beeBornBlock; j < beeDiesBlock; j++) {
@@ -3970,8 +3974,14 @@ bool CheckHiveProof(const CBlock* pblock, const Consensus::Params& consensusPara
         return false;
     }
 
-
     if (bctFoundHeight >= nSpeedFork) {
+
+	    if (bctDepth > consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks3) {
+		LogPrintf("CheckHiveProof: Indicated BCT is too old.\n");
+		return false;
+	    }
+    }
+    else if (bctFoundHeight >= consensusParams.ratioForkBlock) {
 
 	    if (bctDepth > consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks2) {
 		LogPrintf("CheckHiveProof: Indicated BCT is too old.\n");

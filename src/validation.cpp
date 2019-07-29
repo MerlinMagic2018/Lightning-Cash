@@ -222,7 +222,7 @@ uint64_t nPruneTarget = 0;
 int64_t nMaxTipAge = DEFAULT_MAX_TIP_AGE;
 bool fEnableReplacement = DEFAULT_ENABLE_REPLACEMENT;
 const int nYesPowerFork = 247777; // 247777
-const int nSpeedFork = 298720; // ????
+const int nSpeedFork = 301500; // ????
 
 uint256 hashAssumeValid;
 arith_uint256 nMinimumChainWork;
@@ -1162,9 +1162,6 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 
     int halvings = nHeight / consensusParams.nSubsidyHalvingInterval;
 
-    if (nHeight >= nSpeedFork)
-	halvings = nHeight / consensusParams.nSubsidyHalvingInterval2;
-
     // LitecoinCash: Force block reward to zero when right shift is undefined, and don't attempt to issue past total money supply
     if (halvings >= 64 || nHeight >= consensusParams.totalMoneySupplyHeight)
         return 0;
@@ -1205,33 +1202,41 @@ CAmount GetBeeCost(int nHeight, const Consensus::Params& consensusParams)
  
 
     CAmount blockReward = GetBlockSubsidy(nHeight, consensusParams);
-    CAmount beeCost = (blockReward / consensusParams.beeCostFactor);
-
-    CAmount potentialLifespanRewards;
-    if ((chainActive.Height() >= consensusParams.ratioForkBlock) || (chainActive.Height() >= nSpeedFork))
-        potentialLifespanRewards = (consensusParams.beeLifespanBlocks2 * GetBlockSubsidy(nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
+    CAmount beeCost;
+    if (chainActive.Height() >= nSpeedFork)
+	beeCost = (blockReward / consensusParams.beeCostFactor)*10; // because it mines 10 times longer.... and for fork easyness....
     else
-        potentialLifespanRewards = (consensusParams.beeLifespanBlocks * GetBlockSubsidy(nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
+	beeCost = (blockReward / consensusParams.beeCostFactor);
+
+    if (chainActive.Height() < nSpeedFork) {
+	    CAmount potentialLifespanRewards;
+	    if (chainActive.Height() >= consensusParams.ratioForkBlock)
+		potentialLifespanRewards = (consensusParams.beeLifespanBlocks2 * GetBlockSubsidy(nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
+	    else
+		potentialLifespanRewards = (consensusParams.beeLifespanBlocks * GetBlockSubsidy(nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
 
 
-    CAmount voyon = 10000000 / ((GetBlockSubsidy(nHeight, consensusParams) / consensusParams.beeCostFactor));
-    CAmount haha = (potentialLifespanRewards / 10000000)*voyon;
+	    CAmount voyon = 10000000 / ((GetBlockSubsidy(nHeight, consensusParams) / consensusParams.beeCostFactor));
+	    CAmount haha = (potentialLifespanRewards / 10000000)*voyon;
 
 
-    if ( totalMatureBees > 0){
-	if (totalMatureBees > (haha*0.9)){
-		CAmount adjustedBeeCost = (beeCost * 2);
-		return adjustedBeeCost <= consensusParams.minBeeCost ? consensusParams.minBeeCost : adjustedBeeCost;
-	}
-        else{
+	    if ( totalMatureBees > 0){
+		if (totalMatureBees > (haha*0.9)){
+			CAmount adjustedBeeCost = (beeCost * 2);
+			return adjustedBeeCost <= consensusParams.minBeeCost ? consensusParams.minBeeCost : adjustedBeeCost;
+		}
+		else{
+			CAmount adjustedBeeCost = beeCost;
+			return adjustedBeeCost <= consensusParams.minBeeCost ? consensusParams.minBeeCost : adjustedBeeCost;
+		}
+	    }
+	    else{
 		CAmount adjustedBeeCost = beeCost;
 		return adjustedBeeCost <= consensusParams.minBeeCost ? consensusParams.minBeeCost : adjustedBeeCost;
-	}
+	    }
     }
-    else{
-	CAmount adjustedBeeCost = beeCost;
-	return adjustedBeeCost <= consensusParams.minBeeCost ? consensusParams.minBeeCost : adjustedBeeCost;
-    }
+    else
+	return beeCost <= consensusParams.minBeeCost ? consensusParams.minBeeCost : beeCost;
 	
 }
 
