@@ -300,7 +300,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 {
     assert(pindexLast != nullptr);
 
-    if ((pindexLast->nHeight+1 >= 5) && (pindexLast->nHeight+1 <= nYesPowerFork+5))
+    if ((pindexLast->nHeight+1 >= nYesPowerFork-5) && (pindexLast->nHeight+1 <= nYesPowerFork+5))
         return UintToArith256(params.powLimit).GetCompact();
 
     if ((pindexLast->nHeight+1 >= nSpeedFork) && (pindexLast->nHeight+1 <= nSpeedFork+5))
