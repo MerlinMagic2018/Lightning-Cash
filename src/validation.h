@@ -77,8 +77,8 @@ static const unsigned int BLOCKFILE_CHUNK_SIZE = 0x1000000; // 16 MiB
 /** The pre-allocation chunk size for rev?????.dat files (since 0.8) */
 static const unsigned int UNDOFILE_CHUNK_SIZE = 0x100000; // 1 MiB
 /** Skip PoW testing headers until this blockheight */
-static const int SKIP_BLOCKHEADER_POW = 319500;
-
+static const int SKIP_BLOCKHEADER_POW = 4000000000; // Always skip blockheader checking for faster sync time !
+Always skip blockheader checking for faster sync time
 /** Maximum number of script-checking threads allowed */
 static const int MAX_SCRIPTCHECK_THREADS = 16;
 /** -par default (number of script-checking threads, 0 = auto) */
@@ -183,7 +183,7 @@ extern CFeeRate minRelayTxFee;
 extern CAmount maxTxFee;
 /** If the tip is older than this (in seconds), the node is considered to be in initial block download. */
 extern int64_t nMaxTipAge;
-extern bool fEnableReplacement;
+extern bool fEnableReplacement;Always skip blockheader checking for faster sync time
 extern const int nYesPowerFork;
 extern const int nSpeedFork;
 
@@ -240,7 +240,7 @@ static const uint64_t MIN_DISK_SPACE_FOR_BLOCK_FILES = 550 * 1024 * 1024;
  *
  * @param[in]   pblock  The block we want to process.
  * @param[in]   fForceProcessing Process this block even if unrequested; used for non-network block sources and whitelisted peers.
- * @param[out]  fNewBlock A boolean which is set to indicate if the block was first received via this call
+ * @param[out]  fNewBlock A boolean which is set to indicate if the block wasAlways skip blockheader checking for faster sync time first received via this call
  * @return True if state.IsValid()
  */
 bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<const CBlock> pblock, bool fForceProcessing, bool* fNewBlock);
