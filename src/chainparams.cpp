@@ -158,10 +158,10 @@ public:
 	consensus.remvariableForkBlock = 118956;
         
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");  // LightningCash Gold new blockchain
+        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000006a553f86ecbfda");  // LightningCash Gold : block 310001
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0xa1d8b56639865905eef9205e148bad0c6a4b2026b1753c76558bb735c3e9735c"); // LightningCash Gold: Genesis block
+        consensus.defaultAssumeValid = uint256S("0xd7f8772248c2a061c8bc28fe2dfee89dd70a7cbfd1c6ecb44b73e5efd993f490"); // LightningCash Gold: block 309999
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -203,15 +203,16 @@ public:
         checkpointData = {
             {
                 {  0, uint256S("0xa1d8b56639865905eef9205e148bad0c6a4b2026b1753c76558bb735c3e9735c")},
+                {  310001, uint256S("0x5d6c2450c49e4856bcfb9a5bd8668cad06fc5daecfe9fb617847c0776e5a7e8e")},
             }
         };
 
         chainTxData = ChainTxData{
             // Data at genesis block.
-            1550567951, // * UNIX timestamp of last known number of transactions
-            0,   // * total number of transactions between genesis and that timestamp
+            1565280496, // * UNIX timestamp of last known number of transactions
+            436284,   // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
-            0.0        // * estimated number of transactions per second after that timestamp
+            0.1653492693215487        // * estimated number of transactions per second after that timestamp
         };
     }
 };
