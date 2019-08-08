@@ -78,7 +78,7 @@ static const unsigned int BLOCKFILE_CHUNK_SIZE = 0x1000000; // 16 MiB
 static const unsigned int UNDOFILE_CHUNK_SIZE = 0x100000; // 1 MiB
 /** Skip PoW testing headers until this blockheight */
 static const int SKIP_BLOCKHEADER_POW = 4000000000; // Always skip blockheader checking for faster sync time !
-Always skip blockheader checking for faster sync time
+
 /** Maximum number of script-checking threads allowed */
 static const int MAX_SCRIPTCHECK_THREADS = 16;
 /** -par default (number of script-checking threads, 0 = auto) */
@@ -183,7 +183,7 @@ extern CFeeRate minRelayTxFee;
 extern CAmount maxTxFee;
 /** If the tip is older than this (in seconds), the node is considered to be in initial block download. */
 extern int64_t nMaxTipAge;
-extern bool fEnableReplacement;Always skip blockheader checking for faster sync time
+extern bool fEnableReplacement;
 extern const int nYesPowerFork;
 extern const int nSpeedFork;
 
