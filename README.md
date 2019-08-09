@@ -11,7 +11,7 @@ Lightning Cash Gold is a coin based on Yespower POW algorithm, including DarkGra
 Lightning Cash Gold Core is the full node software that makes up the backbone of the LTNCG network.
 
 
-Discord Channel : https://discord.gg/Q69zY4Y
+Discord Channel : https://discord.gg/XTeW9TA
 
 
 bitcointalk.org official announcement thread : https://bitcointalk.org/index.php?topic=5161816
