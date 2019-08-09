@@ -6,7 +6,7 @@ Lightning Cash Gold Core integration/staging tree
 What is LightningCash-Gold ?
 ----------------------
 
-Lightning Cash Gold is a coin based on Yespower POW algorithm, including DarkGravityWave ( difficulty changes for every block ) and possible CURRENT block difficulty change over time to protect against high network hash variation and long stale tip. For full details, please visit our website at https://lightningcash.gold . Compiled binary releases are available on LightningCash-Gold's github.
+Lightning Cash Gold is a coin based on Yespower POW algorithm, including DarkGravityWave ( difficulty changes for every block ) and possible CURRENT block difficulty change over time to protect against high network hash variation and long stale tip. For full details, please visit our website at https://lightningcashgold.com . Compiled binary releases are available on LightningCash-Gold's github.
 
 Lightning Cash Gold Core is the full node software that makes up the backbone of the LTNCG network.
 
