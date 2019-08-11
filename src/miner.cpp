@@ -920,12 +920,12 @@ void static LTNCGMiner(MinerInfo* miner, const CChainParams& chainparams)
                 } while (true);
             }*/
 
-            if(coinbaseScript != nullptr
-                && gArgs.GetBoolArg("-rotatecoinbase", false)
-                && !address.IsValid())
-            {
-                coinbaseScript.reset();
-            }
+      //      if(coinbaseScript != nullptr
+      //          && gArgs.GetBoolArg("-rotatecoinbase", false)
+      //          && !address.IsValid())
+      //      {
+      //          coinbaseScript.reset();
+      //      }
 
             if(vpwallets.size() > 0 && coinbaseScript == nullptr)
             {
