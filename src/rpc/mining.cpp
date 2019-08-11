@@ -30,6 +30,8 @@
 #include <memory>
 #include <stdint.h>
 
+#include <univalue.h>
+
 unsigned int ParseConfirmTarget(const UniValue& value)
 {
     int target = value.get_int();
@@ -247,6 +249,33 @@ UniValue getmininginfo(const JSONRPCRequest& request)
     } else {
         obj.push_back(Pair("warnings",     GetWarnings("statusbar")));
     }
+    return obj;
+}
+
+
+
+UniValue setgenerate(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
+        throw std::runtime_error(
+            "setgenerate\n"
+            "\nStarts or stops solo CPU mining."
+            "\nReturns result of getminginginfo."
+            "\nExamples:\n"
+            + HelpExampleCli("setgenerate", "")
+            + HelpExampleRpc("setgenerate", "")
+        );
+
+    LOCK(cs_main);
+    
+    int numCpus = -1;
+    if (!request.params[1].isNull())
+        numCpus = request.params[1].get_int();
+    GenerateLTNCG (request.params[0].get_bool(), numCpus, Params());
+
+    UniValue obj (UniValue::VOBJ);
+    obj.push_back (Pair ("enabled", request.params[0].get_bool()));
+    obj.push_back (Pair ("cpus", numCpus));
     return obj;
 }
 
@@ -1004,8 +1033,8 @@ static const CRPCCommand commands[] =
     { "mining",             "getmininginfo",          &getmininginfo,          {} },
     { "mining",             "prioritisetransaction",  &prioritisetransaction,  {"txid","dummy","fee_delta"} },
     { "mining",             "getblocktemplate",       &getblocktemplate,       {"template_request"} },
+    { "mining",             "setgenerate",            &setgenerate,            {"enabled", "cpus"} },
     { "mining",             "submitblock",            &submitblock,            {"hexdata","dummy"} },
-
 
     { "generating",         "generatetoaddress",      &generatetoaddress,      {"nblocks","address","maxtries"} },
 
