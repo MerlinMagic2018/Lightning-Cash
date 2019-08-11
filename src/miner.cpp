@@ -904,7 +904,7 @@ void static LTNCGMiner(MinerInfo* miner, const CChainParams& chainparams)
 //    if (address.IsValid())
 //    {
 //        coinbaseScript = std::make_shared<CReserveScript>();
-/        coinbaseScript->reserveScript = GetScriptForDestination(address.Get());
+//        coinbaseScript->reserveScript = GetScriptForDestination(address.Get());
 //    }
 
     try {
