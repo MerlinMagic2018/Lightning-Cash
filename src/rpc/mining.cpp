@@ -241,6 +241,7 @@ UniValue getmininginfo(const JSONRPCRequest& request)
     obj.push_back(Pair("currentblockweight", (uint64_t)nLastBlockWeight));
     obj.push_back(Pair("currentblocktx",   (uint64_t)nLastBlockTx));
     obj.push_back(Pair("difficulty",       (double)GetDifficulty()));
+    obj.push_back(Pair("localhashps",      (double)EstimateMinerHashesPerSecond()));
     obj.push_back(Pair("networkhashps",    getnetworkhashps(request)));
     obj.push_back(Pair("pooledtx",         (uint64_t)mempool.size()));
     obj.push_back(Pair("chain",            Params().NetworkIDString()));
@@ -260,7 +261,7 @@ UniValue setgenerate(const JSONRPCRequest& request)
         throw std::runtime_error(
             "setgenerate\n"
             "\nStarts or stops solo CPU mining."
-            "\nReturns result of getminginginfo."
+            "\nReturns result of getmininginfo."
             "\nExamples:\n"
             + HelpExampleCli("setgenerate", "")
             + HelpExampleRpc("setgenerate", "")

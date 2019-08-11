@@ -503,6 +503,12 @@ void BlockAssembler::addPackageTxs(int &nPackagesSelected, int &nDescendantsUpda
     }
 }
 
+CBlockTemplate* CreateNewBlock(const CChainParams& chainparams, const CScript& scriptPubKeyIn)
+{
+    BlockAssembler assembler (chainparams);
+    return assembler.CreateNewBlock(scriptPubKeyIn).release();
+}
+
 void IncrementExtraNonce(CBlock* pblock, const CBlockIndex* pindexPrev, unsigned int& nExtraNonce)
 {
     // Update nExtraNonce
@@ -943,11 +949,11 @@ void static LTNCGMiner(MinerInfo* miner, const CChainParams& chainparams)
             //
             unsigned int nTransactionsUpdatedLast = mempool.GetTransactionsUpdated();
             CBlockIndex* pindexPrev = chainActive.Tip();
-            std::auto_ptr<CBlockTemplate> pblocktemplate;
+            std::unique_ptr<CBlockTemplate> pblocktemplate; // The constructed block template ( declaration ? )
 
             try
             {
-                pblocktemplate.reset (CreateNewBlock (chainparams, coinbaseScript->reserveScript));
+		pblocktemplate.reset (CreateNewBlock (chainparams, coinbaseScript->reserveScript));
             }
             catch (const std::runtime_error &e)
             {
