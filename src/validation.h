@@ -419,6 +419,9 @@ bool IsHiveEnabled(const CBlockIndex* pindexPrev, const Consensus::Params& param
 // LightningCash Gold: Hive: Check if Hive 1.1 is activated at given point
 bool IsHive11Enabled(const CBlockIndex* pindexPrev, const Consensus::Params& params);
 
+// LightningCash Gold: Hive: Check if Hive 1.1 is activated at given point
+bool IsHive12Enabled(const CBlockIndex* pindexPrev, const Consensus::Params& params);
+
 // LightningCash Gold: Hive: Get the well-rooted deterministic random string (see whitepaper section 4.1)
 std::string GetDeterministicRandString(const CBlockIndex* pindexPrev);
 

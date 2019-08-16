@@ -112,10 +112,16 @@ struct Params {
     // LightningCash Gold: Hive 1.1-related consensus fields
     int minK;                           // Minimum chainwork scale for Hive blocks (see Hive whitepaper section 5)
     int maxK;                           // Maximum chainwork scale for Hive blocks (see Hive whitepaper section 5)
+    int maxK2;                           // Maximum chainwork scale for Hive blocks (see Hive whitepaper section 5)
     double maxHiveDiff;                 // Hive difficulty at which max chainwork bonus is awarded
+    double maxHiveDiff2;                 // Hive difficulty at which max chainwork bonus is awarded
     int maxKPow;                        // Maximum chainwork scale for PoW blocks
     double powSplit1;                   // Below this Hive difficulty threshold, PoW block chainwork bonus is halved
     double powSplit2;                   // Below this Hive difficulty threshold, PoW block chainwork bonus is halved again
+    double powSplit12;                   // Below this Hive difficulty threshold, PoW block chainwork bonus is halved
+    double powSplit22;                   // Below this Hive difficulty threshold, PoW block chainwork bonus is halved again
+    int maxConsecutiveHiveBlocks;       // Maximum hive blocks that can occur consecutively before a PoW block is required
+    int hiveDifficultyWindow;           // How many blocks the SMA averages over in hive difficulty adjust
 
     bool variableBeecost;
     int variableForkBlock;

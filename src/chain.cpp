@@ -145,14 +145,51 @@ arith_uint256 GetBlockProof(const CBlockIndex& block)
     if (block.GetBlockHeader().IsHiveMined(consensusParams)) {
         assert(block.pprev);
 
+        // LightningCash-Gold: Hive 1.1: Set bnPreviousTarget from nBits in most recent pow block, not just assuming it's one back. Note this logic is still valid for Hive 1.0 so doesn't need to be gated.
+        CBlockIndex* pindexTemp = block.pprev;
+        while (pindexTemp->GetBlockHeader().IsHiveMined(consensusParams)) {
+            assert(pindexTemp->pprev);
+            pindexTemp = pindexTemp->pprev;
+        }
+
         arith_uint256 bnPreviousTarget;
-        bnPreviousTarget.SetCompact(block.pprev->nBits, &fNegative, &fOverflow);
+        //bnPreviousTarget.SetCompact(block.pprev->nBits, &fNegative, &fOverflow);
+        bnPreviousTarget.SetCompact(pindexTemp->nBits, &fNegative, &fOverflow); // LightningCash-Gold: Hive 1.1: Set bnPreviousTarget from nBits in most recent pow block, not just assuming it's one back
+        if (fNegative || fOverflow || bnPreviousTarget == 0)
+            return 0;
+        bnTargetScaled += (~bnPreviousTarget / (bnPreviousTarget + 1)) + 1;
+@@ -206,6 +213,24 @@ arith_uint256 GetBlockProof(const CBlockIndex& block)
+    return bnTargetScaled;
+}
+
+// LitecoinCash: Hive: Use this to compute estimated hashes for GetNetworkHashPS()
+arith_uint256 GetNumHashes(const CBlockIndex& block)
+{
+    arith_uint256 bnTarget;
+    bool fNegative;
+    bool fOverflow;
+
+    bnTarget.SetCompact(block.nBits, &fNegative, &fOverflow);
+    if (fNegative || fOverflow || bnTarget == 0 || block.GetBlockHeader().IsHiveMined(Params().GetConsensus()))
+        return 0;
+
+    // We need to compute 2**256 / (bnTarget+1), but we can't represent 2**256
+    // as it's too large for an arith_uint256. However, as 2**256 is at least as large
+    // as bnTarget+1, it is equal to ((2**256 - bnTarget - 1) / (bnTarget+1)) + 1,
+    // or ~bnTarget / (bnTarget+1) + 1.
+    return (~bnTarget / (bnTarget + 1)) + 1;
+}
+
+int64_t GetBlockProofEquivalentTime(const CBlockIndex& to, const CBlockIndex& from, const CBlockIndex& tip, const Consensus::Params& params)
+{
+    arith_uint256 r;
+
         if (fNegative || fOverflow || bnPreviousTarget == 0)
             return 0;
         bnTargetScaled += (~bnPreviousTarget / (bnPreviousTarget + 1)) + 1;
 
 	        // Hive 1.1: Enable bonus chainwork for Hive blocks
-        if (IsHive11Enabled(&block, consensusParams)) {
+        if ((IsHive11Enabled(&block, consensusParams)) && (!IsHive12Enabled(&block, consensusParams))) {
             LogPrintf("**** HIVE-1.1: ENABLING BONUS CHAINWORK ON HIVE BLOCK %s\n", block.GetBlockHash().ToString());
             LogPrintf("**** Initial block chainwork = %s\n", bnTargetScaled.ToString());
             double hiveDiff = GetDifficulty(&block, true);                                  // Current hive diff
@@ -165,7 +202,7 @@ arith_uint256 GetBlockProof(const CBlockIndex& block)
             LogPrintf("**** Final scaled chainwork =  %s\n", bnTargetScaled.ToString());
         }
     // Hive 1.1: Enable bonus chainwork for PoW blocks
-    } else if (IsHive11Enabled(&block, consensusParams)) {
+    } else if ((IsHive11Enabled(&block, consensusParams)) && (!IsHive12Enabled(&block, consensusParams))) {
         LogPrintf("**** HIVE-1.1: CHECKING FOR BONUS CHAINWORK ON POW BLOCK %s\n", block.GetBlockHash().ToString());
         LogPrintf("**** Initial block chainwork = %s\n", bnTargetScaled.ToString());
 
@@ -204,10 +241,63 @@ arith_uint256 GetBlockProof(const CBlockIndex& block)
 
     }
 
+	        // Hive 1.2: Enable bonus chainwork for Hive blocks
+        if (IsHive12Enabled(&block, consensusParams)) {
+            LogPrintf("**** HIVE-1.2: ENABLING BONUS CHAINWORK ON HIVE BLOCK %s\n", block.GetBlockHash().ToString());
+            LogPrintf("**** Initial block chainwork = %s\n", bnTargetScaled.ToString());
+            double hiveDiff = GetDifficulty(&block, true);                                  // Current hive diff
+            LogPrintf("**** Hive diff = %.12f\n", hiveDiff);
+            unsigned int k = floor(std::min(hiveDiff/consensusParams.maxHiveDiff2, 1.0) * (consensusParams.maxK2 - consensusParams.minK) + consensusParams.minK);
+
+            bnTargetScaled *= k;
+
+            LogPrintf("**** k = %d\n", k);
+            LogPrintf("**** Final scaled chainwork =  %s\n", bnTargetScaled.ToString());
+        }
+    // Hive 1.2: Enable bonus chainwork for PoW blocks
+    } else if (IsHive12Enabled(&block, consensusParams)) {
+        LogPrintf("**** HIVE-1.2: CHECKING FOR BONUS CHAINWORK ON POW BLOCK %s\n", block.GetBlockHash().ToString());
+        LogPrintf("**** Initial block chainwork = %s\n", bnTargetScaled.ToString());
+
+        // Find last hive block
+        CBlockIndex *currBlock = block.pprev;
+        int blocksSinceHive;
+        double lastHiveDifficulty = 0;
+
+        for (blocksSinceHive = 0; blocksSinceHive < consensusParams.maxKPow; blocksSinceHive++) {
+            if (currBlock->GetBlockHeader().IsHiveMined(consensusParams)) {
+                lastHiveDifficulty = GetDifficulty(currBlock, true);
+                LogPrintf("**** Got last Hive diff = %.12f, at %s\n", lastHiveDifficulty, currBlock->GetBlockHash().ToString());
+                break;
+            }
+
+            assert(currBlock->pprev);
+            currBlock = currBlock->pprev;
+        }
+
+        LogPrintf("**** Pow blocks since last Hive block = %d\n", blocksSinceHive);
+
+        // Apply k scaling
+        unsigned int k = consensusParams.maxKPow - blocksSinceHive;
+        if (lastHiveDifficulty < consensusParams.powSplit12)
+            k = k >> 1;
+        if (lastHiveDifficulty < consensusParams.powSplit22)
+            k = k >> 1;
+
+        if (k < 1)
+            k = 1;
+
+        bnTargetScaled *= k;
+
+        LogPrintf("**** k = %d\n", k);
+        LogPrintf("**** Final scaled chainwork =  %s\n", bnTargetScaled.ToString());
+
+    }
+
     return bnTargetScaled;
 }
 
-int64_t GetBlockProofEquivalentTime(const CBlockIndex& to, const CBlockIndex& from, const CBlockIndex& tip, const Consensus::Params& params)
+/*int64_t GetBlockProofEquivalentTime(const CBlockIndex& to, const CBlockIndex& from, const CBlockIndex& tip, const Consensus::Params& params)
 {
     arith_uint256 r;
     int sign = 1;
@@ -222,7 +312,7 @@ int64_t GetBlockProofEquivalentTime(const CBlockIndex& to, const CBlockIndex& fr
         return sign * std::numeric_limits<int64_t>::max();
     }
     return sign * r.GetLow64();
-}
+}*/
 
 /** Find the last common ancestor two blocks have.
  *  Both pa and pb must be non-nullptr. */

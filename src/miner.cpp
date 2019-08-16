@@ -589,10 +589,30 @@ bool BusyBees(const Consensus::Params& consensusParams) {
         LogPrint(BCLog::HIVE, "BusyBees: Skipping hive check (in initial block download)\n");
         return false;
     }
-    if (pindexPrev->GetBlockHeader().IsHiveMined(consensusParams)) {
+/*    if (pindexPrev->GetBlockHeader().IsHiveMined(consensusParams)) {
         LogPrint(BCLog::HIVE, "BusyBees: Skipping hive check (last block was hive mined)\n");
         //LogPrintf("BusyBees: Skipping hive check (last block was hive mined)\n");
-        return false;
+        return false;*/
+
+    // LightningCash-Gold: Hive 1.1: Check that there aren't too many consecutive Hive blocks
+    if (IsHive12Enabled(pindexPrev, consensusParams)) {
+        int hiveBlocksAtTip = 0;
+        CBlockIndex* pindexTemp = pindexPrev;
+        while (pindexTemp->GetBlockHeader().IsHiveMined(consensusParams)) {
+            assert(pindexTemp->pprev);
+            pindexTemp = pindexTemp->pprev;
+            hiveBlocksAtTip++;
+        }
+        if (hiveBlocksAtTip >= consensusParams.maxConsecutiveHiveBlocks) {
+            LogPrintf("BusyBees: Skipping hive check (max Hive blocks without a POW block reached)\n");
+            return false;
+        }
+    } else {
+        // Check previous block wasn't hivemined
+        if (pindexPrev->GetBlockHeader().IsHiveMined(consensusParams)) {
+            LogPrintf("BusyBees: Skipping hive check (Hive block must follow a POW block)\n");
+            return false;
+        }
     }
 
     // Get wallet
@@ -652,6 +672,7 @@ bool BusyBees(const Consensus::Params& consensusParams) {
     CBeeCreationTransactionInfo bestBct;
     int beesChecked = 0;
     uint32_t bestHashBee;
+    bool solutionFound = false;
     for (std::vector<CBeeCreationTransactionInfo>::const_iterator it = bcts.begin(); it != bcts.end(); it++) {
         CBeeCreationTransactionInfo bct = *it;
         // Skip immature and dead bees
@@ -668,9 +689,13 @@ bool BusyBees(const Consensus::Params& consensusParams) {
 		    bestHash = beeHash;
 		    bestHashBee = bee;
 		    bestBct = bct;
+		    solutionFound = true;
 		    break;
 		}            
 	    }
+
+	    if(solutionFound)
+            break;
     }
 
     if (beesChecked == 0) {
@@ -680,11 +705,11 @@ bool BusyBees(const Consensus::Params& consensusParams) {
 
     // Check if our best bee hash meets the target
     if (bestHash >= beeHashTarget) {
-        LogPrintf("BusyBees: Checked %i bees; none strong enough to mint. Best hash was %s\n", beesChecked, bestHash.ToString());
+        LogPrintf("BusyBees: Checked %i bees; none strong enough to mint.\n", beesChecked);
         return false;
     }
 
-    if (verbose) LogPrintf("BusyBees: BEE MEETS HASH TARGET. Checked %i bees; best is bee #%i from BCT %s with hash %s. Honey address is %s.\n", beesChecked, bestHashBee, bestBct.txid, bestHash.ToString(), bestBct.honeyAddress);
+    if (verbose) LogPrintf("BusyBees: BEE MEETS HASH TARGET. Checked %i bees; solution with bee #%i from BCT %s with hash %s. Honey address is %s.\n", beesChecked, bestHashBee, bestBct.txid, bestHash.ToString(), bestBct.honeyAddress);
 
     // Assemble the Hive proof script
     std::vector<unsigned char> messageProofVec;
@@ -752,6 +777,15 @@ bool BusyBees(const Consensus::Params& consensusParams) {
     }
     CBlock *pblock = &pblocktemplate->block;
     pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);  // Calc the merkle root
+
+    // Make sure the new block's not stale
+    {
+        LOCK(cs_main);
+        if (pblock->hashPrevBlock != chainActive.Tip()->GetBlockHash()) {
+            LogPrintf("BusyBees: Generated block is stale.\n");
+            return false;
+        }
+    }
 
     if (verbose) {
         LogPrintf("BusyBees: Block created:\n");

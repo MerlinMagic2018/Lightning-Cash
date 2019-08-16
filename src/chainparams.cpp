@@ -144,10 +144,16 @@ public:
         // LightningCash Gold: Hive 1.1-related consensus fields
         consensus.minK = 1;                                 // Minimum chainwork scale for Hive blocks (see Hive whitepaper section 5)
         consensus.maxK = 8;                                 // Maximum chainwork scale for Hive blocks (see Hive whitepaper section 5)
+        consensus.maxK2 = 7;                                 // Maximum chainwork scale for Hive blocks (see Hive whitepaper section 5)
         consensus.maxHiveDiff = 0.001;                      // Hive difficulty at which max chainwork bonus is awarded
+        consensus.maxHiveDiff2 = 0.006;                      // Hive difficulty at which max chainwork bonus is awarded
         consensus.maxKPow = 5;                              // Maximum chainwork scale for PoW blocks
         consensus.powSplit1 = 0.000833;                        // Below this Hive difficulty threshold, PoW block chainwork bonus is halved
         consensus.powSplit2 = 0.000416;                       // Below this Hive difficulty threshold, PoW block chainwork bonus is halved again
+        consensus.powSplit12 = 0.005;                        // Below this Hive difficulty threshold, PoW block chainwork bonus is halved
+        consensus.powSplit22 = 0.0025;                       // Below this Hive difficulty threshold, PoW block chainwork bonus is halved again
+        consensus.maxConsecutiveHiveBlocks = 2;             // Maximum hive blocks that can occur consecutively before a PoW block is required
+        consensus.hiveDifficultyWindow = 24;                // How many blocks the SMA averages over in hive difficulty adjust
 
 	consensus.variableBeecost = true;
 	consensus.variableForkBlock = 67777;
@@ -258,10 +264,15 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_HIVE].nStartTime = Consensus::BIP9Deployment::ALWAYS_ACTIVE; // active from the start
         consensus.vDeployments[Consensus::DEPLOYMENT_HIVE].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
 
-        // LitecoinCash: Hive 1.1: Deployment
+        // LightningCash Gold: Hive 1.1: Deployment
         consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_1].bit = 9;
         consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_1].nStartTime = 1563993908;  // active from the start
         consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_1].nTimeout = 1563993908 + 31536000;  // active from the start
+
+        // LightningCash Gold: Hive 1.2: Deployment
+        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_2].bit = 10;
+        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_2].nStartTime = 1566000900;  // active from the start
+        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_2].nTimeout = 1566000900 + 31536000;  // active from the start
 
         // LightningCash Gold fields
         consensus.powForkTime = 1551819029;                 // Time of PoW hash method change (block 100)
@@ -295,6 +306,8 @@ public:
         consensus.maxKPow = 5;                              // Maximum chainwork scale for PoW blocks
         consensus.powSplit1 = 0.001;                        // Below this Hive difficulty threshold, PoW block chainwork bonus is halved
         consensus.powSplit2 = 0.0005;                       // Below this Hive difficulty threshold, PoW block chainwork bonus is halved again
+        consensus.maxConsecutiveHiveBlocks = 2;             // Maximum hive blocks that can occur consecutively before a PoW block is required
+        consensus.hiveDifficultyWindow = 24;                // How many blocks the SMA averages over in hive difficulty adjust
 
 	consensus.variableBeecost = true;
 	consensus.variableForkBlock = 5000000; // never happens

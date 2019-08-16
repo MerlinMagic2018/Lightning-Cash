@@ -64,9 +64,16 @@ double GetDifficulty(const CChain& chain, const CBlockIndex* blockindex, bool ge
 
     // LightningCash Gold: Hive: If tip is hivemined and we want PoW, step back one (Hive blocks always follow a PoW block)
     const Consensus::Params& consensusParams = Params().GetConsensus();
-    if (!getHiveDifficulty && blockindex->GetBlockHeader().IsHiveMined(consensusParams)) {
+/*    if (!getHiveDifficulty && blockindex->GetBlockHeader().IsHiveMined(consensusParams)) {
         assert (blockindex->pprev);
-        blockindex = blockindex->pprev;
+        blockindex = blockindex->pprev;*/
+
+    if (!getHiveDifficulty) {
+        // LightningCash-Gold: Hive 1.1: Allow there to be multiple hive blocks in the way
+        while (blockindex->GetBlockHeader().IsHiveMined(consensusParams)) {
+            assert (blockindex->pprev);
+            blockindex = blockindex->pprev;
+        }
     }
 
     // LightningCash Gold: Hive: If tip is PoW and we want hivemined, step back until we find a Hive block
