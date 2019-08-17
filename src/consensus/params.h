@@ -23,6 +23,7 @@ enum DeploymentPos
     DEPLOYMENT_SEGWIT, // Deployment of BIP141, BIP143, and BIP147.
     DEPLOYMENT_HIVE,    // LightningCash Gold: Hive: Deployment
     DEPLOYMENT_HIVE_1_1,    // LightningCash Gold: Hive: 1.1 Deployment
+    DEPLOYMENT_HIVE_1_2,    // LightningCash Gold: Hive: 1.2 Deployment
     // NOTE: Also add new deployments to VersionBitsDeploymentInfo in versionbits.cpp
     MAX_VERSION_BITS_DEPLOYMENTS
 };

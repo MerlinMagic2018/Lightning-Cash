@@ -27,6 +27,11 @@ const struct VBDeploymentInfo VersionBitsDeploymentInfo[Consensus::MAX_VERSION_B
     {
         /*.name =*/ "hive_1_1",
         /*.gbt_force =*/ true,
+    },
+    // LightningCash Gold: Hive: Deployment of 1.2
+    {
+        /*.name =*/ "hive_1_2",
+        /*.gbt_force =*/ true,
     }
 };
 

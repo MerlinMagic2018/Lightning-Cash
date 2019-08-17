@@ -71,8 +71,8 @@ UniValue GetNetworkHashPS(int lookup, int height) {
     int64_t minTime = pb->GetBlockTime();
     int64_t maxTime = minTime;
 	
-	const Consensus::Params& consensusParams = Params().GetConsensus();					// Lightning Cash Gold: Hive: Take into account hive blocks
-	int nHiveBlocks = pb0->GetBlockHeader().IsHiveMined(consensusParams) ? 1 : 0;		// Lightning Cash Gold: Hive: Take into account hive blocks
+//	const Consensus::Params& consensusParams = Params().GetConsensus();					// Lightning Cash Gold: Hive: Take into account hive blocks
+//	int nHiveBlocks = pb0->GetBlockHeader().IsHiveMined(consensusParams) ? 1 : 0;		// Lightning Cash Gold: Hive: Take into account hive blocks
 	arith_uint256 workDiff = GetNumHashes(*pb);
 	
     for (int i = 0; i < lookup; i++) {

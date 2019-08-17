@@ -503,7 +503,10 @@ unsigned int GetNextHiveWorkRequired(const CBlockIndex* pindexLast, const Consen
 bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, int& matureBCTs, CAmount& potentialLifespanRewards, const Consensus::Params& consensusParams, bool recalcGraph) {
     int totalBeeLifespan;
     
-    if ((chainActive.Tip()->nHeight) >= nSpeedFork)
+    if ((chainActive.Tip()->nHeight) >= nAdjustFork)
+	totalBeeLifespan = consensusParams.beeLifespanBlocks + consensusParams.beeGestationBlocks;
+
+    else if (((chainActive.Tip()->nHeight) >= nSpeedFork) && ((chainActive.Tip()->nHeight) < nAdjustFork))
 	totalBeeLifespan = consensusParams.beeLifespanBlocks3 + consensusParams.beeGestationBlocks;
     else
 	totalBeeLifespan = consensusParams.beeLifespanBlocks + consensusParams.beeGestationBlocks;
@@ -513,7 +516,9 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
     CBlockIndex* pindexPrev = chainActive.Tip();
     assert(pindexPrev != nullptr);
     int tipHeight = pindexPrev->nHeight;
-    if ((chainActive.Tip()->nHeight) >= nSpeedFork)
+    if ((chainActive.Tip()->nHeight) >= nAdjustFork)
+    	potentialLifespanRewards = (consensusParams.beeLifespanBlocks * GetBeeCost(chainActive.Height(), consensusParams)) / consensusParams.hiveBlockSpacingTarget;
+    else if (((chainActive.Tip()->nHeight) >= nSpeedFork) && ((chainActive.Tip()->nHeight) < nAdjustFork))
     	potentialLifespanRewards = (consensusParams.beeLifespanBlocks3 * GetBeeCost(chainActive.Height(), consensusParams)) / consensusParams.hiveBlockSpacingTarget;
     else
 	potentialLifespanRewards = (consensusParams.beeLifespanBlocks * GetBeeCost(chainActive.Height(), consensusParams)) / consensusParams.hiveBlockSpacingTarget;
@@ -573,7 +578,9 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
                             int beeBornBlock = blockHeight;
                             int beeMaturesBlock = beeBornBlock + consensusParams.beeGestationBlocks;
                             int beeDiesBlock;
-			    if ((chainActive.Tip()->nHeight) >= nSpeedFork)
+			    if ((chainActive.Tip()->nHeight) >= nAdjustFork)
+			    	beeDiesBlock = beeMaturesBlock + consensusParams.beeLifespanBlocks;
+			    else if (((chainActive.Tip()->nHeight) >= nSpeedFork) && ((chainActive.Tip()->nHeight) < nAdjustFork))
 			    	beeDiesBlock = beeMaturesBlock + consensusParams.beeLifespanBlocks3;
 			    else
 				beeDiesBlock = beeMaturesBlock + consensusParams.beeLifespanBlocks;

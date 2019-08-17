@@ -223,6 +223,7 @@ int64_t nMaxTipAge = DEFAULT_MAX_TIP_AGE;
 bool fEnableReplacement = DEFAULT_ENABLE_REPLACEMENT;
 const int nYesPowerFork = 247777; // 247777
 const int nSpeedFork = 310000; // ????
+const int nAdjustFork = 533333; // ????
 
 uint256 hashAssumeValid;
 arith_uint256 nMinimumChainWork;
@@ -1175,7 +1176,12 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     if (nHeight == 4)
 	return 550000 * COIN * COIN_SCALE;
 
-    CAmount nSubsidy = 50 * COIN * COIN_SCALE;
+    CAmount nSubsidy;
+    
+    if (nHeight < 533333)
+	nSubsidy = 50 * COIN * COIN_SCALE;
+    else
+	nSubsidy = 5 * COIN * COIN_SCALE;
 
     // Subsidy is cut in half every 2,100,000 blocks which will occur approximately every 5 months and a half.
     nSubsidy >>= halvings;
@@ -1202,7 +1208,10 @@ CAmount GetBeeCost(int nHeight, const Consensus::Params& consensusParams)
     CAmount beeCost = (blockReward / consensusParams.beeCostFactor);
     CAmount potentialLifespanRewards;
 	    
-	    if (chainActive.Height() >= nSpeedFork)
+	    if (chainActive.Height() >= nAdjustFork)
+		potentialLifespanRewards = (consensusParams.beeLifespanBlocks * GetBlockSubsidy(nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
+
+	    if ((chainActive.Height() >= nSpeedFork) && (chainActive.Height() < nAdjustFork))
 		potentialLifespanRewards = (consensusParams.beeLifespanBlocks3 * GetBlockSubsidy(nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
     
 	    if ((chainActive.Height() >= consensusParams.ratioForkBlock) && (chainActive.Height() < nSpeedFork))

@@ -693,11 +693,12 @@ bool WalletModel::createBees(int beeCount, bool communityContrib, QWidget *paren
     CWalletTx wtxNew;
     std::string strError;
     std::string honeyAddress;
+	std::string changeAddress;
     CReserveKey reservekeyChange(wallet);
     CReserveKey reservekeyHoney(wallet);
     if ((chainActive.Tip()->nHeight) >= nSpeedFork) {
 	   // LogPrintf("OK \n");
-	    if (!wallet->CreateBeeTransaction(beeCount, wtxNew, reservekeyChange, reservekeyHoney, honeyAddress, communityContrib, strError, Params().GetConsensus())) {
+	    if (!wallet->CreateBeeTransaction(beeCount, wtxNew, reservekeyChange, reservekeyHoney, honeyAddress, changeAddress, communityContrib, strError, Params().GetConsensus())) {
 		QMessageBox::critical(parent, tr("Error"), "Bee creation error: " + QString::fromStdString(strError));
 		return false;
 	    }
@@ -706,21 +707,21 @@ bool WalletModel::createBees(int beeCount, bool communityContrib, QWidget *paren
 
     if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().remvariableForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)) {
 	   // LogPrintf("OK \n");
-	    if (!wallet->CreateBeeTransaction3(beeCount, wtxNew, reservekeyChange, reservekeyHoney, honeyAddress, communityContrib, strError, Params().GetConsensus())) {
+	    if (!wallet->CreateBeeTransaction3(beeCount, wtxNew, reservekeyChange, reservekeyHoney, honeyAddress, changeAddress, communityContrib, strError, Params().GetConsensus())) {
 		QMessageBox::critical(parent, tr("Error"), "Bee creation error: " + QString::fromStdString(strError));
 		return false;
 	    }
     }
     if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) >= (Params().GetConsensus().variableForkBlock)) && (((chainActive.Tip()->nHeight) - 1) < (Params().GetConsensus().remvariableForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)) {
 	   // LogPrintf("OK \n");
-	    if (!wallet->CreateBeeTransaction2(beeCount, wtxNew, reservekeyChange, reservekeyHoney, honeyAddress, communityContrib, strError, Params().GetConsensus())) {
+	    if (!wallet->CreateBeeTransaction2(beeCount, wtxNew, reservekeyChange, reservekeyHoney, honeyAddress, changeAddress, communityContrib, strError, Params().GetConsensus())) {
 		QMessageBox::critical(parent, tr("Error"), "Bee creation error: " + QString::fromStdString(strError));
 		return false;
 	    }
     }
     if ((Params().GetConsensus().variableBeecost) && (((chainActive.Tip()->nHeight) - 1) < (Params().GetConsensus().variableForkBlock)) && ((chainActive.Tip()->nHeight) < nSpeedFork)) {
 	    //LogPrintf("NOT OK \n");
-	    if (!wallet->CreateBeeTransaction(beeCount, wtxNew, reservekeyChange, reservekeyHoney, honeyAddress, communityContrib, strError, Params().GetConsensus())) {
+	    if (!wallet->CreateBeeTransaction(beeCount, wtxNew, reservekeyChange, reservekeyHoney, honeyAddress, changeAddress, communityContrib, strError, Params().GetConsensus())) {
 		QMessageBox::critical(parent, tr("Error"), "Bee creation error: " + QString::fromStdString(strError));
 		return false;
 	    }

@@ -186,6 +186,7 @@ extern int64_t nMaxTipAge;
 extern bool fEnableReplacement;
 extern const int nYesPowerFork;
 extern const int nSpeedFork;
+extern const int nAdjustFork;
 
 /** Block hash whose ancestors we will assume to have valid scripts without checking them. */
 extern uint256 hashAssumeValid;
@@ -419,7 +420,7 @@ bool IsHiveEnabled(const CBlockIndex* pindexPrev, const Consensus::Params& param
 // LightningCash Gold: Hive: Check if Hive 1.1 is activated at given point
 bool IsHive11Enabled(const CBlockIndex* pindexPrev, const Consensus::Params& params);
 
-// LightningCash Gold: Hive: Check if Hive 1.1 is activated at given point
+// LightningCash Gold: Hive: Check if Hive 1.2 is activated at given point
 bool IsHive12Enabled(const CBlockIndex* pindexPrev, const Consensus::Params& params);
 
 // LightningCash Gold: Hive: Get the well-rooted deterministic random string (see whitepaper section 4.1)

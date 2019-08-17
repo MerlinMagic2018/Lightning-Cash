@@ -2710,7 +2710,9 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
 	
     
     int maxDepth;
-    if (chainActive.Height() >= nSpeedFork) // not sure
+    if (chainActive.Height() >= nAdjustFork)
+	maxDepth = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks;
+    else if (chainActive.Height() >= nSpeedFork) && (chainActive.Height() < nAdjustFork)
 	maxDepth = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks3;  //gogogaga
     else
 	maxDepth = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks;
@@ -2840,8 +2842,16 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs2(bool includeDead, boo
     int maxDepth = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks;
     int wititi = consensusParams.beeLifespanBlocks;
     
-    int maxDepth2 = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks2;
-    int wititi2 = consensusParams.beeLifespanBlocks2;
+    int maxDepth2;
+    int wititi2;
+    if (chainActive.Height() >= nAdjustFork) {
+ 	maxDepth2 = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks;
+        wititi2 = consensusParams.beeLifespanBlocks;
+    }
+    else {
+ 	maxDepth2 = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks2;
+        wititi2 = consensusParams.beeLifespanBlocks2;	
+    }
     
 /*    if (chainActive.Height() >= consensusParams.ratioForkBlock) {
 	maxDepth = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks2;
@@ -3207,8 +3217,16 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs3(bool includeDead, boo
     int maxDepth = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks;
     int wititi = consensusParams.beeLifespanBlocks;
     
-    int maxDepth2 = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks2;
-    int wititi2 = consensusParams.beeLifespanBlocks2;
+    int maxDepth2;
+    int wititi2;
+    if (chainActive.Height() >= nAdjustFork) {
+ 	maxDepth2 = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks;
+        wititi2 = consensusParams.beeLifespanBlocks;
+    }
+    else {
+ 	maxDepth2 = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks2;
+        wititi2 = consensusParams.beeLifespanBlocks2;	
+    }
     
 /*    if (chainActive.Height() >= consensusParams.ratioForkBlock) {
 	maxDepth = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks2;
@@ -3565,7 +3583,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs3(bool includeDead, boo
 }
 
 // LightningCash Gold: Hive: Create a BCT to gestate given number of bees
-bool CWallet::CreateBeeTransaction(int beeCount, CWalletTx& wtxNew, CReserveKey& reservekeyChange, CReserveKey& reservekeyHoney, std::string honeyAddress, bool communityContrib, std::string& strFailReason, const Consensus::Params& consensusParams) {
+bool CWallet::CreateBeeTransaction(int beeCount, CWalletTx& wtxNew, CReserveKey& reservekeyChange, CReserveKey& reservekeyHoney, std::string honeyAddress, std::string changeAddress, bool communityContrib, std::string& strFailReason, const Consensus::Params& consensusParams) {
     CBlockIndex* pindexPrev = chainActive.Tip();
     assert(pindexPrev != nullptr);
 
@@ -3591,7 +3609,9 @@ bool CWallet::CreateBeeTransaction(int beeCount, CWalletTx& wtxNew, CReserveKey&
 
     // Don't spend more than potential rewards in a single BCT
     CAmount totalPotentialReward;
-    if (chainActive.Height() >= nSpeedFork) //gagagogo
+    if (chainActive.Height() >= nAdjustFork)
+	totalPotentialReward = (consensusParams.beeLifespanBlocks * GetBlockSubsidy(pindexPrev->nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
+    if ((chainActive.Height() >= nSpeedFork) && (chainActive.Height() < nAdjustFork))
 	totalPotentialReward = (consensusParams.beeLifespanBlocks3 * GetBlockSubsidy(pindexPrev->nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
     if ((chainActive.Height() >= consensusParams.ratioForkBlock) && (chainActive.Height() < nSpeedFork))
 	totalPotentialReward = (consensusParams.beeLifespanBlocks2 * GetBlockSubsidy(pindexPrev->nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
@@ -3705,7 +3725,7 @@ bool CWallet::CreateBeeTransaction(int beeCount, CWalletTx& wtxNew, CReserveKey&
 }
 
 // LightningCash Gold: Hive: Create a BCT to gestate given number of bees
-bool CWallet::CreateBeeTransaction2(int beeCount, CWalletTx& wtxNew, CReserveKey& reservekeyChange, CReserveKey& reservekeyHoney, std::string honeyAddress, bool communityContrib, std::string& strFailReason, const Consensus::Params& consensusParams) {
+bool CWallet::CreateBeeTransaction2(int beeCount, CWalletTx& wtxNew, CReserveKey& reservekeyChange, CReserveKey& reservekeyHoney, std::string honeyAddress, std::string changeAddress, bool communityContrib, std::string& strFailReason, const Consensus::Params& consensusParams) {
     CBlockIndex* pindexPrev = chainActive.Tip();
     assert(pindexPrev != nullptr);
 
@@ -3744,7 +3764,9 @@ bool CWallet::CreateBeeTransaction2(int beeCount, CWalletTx& wtxNew, CReserveKey
 
     // Don't spend more than potential rewards in a single BCT
     CAmount totalPotentialReward;
-    if (chainActive.Height() >= consensusParams.ratioForkBlock)
+    if (chainActive.Height() >= nAdjustFork)
+    	totalPotentialReward = (consensusParams.beeLifespanBlocks * GetBlockSubsidy(pindexPrev->nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
+    else if ((chainActive.Height() >= consensusParams.ratioForkBlock) && (chainActive.Height() < nAdjustFork))
     	totalPotentialReward = (consensusParams.beeLifespanBlocks2 * GetBlockSubsidy(pindexPrev->nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
     else
 	totalPotentialReward = (consensusParams.beeLifespanBlocks * GetBlockSubsidy(pindexPrev->nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
@@ -3856,7 +3878,7 @@ bool CWallet::CreateBeeTransaction2(int beeCount, CWalletTx& wtxNew, CReserveKey
 }
 
 // LightningCash Gold: Hive: Create a BCT to gestate given number of bees
-bool CWallet::CreateBeeTransaction3(int beeCount, CWalletTx& wtxNew, CReserveKey& reservekeyChange, CReserveKey& reservekeyHoney, std::string honeyAddress, bool communityContrib, std::string& strFailReason, const Consensus::Params& consensusParams) {
+bool CWallet::CreateBeeTransaction3(int beeCount, CWalletTx& wtxNew, CReserveKey& reservekeyChange, CReserveKey& reservekeyHoney, std::string honeyAddress, std::string changeAddress, bool communityContrib, std::string& strFailReason, const Consensus::Params& consensusParams) {
     CBlockIndex* pindexPrev = chainActive.Tip();
     assert(pindexPrev != nullptr);
 
@@ -3895,7 +3917,9 @@ bool CWallet::CreateBeeTransaction3(int beeCount, CWalletTx& wtxNew, CReserveKey
 
     // Don't spend more than potential rewards in a single BCT
     CAmount totalPotentialReward;
-    if (chainActive.Height() >= consensusParams.ratioForkBlock)
+    if (chainActive.Height() >= nAdjustFork)
+    	totalPotentialReward = (consensusParams.beeLifespanBlocks * GetBlockSubsidy(pindexPrev->nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
+    else if ((chainActive.Height() >= consensusParams.ratioForkBlock) && (chainActive.Height() < nAdjustFork))
     	totalPotentialReward = (consensusParams.beeLifespanBlocks2 * GetBlockSubsidy(pindexPrev->nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
     else
 	totalPotentialReward = (consensusParams.beeLifespanBlocks * GetBlockSubsidy(pindexPrev->nHeight, consensusParams)) / consensusParams.hiveBlockSpacingTarget;
