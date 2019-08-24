@@ -223,7 +223,7 @@ int64_t nMaxTipAge = DEFAULT_MAX_TIP_AGE;
 bool fEnableReplacement = DEFAULT_ENABLE_REPLACEMENT;
 const int nYesPowerFork = 247777; // 247777
 const int nSpeedFork = 310000; // ????
-const int nAdjustFork = 533333; // ????
+const int nAdjustFork = 587300; // ????
 
 uint256 hashAssumeValid;
 arith_uint256 nMinimumChainWork;
