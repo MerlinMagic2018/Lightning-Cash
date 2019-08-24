@@ -595,7 +595,7 @@ bool BusyBees(const Consensus::Params& consensusParams) {
         return false;*/
 
     // LightningCash-Gold: Hive 1.1: Check that there aren't too many consecutive Hive blocks
-    if (IsHive12Enabled(pindexPrev, consensusParams)) {
+    if (IsHive12Enabled(pindexPrev->nHeight)) {
         int hiveBlocksAtTip = 0;
         CBlockIndex* pindexTemp = pindexPrev;
         while (pindexTemp->GetBlockHeader().IsHiveMined(consensusParams)) {

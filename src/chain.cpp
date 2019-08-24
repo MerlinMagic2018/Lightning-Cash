@@ -160,7 +160,7 @@ arith_uint256 GetBlockProof(const CBlockIndex& block)
         bnTargetScaled += (~bnPreviousTarget / (bnPreviousTarget + 1)) + 1;
 
         // Hive 1.1: Enable bonus chainwork for Hive blocks
-        if ((IsHive11Enabled(&block, consensusParams)) && (!IsHive12Enabled(&block, consensusParams))) {
+        if ((IsHive11Enabled(&block, consensusParams)) && (!IsHive12Enabled(block.nHeight))) {
             LogPrintf("**** HIVE-1.1: ENABLING BONUS CHAINWORK ON HIVE BLOCK %s\n", block.GetBlockHash().ToString());
             LogPrintf("**** Initial block chainwork = %s\n", bnTargetScaled.ToString());
             double hiveDiff = GetDifficulty(&block, true);                                  // Current hive diff
@@ -174,7 +174,7 @@ arith_uint256 GetBlockProof(const CBlockIndex& block)
         }
 
         // Hive 1.2: Enable bonus chainwork for Hive blocks
-        if (IsHive12Enabled(&block, consensusParams)) {
+        if (IsHive12Enabled(block.nHeight)) {
             LogPrintf("**** HIVE-1.2: ENABLING BONUS CHAINWORK ON HIVE BLOCK %s\n", block.GetBlockHash().ToString());
             LogPrintf("**** Initial block chainwork = %s\n", bnTargetScaled.ToString());
             double hiveDiff = GetDifficulty(&block, true);                                  // Current hive diff
@@ -188,7 +188,7 @@ arith_uint256 GetBlockProof(const CBlockIndex& block)
         }
 
     // Hive 1.1 and 1.2: Enable bonus chainwork for PoW blocks
-    } else if ((IsHive11Enabled(&block, consensusParams)) && (!IsHive12Enabled(&block, consensusParams))) {
+    } else if ((IsHive11Enabled(&block, consensusParams)) && (!IsHive12Enabled(block.nHeight))) {
         LogPrintf("**** HIVE-1.1: CHECKING FOR BONUS CHAINWORK ON POW BLOCK %s\n", block.GetBlockHash().ToString());
         LogPrintf("**** Initial block chainwork = %s\n", bnTargetScaled.ToString());
 
@@ -225,7 +225,7 @@ arith_uint256 GetBlockProof(const CBlockIndex& block)
         LogPrintf("**** k = %d\n", k);
         LogPrintf("**** Final scaled chainwork =  %s\n", bnTargetScaled.ToString());
 
-    } else if (IsHive12Enabled(&block, consensusParams)) {
+    } else if (IsHive12Enabled(block.nHeight)) {
         LogPrintf("**** HIVE-1.2: CHECKING FOR BONUS CHAINWORK ON POW BLOCK %s\n", block.GetBlockHash().ToString());
         LogPrintf("**** Initial block chainwork = %s\n", bnTargetScaled.ToString());
 

@@ -2181,8 +2181,17 @@ bool GetNetworkHiveInfo4(int& immatureBees, int& immatureBCTs, int& matureBees, 
     CBlockIndex* pindexPrev = chainActive.Tip();
     assert(pindexPrev != nullptr);
     int tipHeight = pindexPrev->nHeight;
-    if ((chainActive.Tip()->nHeight) >= nAdjustFork)
-    	potentialLifespanRewards = (consensusParams.beeLifespanBlocks * GetBeeCost(chainActive.Height(), consensusParams)) / consensusParams.hiveBlockSpacingTarget;
+
+
+// 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams)); .......... wtf .......
+    if ((chainActive.Tip()->nHeight) >= nAdjustFork){
+    	potentialLifespanRewards = (consensusParams.beeLifespanBlocks * (GetBlockSubsidy(pindexPrev->nHeight, consensusParams))) / consensusParams.hiveBlockSpacingTarget;
+
+
+
+LogPrintf("potentialLifespanRewards = %i\n", potentialLifespanRewards);
+}
+
     else if (((chainActive.Tip()->nHeight) >= nSpeedFork) && ((chainActive.Tip()->nHeight) < nAdjustFork))
     	potentialLifespanRewards = (consensusParams.beeLifespanBlocks3 * GetBeeCost(chainActive.Height(), consensusParams)) / consensusParams.hiveBlockSpacingTarget;
     else
@@ -2303,7 +2312,13 @@ bool CheckHiveProof(const CBlock* pblock, const Consensus::Params& consensusPara
         return false;
     }
 
-    // LightningCash-Gold: Hive 1.2: Check that there aren't too many consecutive Hive blocks
+// Check previous block wasn't hivemined
+    if (pindexPrev->GetBlockHeader().IsHiveMined(consensusParams)) {
+        LogPrintf("CheckHiveProof: Hive block must follow a POW block.\n");
+        return false;
+    }
+
+ /*   // LightningCash-Gold: Hive 1.2: Check that there aren't too many consecutive Hive blocks
     if (IsHive12Enabled(pindexPrev->nHeight)) {
         int hiveBlocksAtTip = 0;
         CBlockIndex* pindexTemp = pindexPrev;
@@ -2321,7 +2336,7 @@ bool CheckHiveProof(const CBlock* pblock, const Consensus::Params& consensusPara
             LogPrint(BCLog::HIVE, "CheckHiveProof: Hive block must follow a POW block.\n");
             return false;
         }
-    }
+    }*/
 
     // Block mustn't include any BCTs
     CScript scriptPubKeyBCF = GetScriptForDestination(DecodeDestination(consensusParams.beeCreationAddress));
@@ -2521,15 +2536,7 @@ bool CheckHiveProof(const CBlock* pblock, const Consensus::Params& consensusPara
         return false;
     }
 
-    if (bctFoundHeight >= nAdjustFork) {
-
-	    if (bctDepth > consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks) {
-		LogPrintf("CheckHiveProof: Indicated BCT is too old.\n");
-		return false;
-	    }
-    }
-
-    if ((bctFoundHeight >= nSpeedFork) && (bctFoundHeight < nAdjustFork)) {
+    if (bctFoundHeight >= nSpeedFork) {
 
 	    if (bctDepth > consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks3) {
 		LogPrintf("CheckHiveProof: Indicated BCT is too old.\n");
@@ -2626,29 +2633,9 @@ bool CheckHiveProof2(const CBlock* pblock, const Consensus::Params& consensusPar
     }
 
     // Check previous block wasn't hivemined
-//    if (pindexPrev->GetBlockHeader().IsHiveMined(consensusParams)) {
-//        LogPrintf("CheckHiveProof: Hive block must follow a POW block.\n");
-//        return false;
-//    }
-
-// LightningCash-Gold: Hive 1.2: Check that there aren't too many consecutive Hive blocks
-    if (IsHive12Enabled(pindexPrev->nHeight)) {
-        int hiveBlocksAtTip = 0;
-        CBlockIndex* pindexTemp = pindexPrev;
-        while (pindexTemp->GetBlockHeader().IsHiveMined(consensusParams)) {
-            assert(pindexTemp->pprev);
-            pindexTemp = pindexTemp->pprev;
-            hiveBlocksAtTip++;
-        }
-        if (hiveBlocksAtTip >= consensusParams.maxConsecutiveHiveBlocks) {
-            LogPrintf("CheckHiveProof: Too many Hive blocks without a POW block.\n");
-            return false;
-        }
-    } else {
-        if (pindexPrev->GetBlockHeader().IsHiveMined(consensusParams)) {
-            LogPrint(BCLog::HIVE, "CheckHiveProof: Hive block must follow a POW block.\n");
-            return false;
-        }
+    if (pindexPrev->GetBlockHeader().IsHiveMined(consensusParams)) {
+        LogPrintf("CheckHiveProof: Hive block must follow a POW block.\n");
+        return false;
     }
 
     // Block mustn't include any BCTs
@@ -3190,7 +3177,16 @@ bool CheckHiveProof3(const CBlock* pblock, const Consensus::Params& consensusPar
         return false;
     }
 
-    if (bctFoundHeight >= consensusParams.ratioForkBlock) {
+    if (bctFoundHeight >= nAdjustFork) {
+    
+        if (bctDepth > consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks) {
+            LogPrintf("CheckHiveProof: Indicated BCT is too old.\n");
+            return false;
+        }
+    
+    }
+
+    if ((bctFoundHeight >= consensusParams.ratioForkBlock) && (bctFoundHeight < nAdjustFork)) {
     
         if (bctDepth > consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks2) {
             LogPrintf("CheckHiveProof: Indicated BCT is too old.\n");

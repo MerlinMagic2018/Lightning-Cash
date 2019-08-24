@@ -223,7 +223,7 @@ int64_t nMaxTipAge = DEFAULT_MAX_TIP_AGE;
 bool fEnableReplacement = DEFAULT_ENABLE_REPLACEMENT;
 const int nYesPowerFork = 247777; // 247777
 const int nSpeedFork = 310000; // ????
-const int nAdjustFork = 587300; // ????
+const int nAdjustFork = 617777; // to leave enough time for old bees to die
 
 uint256 hashAssumeValid;
 arith_uint256 nMinimumChainWork;
@@ -1152,7 +1152,7 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 
     CAmount nSubsidy;
     
-    if (nHeight < 533333)
+    if (nHeight < nAdjustFork)
 	nSubsidy = 50 * COIN * COIN_SCALE;
     else
 	nSubsidy = 5 * COIN * COIN_SCALE;
@@ -3086,7 +3086,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
     if (block.IsHiveMined(consensusParams)) {
 
 	if ((chainActive.Tip()->nHeight) >= nAdjustFork) {
-		if (!CheckHiveProofX(&block, consensusParams))
+		if (!CheckHiveProof3(&block, consensusParams))
 		    return state.DoS(100, false, REJECT_INVALID, "bad-hive-proof", false, "proof of hive failed");
 	}
 
@@ -3181,7 +3181,7 @@ bool IsHiveEnabled(const CBlockIndex* pindexPrev, const Consensus::Params& param
 bool IsHive11Enabled(const CBlockIndex* pindexPrev, const Consensus::Params& params)
 {
     LOCK(cs_main);
-    return ((VersionBitsState(pindexPrev, params, Consensus::DEPLOYMENT_HIVE_1_1, versionbitscache) == THRESHOLD_ACTIVE) && (!IsHive12Enabled));
+    return ((VersionBitsState(pindexPrev, params, Consensus::DEPLOYMENT_HIVE_1_1, versionbitscache) == THRESHOLD_ACTIVE) && (!IsHive12Enabled(pindexPrev->nHeight)));
 }
 
 // LightningCash-Gold: Hive: Check if Hive 1.2 is activated at given point
@@ -3190,12 +3190,6 @@ bool IsHive12Enabled(int nHeight)
     return (nHeight >= nAdjustFork);
 }
 
-bool IsSpeedFork(int nHeight)
-{
-    // return (chainActive.Height > x);
-    // return gArgs.GetBoolArg("-testnet", false);
-	return (nHeight >= nSpeedFork);
-}
 
 // LightningCash Gold: Hive: Get the well-rooted deterministic random string (see whitepaper section 4.1)
 std::string GetDeterministicRandString(const CBlockIndex* pindexPrev) {

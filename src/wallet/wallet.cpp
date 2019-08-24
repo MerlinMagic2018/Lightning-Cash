@@ -2712,7 +2712,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
     int maxDepth;
     if (chainActive.Height() >= nAdjustFork)
 	maxDepth = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks;
-    else if (chainActive.Height() >= nSpeedFork) && (chainActive.Height() < nAdjustFork)
+    else if ((chainActive.Height() >= nSpeedFork) && (chainActive.Height() < nAdjustFork))
 	maxDepth = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks3;  //gogogaga
     else
 	maxDepth = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks;

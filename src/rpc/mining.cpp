@@ -60,7 +60,7 @@ UniValue GetNetworkHashPS(int lookup, int height) {
     // If lookup is -1, then use blocks since last difficulty change.
     if (lookup <= 0)
     //    lookup = pb->nHeight % Params().GetConsensus().DifficultyAdjustmentInterval() + 1;
-	lookup = IsHive12Enabled(pb, Params().GetConsensus()) ? 1 : pb->nHeight % Params().GetConsensus().DifficultyAdjustmentInterval() + 1;   // LightningnCash-Gold: Hive 1.1: Taking the opportunity to provide a more sensible default.
+	lookup = IsHive12Enabled(pb->nHeight) ? 1 : pb->nHeight % Params().GetConsensus().DifficultyAdjustmentInterval() + 1;   // LightningnCash-Gold: Hive 1.1: Taking the opportunity to provide a more sensible default.
 
     // If lookup is larger than chain, then set it to chain length.
     if (lookup > pb->nHeight)
