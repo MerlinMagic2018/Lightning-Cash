@@ -117,9 +117,9 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_1].nTimeout = 1564531200 + 31536000;  // July 31st 2020
 
         // LightningCash Gold: Hive 1.2: Deployment
-        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_2].bit = 10;
-        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_2].nStartTime = 1566002000;  // active from the start
-        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_2].nTimeout = 1566002000 + 31536000;  // active from the start
+ //       consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_2].bit = 10;
+ //       consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_2].nStartTime = 1566002000;  // active from the start
+ //       consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_2].nTimeout = 1566002000 + 31536000;  // active from the start
 
         // LightningCash Gold fields
         consensus.powForkTime = 1551819029;                 // Time of PoW hash method change
@@ -275,9 +275,9 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_1].nTimeout = 1563993908 + 31536000;  // active from the start
 
         // LightningCash Gold: Hive 1.2: Deployment
-        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_2].bit = 10;
-        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_2].nStartTime = 1565998948;  // active from the start
-        consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_2].nTimeout = 1565998948 + 31536000;  // active from the start
+ //       consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_2].bit = 10;
+ //       consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_2].nStartTime = 1565998948;  // active from the start
+ //       consensus.vDeployments[Consensus::DEPLOYMENT_HIVE_1_2].nTimeout = 1565998948 + 31536000;  // active from the start
 
         // LightningCash Gold fields
         consensus.powForkTime = 1551819029;                 // Time of PoW hash method change (block 100)
