@@ -126,10 +126,10 @@ public:
         consensus.lastScryptBlock = 0;                // Height of last scrypt block
         consensus.powLimitSHA = uint256S("00000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");   // Initial hash target at fork ( for scrypt hashing !!! )
         consensus.slowStartBlocks = 125;                   // Scale post-fork block reward up over this many blocks
-//        consensus.premineAmount =  550000;                   // Premine amount (1% of max supply)
-//        std::vector<unsigned char> vch = ParseHex("76a914c9f3305556963e2976ccf3348b89a6cc736b6a4e88ac");
-//        consensus.premineOutputScript = CScript(vch.begin(), vch.end());	// Output script for premine block (CLagBwF71hqPEKasbmugxBqmyWGFf6ZjMc)
-        consensus.totalMoneySupplyHeight = 6215968;         // Height at which TMS is reached, do not issue rewards past this point... will have to be recalculated...
+//        consensus.premineAmount =  2200000;                   // Premine amount (1% of max supply)
+//        std::vector<unsigned char> vch = ParseHex("76a914ab93e2fec55832864cf4f232659d8db1cd31b4e988ac");
+//        consensus.premineOutputScript = CScript(vch.begin(), vch.end());	// Output script for premine block
+        consensus.totalMoneySupplyHeight = 38761079;         // Height at which TMS is reached, do not issue rewards past this point ( 100 000 000 LTNCG issued )
 
         // LightningCash Gold: Hive: Consensus Fields
         consensus.minBeeCost = 10000;                       // Minimum cost of a bee, used when no more block rewards
@@ -169,10 +169,10 @@ public:
 	consensus.remvariableForkBlock = 118956;
         
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000006a553f86ecbfda");  // LightningCash Gold : block 310001
+        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000006a6f68b3448ad7");  // LightningCash Gold : block 1319873
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0xd7f8772248c2a061c8bc28fe2dfee89dd70a7cbfd1c6ecb44b73e5efd993f490"); // LightningCash Gold: block 309999
+        consensus.defaultAssumeValid = uint256S("0x5a459279e9af20627a50159dad4fff4b1db0736faefa7c1fa0a0a9171bb354b9"); // LightningCash Gold: block 1319873 ( October 7th 2019 )
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -215,15 +215,16 @@ public:
             {
                 {  0, uint256S("0xa1d8b56639865905eef9205e148bad0c6a4b2026b1753c76558bb735c3e9735c")},
                 {  310001, uint256S("0x5d6c2450c49e4856bcfb9a5bd8668cad06fc5daecfe9fb617847c0776e5a7e8e")},
+                {  1319873, uint256S("0x5a459279e9af20627a50159dad4fff4b1db0736faefa7c1fa0a0a9171bb354b9")},
             }
         };
 
         chainTxData = ChainTxData{
             // Data at genesis block.
-            1565280496, // * UNIX timestamp of last known number of transactions
-            436284,   // * total number of transactions between genesis and that timestamp
+            1570149840, // * UNIX timestamp of last known number of transactions
+            1382688,   // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
-            0.1653492693215487        // * estimated number of transactions per second after that timestamp
+            0.218032846        // * estimated number of transactions per second after that timestamp
         };
     }
 };

@@ -604,13 +604,13 @@ bool BusyBees(const Consensus::Params& consensusParams) {
             hiveBlocksAtTip++;
         }
         if (hiveBlocksAtTip >= consensusParams.maxConsecutiveHiveBlocks) {
-            LogPrintf("BusyBees: Skipping hive check (max Hive blocks without a POW block reached)\n");
+        //    LogPrintf("BusyBees: Skipping hive check (max Hive blocks without a POW block reached)\n");
             return false;
         }
     } else {
         // Check previous block wasn't hivemined
         if (pindexPrev->GetBlockHeader().IsHiveMined(consensusParams)) {
-            LogPrintf("BusyBees: Skipping hive check (Hive block must follow a POW block)\n");
+        //    LogPrintf("BusyBees: Skipping hive check (Hive block must follow a POW block)\n");
             return false;
         }
     }
@@ -627,7 +627,7 @@ bool BusyBees(const Consensus::Params& consensusParams) {
         return false;
     }
 
-    LogPrintf("********************* Hive: Bees at work *********************\n");
+    // LogPrintf("********************* Hive: Bees at work *********************\n");
 
     // Find deterministicRandString
     std::string deterministicRandString = GetDeterministicRandString(pindexPrev);
@@ -699,7 +699,7 @@ bool BusyBees(const Consensus::Params& consensusParams) {
     }
 
     if (beesChecked == 0) {
-        LogPrintf("BusyBees: No bees currently mature.\n");
+      //  LogPrintf("BusyBees: No bees currently mature.\n");
         return false;
     }
 
@@ -882,7 +882,7 @@ bool static ScanHash (MinerInfo* miner, const CBlockHeader *pblock, uint32_t& nN
 {
     assert(miner != nullptr && pblock != nullptr && phash != nullptr);
     CBlockHeader& block = *const_cast<CBlockHeader*> (pblock);
-    const auto start = GetTimeMillis();
+    // const auto start = GetTimeMillis();
 
     while (true)
     {   
@@ -1043,7 +1043,7 @@ void static LTNCGMiner(MinerInfo* miner, const CChainParams& chainparams)
                 boost::this_thread::interruption_point();
 
                 // Regtest mode doesn't require peers
-                const bool fvNodesEmpty = g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) <= 0;
+                // const bool fvNodesEmpty = g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) <= 0;
                 //if (fvNodesEmpty && chainparams.MiningRequiresPeers())
                 //    break;
                 if (nNonce >= 0xffff0000)

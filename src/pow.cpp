@@ -2189,7 +2189,7 @@ bool GetNetworkHiveInfo4(int& immatureBees, int& immatureBCTs, int& matureBees, 
 
 
 
-LogPrintf("potentialLifespanRewards = %i\n", potentialLifespanRewards);
+// LogPrintf("potentialLifespanRewards = %i\n", potentialLifespanRewards);
 }
 
     else if (((chainActive.Tip()->nHeight) >= nSpeedFork) && ((chainActive.Tip()->nHeight) < nAdjustFork))
@@ -2969,12 +2969,12 @@ bool CheckHiveProof3(const CBlock* pblock, const Consensus::Params& consensusPar
             hiveBlocksAtTip++;
         }
         if (hiveBlocksAtTip >= consensusParams.maxConsecutiveHiveBlocks) {
-            LogPrintf("CheckHiveProof: Too many Hive blocks without a POW block.\n");
+         //   LogPrintf("CheckHiveProof: Too many Hive blocks without a POW block.\n");
             return false;
         }
     } else {
         if (pindexPrev->GetBlockHeader().IsHiveMined(consensusParams)) {
-            LogPrint(BCLog::HIVE, "CheckHiveProof: Hive block must follow a POW block.\n");
+       //     LogPrint(BCLog::HIVE, "CheckHiveProof: Hive block must follow a POW block.\n");
             return false;
         }
     }
@@ -3226,7 +3226,7 @@ bool CheckHiveProof3(const CBlock* pblock, const Consensus::Params& consensusPar
     // Find bee count
     CAmount beeCost;
     CBlockIndex foundAt;
-    int foundTime = foundAt.GetBlockTime();
+    // int foundTime = foundAt.GetBlockTime();
 	
     //if ((priceState == 0) || ((priceState == 1) && (foundTime <= switchHmem))){ 
 	beeCost = 0.0004*(GetBlockSubsidy(pindexPrev->nHeight, consensusParams));
@@ -3258,6 +3258,6 @@ bool CheckHiveProof3(const CBlock* pblock, const Consensus::Params& consensusPar
         return false;
     }
 
-    LogPrintf("CheckHiveProof 3 : Pass at %i%s\n", blockHeight, deepDrill ? " (used deepdrill)" : "");
+    // LogPrintf("CheckHiveProof 3 : Pass at %i%s\n", blockHeight, deepDrill ? " (used deepdrill)" : "");
     return true;
 }

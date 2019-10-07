@@ -917,7 +917,7 @@ void HiveDialog::updateGraph() {
     ui->beePopGraph->graph(0)->data()->set(dataImmature);
     ui->beePopGraph->graph(1)->data()->set(dataMature);
     
-    int HeightXosti = (chainActive.Height() - 1);
+    // int HeightXosti = (chainActive.Height() - 1);
 
 
     int beeCostStable = 0.0004*(GetBlockSubsidy(chainActive.Tip()->nHeight, consensusParams)); 

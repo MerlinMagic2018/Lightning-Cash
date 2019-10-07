@@ -1131,9 +1131,9 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex, const Consensus
 
 CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 {
-    // LitecoinCash: Issue premine on 1st post-fork block
-   /* if (nHeight == consensusParams.lastScryptBlock + 1)
-        return consensusParams.premineAmount * COIN * COIN_SCALE;*/
+    // LightningCash-Gold: Issue premine
+    //if (nHeight == consensusParams.lastScryptBlock + 1320700)
+    //    return consensusParams.premineAmount * COIN * COIN_SCALE;
 
     int halvings = nHeight / consensusParams.nSubsidyHalvingInterval;
 
@@ -1157,7 +1157,7 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     else
 	nSubsidy = 5 * COIN * COIN_SCALE;
 
-    // Subsidy is cut in half every 2,100,000 blocks which will occur approximately every 5 months and a half.
+    // Subsidy is cut in half every 8,400,000 blocks which will occur approximately every 16 months.
     nSubsidy >>= halvings;
 
     // LightningCash Gold: Slow-start the first n blocks  blocks to prevent early miners having an unfair advantage
@@ -2041,8 +2041,8 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
                                block.vtx[0]->GetValueOut(), blockReward),
                                REJECT_INVALID, "bad-cb-amount");
 
-    // LitecoinCash: Ensure that lastScryptBlock+1 coinbase TX pays to the premine address --- On sen calisse
-    /*if (pindex->nHeight == chainparams.GetConsensus().lastScryptBlock+1) {
+    // LightningCash-Gold : Ensure that lastScryptBlock+1320700 coinbase TX pays to the premine address
+    /*if (pindex->nHeight == chainparams.GetConsensus().lastScryptBlock + 1320700) {
         if (block.vtx[0]->vout[0].scriptPubKey.size() == 1) {
             LogPrintf("ConnectBlock(): allowing mine\n");
         } else if (block.vtx[0]->vout[0].scriptPubKey != chainparams.GetConsensus().premineOutputScript) {
