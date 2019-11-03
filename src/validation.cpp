@@ -3049,8 +3049,8 @@ static bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state,
 
     // Skip headers validation until we're close to fork height
     //if (Params().NetworkIDString() == CBaseChainParams::MAIN)
-    if (nHeight < SKIP_BLOCKHEADER_POW)
-      return true;
+    //if (nHeight < SKIP_BLOCKHEADER_POW)
+    //  return true;
     
     if (nHeight >= nSpeedFork) {
 
