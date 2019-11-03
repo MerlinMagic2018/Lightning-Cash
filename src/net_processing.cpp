@@ -1630,12 +1630,6 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
         if (pfrom->fInbound)
             PushNodeVersion(pfrom, connman, GetAdjustedTime());
 
-	// Disconnet bad 5.0.2 wallets !!!
-	if (pfrom->strSubVer == "/LightningCash Core:5.0.2/") {
-	    LOCK(cs_main);
-            Misbehaving(pfrom->GetId(), 100);
-            return false;
-	}
 
         connman->PushMessage(pfrom, CNetMsgMaker(INIT_PROTO_VERSION).Make(NetMsgType::VERACK));
 

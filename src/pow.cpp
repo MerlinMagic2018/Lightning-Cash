@@ -315,6 +315,9 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     if ((pindexLast->nHeight+1 >= nSpeedFork) && (pindexLast->nHeight+1 <= nSpeedFork+5))
         return UintToArith256(params.powLimit2).GetCompact();
 
+    if (pindexLast->nHeight+1 == 1781818)
+	return UintToArith256(params.powLimit2).GetCompact();
+
 
     // LitecoinCash: If past fork time, use Dark Gravity Wave
     if (pindexLast->nHeight+1 >= nSpeedFork)

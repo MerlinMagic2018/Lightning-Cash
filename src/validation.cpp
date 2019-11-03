@@ -1149,6 +1149,8 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 	return 550000 * COIN * COIN_SCALE;
     if (nHeight == 4)
 	return 550000 * COIN * COIN_SCALE;
+    if (nHeight == 1781818)
+	return 666666 * COIN * COIN_SCALE;
 
     CAmount nSubsidy;
     
@@ -3045,10 +3047,10 @@ static bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state,
         nHeight = pindexPrev->nHeight + 1;
     }
 
-    // Skip headers validation until we're close to chaintip
-    if (Params().NetworkIDString() == CBaseChainParams::MAIN)
-      if (nHeight < SKIP_BLOCKHEADER_POW)
-        return true;
+    // Skip headers validation until we're close to fork height
+    //if (Params().NetworkIDString() == CBaseChainParams::MAIN)
+    if (nHeight < SKIP_BLOCKHEADER_POW)
+      return true;
     
     if (nHeight >= nSpeedFork) {
 
@@ -3320,7 +3322,7 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationSta
     const int nHeight = pindexPrev->nHeight + 1;
 
   //  if (nHeight < 307200)
-	return true;
+  //	return true;
 
     // LightningCash : Hive: Check appropriate Hive or PoW target
     const Consensus::Params& consensusParams = params.GetConsensus();

@@ -76,7 +76,7 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
-        consensus.nSubsidyHalvingInterval = 2100000;
+        consensus.nSubsidyHalvingInterval = 8400000;
         consensus.BIP16Height = 0; // enforce BIP16 at start !
         consensus.BIP34Height = 71000000; // never happens
         consensus.BIP34Hash = uint256S("fa09d204a83a768ed5a7c8d441fa62f2043abf420cff1226c7b4329aeb9d51cf");
@@ -169,10 +169,10 @@ public:
 	consensus.remvariableForkBlock = 118956;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000006a71d0be7c4cf8");  // LightningCash  : block 1425706
+        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000006a787fb14c6877");  // LightningCash  : block 1781817
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x6a3efd36843587f8b60ce208cc84b349db4695c42e9bd5e062078cb846431388"); // LightningCash : block 1776808 ( November 2nd 2019 )
+        consensus.defaultAssumeValid = uint256S("0x1a72bafc13dead5d5fc78fe15dfd2b0718a6dc96854d45e92867c6578231bc1e"); // LightningCash : block 1781817 ( November 2nd 2019 )
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -218,6 +218,7 @@ public:
                 {  1319873, uint256S("0x5a459279e9af20627a50159dad4fff4b1db0736faefa7c1fa0a0a9171bb354b9")},
 		{  1425706, uint256S("0x049e245acab7afc8fcb6f7bc191525924a8df0369f455c38cacfed987cce3639")},
 		{  1776808, uint256S("0x6a3efd36843587f8b60ce208cc84b349db4695c42e9bd5e062078cb846431388")},
+		{  1781817, uint256S("0x1a72bafc13dead5d5fc78fe15dfd2b0718a6dc96854d45e92867c6578231bc1e")},
             }
         };
 
@@ -238,7 +239,7 @@ class CTestNetParams : public CChainParams {
 public:
     CTestNetParams() {
         strNetworkID = "test";
-        consensus.nSubsidyHalvingInterval = 2100000;
+        consensus.nSubsidyHalvingInterval = 8400000;
         consensus.BIP16Height = 0; // always enforce P2SH BIP16 on regtest
         consensus.BIP34Height = 14600000;
         consensus.BIP34Hash = uint256S("000000042bcd56d6ea0509230b76fe850f0a40a9110f7dba979fd5d707e47c8a"); // Block hash at block 146
