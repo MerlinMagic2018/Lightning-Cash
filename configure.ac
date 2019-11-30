@@ -9,7 +9,7 @@ define(_COPYRIGHT_YEAR, 2019)
 define(_COPYRIGHT_HOLDERS,[The %s developers])
 define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[LitecoinCash Core]])
 define(_COPYRIGHT_HOLDERS_SUBSTITUTION2,[[LightningCash-Gold Core]])
-AC_INIT([LightningCash-Gold Core],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[https://github.com/lightningcashgold/lightningcash-gold/issues],[lightningcash-gold],[https://www.ltncg.com/])
+AC_INIT([LightningCash-Gold Core],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[https://github.com/lightningcashgold/ltncg/issues],[ltncg],[https://www.ltncg.com/])
 AC_CONFIG_SRCDIR([src/validation.cpp])
 AC_CONFIG_HEADERS([src/config/bitcoin-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
@@ -117,9 +117,9 @@ AC_ARG_ENABLE([upnp-default],
   [use_upnp_default=no])
 
 AC_ARG_ENABLE(tests,
-    AS_HELP_STRING([--disable-tests],[do not compile tests (default is to compile)]),
+    AS_HELP_STRING([--disable-tests],[do not compile tests (default is to not compile)]),
     [use_tests=$enableval],
-    [use_tests=yes])
+    [use_tests=no])
 
 AC_ARG_ENABLE(gui-tests,
     AS_HELP_STRING([--disable-gui-tests],[do not compile GUI tests (default is to compile if GUI and tests enabled)]),
