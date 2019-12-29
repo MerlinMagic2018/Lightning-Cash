@@ -934,6 +934,11 @@ bool SetupNetworking()
     return true;
 }
 
+// LightningCash-Gold: Hive: Mining Optimisations: Return number of virt cores
+int GetNumVirtualCores() {
+    return boost::thread::hardware_concurrency();
+}
+
 int GetNumCores()
 {
 #if BOOST_VERSION >= 105600

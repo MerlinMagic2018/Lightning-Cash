@@ -1,18 +1,23 @@
+<img src="https://i.ibb.co/3rvpw0v/68747470733a2f2f692e6962622e636f2f52767971784b4e2f626974636f696e2e706e67.png" alt="68747470733a2f2f692e6962622e636f2f52767971784b4e2f626974636f696e2e706e67" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'></a><br />
+
 # Lightning Cash Gold
 ===========================================
 
 What is LightningCash-Gold ?
 ----------------------
 
-Lightning Cash Gold is a coin based on Yespower POW algorithm, including DarkGravityWave ( difficulty changes for every block ) and possible CURRENT block difficulty change over time to protect against high network hash variation and long stale tip. For full details, please visit our website at http://lightningcash.gold . Compiled binary releases are available on MerlinMagic2018 or shadow-42's github.
+Lightning Cash Gold is a coin based on Yespower POW algorithm, including DarkGravityWave ( difficulty changes for every block ) and possible CURRENT block difficulty change over time to protect against high network hash variation and long stale tip. For full details, please visit our website at http://lightningcash.gold . Compiled binary releases are available on Github.
 
 Lightning Cash Gold Core is the full node software that makes up the backbone of the LTNCG network.
 
 
+Website : https://www.ltncg.com
+
+Twitter : https://www.twitter.com/ltncg
+
 Discord Channel : https://discord.gg/bzcQ8ZM
 
-
-
+Block Explorer : https://explorer.ltncg.com
 
 
 

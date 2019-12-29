@@ -18,12 +18,22 @@ class CBlockIndex;
 class CChainParams;
 class CScript;
 
+class arith_uint256;    // LightningCash-Gold: Hive: Mining optimisations
+struct CBeeRange;       // LightningCash-Gold: Hive: Mining optimisations
+
+
+
 namespace Consensus { struct Params; };
 
 static const bool DEFAULT_GENERATE = false;
 static const int DEFAULT_GENERATE_THREADS = 1;
 
 static const bool DEFAULT_PRINTPRIORITY = false;
+
+// LightningCash-Gold: Hive: Mining optimisations: Defaults for new hive check parameters
+static const int DEFAULT_HIVE_CHECK_DELAY = 1;
+static const int DEFAULT_HIVE_THREADS = -2;
+static const bool DEFAULT_HIVE_EARLY_OUT = true;
 
 struct CBlockTemplate
 {
@@ -210,10 +220,9 @@ double EstimateMinerHashesPerSecond();
 void IncrementExtraNonce(CBlock* pblock, const CBlockIndex* pindexPrev, unsigned int& nExtraNonce);
 int64_t UpdateTime(CBlockHeader* pblock, const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev);
 
-// LightningCash Gold: Hive: Bee management thread
-void BeeKeeper(const CChainParams& chainparams);
-
-// LightningCash Gold: Hive: Attempt to mint the next block
-bool BusyBees(const Consensus::Params& consensusParams);
+void BeeKeeper(const CChainParams& chainparams);                        // LightningCash-Gold: Hive: Bee management thread
+bool BusyBees(const Consensus::Params& consensusParams, int height);    // LightningCash-Gold: Hive: Attempt to mint the next block
+void CheckBin(int threadID, std::vector<CBeeRange> bin, std::string deterministicRandString, arith_uint256 beeHashTarget); // LitecoinCash: Hive: Mining optimisations: Thread to process a bin of beeranges
+void AbortWatchThread(int height);                                      // LightningCash-Gold: Hive: Mining optimisations: Thread to watch for abort conditions
 
 #endif // BITCOIN_MINER_H
