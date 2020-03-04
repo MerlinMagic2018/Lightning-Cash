@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <qt/overviewpage.h>
-#include <qt/forms/ui_overviewpage.h>
+#include <qt/miningpage.h>
+#include <qt/forms/ui_miningpage.h>
 
 #include <qt/bitcoinunits.h>
 #include <qt/clientmodel.h>
@@ -16,7 +16,7 @@
 #include <qt/walletmodel.h>
 #include <qt/hivetablemodel.h>  // LightningCash Gold: Hive
 #include <qt/hivedialog.h>      // LightningCash Gold: Hive: For formatLargeNoLocale()
-//#include <qt/miningpage.h>      // LightningCash Gold: miner
+#include <qt/miningpage.h>      // LightningCash Gold: miner
 
 #include <QAbstractItemDelegate>
 #include <QPainter>
@@ -24,11 +24,11 @@
 #define DECORATION_SIZE 54
 #define NUM_ITEMS 5
 
-class TxViewDelegate : public QAbstractItemDelegate
+class TxViewDelegateMining : public QAbstractItemDelegate
 {
     Q_OBJECT
 public:
-    explicit TxViewDelegate(const PlatformStyle *_platformStyle, QObject *parent=nullptr):
+    explicit TxViewDelegateMining(const PlatformStyle *_platformStyle, QObject *parent=nullptr):
         QAbstractItemDelegate(parent), unit(BitcoinUnits::BTC),
         platformStyle(_platformStyle)
     {
@@ -109,11 +109,11 @@ public:
     const PlatformStyle *platformStyle;
 
 };
-#include <qt/overviewpage.moc>
+#include <qt/miningpage.moc>
 
-OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) :
+MiningPage::MiningPage(const PlatformStyle *platformStyle, QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::OverviewPage),
+    ui(new Ui::MiningPage),
     clientModel(0),
     walletModel(0),
     currentBalance(-1),
@@ -122,7 +122,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     currentWatchOnlyBalance(-1),
     currentWatchUnconfBalance(-1),
     currentWatchImmatureBalance(-1),
-    txdelegate(new TxViewDelegate(platformStyle, this))
+    txdelegate(new TxViewDelegateMining(platformStyle, this))
 {
     ui->setupUi(this);
 
@@ -149,23 +149,23 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     cost = rewardsPaid = profit = 0;
 }
 
-void OverviewPage::handleTransactionClicked(const QModelIndex &index)
+void MiningPage::handleTransactionClicked(const QModelIndex &index)
 {
     if(filter)
         Q_EMIT transactionClicked(filter->mapToSource(index));
 }
 
-void OverviewPage::handleOutOfSyncWarningClicks()
+void MiningPage::handleOutOfSyncWarningClicks()
 {
     Q_EMIT outOfSyncWarningClicked();
 }
 
-OverviewPage::~OverviewPage()
+MiningPage::~MiningPage()
 {
     delete ui;
 }
 
-void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance, const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance)
+void MiningPage::setBalance(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance, const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance)
 {
     int unit = walletModel->getOptionsModel()->getDisplayUnit();
     currentBalance = balance;
@@ -195,7 +195,7 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
 }
 
 // show/hide watch-only labels
-void OverviewPage::updateWatchOnlyLabels(bool showWatchOnly)
+void MiningPage::updateWatchOnlyLabels(bool showWatchOnly)
 {
     ui->labelSpendable->setVisible(showWatchOnly);      // show spendable label (only when watch-only is active)
     ui->labelWatchonly->setVisible(showWatchOnly);      // show watch-only label
@@ -208,7 +208,7 @@ void OverviewPage::updateWatchOnlyLabels(bool showWatchOnly)
         ui->labelWatchImmature->hide();
 }
 
-void OverviewPage::setClientModel(ClientModel *model)
+void MiningPage::setClientModel(ClientModel *model)
 {
     this->clientModel = model;
     if(model)
@@ -219,7 +219,7 @@ void OverviewPage::setClientModel(ClientModel *model)
     }
 }
 
-void OverviewPage::setWalletModel(WalletModel *model)
+void MiningPage::setWalletModel(WalletModel *model)
 {
     this->walletModel = model;
     if(model && model->getOptionsModel())
@@ -255,7 +255,7 @@ void OverviewPage::setWalletModel(WalletModel *model)
 }
 
 // LightningCash Gold: Hive: Update the hive summary
-void OverviewPage::updateHiveSummary() {
+void MiningPage::updateHiveSummary() {
     if (walletModel && walletModel->getHiveTableModel()) {
         int immature, mature, dead, blocksFound;
         walletModel->getHiveTableModel()->getSummaryValues(immature, mature, dead, blocksFound, cost, rewardsPaid, profit);
@@ -292,7 +292,7 @@ void OverviewPage::updateHiveSummary() {
     }
 }
 
-void OverviewPage::updateDisplayUnit()
+void MiningPage::updateDisplayUnit()
 {
     if(walletModel && walletModel->getOptionsModel())
     {
@@ -324,19 +324,19 @@ void OverviewPage::updateDisplayUnit()
     }
 }
 
-void OverviewPage::updateAlerts(const QString &warnings)
+void MiningPage::updateAlerts(const QString &warnings)
 {
     this->ui->labelAlerts->setVisible(!warnings.isEmpty());
     this->ui->labelAlerts->setText(warnings);
 }
 
-void OverviewPage::showOutOfSyncWarning(bool fShow)
+void MiningPage::showOutOfSyncWarning(bool fShow)
 {
     ui->labelWalletStatus->setVisible(fShow);
     ui->labelTransactionsStatus->setVisible(fShow);
 }
 
 // LightningCash Gold: Hive: Handle bee button click
-void OverviewPage::on_beeButton_clicked() {
+void MiningPage::on_beeButton_clicked() {
     Q_EMIT beeButtonClicked();
 }
