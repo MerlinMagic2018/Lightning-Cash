@@ -2720,7 +2720,14 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
     //int maxDepth = consensusParams.beeGestationBlocks + consensusParams.beeLifespanBlocks;
 
     CScript scriptPubKeyBCF = GetScriptForDestination(DecodeDestination(consensusParams.beeCreationAddress));
-    CScript scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
+//    CScript scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
+
+    CScript scriptPubKeyCF;
+
+    if (chainActive.Height() >= nLightFork)
+	scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress2));
+    else
+	scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
 
     for (const std::pair<uint256, CWalletTx>& pairWtx : mapWallet) {
         const CWalletTx& wtx = pairWtx.second;
@@ -2866,9 +2873,14 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs2(bool includeDead, boo
 
    
     CScript scriptPubKeyBCF = GetScriptForDestination(DecodeDestination(consensusParams.beeCreationAddress));
-    CScript scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
+//    CScript scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
 
-    
+    CScript scriptPubKeyCF;
+
+    if (chainActive.Height() >= nLightFork)
+	scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress2));
+    else
+	scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));   
 
 
 	    for (const std::pair<uint256, CWalletTx>& pairWtx : mapWallet) {
@@ -3241,9 +3253,14 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs3(bool includeDead, boo
 
    
     CScript scriptPubKeyBCF = GetScriptForDestination(DecodeDestination(consensusParams.beeCreationAddress));
-    CScript scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
+//    CScript scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
 
-    
+    CScript scriptPubKeyCF;
+
+    if (chainActive.Height() >= nLightFork)
+	scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress2));
+    else
+	scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));    
 
 
 	    for (const std::pair<uint256, CWalletTx>& pairWtx : mapWallet) {
@@ -3702,7 +3719,14 @@ bool CWallet::CreateBeeTransaction(int beeCount, CWalletTx& wtxNew, CReserveKey&
 
     // Add optional community fund output (vout[1] if present)
     if (communityContrib) {
-        CTxDestination destinationCF = DecodeDestination(consensusParams.hiveCommunityAddress);
+//        CTxDestination destinationCF = DecodeDestination(consensusParams.hiveCommunityAddress);
+
+        CTxDestination destinationCF;
+	if (chainActive.Height() >= nLightFork)
+ 		destinationCF = DecodeDestination(consensusParams.hiveCommunityAddress2);
+	else
+		destinationCF = DecodeDestination(consensusParams.hiveCommunityAddress);
+
         CScript scriptPubKeyCF = GetScriptForDestination(destinationCF);
         CRecipient recipientCF = {scriptPubKeyCF, donationValue, false};
         vecSend.push_back(recipientCF);
@@ -3855,7 +3879,14 @@ bool CWallet::CreateBeeTransaction2(int beeCount, CWalletTx& wtxNew, CReserveKey
 
     // Add optional community fund output (vout[1] if present)
     if (communityContrib) {
-        CTxDestination destinationCF = DecodeDestination(consensusParams.hiveCommunityAddress);
+//        CTxDestination destinationCF = DecodeDestination(consensusParams.hiveCommunityAddress);
+
+        CTxDestination destinationCF;
+	if (chainActive.Height() >= nLightFork)
+ 		destinationCF = DecodeDestination(consensusParams.hiveCommunityAddress2);
+	else
+		destinationCF = DecodeDestination(consensusParams.hiveCommunityAddress);
+
         CScript scriptPubKeyCF = GetScriptForDestination(destinationCF);
         CRecipient recipientCF = {scriptPubKeyCF, donationValue, false};
         vecSend.push_back(recipientCF);
@@ -4008,7 +4039,14 @@ bool CWallet::CreateBeeTransaction3(int beeCount, CWalletTx& wtxNew, CReserveKey
 
     // Add optional community fund output (vout[1] if present)
     if (communityContrib) {
-        CTxDestination destinationCF = DecodeDestination(consensusParams.hiveCommunityAddress);
+//        CTxDestination destinationCF = DecodeDestination(consensusParams.hiveCommunityAddress);
+
+        CTxDestination destinationCF;
+	if (chainActive.Height() >= nLightFork)
+ 		destinationCF = DecodeDestination(consensusParams.hiveCommunityAddress2);
+	else
+		destinationCF = DecodeDestination(consensusParams.hiveCommunityAddress);
+
         CScript scriptPubKeyCF = GetScriptForDestination(destinationCF);
         CRecipient recipientCF = {scriptPubKeyCF, donationValue, false};
         vecSend.push_back(recipientCF);

@@ -224,6 +224,7 @@ bool fEnableReplacement = DEFAULT_ENABLE_REPLACEMENT;
 const int nYesPowerFork = 247777; // 247777
 const int nSpeedFork = 310000; // ????
 const int nAdjustFork = 617777; // to leave enough time for old bees to die
+const int nLightFork = 5100000; // 2 weeks +
 
 uint256 hashAssumeValid;
 arith_uint256 nMinimumChainWork;

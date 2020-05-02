@@ -536,7 +536,14 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
     // Count bees in next blockCount blocks
     CBlock block;
     CScript scriptPubKeyBCF = GetScriptForDestination(DecodeDestination(consensusParams.beeCreationAddress));
-    CScript scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
+//    CScript scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
+
+    CScript scriptPubKeyCF;
+
+    if ((chainActive.Tip()->nHeight) >= nLightFork)
+	scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress2));
+    else
+	scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
 
     for (int i = 0; i < totalBeeLifespan; i++) {
         if (fHavePruned && !(pindexPrev->nStatus & BLOCK_HAVE_DATA) && pindexPrev->nTx > 0) {
@@ -2482,7 +2489,15 @@ bool CheckHiveProof(const CBlock* pblock, const Consensus::Params& consensusPara
         }
 
         if (communityContrib) {
-            CScript scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
+        //    CScript scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
+
+            CScript scriptPubKeyCF;
+
+	    if (bctFoundHeight >= nLightFork)
+		scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress2));
+	    else
+		scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
+
             CAmount donationAmount;
 
             if(bct == nullptr) {                                                                // If we dont have a ref to the BCT
@@ -2782,7 +2797,15 @@ bool CheckHiveProof2(const CBlock* pblock, const Consensus::Params& consensusPar
         }
 
         if (communityContrib) {
-            CScript scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
+     //       CScript scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
+
+            CScript scriptPubKeyCF;
+
+	    if (bctFoundHeight >= nLightFork)
+		scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress2));
+	    else
+		scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
+
             CAmount donationAmount;
 
             if(bct == nullptr) {                                                                // If we dont have a ref to the BCT
@@ -3123,7 +3146,15 @@ bool CheckHiveProof3(const CBlock* pblock, const Consensus::Params& consensusPar
         }
 
         if (communityContrib) {
-            CScript scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
+        //    CScript scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
+
+            CScript scriptPubKeyCF;
+
+	    if (bctFoundHeight >= nLightFork)
+		scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress2));
+	    else
+		scriptPubKeyCF = GetScriptForDestination(DecodeDestination(consensusParams.hiveCommunityAddress));
+
             CAmount donationAmount;
 
             if(bct == nullptr) {                                                                // If we dont have a ref to the BCT

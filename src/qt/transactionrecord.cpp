@@ -137,7 +137,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                     sub.address = EncodeDestination(address);
 
                     // LightningCash Gold: Hive: Check for additional hive-related send types
-                    if (sub.address == Params().GetConsensus().hiveCommunityAddress)
+                    if ((sub.address == Params().GetConsensus().hiveCommunityAddress) || (sub.address == Params().GetConsensus().hiveCommunityAddress2))
                         sub.type = TransactionRecord::HiveCommunityFund;
                 }
                 else

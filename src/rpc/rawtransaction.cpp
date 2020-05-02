@@ -582,7 +582,15 @@ UniValue createrawbct(const JSONRPCRequest& request)
 
     // Add optional community fund output (vout[1] if present)
     if (communityContrib) {
-        CTxDestination destinationCF = DecodeDestination(consensusParams.hiveCommunityAddress);
+     //   CTxDestination destinationCF = DecodeDestination(consensusParams.hiveCommunityAddress);
+
+	CTxDestination destinationCF;
+
+	if (chainActive.Height() >= nLightFork)
+        	destinationCF = DecodeDestination(consensusParams.hiveCommunityAddress2);
+	else
+		destinationCF = DecodeDestination(consensusParams.hiveCommunityAddress);
+
         CScript scriptPubKeyCF = GetScriptForDestination(destinationCF);
         CTxOut outCommunityContrib(donationValue,scriptPubKeyCF);
         rawTx.vout.push_back(outCommunityContrib);
