@@ -77,7 +77,8 @@ static const unsigned int BLOCKFILE_CHUNK_SIZE = 0x1000000; // 16 MiB
 /** The pre-allocation chunk size for rev?????.dat files (since 0.8) */
 static const unsigned int UNDOFILE_CHUNK_SIZE = 0x100000; // 1 MiB
 /** Skip PoW testing headers until this blockheight */
-static const int SKIP_BLOCKHEADER_POW = 4278240; // Skip up to near last checkpoint ( 4278260 )
+static const int SKIP_BLOCKHEADER_POW = 4850567; // Skip up to near last checkpoint ( 4850567 )
+
 
 /** Maximum number of script-checking threads allowed */
 static const int MAX_SCRIPTCHECK_THREADS = 16;
@@ -187,6 +188,7 @@ extern bool fEnableReplacement;
 extern const int nYesPowerFork;
 extern const int nSpeedFork;
 extern const int nAdjustFork;
+extern const int nLightFork;
 
 /** Block hash whose ancestors we will assume to have valid scripts without checking them. */
 extern uint256 hashAssumeValid;

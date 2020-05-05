@@ -136,6 +136,7 @@ public:
         consensus.beeCostFactor = 2500;                     // Bee cost is block_reward/beeCostFactor
         consensus.beeCreationAddress = "CReateLitecoinCashWorkerBeeXYs19YQ";        // Unspendable address for bee creation
         consensus.hiveCommunityAddress = "CeckYLfkWnViDxKE1R5vLZaarygLrNgUwa";      // Community fund address
+        consensus.hiveCommunityAddress2 = "CH5B3qVbJVxVCL5qwmXayEo97Z1Ux3pqSB";
         consensus.communityContribFactor = 10;              // Optionally, donate bct_value/maxCommunityContribFactor to community fund
         consensus.beeGestationBlocks = 48*24;               // The number of blocks for a new bee to mature
         consensus.beeLifespanBlocks = 48*24*14;             // The number of blocks a bee lives for after maturation
@@ -169,10 +170,13 @@ public:
 	consensus.remvariableForkBlock = 118956;
         
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000006aabf67540a343");  // LightningCash Gold : block 4278260
+
+        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000006abd846fefe533");  // LightningCash Gold : block 4850567
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0xb92be965dd4615f3280acc5d775b1d65dcfd66a05ca37c087ab8bcf834c30f91"); // LightningCash Gold: block 4278260
+        consensus.defaultAssumeValid = uint256S("0x4d6d9563be85d424def946b7972b21916f88494f4f54c697f0599abf6d82db1a"); // LightningCash Gold: block 4850567
+
+
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -194,6 +198,10 @@ public:
         // Note that of those with the service bits flag, most only support a subset of possible options
         //vSeeds.emplace_back("seeds.litecoinca.sh");
 
+        vSeeds.clear();
+        vSeeds.emplace_back("seeds.ltncg.com");
+
+
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,28);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
         base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,50);
@@ -203,7 +211,8 @@ public:
 
         bech32_hrp = "ltncg";
 
-        vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
+
+        //vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
         //vFixedSeeds.clear(); // no seeds yet ----> now yes
         //vSeeds.clear();
 
@@ -217,7 +226,7 @@ public:
                 {  310001, uint256S("0x5d6c2450c49e4856bcfb9a5bd8668cad06fc5daecfe9fb617847c0776e5a7e8e")},
                 {  1961113, uint256S("0xa9ff7a5f06b07650d6ebce31c6941979621acd6e686af2c2e8bd34a1015dbd8f")},
                 {  2738650, uint256S("0x33a3d4e286293e63f6dee4092524a9dbb771c9efab7c13c8bbdc0879632a8d05")},
-                {  4278260, uint256S("0xb92be965dd4615f3280acc5d775b1d65dcfd66a05ca37c087ab8bcf834c30f91")},
+                {  4850567, uint256S("0x4d6d9563be85d424def946b7972b21916f88494f4f54c697f0599abf6d82db1a")},
             }
         };
 

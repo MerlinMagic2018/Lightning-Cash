@@ -100,6 +100,7 @@ struct Params {
     int beeCostFactor;                  // Bee cost is block_reward/beeCostFactor
     std::string beeCreationAddress;     // Unspendable address for bee creation
     std::string hiveCommunityAddress;   // Community fund address
+    std::string hiveCommunityAddress2;  // New community fund address
     int communityContribFactor;         // Optionally, donate bct_value/maxCommunityContribFactor to community fund
     int beeGestationBlocks;             // The number of blocks for a new bee to mature
     int beeLifespanBlocks;              // The number of blocks a bee lives for after maturation
