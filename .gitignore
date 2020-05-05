@@ -1,13 +1,15 @@
 *.tar.gz
 
 *.exe
-src/lightningcash
-src/lightningcashd
-src/lightningcash-cli
-src/lightningcash-tx
-src/test/test_lightningcash
-src/test/test_lightningcash_fuzzy
-src/qt/test/test_lightningcash-qt
+
+src/lightningcash_gold
+src/lightningcash_goldd
+src/lightningcash_gold-cli
+src/lightningcash_gold-tx
+src/test/test_lightningcash_gold
+src/test/test_lightningcash_gold_fuzzy
+src/qt/test/test_lightningcash_gold-qt
+
 
 # autoreconf
 Makefile.in
@@ -80,13 +82,18 @@ src/qt/bitcoin-qt.includes
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-lightningcash-qt
-lightningcash-Qt.app
+
+lightningcash_gold-qt
+lightningcash_gold-Qt.app
+
 background.tiff*
 
 # Unit-tests
 Makefile.test
-lightningcash-qt_test
+
+=======
+lightningcash_gold-qt_test
+
 
 # Resources cpp
 qrc_*.cpp
@@ -98,7 +105,9 @@ build
 *.gcno
 *.gcda
 /*.info
-test_lightningcash.coverage/
+
+test_lightningcash_gold.coverage/
+
 total.coverage/
 coverage_percent.txt
 

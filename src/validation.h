@@ -79,6 +79,7 @@ static const unsigned int UNDOFILE_CHUNK_SIZE = 0x100000; // 1 MiB
 /** Skip PoW testing headers until this blockheight */
 static const int SKIP_BLOCKHEADER_POW = 4850567; // Skip up to near last checkpoint ( 4850567 )
 
+
 /** Maximum number of script-checking threads allowed */
 static const int MAX_SCRIPTCHECK_THREADS = 16;
 /** -par default (number of script-checking threads, 0 = auto) */

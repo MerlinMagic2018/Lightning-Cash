@@ -170,10 +170,13 @@ public:
 	consensus.remvariableForkBlock = 118956;
         
         // The best chain should have at least this much work.
+
         consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000006abd846fefe533");  // LightningCash Gold : block 4850567
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x4d6d9563be85d424def946b7972b21916f88494f4f54c697f0599abf6d82db1a"); // LightningCash Gold: block 4850567
+
+
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -194,8 +197,10 @@ public:
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         //vSeeds.emplace_back("seeds.litecoinca.sh");
+
         vSeeds.clear();
         vSeeds.emplace_back("seeds.ltncg.com");
+
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,28);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
@@ -205,6 +210,7 @@ public:
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
 
         bech32_hrp = "ltncg";
+
 
         //vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
         //vFixedSeeds.clear(); // no seeds yet ----> now yes
@@ -226,10 +232,10 @@ public:
 
         chainTxData = ChainTxData{
             // Data at genesis block.
-            1565280496, // * UNIX timestamp of last known number of transactions
-            436284,   // * total number of transactions between genesis and that timestamp
+            1585501516, // * UNIX timestamp of last known number of transactions
+            4579660,   // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
-            0.1653492693215487        // * estimated number of transactions per second after that timestamp
+            0.135965613        // * estimated number of transactions per second after that timestamp
         };
     }
 };
