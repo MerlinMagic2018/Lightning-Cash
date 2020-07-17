@@ -142,8 +142,8 @@
         <translation>Reindexando bloques en el disco...</translation>
     </message>
     <message>
-        <source>Send coins to a LightningCash Gold address</source>
-        <translation>Enviar monedas a una dirección LightningCash Gold</translation>
+        <source>Send coins to a LightningCash address</source>
+        <translation>Enviar monedas a una dirección LightningCash</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -158,8 +158,8 @@
         <translation>Abre la consola de depuración y diágnostico</translation>
     </message>
     <message>
-        <source>LightningCash Gold</source>
-        <translation>Lightning Cash Gold</translation>
+        <source>LightningCash</source>
+        <translation>Lightning Cash</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -186,12 +186,12 @@
         <translation>Encriptar las llaves privadas que pertenecen a tu billetera</translation>
     </message>
     <message>
-        <source>Sign messages with your LightningCash Gold addresses to prove you own them</source>
-        <translation>Firma mensajes con tus direcciones LightningCash Gold para probar que eres dueño de ellas</translation>
+        <source>Sign messages with your LightningCash addresses to prove you own them</source>
+        <translation>Firma mensajes con tus direcciones LightningCash para probar que eres dueño de ellas</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified LightningCash Gold addresses</source>
-        <translation>Verificar mensajes para asegurar que estaban firmados con direcciones LightningCash Gold especificas</translation>
+        <source>Verify messages to ensure they were signed with specified LightningCash addresses</source>
+        <translation>Verificar mensajes para asegurar que estaban firmados con direcciones LightningCash especificas</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -437,8 +437,8 @@
         <translation>Usa un directorio de datos personalizado:</translation>
     </message>
     <message>
-        <source>LightningCash Gold</source>
-        <translation>Lightning Cash Gold</translation>
+        <source>LightningCash</source>
+        <translation>Lightning Cash</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -708,8 +708,8 @@
         <translation>Correr en segundo plano como daemon y aceptar comandos</translation>
     </message>
     <message>
-        <source>Lightning Cash Gold Core</source>
-        <translation>Lightning Cash Gold Core</translation>
+        <source>Lightning Cash Core</source>
+        <translation>Lightning Cash Core</translation>
     </message>
     <message>
         <source>Bind to given address and always listen on it. Use [host]:port notation for IPv6</source>

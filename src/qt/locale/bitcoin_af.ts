@@ -62,12 +62,12 @@
         <translation>Ontvanger adresse</translation>
     </message>
     <message>
-        <source>These are your LightningCash Gold addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Hierdie is die adresse vanwaar u LightningCash Gold betalings stuur. U moet altyd die bedrag en die adres van die ontvanger nagaan voordat u enige munte stuur.</translation>
+        <source>These are your LightningCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Hierdie is die adresse vanwaar u LightningCash betalings stuur. U moet altyd die bedrag en die adres van die ontvanger nagaan voordat u enige munte stuur.</translation>
     </message>
     <message>
-        <source>These are your LightningCash Gold addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Hierdie is die adresse waar u LightningCash Gold sal ontvang. Ons beveel aan dat u 'n nuwe adres kies vir elke transaksie</translation>
+        <source>These are your LightningCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Hierdie is die adresse waar u LightningCash sal ontvang. Ons beveel aan dat u 'n nuwe adres kies vir elke transaksie</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -334,8 +334,8 @@
         <translation>Besig met herindeksering van blokke op hardeskyf...</translation>
     </message>
     <message>
-        <source>Send coins to a LightningCash Gold address</source>
-        <translation>Stuur munte na 'n LightningCash Gold adres</translation>
+        <source>Send coins to a LightningCash address</source>
+        <translation>Stuur munte na 'n LightningCash adres</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -358,8 +358,8 @@
         <translation>&amp;Verifieer boodskap...</translation>
     </message>
     <message>
-        <source>LightningCash Gold</source>
-        <translation>Lightning Cash Gold</translation>
+        <source>LightningCash</source>
+        <translation>Lightning Cash</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -386,12 +386,12 @@
         <translation>Kodifiseer die private sleutes wat aan jou beursie gekoppel is.</translation>
     </message>
     <message>
-        <source>Sign messages with your LightningCash Gold addresses to prove you own them</source>
-        <translation>Onderteken boodskappe met u LightningCash Gold adresse om u eienaarskap te bewys</translation>
+        <source>Sign messages with your LightningCash addresses to prove you own them</source>
+        <translation>Onderteken boodskappe met u LightningCash adresse om u eienaarskap te bewys</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified LightningCash Gold addresses</source>
-        <translation>Verifieër boodskappe om seker te maak dat dit met die gespesifiseerde LightningCash Gold adresse</translation>
+        <source>Verify messages to ensure they were signed with specified LightningCash addresses</source>
+        <translation>Verifieër boodskappe om seker te maak dat dit met die gespesifiseerde LightningCash adresse</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -410,8 +410,8 @@
         <translation>Orebalk</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and lightningcash_gold: URIs)</source>
-        <translation>Versoek betalings (genereer QR-kodes en lightningcash_gold: URI's)</translation>
+        <source>Request payments (generates QR codes and lightningcash: URIs)</source>
+        <translation>Versoek betalings (genereer QR-kodes en lightningcash: URI's)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -422,8 +422,8 @@
         <translation>Vertoon die lys van gebruikte ontvangers-adresse en etikette</translation>
     </message>
     <message>
-        <source>Open a lightningcash_gold: URI or payment request</source>
-        <translation>Skep 'n lightningcash_gold: URI of betalingsversoek</translation>
+        <source>Open a lightningcash: URI or payment request</source>
+        <translation>Skep 'n lightningcash: URI of betalingsversoek</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -516,8 +516,8 @@
         <translation>Inkomende transaksie</translation>
     </message>
     <message>
-        <source>A fatal error occurred. LightningCash Gold can no longer continue safely and will quit.</source>
-        <translation>'N fatale fout het voorgekom. LightningCash Gold kan nie meer veilig voortgaan nie en sal nou toemaak.</translation>
+        <source>A fatal error occurred. LightningCash can no longer continue safely and will quit.</source>
+        <translation>'N fatale fout het voorgekom. LightningCash kan nie meer veilig voortgaan nie en sal nou toemaak.</translation>
     </message>
 </context>
 <context>
@@ -710,8 +710,8 @@
         <translation>Wysig stuur adres</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid LightningCash Gold address.</source>
-        <translation>Die ingevoerde adres "%1" is nie 'n geldige LightningCash Gold adres nie.</translation>
+        <source>The entered address "%1" is not a valid LightningCash address.</source>
+        <translation>Die ingevoerde adres "%1" is nie 'n geldige LightningCash adres nie.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -823,8 +823,8 @@
         <translation>Gebruik 'n persoonlike data gids:</translation>
     </message>
     <message>
-        <source>LightningCash Gold</source>
-        <translation>Lightning Cash Gold</translation>
+        <source>LightningCash</source>
+        <translation>Lightning Cash</translation>
     </message>
     <message>
         <source>The wallet will also be stored in this directory.</source>
@@ -1188,8 +1188,8 @@
         <translation>Bedrag</translation>
     </message>
     <message>
-        <source>Enter a LightningCash Gold address (e.g. %1)</source>
-        <translation>Voer in 'n LightningCash Gold adres (bv. %1)</translation>
+        <source>Enter a LightningCash address (e.g. %1)</source>
+        <translation>Voer in 'n LightningCash adres (bv. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1918,8 +1918,8 @@
         <translation>Opsies:</translation>
     </message>
     <message>
-        <source>Lightning Cash Gold Core</source>
-        <translation>Lightning Cash Gold Kern</translation>
+        <source>Lightning Cash Core</source>
+        <translation>Lightning Cash Kern</translation>
     </message>
     <message>
         <source>Connection options:</source>

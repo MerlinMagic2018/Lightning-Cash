@@ -36,7 +36,7 @@
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/thread.hpp>
 
-#include <script/ismine.h>  // LightningCash-Gold: Hive
+#include <script/ismine.h>  // LightningCash: Hive
 
 std::vector<CWalletRef> vpwallets;
 /** Transaction fee set by the user */
@@ -2699,9 +2699,9 @@ OutputType CWallet::TransactionChangeType(OutputType change_type, const std::vec
     return g_address_type;
 }
 
-bool fWalletUnlockHiveMiningOnly = false;  // LightningCash Gold: Hive: Unlock for hive mining purposes only.
+bool fWalletUnlockHiveMiningOnly = false;  // LightningCash: Hive: Unlock for hive mining purposes only.
 
-// LightningCash Gold: Hive: Return all BCTs known by this wallet, optionally including dead bees and optionally scanning for blocks minted by bees from each BCT
+// LightningCash: Hive: Return all BCTs known by this wallet, optionally including dead bees and optionally scanning for blocks minted by bees from each BCT
 std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool scanRewards, const Consensus::Params& consensusParams, int minHoneyConfirmations) {
     std::vector<CBeeCreationTransactionInfo> bcts;
 
@@ -2839,7 +2839,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs(bool includeDead, bool
     return bcts;
 }
 
-// LightningCash Gold: Hive: Return all BCTs known by this wallet, optionally including dead bees and optionally scanning for blocks minted by bees from each BCT
+// LightningCash: Hive: Return all BCTs known by this wallet, optionally including dead bees and optionally scanning for blocks minted by bees from each BCT
 std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs2(bool includeDead, bool scanRewards, const Consensus::Params& consensusParams, int minHoneyConfirmations) {
     std::vector<CBeeCreationTransactionInfo> bcts;
 
@@ -3219,7 +3219,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs2(bool includeDead, boo
     return bcts;
 }
 
-// LightningCash Gold: Hive: Return all BCTs known by this wallet, optionally including dead bees and optionally scanning for blocks minted by bees from each BCT
+// LightningCash: Hive: Return all BCTs known by this wallet, optionally including dead bees and optionally scanning for blocks minted by bees from each BCT
 std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs3(bool includeDead, bool scanRewards, const Consensus::Params& consensusParams, int minHoneyConfirmations) {
     std::vector<CBeeCreationTransactionInfo> bcts;
 
@@ -3599,7 +3599,7 @@ std::vector<CBeeCreationTransactionInfo> CWallet::GetBCTs3(bool includeDead, boo
     return bcts;
 }
 
-// LightningCash Gold: Hive: Create a BCT to gestate given number of bees
+// LightningCash: Hive: Create a BCT to gestate given number of bees
 bool CWallet::CreateBeeTransaction(int beeCount, CWalletTx& wtxNew, CReserveKey& reservekeyChange, CReserveKey& reservekeyHoney, std::string honeyAddress, std::string changeAddress, bool communityContrib, std::string& strFailReason, const Consensus::Params& consensusParams) {
     CBlockIndex* pindexPrev = chainActive.Tip();
     assert(pindexPrev != nullptr);
@@ -3748,7 +3748,7 @@ bool CWallet::CreateBeeTransaction(int beeCount, CWalletTx& wtxNew, CReserveKey&
     return true;
 }
 
-// LightningCash Gold: Hive: Create a BCT to gestate given number of bees
+// LightningCash: Hive: Create a BCT to gestate given number of bees
 bool CWallet::CreateBeeTransaction2(int beeCount, CWalletTx& wtxNew, CReserveKey& reservekeyChange, CReserveKey& reservekeyHoney, std::string honeyAddress, std::string changeAddress, bool communityContrib, std::string& strFailReason, const Consensus::Params& consensusParams) {
     CBlockIndex* pindexPrev = chainActive.Tip();
     assert(pindexPrev != nullptr);
@@ -3908,7 +3908,7 @@ bool CWallet::CreateBeeTransaction2(int beeCount, CWalletTx& wtxNew, CReserveKey
     return true;
 }
 
-// LightningCash Gold: Hive: Create a BCT to gestate given number of bees
+// LightningCash: Hive: Create a BCT to gestate given number of bees
 bool CWallet::CreateBeeTransaction3(int beeCount, CWalletTx& wtxNew, CReserveKey& reservekeyChange, CReserveKey& reservekeyHoney, std::string honeyAddress, std::string changeAddress, bool communityContrib, std::string& strFailReason, const Consensus::Params& consensusParams) {
     CBlockIndex* pindexPrev = chainActive.Tip();
     assert(pindexPrev != nullptr);

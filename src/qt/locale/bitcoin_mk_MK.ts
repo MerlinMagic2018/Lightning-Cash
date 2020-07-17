@@ -138,7 +138,7 @@
         <translation>Повторно индексирање на блокови од дискот...</translation>
     </message>
     <message>
-        <source>Send coins to a LightningCash Gold address</source>
+        <source>Send coins to a LightningCash address</source>
         <translation>Испрати биткоини на Биткоин адреса</translation>
     </message>
     <message>
@@ -146,7 +146,7 @@
         <translation>&amp;Потврди порака...</translation>
     </message>
     <message>
-        <source>LightningCash Gold</source>
+        <source>LightningCash</source>
         <translation>Биткоин</translation>
     </message>
     <message>
@@ -299,7 +299,7 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>LightningCash Gold</source>
+        <source>LightningCash</source>
         <translation>Биткоин</translation>
     </message>
     <message>
@@ -590,7 +590,7 @@
         <translation>Опции:</translation>
     </message>
     <message>
-        <source>Lightning Cash Gold Core</source>
+        <source>Lightning Cash Core</source>
         <translation>Биткоин Core</translation>
     </message>
     <message>

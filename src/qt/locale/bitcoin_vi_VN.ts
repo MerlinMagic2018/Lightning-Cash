@@ -315,8 +315,8 @@ Ví của bạn chưa được mã hóa.</translation>
         <translation>Đánh chỉ số (indexing) lại các khối (blocks) trên ổ đĩa ...</translation>
     </message>
     <message>
-        <source>Send coins to a LightningCash Gold address</source>
-        <translation>Gửi coins đến tài khoản LightningCash Gold</translation>
+        <source>Send coins to a LightningCash address</source>
+        <translation>Gửi coins đến tài khoản LightningCash</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -339,8 +339,8 @@ Ví của bạn chưa được mã hóa.</translation>
         <translation>&amp;Tin nhắn xác thực</translation>
     </message>
     <message>
-        <source>LightningCash Gold</source>
-        <translation>Lightning Cash Gold</translation>
+        <source>LightningCash</source>
+        <translation>Lightning Cash</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -367,12 +367,12 @@ Ví của bạn chưa được mã hóa.</translation>
         <translation>Mã hoá các khoá bí mật trong Ví của bạn.</translation>
     </message>
     <message>
-        <source>Sign messages with your LightningCash Gold addresses to prove you own them</source>
-        <translation>Dùng địa chỉ LightningCash Gold của bạn ký các tin nhắn để xác minh những nội dung tin nhắn đó là của bạn.</translation>
+        <source>Sign messages with your LightningCash addresses to prove you own them</source>
+        <translation>Dùng địa chỉ LightningCash của bạn ký các tin nhắn để xác minh những nội dung tin nhắn đó là của bạn.</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified LightningCash Gold addresses</source>
-        <translation>Kiểm tra các tin nhắn để chắc chắn rằng chúng được ký bằng các địa chỉ LightningCash Gold xác định.</translation>
+        <source>Verify messages to ensure they were signed with specified LightningCash addresses</source>
+        <translation>Kiểm tra các tin nhắn để chắc chắn rằng chúng được ký bằng các địa chỉ LightningCash xác định.</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -391,8 +391,8 @@ Ví của bạn chưa được mã hóa.</translation>
         <translation>Thanh công cụ (toolbar)</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and lightningcash_gold: URIs)</source>
-        <translation>Yêu cầu thanh toán(tạo mã QR và địa chỉ LightningCash Gold: URLs)</translation>
+        <source>Request payments (generates QR codes and lightningcash: URIs)</source>
+        <translation>Yêu cầu thanh toán(tạo mã QR và địa chỉ LightningCash: URLs)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -403,16 +403,16 @@ Ví của bạn chưa được mã hóa.</translation>
         <translation>Hiện thỉ danh sách các địa chỉ và nhãn đã dùng để nhận.</translation>
     </message>
     <message>
-        <source>Open a lightningcash_gold: URI or payment request</source>
-        <translation>Mở lightningcash_gold:URL hoặc yêu cầu thanh toán</translation>
+        <source>Open a lightningcash: URI or payment request</source>
+        <translation>Mở lightningcash:URL hoặc yêu cầu thanh toán</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
         <translation>7Tùy chọn dòng lệnh</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to LightningCash Gold network</source>
-        <translation><numerusform>%n liên kết hoạt động với mạng lưới LightningCash Gold</numerusform></translation>
+        <source>%n active connection(s) to LightningCash network</source>
+        <translation><numerusform>%n liên kết hoạt động với mạng lưới LightningCash</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -455,8 +455,8 @@ Ví của bạn chưa được mã hóa.</translation>
         <translation>Đã cập nhật</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible LightningCash Gold command-line options</source>
-        <translation>Hiển thị tin nhắn trợ giúp %1 để có được danh sách với các tùy chọn dòng lệnh LightningCash Gold.</translation>
+        <source>Show the %1 help message to get a list with possible LightningCash command-line options</source>
+        <translation>Hiển thị tin nhắn trợ giúp %1 để có được danh sách với các tùy chọn dòng lệnh LightningCash.</translation>
     </message>
     <message>
         <source>Connecting to peers...</source>
@@ -636,8 +636,8 @@ Ví của bạn chưa được mã hóa.</translation>
         <translation>Sử dụng vị trí dữ liệu mặc định</translation>
     </message>
     <message>
-        <source>LightningCash Gold</source>
-        <translation>Lightning Cash Gold</translation>
+        <source>LightningCash</source>
+        <translation>Lightning Cash</translation>
     </message>
     <message>
         <source>Error</source>
@@ -689,8 +689,8 @@ Ví của bạn chưa được mã hóa.</translation>
         <translation>Ví</translation>
     </message>
     <message>
-        <source>Connect to the LightningCash Gold network through a SOCKS5 proxy.</source>
-        <translation>Kết nối đến máy chủ LightningCash Gold thông qua SOCKS5 proxy.</translation>
+        <source>Connect to the LightningCash network through a SOCKS5 proxy.</source>
+        <translation>Kết nối đến máy chủ LightningCash thông qua SOCKS5 proxy.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1207,8 +1207,8 @@ Ví của bạn chưa được mã hóa.</translation>
         <translation>Lựa chọn:</translation>
     </message>
     <message>
-        <source>Lightning Cash Gold Core</source>
-        <translation>Lightning Cash Gold Core</translation>
+        <source>Lightning Cash Core</source>
+        <translation>Lightning Cash Core</translation>
     </message>
     <message>
         <source>(default: %u)</source>

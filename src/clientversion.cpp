@@ -12,7 +12,7 @@
  * for both bitcoind and bitcoin-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("LightningCash-Gold Core");
+const std::string CLIENT_NAME("LightningCash Core");
 
 /**
  * Client version number

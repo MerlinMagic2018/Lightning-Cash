@@ -13,7 +13,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"org.lightningcash_gold.LightningCash Gold-Qt";
+        return @"org.lightningcash.LightningCash-Qt";
     } else {
         return [self __bundleIdentifier];
     }

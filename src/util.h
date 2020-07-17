@@ -103,7 +103,7 @@ namespace BCLog {
         COINDB      = (1 << 18),
         QT          = (1 << 19),
         LEVELDB     = (1 << 20),
-        HIVE        = (1 << 21),    // LightningCash Gold: Hive logging
+        HIVE        = (1 << 21),    // LightningCash: Hive logging
         ALL         = ~(uint32_t)0,
     };
 }
@@ -308,7 +308,7 @@ std::string HelpMessageOpt(const std::string& option, const std::string& message
  * when boost is newer than 1.56.
  */
 int GetNumCores();
-int GetNumVirtualCores();   // LightningCash-Gold: Hive: Mining Optimisations: Return number of virt cores
+int GetNumVirtualCores();   // LightningCash: Hive: Mining Optimisations: Return number of virt cores
 
 void RenameThread(const char* name);
 

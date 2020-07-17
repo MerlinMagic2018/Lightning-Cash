@@ -65,11 +65,11 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += lightningcash_goldd
+  bin_PROGRAMS += lightningcashd
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += lightningcash_gold-cli lightningcash_gold-tx
+  bin_PROGRAMS += lightningcash-cli lightningcash-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
@@ -385,16 +385,16 @@ nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # bitcoind binary #
-lightningcash_goldd_SOURCES = bitcoind.cpp
-lightningcash_goldd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-lightningcash_goldd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-lightningcash_goldd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+lightningcashd_SOURCES = bitcoind.cpp
+lightningcashd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+lightningcashd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+lightningcashd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-lightningcash_goldd_SOURCES += bitcoind-res.rc
+lightningcashd_SOURCES += bitcoind-res.rc
 endif
 
-lightningcash_goldd_LDADD = \
+lightningcashd_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_COMMON) \
   $(LIBUNIVALUE) \
@@ -408,38 +408,38 @@ lightningcash_goldd_LDADD = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-lightningcash_goldd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+lightningcashd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
 # bitcoin-cli binary #
-lightningcash_gold_cli_SOURCES = bitcoin-cli.cpp
-lightningcash_gold_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-lightningcash_gold_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-lightningcash_gold_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+lightningcash_cli_SOURCES = bitcoin-cli.cpp
+lightningcash_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+lightningcash_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+lightningcash_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-lightningcash_gold_cli_SOURCES += bitcoin-cli-res.rc
+lightningcash_cli_SOURCES += bitcoin-cli-res.rc
 endif
 
-lightningcash_gold_cli_LDADD = \
+lightningcash_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO)
 
-lightningcash_gold_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+lightningcash_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
 # bitcoin-tx binary #
-lightningcash_gold_tx_SOURCES = bitcoin-tx.cpp
-lightningcash_gold_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-lightningcash_gold_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-lightningcash_gold_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+lightningcash_tx_SOURCES = bitcoin-tx.cpp
+lightningcash_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+lightningcash_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+lightningcash_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-lightningcash_gold_tx_SOURCES += bitcoin-tx-res.rc
+lightningcash_tx_SOURCES += bitcoin-tx-res.rc
 endif
 
-lightningcash_gold_tx_LDADD = \
+lightningcash_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
@@ -447,7 +447,7 @@ lightningcash_gold_tx_LDADD = \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-lightningcash_gold_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+lightningcash_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
 # bitcoinconsensus library #

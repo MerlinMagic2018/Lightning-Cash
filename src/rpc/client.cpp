@@ -93,19 +93,19 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "createrawtransaction", 1, "outputs" },
     { "createrawtransaction", 2, "locktime" },
     { "createrawtransaction", 3, "replaceable" },
-    { "createrawbct", 0, "inputs" },                // LightningCash Gold: Hive: Create a Raw BCT
-    { "createrawbct", 1, "bee_count" },             // LightningCash Gold: Hive: Create a Raw BCT
-    { "createrawbct", 3, "community_contrib" },     // LightningCash Gold: Hive: Create a Raw BCT
-    { "createrawbct", 4, "locktime" },              // LightningCash Gold: Hive: Create a Raw BCT
-    { "createbees", 0, "beecount" },                // LightningCash Gold: Hive: Create a BCT
-    { "createbees", 1, "community_contrib" },       // LightningCash Gold: Hive: Create a BCT
-    { "getbeecost", 0, "height" },                  // LightningCash Gold: Hive: Get cost of a single bee
-    { "gethiveinfo", 0, "include_dead" },           // LightningCash Gold: Hive: Get hive info
-    { "getnetworkhiveinfo", 0, "include_graph" },   // LightningCash Gold: Hive: Get network hive info
-    { "gethiveinfo", 1, "min_honey_confirms" },     // LightningCash Gold: Hive: Get hive info
-    { "sethiveparams", 0, "hivecheckdelay"},        // LightningCash-Gold: Hive: Mining optimisations: Set hive mining params
-    { "sethiveparams", 1, "hivecheckthreads"},      // LightningCash-Gold: Hive: Mining optimisations: Set hive mining params
-    { "sethiveparams", 2, "hiveearlyabort"},        // LightningCash-Gold: Hive: Mining optimisations: Set hive mining params
+    { "createrawbct", 0, "inputs" },                // LightningCash: Hive: Create a Raw BCT
+    { "createrawbct", 1, "bee_count" },             // LightningCash: Hive: Create a Raw BCT
+    { "createrawbct", 3, "community_contrib" },     // LightningCash: Hive: Create a Raw BCT
+    { "createrawbct", 4, "locktime" },              // LightningCash: Hive: Create a Raw BCT
+    { "createbees", 0, "beecount" },                // LightningCash: Hive: Create a BCT
+    { "createbees", 1, "community_contrib" },       // LightningCash: Hive: Create a BCT
+    { "getbeecost", 0, "height" },                  // LightningCash: Hive: Get cost of a single bee
+    { "gethiveinfo", 0, "include_dead" },           // LightningCash: Hive: Get hive info
+    { "getnetworkhiveinfo", 0, "include_graph" },   // LightningCash: Hive: Get network hive info
+    { "gethiveinfo", 1, "min_honey_confirms" },     // LightningCash: Hive: Get hive info
+    { "sethiveparams", 0, "hivecheckdelay"},        // LightningCash: Hive: Mining optimisations: Set hive mining params
+    { "sethiveparams", 1, "hivecheckthreads"},      // LightningCash: Hive: Mining optimisations: Set hive mining params
+    { "sethiveparams", 2, "hiveearlyabort"},        // LightningCash: Hive: Mining optimisations: Set hive mining params
     { "decoderawtransaction", 1, "iswitness" },
     { "signrawtransaction", 1, "prevtxs" },
     { "signrawtransaction", 2, "privkeys" },

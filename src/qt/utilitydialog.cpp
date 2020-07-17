@@ -49,7 +49,7 @@ HelpMessageDialog::HelpMessageDialog(QWidget *parent, bool about) :
 
     if (about)
     {
-        setWindowTitle(tr("About Lightning Cash Gold"));  // LightningCash Gold: Don't use package name here; we want coin name with a space in window titles.
+        setWindowTitle(tr("About Lightning Cash"));  // LightningCash: Don't use package name here; we want coin name with a space in window titles.
 
         /// HTML-format the license message from the core
         QString licenseInfo = QString::fromStdString(LicenseInfo());
@@ -70,7 +70,7 @@ HelpMessageDialog::HelpMessageDialog(QWidget *parent, bool about) :
     } else {
         setWindowTitle(tr("Command-line options"));
         QString header = tr("Usage:") + "\n" +
-            "  lightningcash_gold-qt [" + tr("command-line options") + "]                     " + "\n";
+            "  lightningcash-qt [" + tr("command-line options") + "]                     " + "\n";
         QTextCursor cursor(ui->helpMessage->document());
         cursor.insertText(version);
         cursor.insertBlock();

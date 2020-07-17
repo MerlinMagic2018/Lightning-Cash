@@ -117,7 +117,7 @@ void WalletFrame::gotoOverviewPage()
         i.value()->gotoOverviewPage();
 }
 
-// Lightning Cash Gold: Hive page
+// Lightning Cash: Hive page
 void WalletFrame::gotoHivePage()
 {
     QMap<QString, WalletView*>::const_iterator i;
@@ -125,7 +125,7 @@ void WalletFrame::gotoHivePage()
         i.value()->gotoHivePage();
 }
 
-// LightningCash Gold: Key import helper
+// LightningCash: Key import helper
 void WalletFrame::importPrivateKey()
 {
     WalletView *walletView = currentWalletView();

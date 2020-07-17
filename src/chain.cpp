@@ -4,10 +4,10 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <chain.h>
-#include <chainparams.h>    // LightningCash Gold: Hive
-#include <util.h>    // LightningCash Gold: Hive
-#include <rpc/blockchain.h>     // LightningCash Gold: Hive 1.1
-#include <validation.h>         // LightningCash Gold: Hive 1.1
+#include <chainparams.h>    // LightningCash: Hive
+#include <util.h>    // LightningCash: Hive
+#include <rpc/blockchain.h>     // LightningCash: Hive 1.1
+#include <validation.h>         // LightningCash: Hive 1.1
 
 /**
  * CChain implementation
@@ -122,7 +122,7 @@ void CBlockIndex::BuildSkip()
         pskip = pprev->GetAncestor(GetSkipHeight(nHeight));
 }
 
-// LightningCash Gold: Hive: Grant hive-mined blocks bonus work value - they get the work value of
+// LightningCash: Hive: Grant hive-mined blocks bonus work value - they get the work value of
 // their own block plus that of the PoW block behind them
 arith_uint256 GetBlockProof(const CBlockIndex& block)
 {
@@ -145,7 +145,7 @@ arith_uint256 GetBlockProof(const CBlockIndex& block)
     if (block.GetBlockHeader().IsHiveMined(consensusParams)) {
         assert(block.pprev);
 
-        // LightningCash-Gold: Hive 1.1: Set bnPreviousTarget from nBits in most recent pow block, not just assuming it's one back. Note this logic is still valid for Hive 1.0 so doesn't need to be gated.
+        // LightningCash: Hive 1.1: Set bnPreviousTarget from nBits in most recent pow block, not just assuming it's one back. Note this logic is still valid for Hive 1.0 so doesn't need to be gated.
         CBlockIndex* pindexTemp = block.pprev;
         while (pindexTemp->GetBlockHeader().IsHiveMined(consensusParams)) {
             assert(pindexTemp->pprev);
@@ -154,7 +154,7 @@ arith_uint256 GetBlockProof(const CBlockIndex& block)
 
         arith_uint256 bnPreviousTarget;
         // bnPreviousTarget.SetCompact(block.pprev->nBits, &fNegative, &fOverflow);
-        bnPreviousTarget.SetCompact(pindexTemp->nBits, &fNegative, &fOverflow); // LightningCash-Gold: Hive 1.1: Set bnPreviousTarget from nBits in most recent pow block, not just assuming it's one back
+        bnPreviousTarget.SetCompact(pindexTemp->nBits, &fNegative, &fOverflow); // LightningCash: Hive 1.1: Set bnPreviousTarget from nBits in most recent pow block, not just assuming it's one back
         if (fNegative || fOverflow || bnPreviousTarget == 0)
             return 0;
         bnTargetScaled += (~bnPreviousTarget / (bnPreviousTarget + 1)) + 1;

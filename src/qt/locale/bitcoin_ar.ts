@@ -62,11 +62,11 @@
         <translation>عناوين الاستقبال</translation>
     </message>
     <message>
-        <source>These are your LightningCash Gold addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your LightningCash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>هذه هي عناوين Litecion التابعة لك من أجل إرسال الدفعات. تحقق دائما من المبلغ و عنوان المرسل المستقبل قبل إرسال العملات</translation>
     </message>
     <message>
-        <source>These are your LightningCash Gold addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your LightningCash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>هذه هي عناوين Litecion التابعة لك من أجل إستقبال الدفعات. ينصح استخدام عنوان جديد من أجل كل صفقة</translation>
     </message>
     <message>
@@ -334,8 +334,8 @@
         <translation>إعادة الفهرسة الكتل على القرص ...</translation>
     </message>
     <message>
-        <source>Send coins to a LightningCash Gold address</source>
-        <translation>ارسل عملات الى عنوان LightningCash Gold</translation>
+        <source>Send coins to a LightningCash address</source>
+        <translation>ارسل عملات الى عنوان LightningCash</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -358,7 +358,7 @@
         <translation>&amp;التحقق من الرسالة...</translation>
     </message>
     <message>
-        <source>LightningCash Gold</source>
+        <source>LightningCash</source>
         <translation>بتكوين</translation>
     </message>
     <message>
@@ -386,12 +386,12 @@
         <translation>تشفير المفتاح الخاص بمحفظتك</translation>
     </message>
     <message>
-        <source>Sign messages with your LightningCash Gold addresses to prove you own them</source>
-        <translation>وقَع الرسائل بواسطة ال: LightningCash Gold الخاص بك لإثبات امتلاكك لهم</translation>
+        <source>Sign messages with your LightningCash addresses to prove you own them</source>
+        <translation>وقَع الرسائل بواسطة ال: LightningCash الخاص بك لإثبات امتلاكك لهم</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified LightningCash Gold addresses</source>
-        <translation>تحقق من الرسائل للتأكد من أنَها وُقعت برسائل LightningCash Gold محدَدة</translation>
+        <source>Verify messages to ensure they were signed with specified LightningCash addresses</source>
+        <translation>تحقق من الرسائل للتأكد من أنَها وُقعت برسائل LightningCash محدَدة</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -410,7 +410,7 @@
         <translation>شريط أدوات علامات التبويب</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and lightningcash_gold: URIs)</source>
+        <source>Request payments (generates QR codes and lightningcash: URIs)</source>
         <translation>أطلب دفعات (يولد كودات الرمز المربع وبيت كوين: العناوين المعطاة)</translation>
     </message>
     <message>
@@ -422,8 +422,8 @@
         <translation>عرض قائمة عناوين الإستقبال المستخدمة والملصقات</translation>
     </message>
     <message>
-        <source>Open a lightningcash_gold: URI or payment request</source>
-        <translation>فتح URI : LightningCash Gold أو طلب دفع</translation>
+        <source>Open a lightningcash: URI or payment request</source>
+        <translation>فتح URI : LightningCash أو طلب دفع</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -466,7 +466,7 @@
         <translation>محدث</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible LightningCash Gold command-line options</source>
+        <source>Show the %1 help message to get a list with possible LightningCash command-line options</source>
         <translation>بين اشارة المساعدة %1 للحصول على قائمة من خيارات اوامر البت كوين المحتملة </translation>
     </message>
     <message>
@@ -530,8 +530,8 @@
         <translation>المحفظة &lt;b&gt;مشفرة&lt;/b&gt; و &lt;b&gt;مقفلة&lt;/b&gt; حاليا</translation>
     </message>
     <message>
-        <source>A fatal error occurred. LightningCash Gold can no longer continue safely and will quit.</source>
-        <translation>خطأ فادح حدث . لا يمكن اتمام LightningCash Gold بامان سيتم الخروج</translation>
+        <source>A fatal error occurred. LightningCash can no longer continue safely and will quit.</source>
+        <translation>خطأ فادح حدث . لا يمكن اتمام LightningCash بامان سيتم الخروج</translation>
     </message>
 </context>
 <context>
@@ -696,7 +696,7 @@
         <translation>تعديل عنوان الارسال</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid LightningCash Gold address.</source>
+        <source>The entered address "%1" is not a valid LightningCash address.</source>
         <translation>العنوان المدخل "%1" ليس عنوان بيت كوين صحيح.</translation>
     </message>
     <message>
@@ -809,7 +809,7 @@
         <translation>استخدام دليل بيانات مخصص:</translation>
     </message>
     <message>
-        <source>LightningCash Gold</source>
+        <source>LightningCash</source>
         <translation>بتكوين</translation>
     </message>
     <message>
@@ -1510,7 +1510,7 @@
         <translation>هذا دفع اعتيادي</translation>
     </message>
     <message>
-        <source>The LightningCash Gold address to send the payment to</source>
+        <source>The LightningCash address to send the payment to</source>
         <translation>عنوان البت كوين المرسل اليه الدفع</translation>
     </message>
     <message>
@@ -1587,7 +1587,7 @@
         <translation>التوقيع</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this LightningCash Gold address</source>
+        <source>Sign the message to prove you own this LightningCash address</source>
         <translation>وقع الرسالة لتثبت انك تمتلك عنوان البت كوين هذا</translation>
     </message>
     <message>
@@ -2040,8 +2040,8 @@
         <translation>حدد مجلد المعلومات</translation>
     </message>
     <message>
-        <source>Lightning Cash Gold Core</source>
-        <translation>جوهر LightningCash Gold</translation>
+        <source>Lightning Cash Core</source>
+        <translation>جوهر LightningCash</translation>
     </message>
     <message>
         <source>Accept connections from outside (default: 1 if no -proxy or -connect)</source>

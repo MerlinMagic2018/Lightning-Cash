@@ -18,9 +18,9 @@ RUN apt-get install -y libzmq3-dev
 
 RUN apt-get install -y git
 
-RUN git clone https://github.com/Lightningcash-dev/lightningcash-gold
+RUN git clone https://github.com/Lightningcash-dev/lightningcash
 
-WORKDIR /lightningcash-gold
+WORKDIR /lightningcash
 
 RUN ./autogen.sh
 
@@ -30,8 +30,8 @@ RUN make
 
 RUN make install
 
-RUN mkdir /root/.lightningcash_gold
+RUN mkdir /root/.lightningcash
 
-RUN cp lightningcash_gold.conf /root/.lightningcash_gold/lightningcash_gold.conf
+RUN cp lightningcash.conf /root/.lightningcash/lightningcash.conf
 
 EXPOSE 9111 9110

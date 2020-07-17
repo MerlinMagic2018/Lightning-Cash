@@ -37,13 +37,13 @@
 #include <QSet>
 #include <QTimer>
 
-#include <policy/policy.h>  // LightningCash Gold: Hive: For GetVirtualTransactionSize
+#include <policy/policy.h>  // LightningCash: Hive: For GetVirtualTransactionSize
 
 WalletModel::WalletModel(const PlatformStyle *platformStyle, CWallet *_wallet, OptionsModel *_optionsModel, QObject *parent) :
     QObject(parent), wallet(_wallet), optionsModel(_optionsModel), addressTableModel(0),
     transactionTableModel(0),
     recentRequestsTableModel(0),
-    hiveTableModel(0),  // LightningCash Gold: Hive
+    hiveTableModel(0),  // LightningCash: Hive
     cachedBalance(0), cachedUnconfirmedBalance(0), cachedImmatureBalance(0),
     cachedEncryptionStatus(Unencrypted),
     cachedNumBlocks(0)
@@ -54,7 +54,7 @@ WalletModel::WalletModel(const PlatformStyle *platformStyle, CWallet *_wallet, O
     addressTableModel = new AddressTableModel(wallet, this);
     transactionTableModel = new TransactionTableModel(platformStyle, wallet, this);
     recentRequestsTableModel = new RecentRequestsTableModel(wallet, this);
-    hiveTableModel = new HiveTableModel(platformStyle, wallet, this);  // LightningCash Gold: Hive
+    hiveTableModel = new HiveTableModel(platformStyle, wallet, this);  // LightningCash: Hive
 
     // This timer will be fired repeatedly to update the balance
     pollTimer = new QTimer(this);
@@ -396,13 +396,13 @@ RecentRequestsTableModel *WalletModel::getRecentRequestsTableModel()
     return recentRequestsTableModel;
 }
 
-// LightningCash Gold: Hive
+// LightningCash: Hive
 HiveTableModel *WalletModel::getHiveTableModel()
 {
     return hiveTableModel;
 }
 
-// LightningCash Gold: Hive
+// LightningCash: Hive
 bool WalletModel::isHiveEnabled()
 {
     if (!wallet)
@@ -542,7 +542,7 @@ WalletModel::UnlockContext WalletModel::requestUnlock(bool hiveOnly)
 {
     bool was_locked = getEncryptionStatus() == Locked;
 
-    // LightningCash Gold: Hive: Support unlock for hive mining only
+    // LightningCash: Hive: Support unlock for hive mining only
     if ((!was_locked) && fWalletUnlockHiveMiningOnly)
     {
        setWalletLocked(true);
@@ -560,7 +560,7 @@ WalletModel::UnlockContext WalletModel::requestUnlock(bool hiveOnly)
     // If wallet is still locked, unlock was failed or cancelled, mark context as invalid
     bool valid = getEncryptionStatus() != Locked;
 
-    return UnlockContext(this, valid, was_locked && !fWalletUnlockHiveMiningOnly); // LightningCash Gold: Hive: Support unlock for hive mining only
+    return UnlockContext(this, valid, was_locked && !fWalletUnlockHiveMiningOnly); // LightningCash: Hive: Support unlock for hive mining only
 }
 
 WalletModel::UnlockContext::UnlockContext(WalletModel *_wallet, bool _valid, bool _relock):
@@ -661,7 +661,7 @@ void WalletModel::loadReceiveRequests(std::vector<std::string>& vReceiveRequests
     vReceiveRequests = wallet->GetDestValues("rr"); // receive request
 }
 
-// LightningCash Gold: Hive
+// LightningCash: Hive
 void WalletModel::getBCTs(std::vector<CBeeCreationTransactionInfo>& vBeeCreationTransactions, bool includeDeadBees) {
     if (wallet) {
 	if ((chainActive.Tip()->nHeight) >= nSpeedFork) {
@@ -684,7 +684,7 @@ void WalletModel::getBCTs(std::vector<CBeeCreationTransactionInfo>& vBeeCreation
     }
 }
 
-// LightningCash Gold: Hive
+// LightningCash: Hive
 bool WalletModel::createBees(int beeCount, bool communityContrib, QWidget *parent, double beePopIndex) {
     wallet->BlockUntilSyncedToCurrentChain();
 

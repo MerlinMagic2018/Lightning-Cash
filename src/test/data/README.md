@@ -1,7 +1,7 @@
 Description
 ------------
 
-This directory contains data-driven tests for various aspects of LightningCash Gold.
+This directory contains data-driven tests for various aspects of LightningCash.
 
 License
 --------

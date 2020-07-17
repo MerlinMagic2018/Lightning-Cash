@@ -21,7 +21,7 @@
 #include <qt/tinypie.h>
 #include <qt/qcustomplot.h>
 
-#include <qt/optionsdialog.h> // LightningCash-Gold: Hive: Mining optimisations
+#include <qt/optionsdialog.h> // LightningCash: Hive: Mining optimisations
 
 #include <QAction>
 #include <QCursor>
@@ -245,7 +245,7 @@ void HiveDialog::updateData(bool forceGlobalSummaryUpdate) {
         // Set icon and tooltip for tray icon
         QString tooltip, icon;
         if (clientModel && clientModel->getNumConnections() == 0) {
-            tooltip = "Lightning Cash Gold is not connected";
+            tooltip = "Lightning Cash is not connected";
             icon = ":/icons/hivestatus_disabled";
         } else if (!model->isHiveEnabled()) {
             tooltip = "The Hive is not enabled on the network";
@@ -436,7 +436,7 @@ void HiveDialog::updateData2(bool forceGlobalSummaryUpdate) {
         // Set icon and tooltip for tray icon
         QString tooltip, icon;
         if (clientModel && clientModel->getNumConnections() == 0) {
-            tooltip = "Lightning Cash Gold is not connected";
+            tooltip = "Lightning Cash is not connected";
             icon = ":/icons/hivestatus_disabled";
         } else if (!model->isHiveEnabled()) {
             tooltip = "The Hive is not enabled on the network";
@@ -644,7 +644,7 @@ void HiveDialog::updateData3(bool forceGlobalSummaryUpdate) {
         // Set icon and tooltip for tray icon
         QString tooltip, icon;
         if (clientModel && clientModel->getNumConnections() == 0) {
-            tooltip = "Lightning Cash Gold is not connected";
+            tooltip = "Lightning Cash is not connected";
             icon = ":/icons/hivestatus_disabled";
         } else if (!model->isHiveEnabled()) {
             tooltip = "The Hive is not enabled on the network";
@@ -842,7 +842,7 @@ void HiveDialog::on_createBeesButton_clicked() {
     }
 }
 
-// LightningCash-Gold: Hive: Mining optimisations: Shortcut to Hive mining options
+// LightningCash: Hive: Mining optimisations: Shortcut to Hive mining options
 void HiveDialog::on_showHiveOptionsButton_clicked() {
     if(!clientModel || !clientModel->getOptionsModel())
         return;

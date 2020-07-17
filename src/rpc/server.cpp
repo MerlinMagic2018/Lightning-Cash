@@ -109,7 +109,7 @@ CAmount AmountFromValue(const UniValue& value)
     if (!value.isNum() && !value.isStr())
         throw JSONRPCError(RPC_TYPE_ERROR, "Amount is not a number or string");
     CAmount amount;
-    if (!ParseFixedPoint(value.getValStr(), 8, &amount))    // LightningCash Gold: Digits fix
+    if (!ParseFixedPoint(value.getValStr(), 8, &amount))    // LightningCash: Digits fix
         throw JSONRPCError(RPC_TYPE_ERROR, "Invalid amount");
     if (!MoneyRange(amount))
         throw JSONRPCError(RPC_TYPE_ERROR, "Amount out of range");
@@ -233,11 +233,11 @@ UniValue stop(const JSONRPCRequest& jsonRequest)
     if (jsonRequest.fHelp || jsonRequest.params.size() > 1)
         throw std::runtime_error(
             "stop\n"
-            "\nStop LightningCash Gold server.");
+            "\nStop LightningCash server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "LightningCash Gold server stopping";
+    return "LightningCash server stopping";
 }
 
 UniValue uptime(const JSONRPCRequest& jsonRequest)
@@ -513,7 +513,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(const std::string& methodname, const std::string& args)
 {
-    return "> lightningcash_gold-cli " + methodname + " " + args + "\n";
+    return "> lightningcash-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(const std::string& methodname, const std::string& args)

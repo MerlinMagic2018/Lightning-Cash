@@ -18,8 +18,8 @@ class CBlockIndex;
 class CChainParams;
 class CScript;
 
-class arith_uint256;    // LightningCash-Gold: Hive: Mining optimisations
-struct CBeeRange;       // LightningCash-Gold: Hive: Mining optimisations
+class arith_uint256;    // LightningCash: Hive: Mining optimisations
+struct CBeeRange;       // LightningCash: Hive: Mining optimisations
 
 
 
@@ -30,7 +30,7 @@ static const int DEFAULT_GENERATE_THREADS = 1;
 
 static const bool DEFAULT_PRINTPRIORITY = false;
 
-// LightningCash-Gold: Hive: Mining optimisations: Defaults for new hive check parameters
+// LightningCash: Hive: Mining optimisations: Defaults for new hive check parameters
 static const int DEFAULT_HIVE_CHECK_DELAY = 1;
 static const int DEFAULT_HIVE_THREADS = -2;
 static const bool DEFAULT_HIVE_EARLY_OUT = true;
@@ -143,7 +143,7 @@ private:
 
     // Configuration parameters for the block size
     bool fIncludeWitness;
-    bool fIncludeBCTs;              // LightningCash Gold: Hive: Allow BCTs in block?
+    bool fIncludeBCTs;              // LightningCash: Hive: Allow BCTs in block?
     unsigned int nBlockMaxWeight;
     CFeeRate blockMinFeeRate;
     
@@ -170,7 +170,7 @@ public:
     BlockAssembler(const CChainParams& params, const Options& options);
 
     /** Construct a new block template with coinbase to scriptPubKeyIn */
-    // LightningCash Gold: Hive: If hiveProofScript is passed, create a Hive block instead of a PoW block
+    // LightningCash: Hive: If hiveProofScript is passed, create a Hive block instead of a PoW block
     std::unique_ptr<CBlockTemplate> CreateNewBlock(const CScript& scriptPubKeyIn, bool fMineWitnessTx=true, const CScript* hiveProofScript=nullptr);
 
 private:
@@ -208,7 +208,7 @@ private:
 };
 
 /** Run the miner threads */
-void GenerateLTNCG(bool fGenerate, int nThreads, const CChainParams& chainparams);
+void GenerateLNC(bool fGenerate, int nThreads, const CChainParams& chainparams);
 /** Generate a new block, without valid proof-of-work */
 
 CBlockTemplate* CreateNewBlock(const CChainParams& chainparams, const CScript& scriptPubKeyIn);
@@ -220,9 +220,9 @@ double EstimateMinerHashesPerSecond();
 void IncrementExtraNonce(CBlock* pblock, const CBlockIndex* pindexPrev, unsigned int& nExtraNonce);
 int64_t UpdateTime(CBlockHeader* pblock, const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev);
 
-void BeeKeeper(const CChainParams& chainparams);                        // LightningCash-Gold: Hive: Bee management thread
-bool BusyBees(const Consensus::Params& consensusParams, int height);    // LightningCash-Gold: Hive: Attempt to mint the next block
+void BeeKeeper(const CChainParams& chainparams);                        // LightningCash: Hive: Bee management thread
+bool BusyBees(const Consensus::Params& consensusParams, int height);    // LightningCash: Hive: Attempt to mint the next block
 void CheckBin(int threadID, std::vector<CBeeRange> bin, std::string deterministicRandString, arith_uint256 beeHashTarget); // LitecoinCash: Hive: Mining optimisations: Thread to process a bin of beeranges
-void AbortWatchThread(int height);                                      // LightningCash-Gold: Hive: Mining optimisations: Thread to watch for abort conditions
+void AbortWatchThread(int height);                                      // LightningCash: Hive: Mining optimisations: Thread to watch for abort conditions
 
 #endif // BITCOIN_MINER_H

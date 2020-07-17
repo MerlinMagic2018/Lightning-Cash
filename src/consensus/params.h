@@ -11,8 +11,8 @@
 #include <map>
 #include <string>
 
-#include <script/script.h>  // LightningCash Gold: Needed for CScript
-#include <amount.h>         // LightningCash Gold: Needed for CAmount
+#include <script/script.h>  // LightningCash: Needed for CScript
+#include <amount.h>         // LightningCash: Needed for CAmount
 
 namespace Consensus {
 
@@ -21,9 +21,9 @@ enum DeploymentPos
     DEPLOYMENT_TESTDUMMY,
     DEPLOYMENT_CSV, // Deployment of BIP68, BIP112, and BIP113.
     DEPLOYMENT_SEGWIT, // Deployment of BIP141, BIP143, and BIP147.
-    DEPLOYMENT_HIVE,    // LightningCash Gold: Hive: Deployment
-    DEPLOYMENT_HIVE_1_1,    // LightningCash Gold: Hive: 1.1 Deployment
-//    DEPLOYMENT_HIVE_1_2,    // LightningCash Gold: Hive: 1.2 Deployment
+    DEPLOYMENT_HIVE,    // LightningCash: Hive: Deployment
+    DEPLOYMENT_HIVE_1_1,    // LightningCash: Hive: 1.1 Deployment
+//    DEPLOYMENT_HIVE_1_2,    // LightningCash: Hive: 1.2 Deployment
     // NOTE: Also add new deployments to VersionBitsDeploymentInfo in versionbits.cpp
     MAX_VERSION_BITS_DEPLOYMENTS
 };
@@ -85,7 +85,7 @@ struct Params {
     uint256 nMinimumChainWork;
     uint256 defaultAssumeValid;
 
-    // LightningCash Gold: General consensus params
+    // LightningCash: General consensus params
     uint32_t powForkTime;               // Time of PoW hash method change
     int lastScryptBlock;                // Height of last scrypt block
     int slowStartBlocks;                // Scale post-fork block reward over this many blocks
@@ -95,7 +95,7 @@ struct Params {
 //    CScript premineOutputScript;        // Premine output script
 
 
-    // LightningCash Gold: Hive-related consensus params
+    // LightningCash: Hive-related consensus params
     CAmount minBeeCost;                 // Minimum cost of a bee, used when no more block rewards
     int beeCostFactor;                  // Bee cost is block_reward/beeCostFactor
     std::string beeCreationAddress;     // Unspendable address for bee creation
@@ -111,7 +111,7 @@ struct Params {
     int hiveTargetAdjustAggression;     // Snap speed for bee hash target adjustment EMA
     int hiveBlockSpacingTarget;         // Target Hive block frequency (1 out of this many blocks should be Hive)
 
-    // LightningCash Gold: Hive 1.1-related consensus fields
+    // LightningCash: Hive 1.1-related consensus fields
     int minK;                           // Minimum chainwork scale for Hive blocks (see Hive whitepaper section 5)
     int maxK;                           // Maximum chainwork scale for Hive blocks (see Hive whitepaper section 5)
     int maxK2;                           // Maximum chainwork scale for Hive blocks (see Hive whitepaper section 5)

@@ -37,16 +37,16 @@
 #include <queue>
 #include <utility>
 
-#include <wallet/wallet.h>  // LightningCash Gold: Hive
-#include <rpc/server.h>     // LightningCash Gold: Hive
-#include <base58.h>         // LightningCash Gold: Hive
-#include <sync.h>           // LightningCash Gold: Hive
+#include <wallet/wallet.h>  // LightningCash: Hive
+#include <rpc/server.h>     // LightningCash: Hive
+#include <base58.h>         // LightningCash: Hive
+#include <sync.h>           // LightningCash: Hive
 
 static CCriticalSection cs_solution_vars;
-std::atomic<bool> solutionFound;            // LightningCash Gold: Hive: Mining optimisations: Thread-safe atomic flag to signal solution found (saves a slow mutex)
-std::atomic<bool> earlyAbort;               // LightningCash Gold: Hive: Mining optimisations: Thread-safe atomic flag to signal early abort needed
-CBeeRange solvingRange;                     // LightningCash Gold: Hive: Mining optimisations: The solving range (protected by mutex)
-uint32_t solvingBee;                        // LightningCash Gold: Hive: Mining optimisations: The solving bee (protected by mutex)
+std::atomic<bool> solutionFound;            // LightningCash: Hive: Mining optimisations: Thread-safe atomic flag to signal solution found (saves a slow mutex)
+std::atomic<bool> earlyAbort;               // LightningCash: Hive: Mining optimisations: Thread-safe atomic flag to signal early abort needed
+CBeeRange solvingRange;                     // LightningCash: Hive: Mining optimisations: The solving range (protected by mutex)
+uint32_t solvingBee;                        // LightningCash: Hive: Mining optimisations: The solving bee (protected by mutex)
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -72,7 +72,7 @@ int64_t UpdateTime(CBlockHeader* pblock, const Consensus::Params& consensusParam
         pblock->nTime = nNewTime;
 
     // Updating time can change work required on testnet:
-    // LightningCash Gold: Hive: Don't do this
+    // LightningCash: Hive: Don't do this
     /*
     if (consensusParams.fPowAllowMinDifficultyBlocks)
         pblock->nBits = GetNextWorkRequired(pindexPrev, pblock, consensusParams);
@@ -121,14 +121,14 @@ void BlockAssembler::resetBlock()
     nBlockWeight = 4000;
     nBlockSigOpsCost = 400;
     fIncludeWitness = false;
-    fIncludeBCTs = true;    // LightningCash Gold: Hive
+    fIncludeBCTs = true;    // LightningCash: Hive
 
     // These counters do not include coinbase tx
     nBlockTx = 0;
     nFees = 0;
 }
 
-// LightningCash Gold: Hive: If hiveProofScript is passed, create a Hive block instead of a PoW block
+// LightningCash: Hive: If hiveProofScript is passed, create a Hive block instead of a PoW block
 std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bool fMineWitnessTx, const CScript* hiveProofScript)
 {
     int64_t nTimeStart = GetTimeMicros();
@@ -150,7 +150,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     CBlockIndex* pindexPrev = chainActive.Tip();
     assert(pindexPrev != nullptr);
 
-    // LightningCash Gold: Hive: Make sure Hive is enabled if a Hive block is requested
+    // LightningCash: Hive: Make sure Hive is enabled if a Hive block is requested
     if (hiveProofScript && !IsHiveEnabled(pindexPrev, chainparams.GetConsensus()))
         throw std::runtime_error(
             "Error: The Hive is not yet enabled on the network"
@@ -181,7 +181,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
 
     int nPackagesSelected = 0;
     int nDescendantsUpdated = 0;
-    // LightningCash Gold: Don't include BCTs in hivemined blocks
+    // LightningCash: Don't include BCTs in hivemined blocks
     if (hiveProofScript)
         fIncludeBCTs = false;
 
@@ -192,7 +192,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     nLastBlockTx = nBlockTx;
     nLastBlockWeight = nBlockWeight;
 
-    // LightningCash Gold: Hive: Create appropriate coinbase tx for pow or Hive block
+    // LightningCash: Hive: Create appropriate coinbase tx for pow or Hive block
     if (hiveProofScript) {
         CMutableTransaction coinbaseTx;
 
@@ -233,13 +233,13 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     pblock->hashPrevBlock  = pindexPrev->GetBlockHash();
     UpdateTime(pblock, chainparams.GetConsensus(), pindexPrev);
 
-    // LightningCash Gold: Hive: Choose correct nBits depending on whether a Hive block is requested
+    // LightningCash: Hive: Choose correct nBits depending on whether a Hive block is requested
     if (hiveProofScript)
         pblock->nBits = GetNextHiveWorkRequired(pindexPrev, chainparams.GetConsensus());
     else
         pblock->nBits = GetNextWorkRequired(pindexPrev, pblock, chainparams.GetConsensus()); // OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 
-    // LightningCash Gold: Hive: Set nonce marker for hivemined blocks
+    // LightningCash: Hive: Set nonce marker for hivemined blocks
     pblock->nNonce = hiveProofScript ? chainparams.GetConsensus().hiveNonceMarker : 0;
     pblocktemplate->vTxSigOpsCost[0] = WITNESS_SCALE_FACTOR * GetLegacySigOpCount(*pblock->vtx[0]);
 
@@ -284,14 +284,14 @@ bool BlockAssembler::TestPackage(uint64_t packageSize, int64_t packageSigOpsCost
 //   segwit activation)
 bool BlockAssembler::TestPackageTransactions(const CTxMemPool::setEntries& package)
 {
-    const Consensus::Params& consensusParams = Params().GetConsensus(); // LightningCash Gold: Hive
+    const Consensus::Params& consensusParams = Params().GetConsensus(); // LightningCash: Hive
 
     for (const CTxMemPool::txiter it : package) {
         if (!IsFinalTx(it->GetTx(), nHeight, nLockTimeCutoff))
             return false;
         if (!fIncludeWitness && it->GetTx().HasWitness())
             return false;
-        // LightningCash Gold: Inhibit BCTs if required
+        // LightningCash: Inhibit BCTs if required
         if (!fIncludeBCTs && it->GetTx().IsBCT(consensusParams, GetScriptForDestination(DecodeDestination(consensusParams.beeCreationAddress))))
             return false;
     }
@@ -535,7 +535,7 @@ void IncrementExtraNonce(CBlock* pblock, const CBlockIndex* pindexPrev, unsigned
     pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
 }
 
-// LightningCash Gold: Hive: Bee management thread
+// LightningCash: Hive: Bee management thread
 void BeeKeeper(const CChainParams& chainparams) {
     const Consensus::Params& consensusParams = chainparams.GetConsensus();
 
@@ -550,7 +550,7 @@ void BeeKeeper(const CChainParams& chainparams) {
 
     try {
         while (true) {
-             // LightningCash-Gold: Hive: Mining optimisations: Parameterised sleep time
+             // LightningCash: Hive: Mining optimisations: Parameterised sleep time
             int sleepTime = std::max((int64_t) 1, gArgs.GetArg("-hivecheckdelay", DEFAULT_HIVE_CHECK_DELAY));
             MilliSleep(sleepTime);
 
@@ -575,7 +575,7 @@ void BeeKeeper(const CChainParams& chainparams) {
     }
 }
 
-// LightningCash-Gold: Hive: Mining optimisations: Thread to signal abort on new block
+// LightningCash: Hive: Mining optimisations: Thread to signal abort on new block
 void AbortWatchThread(int height) {
     // Loop until any exit condition
     while (true) {
@@ -602,7 +602,7 @@ void AbortWatchThread(int height) {
     }
 }
 
-// LightningCash-Gold: Hive: Mining optimisations: Thread to check a single bin
+// LightningCash: Hive: Mining optimisations: Thread to check a single bin
 void CheckBin(int threadID, std::vector<CBeeRange> bin, std::string deterministicRandString, arith_uint256 beeHashTarget) {
     // Iterate over ranges in this bin
     int checkCount = 0;
@@ -636,7 +636,7 @@ void CheckBin(int threadID, std::vector<CBeeRange> bin, std::string deterministi
 }
 
 
-// LightningCash Gold: Hive: Attempt to mint the next block
+// LightningCash: Hive: Attempt to mint the next block
 bool BusyBees(const Consensus::Params& consensusParams, int height) {
     bool verbose = LogAcceptCategory(BCLog::HIVE);
 
@@ -665,7 +665,7 @@ bool BusyBees(const Consensus::Params& consensusParams, int height) {
         //LogPrintf("BusyBees: Skipping hive check (last block was hive mined)\n");
         return false;*/
 
-    // LightningCash-Gold: Hive 1.1: Check that there aren't too many consecutive Hive blocks
+    // LightningCash: Hive 1.1: Check that there aren't too many consecutive Hive blocks
     if (IsHive12Enabled(pindexPrev->nHeight)) {
         int hiveBlocksAtTip = 0;
         CBlockIndex* pindexTemp = pindexPrev;
@@ -957,7 +957,7 @@ bool BusyBees(const Consensus::Params& consensusParams, int height) {
 
 //////////////////////////////////////////////////////////////////////////////
 //
-// Internal YespowerLTNCG Miner
+// Internal YespowerLNC Miner
 //
 
 // tracks basic info about each miner instance
@@ -1049,7 +1049,7 @@ bool static ScanHash (MinerInfo* miner, const CBlockHeader *pblock, uint32_t& nN
         // If nothing found after trying for a while, return -1
         if ((nNonce & 0xfff) == 0 || miner->fKill > 0) {
             if (miner->fKill > 0)
-                LogPrintf("LightningCash-Gold miner kill flag > 0\n");
+                LogPrintf("LightningCash miner kill flag > 0\n");
             return false;
         }
     }
@@ -1066,7 +1066,7 @@ static bool ProcessBlockFound(const CBlock* pblock, const CChainParams& chainpar
     {
         LOCK(cs_main);
         if (pblock->hashPrevBlock != chainActive.Tip()->GetBlockHash()) {
-            LogPrintf ("LightningCash-Gold Miner: generated block is stale\n");
+            LogPrintf ("LightningCash Miner: generated block is stale\n");
             return false;
         }
     }
@@ -1075,18 +1075,18 @@ static bool ProcessBlockFound(const CBlock* pblock, const CChainParams& chainpar
     bool result = true;
     std::shared_ptr<const CBlock> ptr (new CBlock (*pblock));
     if (!ProcessNewBlock (chainparams, ptr, true, nullptr)) {
-        LogPrintf ("LightningCash-Gold Miner: ProcessNewBlock, block not accepted\n");
+        LogPrintf ("LightningCash Miner: ProcessNewBlock, block not accepted\n");
         result =  false;
     }
 
     return result;
 }
 
-void static LTNCGMiner(MinerInfo* miner, const CChainParams& chainparams)
+void static LNCMiner(MinerInfo* miner, const CChainParams& chainparams)
 {
-    LogPrintf("LightningCash-Gold Miner started\n");
+    LogPrintf("LightningCash Miner started\n");
     SetThreadPriority (THREAD_PRIORITY_LOWEST);
-    RenameThread ("ltncg-miner");
+    RenameThread ("lnc-miner");
 
     unsigned int nExtraNonce = 0;
 
@@ -1143,8 +1143,8 @@ void static LTNCGMiner(MinerInfo* miner, const CChainParams& chainparams)
             }
             catch (const std::runtime_error &e)
             {
-                LogPrintf("LightningCash-Gold Miner runtime error: %s\n", e.what());
-                LogPrintf("LightningCash-Gold Miner: Keypool ran out, please call keypoolrefill before restarting the mining thread\n");
+                LogPrintf("LightningCash Miner runtime error: %s\n", e.what());
+                LogPrintf("LightningCash Miner: Keypool ran out, please call keypoolrefill before restarting the mining thread\n");
                 MilliSleep(4*1000);
                 vpwallets[0]->GetScriptForMining (coinbaseScript);
                 continue;
@@ -1153,7 +1153,7 @@ void static LTNCGMiner(MinerInfo* miner, const CChainParams& chainparams)
             CBlock *pblock = &pblocktemplate->block;
             IncrementExtraNonce(pblock, pindexPrev, nExtraNonce);
 
-            LogPrintf("Running LightningCash-Gold Miner with %u transactions in block (%u bytes)\n", pblock->vtx.size(),
+            LogPrintf("Running LightningCash Miner with %u transactions in block (%u bytes)\n", pblock->vtx.size(),
                 ::GetSerializeSize(*pblock, SER_NETWORK, PROTOCOL_VERSION));
 
             //
@@ -1174,7 +1174,7 @@ void static LTNCGMiner(MinerInfo* miner, const CChainParams& chainparams)
                     {
                         // Found a solution
                         pblock->nNonce = nNonce;
-                        LogPrintf("LightningCash-Gold Miner: proof-of-work found  \n  hash: %s  \ntarget: %s\n",
+                        LogPrintf("LightningCash Miner: proof-of-work found  \n  hash: %s  \ntarget: %s\n",
                                   hash.GetHex(), hashTarget.GetHex());
                         assert(hash == pblock->GetHashYespower());
                         SetThreadPriority (THREAD_PRIORITY_NORMAL);
@@ -1219,17 +1219,17 @@ void static LTNCGMiner(MinerInfo* miner, const CChainParams& chainparams)
     }
     catch (const boost::thread_interrupted&)
     {
-        LogPrintf("LightningCash-Gold Miner terminated\n");
+        LogPrintf("LightningCash Miner terminated\n");
         throw;
     }
     catch (const std::runtime_error &e)
     {
-        LogPrintf("LightningCash-Gold Miner runtime error: %s\n", e.what());
+        LogPrintf("LightningCash Miner runtime error: %s\n", e.what());
         return;
     }
 }
 
-void GenerateLTNCG(bool fGenerate, int nThreads, const CChainParams& chainparams)
+void GenerateLNC(bool fGenerate, int nThreads, const CChainParams& chainparams)
 {
     static boost::thread_group* minerThreads = nullptr;
     
@@ -1262,7 +1262,7 @@ void GenerateLTNCG(bool fGenerate, int nThreads, const CChainParams& chainparams
     nMinerStartTime = GetTimeMillis();
     minerThreads = new boost::thread_group();
     for (int i = 0; i < nThreads; i++)
-        minerThreads->create_thread(boost::bind(&LTNCGMiner, vMiners[i], boost::cref(chainparams)));
+        minerThreads->create_thread(boost::bind(&LNCMiner, vMiners[i], boost::cref(chainparams)));
 
     fMinerRunning = 1;
 }

@@ -1,24 +1,24 @@
 dnl require autoconf 2.60 (AS_ECHO/AS_ECHO_N)
 AC_PREREQ([2.60])
-define(_CLIENT_VERSION_MAJOR, 7)
+define(_CLIENT_VERSION_MAJOR, 8)
 define(_CLIENT_VERSION_MINOR, 0)
 define(_CLIENT_VERSION_REVISION, 0)
 define(_CLIENT_VERSION_BUILD, 0)
 define(_CLIENT_VERSION_IS_RELEASE, true)
-define(_COPYRIGHT_YEAR, 2019)
+define(_COPYRIGHT_YEAR, 2020)
 define(_COPYRIGHT_HOLDERS,[The %s developers])
 define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[LitecoinCash Core]])
-define(_COPYRIGHT_HOLDERS_SUBSTITUTION2,[[LightningCash-Gold Core]])
-AC_INIT([LightningCash-Gold Core],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[https://github.com/lightningcashgold/ltncg/issues],[ltncg],[https://www.ltncg.com/])
+define(_COPYRIGHT_HOLDERS_SUBSTITUTION2,[[LightningCash Core]])
+AC_INIT([LightningCash Core],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[https://github.com/lightningcash/lnc/issues],[lnc],[https://www.lnc.com/])
 AC_CONFIG_SRCDIR([src/validation.cpp])
 AC_CONFIG_HEADERS([src/config/bitcoin-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([build-aux/m4])
 
-BITCOIN_DAEMON_NAME=lightningcash_goldd
-BITCOIN_GUI_NAME=lightningcash_gold-qt
-BITCOIN_CLI_NAME=lightningcash_gold-cli
-BITCOIN_TX_NAME=lightningcash_gold-tx
+BITCOIN_DAEMON_NAME=lightningcashd
+BITCOIN_GUI_NAME=lightningcash-qt
+BITCOIN_CLI_NAME=lightningcash-cli
+BITCOIN_TX_NAME=lightningcash-tx
 
 dnl Unless the user specified ARFLAGS, force it to be cr
 AC_ARG_VAR(ARFLAGS, [Flags for the archiver, defaults to <cr> if not set])
@@ -300,7 +300,7 @@ CPPFLAGS="$CPPFLAGS -DHAVE_BUILD_INFO -D__STDC_FORMAT_MACROS"
 
 AC_ARG_WITH([utils],
   [AS_HELP_STRING([--with-utils],
-  [build lightningcash_gold-cli bitcoin-tx (default=yes)])],
+  [build lightningcash-cli bitcoin-tx (default=yes)])],
   [build_bitcoin_utils=$withval],
   [build_bitcoin_utils=yes])
 
@@ -312,7 +312,7 @@ AC_ARG_WITH([libs],
 
 AC_ARG_WITH([daemon],
   [AS_HELP_STRING([--with-daemon],
-  [build lightningcash_goldd daemon (default=yes)])],
+  [build lightningcashd daemon (default=yes)])],
   [build_bitcoind=$withval],
   [build_bitcoind=yes])
 
@@ -1067,11 +1067,11 @@ AC_SUBST(UNIVALUE_LIBS)
 
 BITCOIN_QT_PATH_PROGS([PROTOC], [protoc],$protoc_bin_path)
 
-AC_MSG_CHECKING([whether to build lightningcash_goldd])
+AC_MSG_CHECKING([whether to build lightningcashd])
 AM_CONDITIONAL([BUILD_BITCOIND], [test x$build_bitcoind = xyes])
 AC_MSG_RESULT($build_bitcoind)
 
-AC_MSG_CHECKING([whether to build utils (lightningcash_gold-cli lightningcash_gold-tx)])
+AC_MSG_CHECKING([whether to build utils (lightningcash-cli lightningcash-tx)])
 AM_CONDITIONAL([BUILD_BITCOIN_UTILS], [test x$build_bitcoin_utils = xyes])
 AC_MSG_RESULT($build_bitcoin_utils)
 

@@ -43,7 +43,7 @@ public Q_SLOTS:
 
 Q_SIGNALS:
     void transactionClicked(const QModelIndex &index);
-    void beeButtonClicked();                    // LightningCash Gold: Hive
+    void beeButtonClicked();                    // LightningCash: Hive
     void outOfSyncWarningClicked();
 
 private:
@@ -56,7 +56,7 @@ private:
     CAmount currentWatchOnlyBalance;
     CAmount currentWatchUnconfBalance;
     CAmount currentWatchImmatureBalance;
-    CAmount cost, rewardsPaid, profit;          // LightningCash Gold: Hive
+    CAmount cost, rewardsPaid, profit;          // LightningCash: Hive
 
     TxViewDelegate *txdelegate;
     std::unique_ptr<TransactionFilterProxy> filter;
@@ -67,8 +67,8 @@ private Q_SLOTS:
     void updateAlerts(const QString &warnings);
     void updateWatchOnlyLabels(bool showWatchOnly);
     void handleOutOfSyncWarningClicks();
-    void on_beeButton_clicked();                // LightningCash Gold: Hive: Bee button handler
-    void updateHiveSummary();                   // LightningCash Gold: Hive: Update hive summary
+    void on_beeButton_clicked();                // LightningCash: Hive: Bee button handler
+    void updateHiveSummary();                   // LightningCash: Hive: Update hive summary
 };
 
 #endif // BITCOIN_QT_OVERVIEWPAGE_H

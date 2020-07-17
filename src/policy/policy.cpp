@@ -14,8 +14,8 @@
 #include <util.h>
 #include <utilstrencodings.h>
 
-#include <chainparams.h>    // LightningCash Gold: Hive
-#include <base58.h>    // LightningCash Gold: Hive
+#include <chainparams.h>    // LightningCash: Hive
+#include <base58.h>    // LightningCash: Hive
 
 CAmount GetDustThreshold(const CTxOut& txout, const CFeeRate& dustRelayFeeIn)
 {
@@ -120,12 +120,12 @@ bool IsStandardTx(const CTransaction& tx, std::string& reason, const bool witnes
     unsigned int nDataOut = 0;
     txnouttype whichType;
 
-    const Consensus::Params& consensusParams = Params().GetConsensus();     // LightningCash Gold: Hive
-    CScript scriptPubKeyBCF = GetScriptForDestination(DecodeDestination(consensusParams.beeCreationAddress));   // LightningCash Gold: Hive
+    const Consensus::Params& consensusParams = Params().GetConsensus();     // LightningCash: Hive
+    CScript scriptPubKeyBCF = GetScriptForDestination(DecodeDestination(consensusParams.beeCreationAddress));   // LightningCash: Hive
 
     for (const CTxOut& txout : tx.vout) {
-        if (CScript::IsBCTScript(txout.scriptPubKey, scriptPubKeyBCF))      // LightningCash Gold: Hive
-            return true;                                                    // LightningCash Gold: Hive
+        if (CScript::IsBCTScript(txout.scriptPubKey, scriptPubKeyBCF))      // LightningCash: Hive
+            return true;                                                    // LightningCash: Hive
 
         if (!::IsStandard(txout.scriptPubKey, whichType, witnessEnabled)) {
             reason = "scriptpubkey";

@@ -82,8 +82,8 @@
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
 
-const char * const BITCOIN_CONF_FILENAME = "lightningcash_gold.conf";
-const char * const BITCOIN_PID_FILENAME = "lightningcash_goldd.pid";
+const char * const BITCOIN_CONF_FILENAME = "lightningcash.conf";
+const char * const BITCOIN_PID_FILENAME = "lightningcashd.pid";
 const char * const DEFAULT_DEBUGLOGFILE = "debug.log";
 
 ArgsManager gArgs;
@@ -558,7 +558,7 @@ static std::string FormatException(const std::exception* pex, const char* pszThr
     char pszModule[MAX_PATH] = "";
     GetModuleFileNameA(nullptr, pszModule, sizeof(pszModule));
 #else
-    const char* pszModule = "lightningcash_gold";
+    const char* pszModule = "lightningcash";
 #endif
     if (pex)
         return strprintf(
@@ -583,7 +583,7 @@ fs::path GetDefaultDataDir()
     // Unix: ~/.bitcoin
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "LightningCash Gold";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "LightningCash";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -593,10 +593,10 @@ fs::path GetDefaultDataDir()
         pathRet = fs::path(pszHome);
 #ifdef MAC_OSX
     // Mac
-    return pathRet / "Library/Application Support/LightningCash Gold";
+    return pathRet / "Library/Application Support/LightningCash";
 #else
     // Unix
-    return pathRet / ".lightningcash_gold";
+    return pathRet / ".lightningcash";
 #endif
 #endif
 }
@@ -934,7 +934,7 @@ bool SetupNetworking()
     return true;
 }
 
-// LightningCash-Gold: Hive: Mining Optimisations: Return number of virt cores
+// LightningCash: Hive: Mining Optimisations: Return number of virt cores
 int GetNumVirtualCores() {
     return boost::thread::hardware_concurrency();
 }
@@ -950,7 +950,7 @@ int GetNumCores()
 
 std::string CopyrightHolders(const std::string& strPrefix)
 {
-    // LightningCash-Gold: Add another row
+    // LightningCash: Add another row
     std::string strFirstPrefix2 = strPrefix;    
     strFirstPrefix2.replace(strFirstPrefix2.find("2011-"), sizeof("2011-")-1, "2019-");        
     std::string strCopyrightHolders2 = strFirstPrefix2 + strprintf(_(COPYRIGHT_HOLDERS), _(COPYRIGHT_HOLDERS_SUBSTITUTION2));

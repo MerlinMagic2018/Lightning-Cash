@@ -10,16 +10,16 @@
 #include <primitives/block.h>
 #include <uint256.h>
 #include <util.h>
-#include <core_io.h>            // LightningCash Gold: Hive
-#include <script/standard.h>    // LightningCash Gold: Hive
-#include <base58.h>             // LightningCash Gold: Hive
-#include <pubkey.h>             // LightningCash Gold: Hive
-#include <hash.h>               // LightningCash Gold: Hive
-#include <sync.h>               // LightningCash Gold: Hive
-#include <validation.h>         // LightningCash Gold: Hive
-#include <utilstrencodings.h>   // LightningCash Gold: Hive
+#include <core_io.h>            // LightningCash: Hive
+#include <script/standard.h>    // LightningCash: Hive
+#include <base58.h>             // LightningCash: Hive
+#include <pubkey.h>             // LightningCash: Hive
+#include <hash.h>               // LightningCash: Hive
+#include <sync.h>               // LightningCash: Hive
+#include <validation.h>         // LightningCash: Hive
+#include <utilstrencodings.h>   // LightningCash: Hive
 
-BeePopGraphPoint beePopGraph[1024*40];       // LightningCash Gold: Hive
+BeePopGraphPoint beePopGraph[1024*40];       // LightningCash: Hive
 
 CAmount totalMatureBees;
 CBlockIndex* pindexRem;
@@ -50,18 +50,18 @@ int rmatureBees;
 int rmatureBCTs;
 int bon;
 
-// LightningCash Gold: DarkGravity V3 (https://github.com/dashpay/dash/blob/master/src/pow.cpp#L82)
+// LightningCash: DarkGravity V3 (https://github.com/dashpay/dash/blob/master/src/pow.cpp#L82)
 // By Evan Duffield <evan@dash.org>
 unsigned int DarkGravityWave(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
 {
     const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);   // LightningCash: Note we use the Scrypt pow limit here!
     int64_t nPastBlocks = 24;
 
-    // LightningCash Gold: Allow minimum difficulty blocks if we haven't seen a block for ostensibly 10 blocks worth of time
+    // LightningCash: Allow minimum difficulty blocks if we haven't seen a block for ostensibly 10 blocks worth of time
     if (params.fPowAllowMinDifficultyBlocks && pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing * 10)
         return bnPowLimit.GetCompact();
 
-    // LightningCash Gold: Make sure we have at least (nPastBlocks + 1) blocks since the fork, otherwise just return powLimitSHA
+    // LightningCash: Make sure we have at least (nPastBlocks + 1) blocks since the fork, otherwise just return powLimitSHA
     if (!pindexLast || pindexLast->nHeight - params.lastScryptBlock < nPastBlocks)
         return bnPowLimit.GetCompact();
 
@@ -70,7 +70,7 @@ unsigned int DarkGravityWave(const CBlockIndex* pindexLast, const CBlockHeader *
     //int watata = pindex->nHeight;
     //LogPrintf(" pindex->nHeight = %i\n", watata);
     for (unsigned int nCountBlocks = 1; nCountBlocks <= nPastBlocks; nCountBlocks++) {
-        // LightningCash Gold: Hive: Skip over Hivemined blocks; we only want to consider PoW blocks
+        // LightningCash: Hive: Skip over Hivemined blocks; we only want to consider PoW blocks
         //LogPrintf("nCountBlocks = %i \n", nCountBlocks);
         while (pindex->GetBlockHeader().IsHiveMined(params)) {
             //LogPrintf("DarkGravityWave: Skipping hivemined block at %i\n", pindex->nHeight);
@@ -107,7 +107,7 @@ unsigned int DarkGravityWave(const CBlockIndex* pindexLast, const CBlockHeader *
     bnNew *= nActualTimespan;
     bnNew /= nTargetTimespan;
 
-    // LightningCash Gold : Limit "High Hash" Attacks... Progressively lower mining difficulty if too high...
+    // LightningCash : Limit "High Hash" Attacks... Progressively lower mining difficulty if too high...
     if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing * 30){
 	//LogPrintf("DarkGravityWave: 30 minutes without a block !! Resetting difficulty ! OLD Target = %s\n", bnNew.ToString());
 	bnNew = bnPowLimit;
@@ -151,18 +151,18 @@ unsigned int DarkGravityWave(const CBlockIndex* pindexLast, const CBlockHeader *
     return bnNew.GetCompact();
 }
 
-// LightningCash Gold: DarkGravity V3 (https://github.com/dashpay/dash/blob/master/src/pow.cpp#L82)
+// LightningCash: DarkGravity V3 (https://github.com/dashpay/dash/blob/master/src/pow.cpp#L82)
 // By Evan Duffield <evan@dash.org>
 unsigned int DarkGravityWave2(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
 {
     const arith_uint256 bnPowLimit2 = UintToArith256(params.powLimit2);   // LightningCash: Note we use the Scrypt pow limit here!
     int64_t nPastBlocks = 24;
 
-    // LightningCash Gold: Allow minimum difficulty blocks if we haven't seen a block for ostensibly 10 blocks worth of time
+    // LightningCash: Allow minimum difficulty blocks if we haven't seen a block for ostensibly 10 blocks worth of time
     if (params.fPowAllowMinDifficultyBlocks && pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing2 * 10)
         return bnPowLimit2.GetCompact();
 
-    // LightningCash-Gold: Hive 1.1: Skip over Hivemined blocks at tip
+    // LightningCash: Hive 1.1: Skip over Hivemined blocks at tip
     if (IsHive12Enabled(pindexLast->nHeight)) {
         while (pindexLast->GetBlockHeader().IsHiveMined(params)) {
             //LogPrintf("DarkGravityWave: Skipping hivemined block at %i\n", pindex->nHeight);
@@ -171,7 +171,7 @@ unsigned int DarkGravityWave2(const CBlockIndex* pindexLast, const CBlockHeader 
         }
     }
 
-    // LightningCash Gold: Make sure we have at least (nPastBlocks + 1) blocks since the fork, otherwise just return powLimitSHA
+    // LightningCash: Make sure we have at least (nPastBlocks + 1) blocks since the fork, otherwise just return powLimitSHA
     if (!pindexLast || pindexLast->nHeight - params.lastScryptBlock < nPastBlocks)
         return bnPowLimit2.GetCompact();
 
@@ -180,7 +180,7 @@ unsigned int DarkGravityWave2(const CBlockIndex* pindexLast, const CBlockHeader 
     //int watata = pindex->nHeight;
     //LogPrintf(" pindex->nHeight = %i\n", watata);
     for (unsigned int nCountBlocks = 1; nCountBlocks <= nPastBlocks; nCountBlocks++) {
-        // LightningCash Gold: Hive: Skip over Hivemined blocks; we only want to consider PoW blocks
+        // LightningCash: Hive: Skip over Hivemined blocks; we only want to consider PoW blocks
         //LogPrintf("nCountBlocks = %i \n", nCountBlocks);
         while (pindex->GetBlockHeader().IsHiveMined(params)) {
             //LogPrintf("DarkGravityWave: Skipping hivemined block at %i\n", pindex->nHeight);
@@ -217,7 +217,7 @@ unsigned int DarkGravityWave2(const CBlockIndex* pindexLast, const CBlockHeader 
     bnNew *= nActualTimespan;
     bnNew /= nTargetTimespan;
 
-    // LightningCash Gold : Limit "High Hash" Attacks... Progressively lower mining difficulty if too high...
+    // LightningCash : Limit "High Hash" Attacks... Progressively lower mining difficulty if too high...
     if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing2 * 300){
 	//LogPrintf("DarkGravityWave: 30 minutes without a block !! Resetting difficulty ! OLD Target = %s\n", bnNew.ToString());
 	bnNew = bnPowLimit2;
@@ -289,7 +289,7 @@ unsigned int GetNextWorkRequiredLTC(const CBlockIndex* pindexLast, const CBlockH
     }
 
     // Go back by what we want to be 14 days worth of blocks
-    // LightningCash Gold: This fixes an issue where a 51% attack can change difficulty at will.
+    // LightningCash: This fixes an issue where a 51% attack can change difficulty at will.
     // Go back the full period unless it's the first retarget after genesis. Code courtesy of Art Forz
     int blockstogoback = params.DifficultyAdjustmentInterval()-1;
     if ((pindexLast->nHeight+1) != params.DifficultyAdjustmentInterval())
@@ -344,7 +344,7 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nF
     arith_uint256 bnOld;
     bnNew.SetCompact(pindexLast->nBits);
     bnOld = bnNew;
-    // LightningCash Gold: intermediate uint256 can overflow by 1 bit
+    // LightningCash: intermediate uint256 can overflow by 1 bit
     const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);
     bool fShift = bnNew.bits() > bnPowLimit.bits() - 1;
     if (fShift)
@@ -398,7 +398,7 @@ bool CheckProofOfWork2(uint256 hash, unsigned int nBits, const Consensus::Params
     return true;
 }
 
-// LightningCash-Gold: Hive 1.2: SMA Hive Difficulty Adjust
+// LightningCash: Hive 1.2: SMA Hive Difficulty Adjust
 unsigned int GetNextHive12WorkRequired(const CBlockIndex* pindexLast, const Consensus::Params& params) {
     const arith_uint256 bnPowLimit = UintToArith256(params.powLimitHive2);
 
@@ -439,9 +439,9 @@ unsigned int GetNextHive12WorkRequired(const CBlockIndex* pindexLast, const Cons
 
 
 
-// LightningCash Gold: Hive: Get the current Bee Hash Target
+// LightningCash: Hive: Get the current Bee Hash Target
 unsigned int GetNextHiveWorkRequired(const CBlockIndex* pindexLast, const Consensus::Params& params) {
-    // LightningCash-Gold: Hive 1.1: Use SMA diff adjust
+    // LightningCash: Hive 1.1: Use SMA diff adjust
     if (IsHive12Enabled(pindexLast->nHeight))
         return GetNextHive12WorkRequired(pindexLast, params);
 
@@ -499,7 +499,7 @@ unsigned int GetNextHiveWorkRequired(const CBlockIndex* pindexLast, const Consen
     return beeHashTarget.GetCompact();
 }
 
-// LightningCash Gold: Hive: Get count of all live and gestating BCTs on the network
+// LightningCash: Hive: Get count of all live and gestating BCTs on the network
 bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, int& matureBCTs, CAmount& potentialLifespanRewards, const Consensus::Params& consensusParams, bool recalcGraph) {
     int totalBeeLifespan;
     
@@ -615,7 +615,7 @@ bool GetNetworkHiveInfo(int& immatureBees, int& immatureBCTs, int& matureBees, i
     return true;
 }
 
-// LightningCash Gold: Hive: Get count of all live and gestating BCTs on the network
+// LightningCash: Hive: Get count of all live and gestating BCTs on the network
 bool GetNetworkHiveInfo2(int& immatureBees, int& immatureBCTs, int& matureBees, int& matureBCTs, CAmount& potentialLifespanRewards, const Consensus::Params& consensusParams, bool recalcGraph) {
     int totalBeeLifespan = consensusParams.beeLifespanBlocks + consensusParams.beeGestationBlocks;
     int beesDying = 0;
@@ -2291,7 +2291,7 @@ LogPrintf("potentialLifespanRewards = %i\n", potentialLifespanRewards);
 
 
 
-// LightningCash Gold: Hive: Check the hive proof for given block
+// LightningCash: Hive: Check the hive proof for given block
 bool CheckHiveProof(const CBlock* pblock, const Consensus::Params& consensusParams) {
     bool verbose = LogAcceptCategory(BCLog::HIVE);
 
@@ -2325,7 +2325,7 @@ bool CheckHiveProof(const CBlock* pblock, const Consensus::Params& consensusPara
         return false;
     }
 
- /*   // LightningCash-Gold: Hive 1.2: Check that there aren't too many consecutive Hive blocks
+ /*   // LightningCash: Hive 1.2: Check that there aren't too many consecutive Hive blocks
     if (IsHive12Enabled(pindexPrev->nHeight)) {
         int hiveBlocksAtTip = 0;
         CBlockIndex* pindexTemp = pindexPrev;
@@ -2619,7 +2619,7 @@ bool CheckHiveProof(const CBlock* pblock, const Consensus::Params& consensusPara
     return true;
 }
 
-// LightningCash Gold: Hive: Check the hive proof for given block
+// LightningCash: Hive: Check the hive proof for given block
 bool CheckHiveProof2(const CBlock* pblock, const Consensus::Params& consensusParams) {
     bool verbose = LogAcceptCategory(BCLog::HIVE);
 
@@ -2948,7 +2948,7 @@ bool CheckHiveProof2(const CBlock* pblock, const Consensus::Params& consensusPar
     return true;
 }
 
-// LightningCash Gold: Hive: Check the hive proof for given block
+// LightningCash: Hive: Check the hive proof for given block
 bool CheckHiveProof3(const CBlock* pblock, const Consensus::Params& consensusParams) {
     bool verbose = LogAcceptCategory(BCLog::HIVE);
 
@@ -2982,7 +2982,7 @@ bool CheckHiveProof3(const CBlock* pblock, const Consensus::Params& consensusPar
 //        return false;
 //    }
 
-// LightningCash-Gold: Hive 1.1: Check that there aren't too many consecutive Hive blocks
+// LightningCash: Hive 1.1: Check that there aren't too many consecutive Hive blocks
     if (IsHive12Enabled(pindexPrev->nHeight)) {
         int hiveBlocksAtTip = 0;
         CBlockIndex* pindexTemp = pindexPrev;

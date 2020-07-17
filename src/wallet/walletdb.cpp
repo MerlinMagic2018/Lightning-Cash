@@ -20,7 +20,7 @@
 
 #include <boost/thread.hpp>
 
-extern bool fWalletUnlockHiveMiningOnly;   // LightningCash Gold: Hive: Support unlock for hive mining only
+extern bool fWalletUnlockHiveMiningOnly;   // LightningCash: Hive: Support unlock for hive mining only
 
 //
 // CWalletDB

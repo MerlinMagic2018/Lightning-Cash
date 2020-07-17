@@ -10,7 +10,7 @@
 
 #include <support/allocators/secure.h>
 
-#include <wallet/wallet.h>  // LightningCash Gold: Hive
+#include <wallet/wallet.h>  // LightningCash: Hive
 
 #include <map>
 #include <vector>
@@ -23,7 +23,7 @@ class AddressTableModel;
 class OptionsModel;
 class PlatformStyle;
 class RecentRequestsTableModel;
-class HiveTableModel;               // LightningCash Gold: Hive
+class HiveTableModel;               // LightningCash: Hive
 class TransactionTableModel;
 class WalletModelTransaction;
 
@@ -133,7 +133,7 @@ public:
     AddressTableModel *getAddressTableModel();
     TransactionTableModel *getTransactionTableModel();
     RecentRequestsTableModel *getRecentRequestsTableModel();
-    HiveTableModel *getHiveTableModel();    // LightningCash Gold: Hive
+    HiveTableModel *getHiveTableModel();    // LightningCash: Hive
 
     CAmount getBalance(const CCoinControl *coinControl = nullptr) const;
     CAmount getUnconfirmedBalance() const;
@@ -210,9 +210,9 @@ public:
     void loadReceiveRequests(std::vector<std::string>& vReceiveRequests);
     bool saveReceiveRequest(const std::string &sAddress, const int64_t nId, const std::string &sRequest);
 
-    void getBCTs(std::vector<CBeeCreationTransactionInfo>& vBeeCreationTransactions, bool includeDeadBees);     // LightningCash Gold: Hive
-    bool createBees(int beeCount, bool communityContrib, QWidget *parent, double beePopIndex);                  // LightningCash Gold: Hive
-    bool isHiveEnabled();                                                                                       // LightningCash Gold: Hive
+    void getBCTs(std::vector<CBeeCreationTransactionInfo>& vBeeCreationTransactions, bool includeDeadBees);     // LightningCash: Hive
+    bool createBees(int beeCount, bool communityContrib, QWidget *parent, double beePopIndex);                  // LightningCash: Hive
+    bool isHiveEnabled();                                                                                       // LightningCash: Hive
 
     bool transactionCanBeAbandoned(uint256 hash) const;
     bool abandonTransaction(uint256 hash) const;
@@ -240,7 +240,7 @@ private:
     AddressTableModel *addressTableModel;
     TransactionTableModel *transactionTableModel;
     RecentRequestsTableModel *recentRequestsTableModel;
-    HiveTableModel *hiveTableModel; // LightningCash Gold: Hive
+    HiveTableModel *hiveTableModel; // LightningCash: Hive
 
     // Cache some values to be able to detect changes
     CAmount cachedBalance;
@@ -271,7 +271,7 @@ Q_SIGNALS:
     // this means that the unlocking failed or was cancelled.
     void requireUnlock();
 
-	// LightningCash Gold: Hive: Signal emitted when a wallet needs to be unlocked for hive only
+	// LightningCash: Hive: Signal emitted when a wallet needs to be unlocked for hive only
 	void requireUnlockHive();
 
     // Fired when a message should be reported to the user
@@ -286,7 +286,7 @@ Q_SIGNALS:
     // Watch-only address added
     void notifyWatchonlyChanged(bool fHaveWatchonly);
 
-    // LightningCash Gold: Fired when new hive summary available
+    // LightningCash: Fired when new hive summary available
     void newHiveSummaryAvailable();
 
 public Q_SLOTS:

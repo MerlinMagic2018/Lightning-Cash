@@ -47,7 +47,7 @@ unsigned int ParseConfirmTarget(const UniValue& value)
  * or from the last difficulty change if 'lookup' is nonpositive.
  * If 'height' is nonnegative, compute the estimate at the time when a given block was found.
  */
-// LightningCash-Gold: Hive: count hashes with dedicated function, dont use chainwork. GetNumHashes is Hive Aware.
+// LightningCash: Hive: count hashes with dedicated function, dont use chainwork. GetNumHashes is Hive Aware.
 UniValue GetNetworkHashPS(int lookup, int height) {
     CBlockIndex *pb = chainActive.Tip();
 
@@ -60,7 +60,7 @@ UniValue GetNetworkHashPS(int lookup, int height) {
     // If lookup is -1, then use blocks since last difficulty change.
     if (lookup <= 0)
     //    lookup = pb->nHeight % Params().GetConsensus().DifficultyAdjustmentInterval() + 1;
-	lookup = IsHive12Enabled(pb->nHeight) ? 1 : pb->nHeight % Params().GetConsensus().DifficultyAdjustmentInterval() + 1;   // LightningnCash-Gold: Hive 1.1: Taking the opportunity to provide a more sensible default.
+	lookup = IsHive12Enabled(pb->nHeight) ? 1 : pb->nHeight % Params().GetConsensus().DifficultyAdjustmentInterval() + 1;   // LightningCash: Hive 1.1: Taking the opportunity to provide a more sensible default.
 
     // If lookup is larger than chain, then set it to chain length.
     if (lookup > pb->nHeight)
@@ -71,8 +71,8 @@ UniValue GetNetworkHashPS(int lookup, int height) {
     int64_t minTime = pb->GetBlockTime();
     int64_t maxTime = minTime;
 	
-//	const Consensus::Params& consensusParams = Params().GetConsensus();					// Lightning Cash Gold: Hive: Take into account hive blocks
-//	int nHiveBlocks = pb0->GetBlockHeader().IsHiveMined(consensusParams) ? 1 : 0;		// Lightning Cash Gold: Hive: Take into account hive blocks
+//	const Consensus::Params& consensusParams = Params().GetConsensus();					// Lightning Cash: Hive: Take into account hive blocks
+//	int nHiveBlocks = pb0->GetBlockHeader().IsHiveMined(consensusParams) ? 1 : 0;		// Lightning Cash: Hive: Take into account hive blocks
 	arith_uint256 workDiff = GetNumHashes(*pb);
 	
     for (int i = 0; i < lookup; i++) {
@@ -82,8 +82,8 @@ UniValue GetNetworkHashPS(int lookup, int height) {
         int64_t time = pb->GetBlockTime();
         minTime = std::min(time, minTime);
         maxTime = std::max(time, maxTime);
-//		if (pb0->GetBlockHeader().IsHiveMined(consensusParams))	// Lightning Cash Gold: Hive: Take into account hive blocks
-//			nHiveBlocks++; // Lightning Cash Gold: Hive: Take into account hive blocks
+//		if (pb0->GetBlockHeader().IsHiveMined(consensusParams))	// Lightning Cash: Hive: Take into account hive blocks
+//			nHiveBlocks++; // Lightning Cash: Hive: Take into account hive blocks
         workDiff += GetNumHashes(*pb);
     }
 
@@ -98,12 +98,12 @@ UniValue GetNetworkHashPS(int lookup, int height) {
 	// hive blocks have the same chainwork as pow blocks.
 	// If this changes in future, this code should be revisited.
 	
-	// return workDiff.getdouble() / timeDiff;										// Lightning Cash Gold: Hive
-    return workDiff.getdouble() * (1 - nHiveBlocks / (double)lookup) / timeDiff;	// Lightning Cash Gold: Hive: Take into account hive blocks*/
+	// return workDiff.getdouble() / timeDiff;										// Lightning Cash: Hive
+    return workDiff.getdouble() * (1 - nHiveBlocks / (double)lookup) / timeDiff;	// Lightning Cash: Hive: Take into account hive blocks*/
 	return workDiff.getdouble() / timeDiff;
 }
 
-// LightningCash-Gold: Hive: Mining optimisations: Set hive mining params
+// LightningCash: Hive: Mining optimisations: Set hive mining params
 UniValue sethiveparams(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 3)
@@ -243,7 +243,7 @@ UniValue generatetoaddress(const JSONRPCRequest& request)
             "\nMine blocks immediately to a specified address (before the RPC call returns)\n"
             "\nArguments:\n"
             "1. nblocks      (numeric, required) How many blocks are generated immediately.\n"
-            "2. address      (string, required) The address to send the newly generated lightningcash_gold to.\n"
+            "2. address      (string, required) The address to send the newly generated lightningcash to.\n"
             "3. maxtries     (numeric, optional) How many iterations to try (default = 1000000).\n"
             "\nResult:\n"
             "[ blockhashes ]     (array) hashes of blocks generated\n"
@@ -285,7 +285,7 @@ UniValue getmininginfo(const JSONRPCRequest& request)
             "  \"pooledtx\": n              (numeric) The size of the mempool\n"
             "  \"chain\": \"xxxx\",           (string) current network name as defined in BIP70 (main, test, regtest)\n"
             "  \"warnings\": \"...\"          (string) any network and blockchain warnings\n"
-            "  \"errors\": \"...\"            (string) DEPRECATED. Same as warnings. Only shown when lightningcash_goldd is started with -deprecatedrpc=getmininginfo\n"
+            "  \"errors\": \"...\"            (string) DEPRECATED. Same as warnings. Only shown when lightningcashd is started with -deprecatedrpc=getmininginfo\n"
             "}\n"
             "\nExamples:\n"
             + HelpExampleCli("getmininginfo", "")
@@ -331,7 +331,7 @@ UniValue setgenerate(const JSONRPCRequest& request)
     int numCpus = -1;
     if (!request.params[1].isNull())
         numCpus = request.params[1].get_int();
-    GenerateLTNCG (request.params[0].get_bool(), numCpus, Params());
+    GenerateLNC (request.params[0].get_bool(), numCpus, Params());
 
     UniValue obj (UniValue::VOBJ);
     obj.push_back (Pair ("enabled", request.params[0].get_bool()));
@@ -554,10 +554,10 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
         throw JSONRPCError(RPC_CLIENT_P2P_DISABLED, "Error: Peer-to-peer functionality missing or disabled");
 
     if (g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0)
-        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "LightningCash Gold is not connected!");
+        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "LightningCash is not connected!");
 
     if (IsInitialBlockDownload())
-        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "LightningCash Gold is downloading blocks...");
+        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "LightningCash is downloading blocks...");
 
     static unsigned int nTransactionsUpdatedLast;
 
@@ -906,7 +906,7 @@ UniValue estimatefee(const JSONRPCRequest& request)
 
     if (!IsDeprecatedRPCEnabled("estimatefee")) {
         throw JSONRPCError(RPC_METHOD_DEPRECATED, "estimatefee is deprecated and will be fully removed in v0.17. "
-            "To use estimatefee in v0.16, restart lightningcash_goldd with -deprecatedrpc=estimatefee.\n"
+            "To use estimatefee in v0.16, restart lightningcashd with -deprecatedrpc=estimatefee.\n"
             "Projects should transition to using estimatesmartfee before upgrading to v0.17");
     }
 
@@ -1103,8 +1103,8 @@ static const CRPCCommand commands[] =
 
     { "hidden",             "estimaterawfee",         &estimaterawfee,         {"conf_target", "threshold"} },
 
-    { "mining",             "sethiveparams",          &sethiveparams,          {"hivecheckdelay", "hivecheckthreads", "hiveearlyout"} },  // LightningCash-Gold: Hive: Mining optimisations: Set hive mining params
-    { "mining",             "gethiveparams",          &gethiveparams,          {} },  // LightningCash-Gold: Hive: Mining optimisations: Get hive mining params
+    { "mining",             "sethiveparams",          &sethiveparams,          {"hivecheckdelay", "hivecheckthreads", "hiveearlyout"} },  // LightningCash: Hive: Mining optimisations: Set hive mining params
+    { "mining",             "gethiveparams",          &gethiveparams,          {} },  // LightningCash: Hive: Mining optimisations: Get hive mining params
 };
 
 void RegisterMiningRPCCommands(CRPCTable &t)

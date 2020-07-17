@@ -1,6 +1,6 @@
 UNIX BUILD NOTES
 ====================
-Some notes on how to build LightningCash-Gold Core in Unix.
+Some notes on how to build LightningCash Core in Unix.
 
 (for OpenBSD specific instructions, see [build-openbsd.md](build-openbsd.md))
 
@@ -55,7 +55,7 @@ Memory Requirements
 --------------------
 
 C++ compilers are memory-hungry. It is recommended to have at least 1.5 GB of
-memory available when compiling LightningCash-Gold Core. On systems with less, gcc can be
+memory available when compiling LightningCash Core. On systems with less, gcc can be
 tuned to conserve memory with additional CXXFLAGS:
 
 
@@ -94,7 +94,7 @@ BerkeleyDB 5.1 or later, which break binary wallet compatibility with the distri
 are based on BerkeleyDB 4.8. If you do not care about wallet compatibility,
 pass `--with-incompatible-bdb` to configure.
 
-See the section "Disable-wallet mode" to build LightningCash-Gold Core without wallet.
+See the section "Disable-wallet mode" to build LightningCash Core without wallet.
 
 Optional (see --with-miniupnpc and --enable-upnp-default):
 
@@ -269,7 +269,7 @@ Note:
 Enabling wallet support requires either compiling against a Berkeley DB newer than 4.8 (package `db`) using `--with-incompatible-bdb`,
 or building and depending on a local version of Berkeley DB 4.8. The readily available Arch Linux packages are currently built using
 `--with-incompatible-bdb` according to the [PKGBUILD](https://projects.archlinux.org/svntogit/community.git/tree/bitcoin/trunk/PKGBUILD).
-As mentioned above, when maintaining portability of the wallet between the standard LightningCash-Gold Core distributions and independently built
+As mentioned above, when maintaining portability of the wallet between the standard LightningCash Core distributions and independently built
 node software is desired, Berkeley DB 4.8 must be used.
 
 

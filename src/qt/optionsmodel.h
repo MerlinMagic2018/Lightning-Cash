@@ -49,9 +49,9 @@ public:
         DatabaseCache,          // int
         SpendZeroConfChange,    // bool
         Listen,                 // bool
-        HiveCheckDelay,         // LightningCash-Gold: Hive: Mining optimisations (int)
-        HiveCheckThreads,       // LightningCash-Gold: Hive: Mining optimisations (int)
-        HiveCheckEarlyOut,      // LightningCash-Gold: Hive: Mining optimisations (bool)
+        HiveCheckDelay,         // LightningCash: Hive: Mining optimisations (int)
+        HiveCheckThreads,       // LightningCash: Hive: Mining optimisations (int)
+        HiveCheckEarlyOut,      // LightningCash: Hive: Mining optimisations (bool)
         OptionIDRowCount,
     };
 
