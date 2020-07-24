@@ -189,6 +189,7 @@ extern const int nYesPowerFork;
 extern const int nSpeedFork;
 extern const int nAdjustFork;
 extern const int nLightFork;
+extern const int nHiveRepairFork;
 
 /** Block hash whose ancestors we will assume to have valid scripts without checking them. */
 extern uint256 hashAssumeValid;

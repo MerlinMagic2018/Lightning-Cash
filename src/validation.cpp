@@ -225,6 +225,7 @@ const int nYesPowerFork = 247777; // 247777
 const int nSpeedFork = 310000; // ????
 const int nAdjustFork = 617777; // to leave enough time for old bees to die
 const int nLightFork = 5100000; // 2 weeks +
+const int nHiveRepairFork = 6345000; // fast 5 days
 
 uint256 hashAssumeValid;
 arith_uint256 nMinimumChainWork;
@@ -1174,7 +1175,8 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 // LightningCash: Hive: Return the current cost for a single worker bee
 CAmount GetBeeCost(int nHeight, const Consensus::Params& consensusParams)
 {
-    if(nHeight >= consensusParams.totalMoneySupplyHeight)
+
+    if((nHeight >= consensusParams.totalMoneySupplyHeight) && (nHeight < nHiveRepairFork))
         return consensusParams.minBeeCost;
 
  
