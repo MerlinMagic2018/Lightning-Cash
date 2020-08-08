@@ -11,13 +11,15 @@ Lightning Cash is a coin based on Yespower POW algorithm, including DarkGravityW
 Lightning Cash Core is the full node software that makes up the backbone of the LNC network.
 
 
-Website : https://www.lightningcash.tk
+Website : https://lightningcash.tk
 
-Twitter : https://www.twitter.com/lnc
+Pool : https://pool.lightningcash.tk
 
-Discord Channel : https://discord.gg/bzcQ8ZM
+Block Explorer : https://explorer.lightningcash.tk
 
-Block Explorer : https://chainz.cryptoid.info/ltncg/
+Discord Channel : https://discord.gg/wYcq4z8
+
+
 
 
 
@@ -25,7 +27,7 @@ Characteristics
 ---------------------------------------------------------------------------
 
 
-- Hash Algorithm : YespowerLNC POW algorithm    ( CPU only )
+- Hash Algorithm : Yespower POW algorithm    ( CPU only )
 
 ( With the addition of modified Dash's DarkGravityWave v3 algorithm, that changes difficulty every block, and progressively lowers difficulty if long stale tips happens. Tested and fully working !!)
 
@@ -45,7 +47,7 @@ Characteristics
 
 - Block Reward : 5 LightningCash - halved every 8 400 000 blocks
 
-- Synchronising the wallet takes about 1 hour with a normal download speed.
+- Synchronising the wallet takes about 1 to 2 hours with a normal download speed.
 
 
 
