@@ -1,6 +1,10 @@
 *.tar.gz
 
 *.exe
+<<<<<<< HEAD
+=======
+
+>>>>>>> lightningcash2/master
 src/lightningcash
 src/lightningcashd
 src/lightningcash-cli
@@ -9,6 +13,10 @@ src/test/test_lightningcash
 src/test/test_lightningcash_fuzzy
 src/qt/test/test_lightningcash-qt
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> lightningcash2/master
 # autoreconf
 Makefile.in
 aclocal.m4
@@ -80,14 +88,29 @@ src/qt/bitcoin-qt.includes
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
+<<<<<<< HEAD
 lightningcash-qt
 lightningcash-Qt.app
+=======
+
+lightningcash-qt
+lightningcash-Qt.app
+
+>>>>>>> lightningcash2/master
 background.tiff*
 
 # Unit-tests
 Makefile.test
+<<<<<<< HEAD
 lightningcash-qt_test
 
+=======
+
+=======
+lightningcash-qt_test
+
+
+>>>>>>> lightningcash2/master
 # Resources cpp
 qrc_*.cpp
 # Mac specific
@@ -98,7 +121,13 @@ build
 *.gcno
 *.gcda
 /*.info
+<<<<<<< HEAD
 test_lightningcash.coverage/
+=======
+
+test_lightningcash.coverage/
+
+>>>>>>> lightningcash2/master
 total.coverage/
 coverage_percent.txt
 
