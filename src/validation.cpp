@@ -3324,7 +3324,7 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationSta
     assert(pindexPrev != nullptr);
     const int nHeight = pindexPrev->nHeight + 1;
 
-    if (nHeight < 1961114)
+    if (nHeight < 10961114)
 	return true;
 
     // LightningCash: Hive: Check appropriate Hive or PoW target

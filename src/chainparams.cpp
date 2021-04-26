@@ -171,10 +171,10 @@ public:
         
         // The best chain should have at least this much work.
 
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000006b1e7aecd12078");  // LightningCash : block 8219515
+        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000006b454d7fdbe222");  // LightningCash : block 10961113
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x19c6b5f119c3870cfc9082ebbb71e894ebedd3c918fa72f9a618c78da1d052f0"); // LightningCash: block 8219515
+        consensus.defaultAssumeValid = uint256S("0xdac4323e8ea6729ed84d0e538bf25ffc069c17cbd2253622920deabbc792c044"); // LightningCash: block 10961113
 
 
 
@@ -196,10 +196,9 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0xfe90e5f71db801cab3064947169305a13c8107e645f9387e211fd73f266a581a"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
-        //vSeeds.emplace_back("seeds.litecoinca.sh");
 
-        vSeeds.clear();
-        vSeeds.emplace_back("seeds.lnc.com");
+        //vSeeds.clear();
+        //vSeeds.emplace_back("seeds.lnc.com");
 
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,28);
@@ -212,7 +211,7 @@ public:
         bech32_hrp = "lnc";
 
 
-        //vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
+        vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
         //vFixedSeeds.clear(); // no seeds yet ----> now yes
         //vSeeds.clear();
 
@@ -229,6 +228,7 @@ public:
                 {  4850567, uint256S("0x4d6d9563be85d424def946b7972b21916f88494f4f54c697f0599abf6d82db1a")},
                 {  6137736, uint256S("0x815ebbe2686f712a254b98a792a7980c2dc5eaa92309fd595e9ea502abc3450f")},
                 {  8219515, uint256S("0x19c6b5f119c3870cfc9082ebbb71e894ebedd3c918fa72f9a618c78da1d052f0")},
+                {  10961113, uint256S("0xdac4323e8ea6729ed84d0e538bf25ffc069c17cbd2253622920deabbc792c044")},
             }
         };
 
