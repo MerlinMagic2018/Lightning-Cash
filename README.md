@@ -6,26 +6,24 @@
 What is LightningCash ?
 ----------------------
 
-LightningCash is a coin based on Yespower POW algorithm, including DarkGravityWave ( difficulty changes for every block ) and possible CURRENT block difficulty change over time to protect against high network hash variation and long stale tip. For full details, please visit our website at https://lightningcash.tk . Compiled binary releases are available here on Github.
+LightningCash is a coin based on Yespower POW algorithm, including DarkGravityWave ( difficulty changes for every block ) and possible CURRENT block difficulty change over time to protect against high network hash variation and long stale tip. For full details, please visit our website at https://lightningcash-coin.com . Compiled binary releases are available here on Github.
 
-Current supported version is 9.1.0
+Current supported version is 9.0.0 or 9.1.0
 
 Lightning-Cash Core is the full node software that makes up the backbone of the LNC network.
 
 
-Website : https://lightningcash.tk
+Website : https://lightningcash-coin.com
 
-Pool : https://pool.lightningcash.tk
+Pool : https://pool.lightningcash-coin.com
 
-Block Explorer : https://explorer.lightningcash.tk
+Block Explorer : https://explorer.lightningcash-coin.com
 
-Discord Server : https://discord.gg/nqkpPsnJmg
+Discord Server : https://discord.gg/WrMVXcA8bt
 
-Contact : lightningcashgold@gmail.com
+Contact : admin@lightningcash-coin.com
 
-Exchange : https://unnamed.exchange
-
-
+Exchange : https://unnamed.exchange ( under maintenance )
 
 
 
