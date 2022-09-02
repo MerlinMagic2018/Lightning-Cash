@@ -21,9 +21,9 @@ Block Explorer : https://explorer.lightningcash-coin.com
 
 Discord Server : https://discord.gg/WrMVXcA8bt
 
-Contact : admin@lightningcash-coin.com
+Contact : merlin@lightningcash-coin.com
 
-Exchange : https://unnamed.exchange ( under maintenance )
+Exchange : https://unnamed.exchange ( under maintenance, should be updated soon )
 
 
 
@@ -45,15 +45,16 @@ Characteristics
 
 - Changed famous NOMP ( node open mining portal ) pool software to include possible CURRENT block difficulty change and send new work to miners if so.
 
-- 5 seconds block time.
+- 5 seconds block time. ( Actual average block time is 5.1 seconds. )
 
-- Number of confirmations needed for a transaction : 6  (transaction is confirmed in approximately 30 seconds)
+- Number of confirmations needed for a transaction : 6  (transaction is confirmed in approximately 30.6 seconds)
 
 - Premine : 2,200,000 coins, barely above 1 % of max supply
 
-- Block Reward : 5 LightningCash - halved every 8 400 000 blocks ( currently 2.5 ) 
+- Block Reward : 5 LightningCash - halved every 8 400 000 blocks ( currently at 2.5 LNC / block ) 
 
-- Synchronising the wallet takes about 1 to 2 hours with a normal download speed. A bootstrap is available for download on the website. 
+- Synchronising the wallet takes about 1 to 2 hours with a normal download speed.
+  A bootstrap is available here : https://easyupload.io/lgva9x ( made on August 10th 2022 )
 
 
 
