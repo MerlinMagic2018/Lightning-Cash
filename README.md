@@ -2,6 +2,7 @@
 
 # LightningCash Core integration/staging tree
 ===========================================
+Updated on September 3rd 2022 
 
 What is LightningCash ?
 ----------------------
@@ -21,15 +22,8 @@ Block Explorer : https://explorer.lightningcash-coin.com
 
 Discord Server : https://discord.gg/WrMVXcA8bt
 
-<<<<<<< HEAD
-Exchange : https://unnamed.exchange ( Listing : Active status, but wallet under maintenance )
-=======
-Contact : merlin@lightningcash-coin.com
 
-Exchange : https://unnamed.exchange ( under maintenance, should be updated soon )
->>>>>>> 81f4b0f2fea3f2c716846ddb767e1cf7ac6306ab
-
-
+Exchange : https://unnamed.exchange ( Listing : Active status, but wallet under maintenance, should be updated soon )
 
 
 
@@ -63,7 +57,8 @@ Characteristics
 
 
 LightningCash is based on LitecoinCash Core, Litecoin Core and Bitcoin Core's open source codes.
-LightningCash is an independant coin and is not associated in any way with LitecoinCash.
+( Bitcoin ---> Litecoin ---> LitecoinCash ---> LightningCash )
+LightningCash is an independant coin and is not associated in any way with LitecoinCash's current team !
 
 
 License
