@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2017 The Bitcoin Core developers
-// Copyright (c) 2019 Antoine Brûlé
+// Copyright (c) 2019-2022 Antoine Brûlé
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -171,10 +171,10 @@ public:
         
         // The best chain should have at least this much work.
 
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000006b454d7fdbe222");  // LightningCash : block 10961113
+        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000006b7063a3f78280");  // LightningCash : block 15471019
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0xdac4323e8ea6729ed84d0e538bf25ffc069c17cbd2253622920deabbc792c044"); // LightningCash: block 10961113
+        consensus.defaultAssumeValid = uint256S("0x73b1d5bfbb2b9ecaea2b7580e55ebf7cf19acaf8b0ad042a5613ab3ab43bc5f8"); // LightningCash: block 15471019
 
 
 
@@ -210,7 +210,7 @@ public:
 
         bech32_hrp = "lnc";
 
-
+	vFixedSeeds.clear();
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
         //vFixedSeeds.clear(); // no seeds yet ----> now yes
         //vSeeds.clear();
@@ -223,21 +223,23 @@ public:
             {
                 {  0, uint256S("0xa1d8b56639865905eef9205e148bad0c6a4b2026b1753c76558bb735c3e9735c")},
                 {  310001, uint256S("0x5d6c2450c49e4856bcfb9a5bd8668cad06fc5daecfe9fb617847c0776e5a7e8e")},
-                {  1961113, uint256S("0xa9ff7a5f06b07650d6ebce31c6941979621acd6e686af2c2e8bd34a1015dbd8f")},
+                {  1961113, uint256S("0x44ed359ef56c9f52844fb1d207effb44a6d79e4644c2308cbd84fb279a96dd2f")},
                 {  2738650, uint256S("0x33a3d4e286293e63f6dee4092524a9dbb771c9efab7c13c8bbdc0879632a8d05")},
                 {  4850567, uint256S("0x4d6d9563be85d424def946b7972b21916f88494f4f54c697f0599abf6d82db1a")},
                 {  6137736, uint256S("0x815ebbe2686f712a254b98a792a7980c2dc5eaa92309fd595e9ea502abc3450f")},
                 {  8219515, uint256S("0x19c6b5f119c3870cfc9082ebbb71e894ebedd3c918fa72f9a618c78da1d052f0")},
                 {  10961113, uint256S("0xdac4323e8ea6729ed84d0e538bf25ffc069c17cbd2253622920deabbc792c044")},
+                {  15471019, uint256S("0x73b1d5bfbb2b9ecaea2b7580e55ebf7cf19acaf8b0ad042a5613ab3ab43bc5f8")},
+
             }
         };
 
         chainTxData = ChainTxData{
             // Data at genesis block.
-            1585501516, // * UNIX timestamp of last known number of transactions
-            4579660,   // * total number of transactions between genesis and that timestamp
+            1662198895, // * UNIX timestamp of last known number of transactions
+            16000204,   // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
-            0.135965613        // * estimated number of transactions per second after that timestamp
+            0.14495582        // * estimated number of transactions per second after that timestamp
         };
     }
 };

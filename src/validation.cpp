@@ -3324,8 +3324,8 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationSta
     assert(pindexPrev != nullptr);
     const int nHeight = pindexPrev->nHeight + 1;
 
-    if (nHeight < 10961114)
-	return true;
+//    if (nHeight < 15447278)
+//	return true;
 
     // LightningCash: Hive: Check appropriate Hive or PoW target
     const Consensus::Params& consensusParams = params.GetConsensus();
@@ -3343,7 +3343,7 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationSta
         // GetLastCheckpoint finds the last checkpoint in MapCheckpoints that's in our
         // MapBlockIndex.
         CBlockIndex* pcheckpoint = Checkpoints::GetLastCheckpoint(params.Checkpoints());
-        if ((pcheckpoint && nHeight < pcheckpoint->nHeight) && (nHeight >= 1961114))
+        if (pcheckpoint && nHeight < pcheckpoint->nHeight)
             return state.DoS(100, error("%s: forked chain older than last checkpoint (height %d)", __func__, nHeight), REJECT_CHECKPOINT, "bad-fork-prior-to-checkpoint");
     }
 
