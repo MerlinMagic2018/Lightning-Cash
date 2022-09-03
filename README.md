@@ -2,7 +2,13 @@
 
 # LightningCash Core integration/staging tree
 ===========================================
-Updated on September 3rd 2022 
+LightningCash Core new release version : 9.2.0
+
+Updated on September 3rd 2022
+
+
+Bitcointalk ANN : https://bitcointalk.org/index.php?topic=5117428
+
 
 What is LightningCash ?
 ----------------------
