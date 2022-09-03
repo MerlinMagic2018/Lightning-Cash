@@ -1,6 +1,6 @@
 <img src="https://i.ibb.co/3rvpw0v/68747470733a2f2f692e6962622e636f2f52767971784b4e2f626974636f696e2e706e67.png" alt="68747470733a2f2f692e6962622e636f2f52767971784b4e2f626974636f696e2e706e67" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'></a><br />
 
-# LightningCash
+# LightningCash Core integration/staging tree
 ===========================================
 
 What is LightningCash ?
@@ -8,7 +8,7 @@ What is LightningCash ?
 
 LightningCash is a coin based on Yespower POW algorithm, including DarkGravityWave ( difficulty changes for every block ) and possible CURRENT block difficulty change over time to protect against high network hash variation and long stale tip. For full details, please visit our website at https://lightningcash-coin.com . Compiled binary releases are available here on Github.
 
-Current supported version is 9.0.0 or 9.1.0
+Current supported version is 9.0.0 , 9.1.0 or 9.2.0
 
 Lightning-Cash Core is the full node software that makes up the backbone of the LNC network.
 
@@ -21,9 +21,13 @@ Block Explorer : https://explorer.lightningcash-coin.com
 
 Discord Server : https://discord.gg/WrMVXcA8bt
 
+<<<<<<< HEAD
+Exchange : https://unnamed.exchange ( Listing : Active status, but wallet under maintenance )
+=======
 Contact : merlin@lightningcash-coin.com
 
 Exchange : https://unnamed.exchange ( under maintenance, should be updated soon )
+>>>>>>> 81f4b0f2fea3f2c716846ddb767e1cf7ac6306ab
 
 
 
