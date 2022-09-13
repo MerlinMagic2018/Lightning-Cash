@@ -4,7 +4,7 @@
 ===========================================
 LightningCash Core new release version : 9.2.0
 
-README.md Updated on September 7th 2022
+README.md Updated on September 12th 2022
 
 
 Bitcointalk ANN : https://bitcointalk.org/index.php?topic=5117428
@@ -18,7 +18,7 @@ Whitepapers will be available soon.
 
 Current supported version is 9.0.0 , 9.1.0 or 9.2.0
 
-Lightning-Cash Core is the full node software that makes up the backbone of the LNC network.
+LightningCash Core is the full node software that makes up the backbone of the LightningCash network.
 
 
 Website : https://lightningcash-coin.com
@@ -32,25 +32,15 @@ Discord Server : https://discord.gg/WrMVXcA8bt
 
 Exchanges : 
 
-Very probable : 
-https://atomicdex.io/  ( scraping through the code... )
+Integration under way : 
 
-Too expensive for now :
-https://xt.com/
-https://binance.com/
-https://pro.coinbase.com/
-https://www.kucoin.com/
-
-Not sure... would be cool if not too expensive :
-https://www.stex.com/
-https://mercatox.com/ 
-https://main.southxchange.com/
-https://hitbtc.com/
-https://instaswap.io/
-https://exrates.me/
+https://atomicdex.io/  
 
 
-Characteristics
+
+
+
+LightningCash Characteristics
 ---------------------------------------------------------------------------
 
 
@@ -64,14 +54,17 @@ And check my modifications here :        https://github.com/MerlinMagic2018/Ligh
 ( Difficulty adjusted every block and possibly in CURRENT block if a long network stale tip happens !! This protects LightningCash from high hash variations and " high hash attacks " , that happens frequently for new coins and kills them by making the mining difficulty too high for the " normal " network's hash rate. )
 
 
-- The Hive : A " hodl and profit " mining system accessible to everyone, that works side by side with POW mining, invented by  LitecoinCash's developers !!
+- The Hive : A "hodl and profit" mining system accessible to everyone, that works side by side with POW mining, invented by LitecoinCash's developers !!
+
+- YespowerLNC / Hive blocks ratio : 50 % / 50 % ( active since Hive 1.2 )
 
 - Maximum Supply : 113,996,811 LNC 
 
-( 2200000-->(Premine, first 4 blocs) + 3096-->( slow start mining block 5 to 124) + (617652 x 50)-->(bloc 125 to 617776)
-+ ((8399999 - 617776) * 5 )  +  ( 8400000 * 2.5 ) + (8400000 * 1.25)  +  ( 8400000 * 0.625 ) etc..... = 113996811 LNC
+- Coins created so far : 89,840,581 LNC ( @ Block # 15 537 507 , September 7th 2022 ) ---> 78.81 % of max supply
 
-- Current Supply : 89,840,581 LNC ( @ Block # 15 537 507 , September 7th 2022 ) ---> 78.81 % of max supply
+- Coins circulating : 62,315,986 LNC  on September 13th 2022
+
+- Coins burned in the hive so far : 27,524,595 LNC  on September 13th 2022 
 
 - Next halving : Block #16800000 , November 19th 2022 ---> 81.58 % of max supply
 
@@ -89,21 +82,38 @@ Reference : https://bitcointalk.org/index.php?topic=5119004   and  https://bitco
 - Block Reward : 5 LightningCash - halved every 8 400 000 blocks ( currently at 2.5 LNC / block ) 
 
 - Synchronising the wallet takes about 8 hours with a normal download speed.
-  A bootstrap is available here : https://easyupload.io/lgva9x ( made on August 10th 2022 )
+  A bootstrap is available here : https://easyupload.io/3u05xq ( made on September 10th 2022 ) ( txindex=1 )
 
 
 
-LightningCash is based on LitecoinCash Core, Litecoin Core and Bitcoin Core's open source codes.
+LightningCash is bpsased on LitecoinCash Core, Litecoin Core and Bitcoin Core's open source codes.
 ( Bitcoin ---> Litecoin ---> LitecoinCash ---> LightningCash )
-LightningCash is an independant coin and is not associated with LitecoinCash's team
-( but if Tanner want to help he is always welcomed )
+LightningCash is not directly associated with LitecoinCash's team
+
+https://github.com/coldcity
+
+^^^ Litecoin Cash main dev, aka Tanner
+
+He helped me to create LightningCash back in february 2019
+It was supposed to be a fork at first, and I decided to start a new chain from genesis on my own.
+It was not the right thing to do.
+
+I am looking forward to find creative and fun ways to cooperate with LCC, RING, and all hive technology coins.
+
+Here is their discord :
+
+https://discord.gg/2pXa2nuCPH
 
 
 License
 -------
 
-Lightning-Cash Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
+LightningCash Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
 information or see https://opensource.org/licenses/MIT.
+
+A copy of this license can be found here :
+
+https://github.com/MerlinMagic2018/LightningCash-Core/COPYING
 
 
 Development Process
