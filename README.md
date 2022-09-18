@@ -1,12 +1,10 @@
 <img src="https://i.ibb.co/3rvpw0v/68747470733a2f2f692e6962622e636f2f52767971784b4e2f626974636f696e2e706e67.png" alt="68747470733a2f2f692e6962622e636f2f52767971784b4e2f626974636f696e2e706e67" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'></a><br />
 
-https://github.com/MerlinMagic2018/Proof-of-merlin
-
 # LightningCash Core integration/staging tree
 ===========================================
 LightningCash Core new release version : 9.2.0
 
-README.md Updated on September 12th 2022
+README.md Updated on September 18th 2022
 
 
 Bitcointalk ANN : https://bitcointalk.org/index.php?topic=5117428
@@ -15,10 +13,12 @@ Bitcointalk ANN : https://bitcointalk.org/index.php?topic=5117428
 What is LightningCash ?
 ----------------------
 
-LightningCash is a coin based on LitecoinCash ( LCC ), with Yespower POW algorithm, including DarkGravityWave ( difficulty changes for every block ) and possible CURRENT block difficulty change over time to protect against high network hash variation and long stale tip. It is also 15 times faster than LitecoinCash. For full details, please visit our website at https://lightningcash-coin.com . Compiled binary releases are available here on Github.
+LightningCash is a coin based on LitecoinCash ( LCC ), but with Yespower POW algorithm, including DarkGravityWave ( difficulty changes for every block ) and possible CURRENT block difficulty change over time to protect against high network hash variation and long stale tip. It is also 15 times faster than LitecoinCash. For full details, please visit our website at https://lightningcash-coin.com, or visit Litecoin Cash's website here : https://litecoinca.sh 
+
+Compiled binary releases are available here on Github.
 Whitepapers will be available soon.
 
-Current supported version is 9.0.0 , 9.1.0 or 9.2.0
+Current supported version are 9.0.0 , 9.1.0 and 9.2.0
 
 LightningCash Core is the full node software that makes up the backbone of the LightningCash network.
 
@@ -36,7 +36,10 @@ Exchanges :
 
 Integration under way : 
 
-https://atomicdex.io/  
+https://atomicdex.io/
+
+https://github.com/KomodoPlatform/coins/pull/487
+https://github.com/KomodoPlatform/atomicDEX-Desktop/pull/1963
 
 
 
@@ -88,9 +91,9 @@ Reference : https://bitcointalk.org/index.php?topic=5119004   and  https://bitco
 
 
 
-LightningCash is bpsased on LitecoinCash Core, Litecoin Core and Bitcoin Core's open source codes.
+LightningCash Core is based on LitecoinCash Core, Litecoin Core and Bitcoin Core's open source codes.
 ( Bitcoin ---> Litecoin ---> LitecoinCash ---> LightningCash )
-LightningCash is not directly associated with LitecoinCash's team
+LightningCash is not directly associated with LitecoinCash's team, but was created with the help of Tanner / coldcity
 
 https://github.com/coldcity
 
@@ -98,11 +101,12 @@ https://github.com/coldcity
 
 He helped me to create LightningCash back in february 2019
 It was supposed to be a fork at first, and I decided to start a new chain from genesis on my own.
-It was not the right thing to do.
+
+I chose the wrong path back then, and today I am trying to fix this.
 
 I am looking forward to find creative and fun ways to cooperate with LCC, RING, and all hive technology coins.
 
-Here is their discord :
+Here is LCC's discord :
 
 https://discord.gg/2pXa2nuCPH
 
