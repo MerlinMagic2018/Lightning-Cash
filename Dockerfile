@@ -18,13 +18,12 @@ RUN apt-get install -y libzmq3-dev
 
 RUN apt-get install -y git
 
-RUN git clone https://github.com/Lightningcash-dev/lightningcash
+RUN git clone https://github.com/MerlinMagic2018/Lightning-Cash
 
-WORKDIR /lightningcash
-
+WORKDIR /Lightning-Cash
 RUN ./autogen.sh
 
-RUN ./configure --without-gui --disable-tests --disable-bench
+RUN ./configure --without-gui --disable-tests --disable-bench --disable-zmq
 
 RUN make
 
