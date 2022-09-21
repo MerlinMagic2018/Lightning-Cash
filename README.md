@@ -2,9 +2,9 @@
 
 # LightningCash Core integration/staging tree
 ===========================================
-LightningCash Core new release version : 9.2.0
+LightningCash Core new release version : 9.3.0
 
-README.md Updated on September 18th 2022
+README.md Updated on September 21st 2022
 
 
 Bitcointalk ANN : https://bitcointalk.org/index.php?topic=5117428
@@ -18,9 +18,9 @@ LightningCash is a coin based on LitecoinCash ( LCC ), but with Yespower POW alg
 Compiled binary releases are available here on Github.
 Whitepapers will be available soon.
 
-Current supported version are 9.0.0 , 9.1.0 and 9.2.0
+Current supported version are 9.0.0 , 9.1.0 , 9.2.0 and 9.3.0
 
-LightningCash Core is the full node software that makes up the backbone of the LightningCash network.
+LightningCash Core is the full node software that makes up the backbone of the LightningCash p2p network.
 
 
 Website : https://lightningcash-coin.com
@@ -41,6 +41,9 @@ https://atomicdex.io/
 https://github.com/KomodoPlatform/coins/pull/487
 https://github.com/KomodoPlatform/atomicDEX-Desktop/pull/1963
 
+Any OS build instructions :
+
+https://github.com/MerlinMagic2018/Lightning-Cash/doc/build-ALL-OS.md
 
 
 
@@ -86,8 +89,11 @@ Reference : https://bitcointalk.org/index.php?topic=5119004   and  https://bitco
 
 - Block Reward : 5 LightningCash - halved every 8 400 000 blocks ( currently at 2.5 LNC / block ) 
 
-- Synchronising the wallet takes about 8 hours with a normal download speed.
+- Synchronising the wallet takes about 8 hours with a good download speed.
   A bootstrap is available here : https://easyupload.io/3u05xq ( made on September 10th 2022 ) ( txindex=1 )
+  Another bootstrap is availble here : https://drive.google.com/file/d/1fv-vRKYeF6exOu5xA1hh8DmbiLewnxZk/view?usp=sharing
+  This one has a very high maximum download speed. With a gygabyte download speed, it takes 3 minutes to download. Made on
+  September 19th 2022 ( txindex=1 )
 
 
 
@@ -97,7 +103,7 @@ LightningCash is not directly associated with LitecoinCash's team, but was creat
 
 https://github.com/coldcity
 
-^^^ Litecoin Cash main dev, aka Tanner
+^^^ Litecoin Cash lead dev, aka Tanner
 
 He helped me to create LightningCash back in february 2019
 It was supposed to be a fork at first, and I decided to start a new chain from genesis on my own.
