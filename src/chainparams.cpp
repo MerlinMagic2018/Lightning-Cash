@@ -171,10 +171,10 @@ public:
         
         // The best chain should have at least this much work.
 
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000006b7063a3f78280");  // LightningCash : block 15471019
+        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000006b9a00a237f786");  // LightningCash : block 16832760
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x73b1d5bfbb2b9ecaea2b7580e55ebf7cf19acaf8b0ad042a5613ab3ab43bc5f8"); // LightningCash: block 15471019
+        consensus.defaultAssumeValid = uint256S("0x416e9a302750b7b7a1452ed99312d5a95565612730498a785307e3565b9566a2"); // LightningCash: block 16832760
 
 
 
@@ -230,6 +230,7 @@ public:
                 {  8219515, uint256S("0x19c6b5f119c3870cfc9082ebbb71e894ebedd3c918fa72f9a618c78da1d052f0")},
                 {  10961113, uint256S("0xdac4323e8ea6729ed84d0e538bf25ffc069c17cbd2253622920deabbc792c044")},
                 {  15471019, uint256S("0x73b1d5bfbb2b9ecaea2b7580e55ebf7cf19acaf8b0ad042a5613ab3ab43bc5f8")},
+                {  16832760, uint256S("0x416e9a302750b7b7a1452ed99312d5a95565612730498a785307e3565b9566a2")},
 
             }
         };
