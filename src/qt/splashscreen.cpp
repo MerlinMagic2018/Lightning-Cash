@@ -120,9 +120,9 @@ SplashScreen::SplashScreen(Qt::WindowFlags f, const NetworkStyle *networkStyle) 
         pixPaint.drawText(pixmap.width()/devicePixelRatio-titleAddTextWidth-10,15,titleAddText);
     }
 
-    // LightningCash: Hive: May the hive bee with you
+    // LightningCash: Faster, stronger, better !
     pixPaint.setFont(QFont(font, 15*fontFactor));
-    pixPaint.drawText(302, 150, "May the Hive bee with you");
+    pixPaint.drawText(302, 150, "Faster, stronger, better !");
     
     pixPaint.end();
 
